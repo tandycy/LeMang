@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  UserViewController.h
 //  lemang
 //
 //  Created by 汤 骋原 on 14-7-29.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface UserViewController : UIViewController
 
 @end

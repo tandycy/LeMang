@@ -1,0 +1,51 @@
+
+/* Class = "IBUITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "36A-6B-0YA"; */
+"36A-6B-0YA.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "IBUINavigationItem"; title = "活动"; ObjectID = "AF7-kH-9HH"; */
+"AF7-kH-9HH.title" = "活动";
+
+/* Class = "IBUIViewController"; title = "First"; ObjectID = "CZ4-MO-1fc"; */
+"CZ4-MO-1fc.title" = "First";
+
+/* Class = "IBUITabBarItem"; title = "组织"; ObjectID = "L5g-Zb-zWI"; */
+"L5g-Zb-zWI.title" = "组织";
+
+/* Class = "IBUILabel"; text = "用户"; ObjectID = "PcP-8v-6OH"; */
+"PcP-8v-6OH.text" = "用户";
+
+/* Class = "IBUIViewController"; title = "Second"; ObjectID = "QUy-BD-bpt"; */
+"QUy-BD-bpt.title" = "Second";
+
+/* Class = "IBUILabel"; text = "首页"; ObjectID = "Zhg-ve-WU7"; */
+"Zhg-ve-WU7.text" = "首页";
+
+/* Class = "IBUITabBarItem"; title = "活动"; ObjectID = "ce3-uy-WMW"; */
+"ce3-uy-WMW.title" = "活动";
+
+/* Class = "IBUILabel"; text = "组织"; ObjectID = "ezC-84-Pdh"; */
+"ezC-84-Pdh.text" = "组织";
+
+/* Class = "IBUITabBarItem"; title = "用户"; ObjectID = "flk-uA-ptm"; */
+"flk-uA-ptm.title" = "用户";
+
+/* Class = "IBUITabBarItem"; title = "首页"; ObjectID = "u1e-5L-l1D"; */
+"u1e-5L-l1D.title" = "首页";
+
+/* Class = "IBUINavigationItem"; title = "Title"; ObjectID = "uK6-OF-vti"; */
+"uK6-OF-vti.title" = "Title";
+
+/* Class = "IBUISearchBar"; placeholder = "输入活动关键词"; ObjectID = "zkE-NB-K2G"; */
+"zkE-NB-K2G.placeholder" = "输入活动关键词";
+
+/* Class = "IBUISearchBar"; zkE-NB-K2G.scopeButtonTitles[0] = "All"; ObjectID = "zkE-NB-K2G"; */
+"zkE-NB-K2G.scopeButtonTitles[0]" = "All";
+
+/* Class = "IBUISearchBar"; zkE-NB-K2G.scopeButtonTitles[1] = "Sports"; ObjectID = "zkE-NB-K2G"; */
+"zkE-NB-K2G.scopeButtonTitles[1]" = "Sports";
+
+/* Class = "IBUISearchBar"; zkE-NB-K2G.scopeButtonTitles[2] = "Music"; ObjectID = "zkE-NB-K2G"; */
+"zkE-NB-K2G.scopeButtonTitles[2]" = "Music";
+
+/* Class = "IBUISearchBar"; zkE-NB-K2G.scopeButtonTitles[3] = "Others"; ObjectID = "zkE-NB-K2G"; */
+"zkE-NB-K2G.scopeButtonTitles[3]" = "Others";

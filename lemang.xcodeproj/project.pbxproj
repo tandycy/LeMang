@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25392FE4198FA35B0094CE6B /* appicon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 25392FE3198FA35B0094CE6B /* appicon152.png */; };
 		256E04291987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
 		256E042B1987A106009845A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042A1987A106009845A5 /* CoreGraphics.framework */; };
 		256E042D1987A106009845A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042C1987A106009845A5 /* UIKit.framework */; };
@@ -15,14 +16,20 @@
 		256E04391987A106009845A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04381987A106009845A5 /* AppDelegate.m */; };
 		256E043C1987A106009845A5 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E043A1987A106009845A5 /* Main_iPhone.storyboard */; };
 		256E043F1987A106009845A5 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E043D1987A106009845A5 /* Main_iPad.storyboard */; };
-		256E04421987A106009845A5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04411987A106009845A5 /* FirstViewController.m */; };
-		256E04451987A106009845A5 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04441987A106009845A5 /* SecondViewController.m */; };
 		256E04471987A106009845A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 256E04461987A106009845A5 /* Images.xcassets */; };
 		256E044E1987A106009845A5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E044D1987A106009845A5 /* XCTest.framework */; };
 		256E044F1987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
 		256E04501987A106009845A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042C1987A106009845A5 /* UIKit.framework */; };
 		256E04581987A106009845A5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 256E04561987A106009845A5 /* InfoPlist.strings */; };
 		256E045A1987A106009845A5 /* lemangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04591987A106009845A5 /* lemangTests.m */; };
+		256E04651987AA6B009845A5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04641987AA6B009845A5 /* HomeViewController.m */; };
+		256E046C1987AAB9009845A5 /* OrganizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E046B1987AAB9009845A5 /* OrganizationViewController.m */; };
+		256E046F1987AACA009845A5 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E046E1987AACA009845A5 /* ActivityViewController.m */; };
+		256E04721987AADA009845A5 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04711987AADA009845A5 /* UserViewController.m */; };
+		256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04781987B2BA009845A5 /* ActivityDetailViewController.m */; };
+		256E047C1987B2E5009845A5 /* OrganizationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E047B1987B2E5009845A5 /* OrganizationDetailViewController.m */; };
+		25C7F333198B75F700AB8B2F /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F332198B75F700AB8B2F /* ActivityTableViewController.m */; };
+		25C7F337198B7A3500AB8B2F /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F336198B7A3500AB8B2F /* Activity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		25392FE3198FA35B0094CE6B /* appicon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon152.png; sourceTree = "<group>"; };
+		25392FE5198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.strings"; sourceTree = "<group>"; };
+		25392FE6198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
+		25392FE7198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		25392FE8198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		256E04251987A106009845A5 /* lemang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lemang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		256E04281987A106009845A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		256E042A1987A106009845A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,16 +60,28 @@
 		256E04381987A106009845A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		256E043B1987A106009845A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		256E043E1987A106009845A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		256E04401987A106009845A5 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		256E04411987A106009845A5 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		256E04431987A106009845A5 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		256E04441987A106009845A5 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		256E04461987A106009845A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		256E044C1987A106009845A5 /* lemangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lemangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		256E044D1987A106009845A5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		256E04551987A106009845A5 /* lemangTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "lemangTests-Info.plist"; sourceTree = "<group>"; };
 		256E04571987A106009845A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		256E04591987A106009845A5 /* lemangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lemangTests.m; sourceTree = "<group>"; };
+		256E04631987AA6B009845A5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Class/HomeViewController.h; sourceTree = "<group>"; };
+		256E04641987AA6B009845A5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Class/HomeViewController.m; sourceTree = "<group>"; };
+		256E046A1987AAB9009845A5 /* OrganizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationViewController.h; path = Class/OrganizationViewController.h; sourceTree = "<group>"; };
+		256E046B1987AAB9009845A5 /* OrganizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganizationViewController.m; path = Class/OrganizationViewController.m; sourceTree = "<group>"; };
+		256E046D1987AACA009845A5 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewController.h; path = Class/ActivityViewController.h; sourceTree = "<group>"; };
+		256E046E1987AACA009845A5 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewController.m; path = Class/ActivityViewController.m; sourceTree = "<group>"; };
+		256E04701987AADA009845A5 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = Class/UserViewController.h; sourceTree = "<group>"; };
+		256E04711987AADA009845A5 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = Class/UserViewController.m; sourceTree = "<group>"; };
+		256E04771987B2BA009845A5 /* ActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailViewController.h; path = Class/ActivityDetailViewController.h; sourceTree = "<group>"; };
+		256E04781987B2BA009845A5 /* ActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController.m; path = Class/ActivityDetailViewController.m; sourceTree = "<group>"; };
+		256E047A1987B2E5009845A5 /* OrganizationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationDetailViewController.h; path = Class/OrganizationDetailViewController.h; sourceTree = "<group>"; };
+		256E047B1987B2E5009845A5 /* OrganizationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganizationDetailViewController.m; path = Class/OrganizationDetailViewController.m; sourceTree = "<group>"; };
+		25C7F331198B75F700AB8B2F /* ActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityTableViewController.h; path = Class/ActivityTableViewController.h; sourceTree = "<group>"; };
+		25C7F332198B75F700AB8B2F /* ActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityTableViewController.m; path = Class/ActivityTableViewController.m; sourceTree = "<group>"; };
+		25C7F335198B7A3500AB8B2F /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Activity.h; path = Class/Activity.h; sourceTree = "<group>"; };
+		25C7F336198B7A3500AB8B2F /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Activity.m; path = Class/Activity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,15 +141,13 @@
 		256E042E1987A106009845A5 /* lemang */ = {
 			isa = PBXGroup;
 			children = (
+				256E04661987AA74009845A5 /* Class */,
 				256E04371987A106009845A5 /* AppDelegate.h */,
 				256E04381987A106009845A5 /* AppDelegate.m */,
 				256E043A1987A106009845A5 /* Main_iPhone.storyboard */,
 				256E043D1987A106009845A5 /* Main_iPad.storyboard */,
-				256E04401987A106009845A5 /* FirstViewController.h */,
-				256E04411987A106009845A5 /* FirstViewController.m */,
-				256E04431987A106009845A5 /* SecondViewController.h */,
-				256E04441987A106009845A5 /* SecondViewController.m */,
 				256E04461987A106009845A5 /* Images.xcassets */,
+				25392FE3198FA35B0094CE6B /* appicon152.png */,
 				256E042F1987A106009845A5 /* Supporting Files */,
 			);
 			path = lemang;
@@ -158,6 +180,69 @@
 				256E04561987A106009845A5 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		256E04661987AA74009845A5 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				256E04761987B1E8009845A5 /* Home */,
+				256E04751987B1DE009845A5 /* Organization */,
+				256E04741987B1D6009845A5 /* User */,
+				256E04731987B1CE009845A5 /* Activity */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		256E04731987B1CE009845A5 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				25C7F334198B75FB00AB8B2F /* ActivityList */,
+				256E046D1987AACA009845A5 /* ActivityViewController.h */,
+				256E046E1987AACA009845A5 /* ActivityViewController.m */,
+				256E04771987B2BA009845A5 /* ActivityDetailViewController.h */,
+				256E04781987B2BA009845A5 /* ActivityDetailViewController.m */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		256E04741987B1D6009845A5 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				256E04701987AADA009845A5 /* UserViewController.h */,
+				256E04711987AADA009845A5 /* UserViewController.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		256E04751987B1DE009845A5 /* Organization */ = {
+			isa = PBXGroup;
+			children = (
+				256E046A1987AAB9009845A5 /* OrganizationViewController.h */,
+				256E046B1987AAB9009845A5 /* OrganizationViewController.m */,
+				256E047A1987B2E5009845A5 /* OrganizationDetailViewController.h */,
+				256E047B1987B2E5009845A5 /* OrganizationDetailViewController.m */,
+			);
+			name = Organization;
+			sourceTree = "<group>";
+		};
+		256E04761987B1E8009845A5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				256E04631987AA6B009845A5 /* HomeViewController.h */,
+				256E04641987AA6B009845A5 /* HomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		25C7F334198B75FB00AB8B2F /* ActivityList */ = {
+			isa = PBXGroup;
+			children = (
+				25C7F331198B75F700AB8B2F /* ActivityTableViewController.h */,
+				25C7F332198B75F700AB8B2F /* ActivityTableViewController.m */,
+				25C7F335198B7A3500AB8B2F /* Activity.h */,
+				25C7F336198B7A3500AB8B2F /* Activity.m */,
+			);
+			name = ActivityList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +304,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 256E041C1987A106009845A5;
 			productRefGroup = 256E04261987A106009845A5 /* Products */;
@@ -240,6 +326,7 @@
 				256E04471987A106009845A5 /* Images.xcassets in Resources */,
 				256E043C1987A106009845A5 /* Main_iPhone.storyboard in Resources */,
 				256E04331987A106009845A5 /* InfoPlist.strings in Resources */,
+				25392FE4198FA35B0094CE6B /* appicon152.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,10 +345,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				256E04451987A106009845A5 /* SecondViewController.m in Sources */,
 				256E04391987A106009845A5 /* AppDelegate.m in Sources */,
-				256E04421987A106009845A5 /* FirstViewController.m in Sources */,
 				256E04351987A106009845A5 /* main.m in Sources */,
+				256E04651987AA6B009845A5 /* HomeViewController.m in Sources */,
+				256E04721987AADA009845A5 /* UserViewController.m in Sources */,
+				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
+				256E047C1987B2E5009845A5 /* OrganizationDetailViewController.m in Sources */,
+				256E046C1987AAB9009845A5 /* OrganizationViewController.m in Sources */,
+				256E046F1987AACA009845A5 /* ActivityViewController.m in Sources */,
+				25C7F333198B75F700AB8B2F /* ActivityTableViewController.m in Sources */,
+				256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +381,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				256E04321987A106009845A5 /* en */,
+				25392FE7198FAE160094CE6B /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -296,6 +390,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				256E043B1987A106009845A5 /* Base */,
+				25392FE5198FAE160094CE6B /* zh-Hans */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -304,6 +399,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				256E043E1987A106009845A5 /* Base */,
+				25392FE6198FAE160094CE6B /* zh-Hans */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
@@ -312,6 +408,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				256E04571987A106009845A5 /* en */,
+				25392FE8198FAE160094CE6B /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -394,11 +491,16 @@
 		256E045E1987A107009845A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lemang/lemang-Prefix.pch";
 				INFOPLIST_FILE = "lemang/lemang-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -407,11 +509,16 @@
 		256E045F1987A107009845A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lemang/lemang-Prefix.pch";
 				INFOPLIST_FILE = "lemang/lemang-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -476,6 +583,7 @@
 				256E045F1987A107009845A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		256E04601987A107009845A5 /* Build configuration list for PBXNativeTarget "lemangTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +592,7 @@
 				256E04621987A107009845A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
