@@ -20,6 +20,8 @@
 @synthesize activityList;
 @synthesize filteredActivityArray;
 
+NSString *navTitle;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,7 +56,7 @@
     
    // activitySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 44, 320, 41)];
     
-    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+   // self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
     
     CGRect newBounds = activityList.bounds;
     newBounds.origin.y = newBounds.origin.y + activitySearchBar.bounds.size.height;
@@ -152,8 +154,8 @@
     // Navigation logic may go here. Create and push another view controller.
 	
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
+    viewController.navigationItem.title = @"活动详细页面";
     [self.navigationController pushViewController:viewController animated:YES];
-    
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
