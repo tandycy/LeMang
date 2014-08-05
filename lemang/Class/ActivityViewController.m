@@ -47,7 +47,8 @@ NSString *navTitle;
                   [Activity activityOfCategory:@"Business" name:@"同济大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]],
                   [Activity activityOfCategory:@"Others" name:@"同济大学活动3" icon:[UIImage imageNamed:@"appicon152.png"]],
                   [Activity activityOfCategory:@"Others" name:@"复旦大学活动1" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Others" name:@"复旦大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]], nil];
+                  [Activity activityOfCategory:@"Others" name:@"复旦大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]], nil
+                     ];
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
 }
@@ -118,32 +119,26 @@ NSString *navTitle;
 
 #pragma mark Content Filtering
 -(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{     // 根据搜索栏的内容和范围更新过滤后的数组。     // 先将过滤后的数组清空。
+{
     [self.filteredActivityArray removeAllObjects];
-    // 用NSPredicate来过滤数组。
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
     filteredActivityArray = [NSMutableArray arrayWithArray:[activityArray filteredArrayUsingPredicate:predicate]];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    // 当用户改变搜索字符串时，让列表的数据来源重新加载数据
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    // 返回YES，让table view重新加载。
     return YES;
 }
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
-    // 当用户改变搜索范围时，让列表的数据来源重新加载数据
     [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-    // 返回YES，让table view重新加载。
     return YES;
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
     viewController.navigationItem.title = @"活动详细页面";
     [self.navigationController pushViewController:viewController animated:YES];
