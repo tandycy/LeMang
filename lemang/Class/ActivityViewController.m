@@ -36,6 +36,8 @@ NSString *navTitle;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+    
     activityArray = [NSArray arrayWithObjects:[Activity activityOfCategory:@"All" name:@"上海大学活动1" icon:[UIImage imageNamed:@"appicon152.png"]],
                   [Activity activityOfCategory:@"Sports" name:@"上海大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]],
                   [Activity activityOfCategory:@"Sports" name:@"上海大学活动3" icon:[UIImage imageNamed:@"appicon152.png"]],
@@ -46,21 +48,13 @@ NSString *navTitle;
                   [Activity activityOfCategory:@"Others" name:@"同济大学活动3" icon:[UIImage imageNamed:@"appicon152.png"]],
                   [Activity activityOfCategory:@"Others" name:@"复旦大学活动1" icon:[UIImage imageNamed:@"appicon152.png"]],
                   [Activity activityOfCategory:@"Others" name:@"复旦大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]], nil];
-    
-    
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
-    
     [activityList reloadData];
-    
-   // [activitySearchBar setHidden:true];
-    
-   // activitySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 44, 320, 41)];
-    
-    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
-    
-   // CGRect newBounds = activityList.bounds;
-  //  newBounds.origin.y = newBounds.origin.y + activitySearchBar.bounds.size.height;
-   // activityList.bounds = newBounds;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tabBarController.tabBar setHidden:NO];
 }
 
 
@@ -124,31 +118,28 @@ NSString *navTitle;
 
 #pragma mark Content Filtering
 -(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
+{     // 根据搜索栏的内容和范围更新过滤后的数组。     // 先将过滤后的数组清空。
     [self.filteredActivityArray removeAllObjects];
+    // 用NSPredicate来过滤数组。
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
-    NSArray *tempArray = [activityArray filteredArrayUsingPredicate:predicate];
-    if (![scope isEqualToString:@"All"])
-    {
-        NSPredicate *scopePredicate = [NSPredicate predicateWithFormat:@"SELF.category contains[c] %@",scope];
-        tempArray = [tempArray filteredArrayUsingPredicate:scopePredicate];
-    }
-    filteredActivityArray = [NSMutableArray arrayWithArray:tempArray];
+    filteredActivityArray = [NSMutableArray arrayWithArray:[activityArray filteredArrayUsingPredicate:predicate]];
 }
-
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    // 当用户改变搜索字符串时，让列表的数据来源重新加载数据
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    
-    // Return YES to cause the search result table view to be reloaded.
+    // 返回YES，让table view重新加载。
     return YES;
 }
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
+    // 当用户改变搜索范围时，让列表的数据来源重新加载数据
     [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    // 返回YES，让table view重新加载。
     return YES;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
@@ -163,17 +154,9 @@ NSString *navTitle;
     activitySearchBar.showsCancelButton = YES;
 }
 
--(IBAction)goToSearch:(id)sender
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [activitySearchBar becomeFirstResponder];
-//    [activitySearchBar setHidden:false];
-}
-
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.tabBarController.tabBar setHidden:NO];
-
+    activitySearchBar.showsCancelButton = NO;
 }
 
 /*
