@@ -83,11 +83,11 @@ NSString *navTitle;
         activity = [self.activityArray objectAtIndex:indexPath.row];
     }
     
-    UILabel *titleLable = (UILabel *)[cell viewWithTag:101];
-    titleLable.text = activity.name;
-    
     UIImageView *activityIcon = (UIImageView *)[cell viewWithTag:100];
     activityIcon.image = activity.icon;
+    
+    UILabel *titleLable = (UILabel *)[cell viewWithTag:101];
+    titleLable.text = activity.name;    
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
@@ -114,7 +114,6 @@ NSString *navTitle;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 #pragma mark Content Filtering
@@ -153,6 +152,8 @@ NSString *navTitle;
 {
     activitySearchBar.showsCancelButton = NO;
 }
+
+
 
 /*
 #pragma mark - Navigation
