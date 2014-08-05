@@ -51,6 +51,7 @@ NSString *navTitle;
                      ];
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
+    //commit failed, recommit use
 }
 
 -(void)viewWillAppear:(BOOL)animated
