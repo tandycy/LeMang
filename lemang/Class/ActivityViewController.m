@@ -54,7 +54,7 @@
     
    // activitySearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 44, 320, 41)];
     
-  //  self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
     
     CGRect newBounds = activityList.bounds;
     newBounds.origin.y = newBounds.origin.y + activitySearchBar.bounds.size.height;
