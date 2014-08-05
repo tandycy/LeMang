@@ -170,6 +170,11 @@ NSString *navTitle;
 }
 
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tabBarController.tabBar setHidden:NO];
+
+}
 
 /*
 #pragma mark - Navigation
