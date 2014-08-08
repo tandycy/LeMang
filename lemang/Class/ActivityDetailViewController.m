@@ -14,6 +14,8 @@
 
 @implementation ActivityDetailViewController
 
+@synthesize title;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +29,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = title;
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1], UITextAttributeTextColor,
+                                                                     [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1], UITextAttributeTextShadowColor,
+                                                                     [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
+                                                                     [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
+                                                                     nil]];
     [self.tabBarController.tabBar setHidden:YES];
 }
 

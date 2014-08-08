@@ -27,6 +27,7 @@ NSString *navTitle;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        activityList.delegate = self;
     }
     return self;
 }
@@ -37,6 +38,7 @@ NSString *navTitle;
     // Do any additional setup after loading the view.
     
     self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+
     
     activityArray = [NSArray arrayWithObjects:[Activity activityOfCategory:@"All" name:@"上海大学活动1" icon:[UIImage imageNamed:@"appicon152.png"]],
                   [Activity activityOfCategory:@"Sports" name:@"上海大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]],
@@ -51,7 +53,6 @@ NSString *navTitle;
                      ];
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
-    //commit failed, recommit use
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -76,7 +77,7 @@ NSString *navTitle;
     
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-       cell = [activityList dequeueReusableCellWithIdentifier:CellIdentifier];
+      // cell = [activityList dequeueReusableCellWithIdentifier:CellIdentifier];
         activity = [self.filteredActivityArray objectAtIndex:indexPath.row];
     }
     else
@@ -141,6 +142,19 @@ NSString *navTitle;
 {
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
     viewController.navigationItem.title = @"活动详细页面";
+    
+    Activity *activity = nil;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        activity = [self.filteredActivityArray objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        activity = [self.activityArray objectAtIndex:indexPath.row];
+    }
+    viewController.title = activity.name;
+    
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -149,11 +163,9 @@ NSString *navTitle;
     activitySearchBar.showsCancelButton = YES;
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     activitySearchBar.showsCancelButton = NO;
 }
-
 
 
 /*
