@@ -9,6 +9,17 @@
 #import "ActivityViewController.h"
 #import "ActivityDetailViewController.h"
 
+typedef enum {
+	ActivityImg = 100,
+	ActivityTitle = 101,
+	ActivityDate = 102,
+	ActivityLimit = 103,
+	ActivityTypeIcon = 104,
+	ActivityMember = 105,
+    ActivityFav = 106
+} ActivityListTags;
+
+
 @interface ActivityViewController ()
 
 @end
@@ -39,17 +50,63 @@ NSString *navTitle;
     
     self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
 
-    
-    activityArray = [NSArray arrayWithObjects:[Activity activityOfCategory:@"All" name:@"上海大学活动1" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Sports" name:@"上海大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Sports" name:@"上海大学活动3" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Music" name:@"交通大学活动1" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Music" name:@"交通大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Business" name:@"同济大学活动1" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Business" name:@"同济大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Others" name:@"同济大学活动3" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Others" name:@"复旦大学活动1" icon:[UIImage imageNamed:@"appicon152.png"]],
-                  [Activity activityOfCategory:@"Others" name:@"复旦大学活动2" icon:[UIImage imageNamed:@"appicon152.png"]], nil
+    activityArray = [NSArray arrayWithObjects:
+                    [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                                                        title:@"上海大学活动1"
+                                                        date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                                        limit:@"限上海交大垂钓社"
+                                                        icon:[UIImage imageNamed:@"appicon152.png"]
+                                                        member:@"47/50"
+                                                        fav:@"325"],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                                            title:@"上海大学活动2"
+                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                           member:@"47/50"
+                                              fav:@"325"],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                                            title:@"上海大学活动3"
+                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                           member:@"47/50"
+                                              fav:@"325"],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                                            title:@"上海交通大学活动1"
+                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                           member:@"47/50"
+                                              fav:@"325"],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                                            title:@"上海交通大学活动2"
+                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                           member:@"47/50"
+                                              fav:@"325"],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                                            title:@"上海交通大学活动3"
+                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                           member:@"47/50"
+                                              fav:@"325"],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                                            title:@"上海同济大学活动1"
+                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                           member:@"47/50"
+                                              fav:@"325"],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                                            title:@"上海同济大学活动2"
+                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                           member:@"47/50"
+                                              fav:@"325"],nil
                      ];
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
@@ -66,12 +123,14 @@ NSString *navTitle;
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ActivityTableCell";
-    UITableViewCell *cell = [activityList
-                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [activityList dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+  
     if ( cell == nil )
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+   
     
     Activity *activity = nil;
     
@@ -85,13 +144,27 @@ NSString *navTitle;
         activity = [self.activityArray objectAtIndex:indexPath.row];
     }
     
-    UIImageView *activityIcon = (UIImageView *)[cell viewWithTag:100];
-    activityIcon.image = activity.icon;
+    UIImageView *activityImg = (UIImageView *)[cell viewWithTag:ActivityImg];
+    activityImg.image = activity.icon;
     
-    UILabel *titleLable = (UILabel *)[cell viewWithTag:101];
-    titleLable.text = activity.name;    
+    UILabel *titleLable = (UILabel *)[cell viewWithTag:ActivityTitle];
+    titleLable.text = activity.title;
     
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    UILabel *dateLable = (UILabel *)[cell viewWithTag:ActivityDate];
+    dateLable.text = activity.date;
+    
+    UILabel *limitLable = (UILabel *)[cell viewWithTag:ActivityLimit];
+    limitLable.text = activity.limit;
+    
+    UIImageView *typeIcon = (UIImageView *)[cell viewWithTag:ActivityTypeIcon];
+    typeIcon.image = activity.icon;
+    
+    UILabel *memberLable = (UILabel *)[cell viewWithTag:ActivityMember];
+    memberLable.text = activity.member;
+    
+    UILabel *favLable = (UILabel *)[cell viewWithTag:ActivityFav];
+    favLable.text = activity.fav;
+    
     return cell;
 }
 
@@ -122,7 +195,7 @@ NSString *navTitle;
 -(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     [self.filteredActivityArray removeAllObjects];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.title contains[c] %@",searchText];
     filteredActivityArray = [NSMutableArray arrayWithArray:[activityArray filteredArrayUsingPredicate:predicate]];
 }
 
@@ -153,7 +226,7 @@ NSString *navTitle;
     {
         activity = [self.activityArray objectAtIndex:indexPath.row];
     }
-    viewController.title = activity.name;
+    viewController.title = activity.title;
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

@@ -11,14 +11,26 @@
 @implementation Activity
 
 @synthesize category;
-@synthesize name;
+@synthesize img;
+@synthesize title;
+@synthesize date;
+@synthesize limit;
 @synthesize icon;
+@synthesize member;
+@synthesize fav;
 
-+ (id)activityOfCategory:(NSString *)category name:(NSString *)name icon:(UIImage *)icon
-{         Activity *newActivity = [[self alloc] init];
++ (id)activityOfCategory:(NSString*)category img:(UIImage*)img title:(NSString*)title date:(NSString*)date
+limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member fav:(NSString*)fav
+{
+    Activity *newActivity = [[self alloc] init];
     newActivity.category = category;
-    newActivity.name = name;
+    newActivity.img = img;
+    newActivity.title = title;
+    newActivity.date = date;
+    newActivity.limit = limit;
+    newActivity.member = member;
     newActivity.icon = icon;
+    newActivity.fav = fav;
     return newActivity;
 }
 

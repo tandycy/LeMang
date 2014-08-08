@@ -30,6 +30,17 @@
 		256E047C1987B2E5009845A5 /* OrganizationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E047B1987B2E5009845A5 /* OrganizationDetailViewController.m */; };
 		25C7F333198B75F700AB8B2F /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F332198B75F700AB8B2F /* ActivityTableViewController.m */; };
 		25C7F337198B7A3500AB8B2F /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F336198B7A3500AB8B2F /* Activity.m */; };
+		25CA2DF319949CF700BED707 /* 活动成员.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE819949CF700BED707 /* 活动成员.png */; };
+		25CA2DF419949CF700BED707 /* 活动详细.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE919949CF700BED707 /* 活动详细.png */; };
+		25CA2DF519949CF700BED707 /* 活动详细分享.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DEA19949CF700BED707 /* 活动详细分享.png */; };
+		25CA2DF619949CF700BED707 /* 活动页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DEB19949CF700BED707 /* 活动页面.png */; };
+		25CA2DF719949CF700BED707 /* 评论输入文字页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DEC19949CF700BED707 /* 评论输入文字页面.png */; };
+		25CA2DF819949CF700BED707 /* 评论输入页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DED19949CF700BED707 /* 评论输入页面.png */; };
+		25CA2DF919949CF700BED707 /* 评论页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DEE19949CF700BED707 /* 评论页面.png */; };
+		25CA2DFA19949CF700BED707 /* 商家组织.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DEF19949CF700BED707 /* 商家组织.png */; };
+		25CA2DFB19949CF700BED707 /* 社团成员.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF019949CF700BED707 /* 社团成员.png */; };
+		25CA2DFC19949CF700BED707 /* 社团组织.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF119949CF700BED707 /* 社团组织.png */; };
+		25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF219949CF700BED707 /* 组织页面.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +93,17 @@
 		25C7F332198B75F700AB8B2F /* ActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityTableViewController.m; path = Class/ActivityTableViewController.m; sourceTree = "<group>"; };
 		25C7F335198B7A3500AB8B2F /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Activity.h; path = Class/Activity.h; sourceTree = "<group>"; };
 		25C7F336198B7A3500AB8B2F /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Activity.m; path = Class/Activity.m; sourceTree = "<group>"; };
+		25CA2DE819949CF700BED707 /* 活动成员.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动成员.png"; sourceTree = "<group>"; };
+		25CA2DE919949CF700BED707 /* 活动详细.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动详细.png"; sourceTree = "<group>"; };
+		25CA2DEA19949CF700BED707 /* 活动详细分享.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动详细分享.png"; sourceTree = "<group>"; };
+		25CA2DEB19949CF700BED707 /* 活动页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动页面.png"; sourceTree = "<group>"; };
+		25CA2DEC19949CF700BED707 /* 评论输入文字页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论输入文字页面.png"; sourceTree = "<group>"; };
+		25CA2DED19949CF700BED707 /* 评论输入页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论输入页面.png"; sourceTree = "<group>"; };
+		25CA2DEE19949CF700BED707 /* 评论页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "评论页面.png"; sourceTree = "<group>"; };
+		25CA2DEF19949CF700BED707 /* 商家组织.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商家组织.png"; sourceTree = "<group>"; };
+		25CA2DF019949CF700BED707 /* 社团成员.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "社团成员.png"; sourceTree = "<group>"; };
+		25CA2DF119949CF700BED707 /* 社团组织.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "社团组织.png"; sourceTree = "<group>"; };
+		25CA2DF219949CF700BED707 /* 组织页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组织页面.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +163,7 @@
 		256E042E1987A106009845A5 /* lemang */ = {
 			isa = PBXGroup;
 			children = (
+				25CA2DE719949CD300BED707 /* Temp_pic */,
 				256E04661987AA74009845A5 /* Class */,
 				256E04371987A106009845A5 /* AppDelegate.h */,
 				256E04381987A106009845A5 /* AppDelegate.m */,
@@ -245,6 +268,24 @@
 			name = ActivityList;
 			sourceTree = "<group>";
 		};
+		25CA2DE719949CD300BED707 /* Temp_pic */ = {
+			isa = PBXGroup;
+			children = (
+				25CA2DE819949CF700BED707 /* 活动成员.png */,
+				25CA2DE919949CF700BED707 /* 活动详细.png */,
+				25CA2DEA19949CF700BED707 /* 活动详细分享.png */,
+				25CA2DEB19949CF700BED707 /* 活动页面.png */,
+				25CA2DEC19949CF700BED707 /* 评论输入文字页面.png */,
+				25CA2DED19949CF700BED707 /* 评论输入页面.png */,
+				25CA2DEE19949CF700BED707 /* 评论页面.png */,
+				25CA2DEF19949CF700BED707 /* 商家组织.png */,
+				25CA2DF019949CF700BED707 /* 社团成员.png */,
+				25CA2DF119949CF700BED707 /* 社团组织.png */,
+				25CA2DF219949CF700BED707 /* 组织页面.png */,
+			);
+			name = Temp_pic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,11 +363,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25CA2DF919949CF700BED707 /* 评论页面.png in Resources */,
 				256E043F1987A106009845A5 /* Main_iPad.storyboard in Resources */,
 				256E04471987A106009845A5 /* Images.xcassets in Resources */,
 				256E043C1987A106009845A5 /* Main_iPhone.storyboard in Resources */,
 				256E04331987A106009845A5 /* InfoPlist.strings in Resources */,
+				25CA2DF619949CF700BED707 /* 活动页面.png in Resources */,
+				25CA2DFA19949CF700BED707 /* 商家组织.png in Resources */,
+				25CA2DF319949CF700BED707 /* 活动成员.png in Resources */,
+				25CA2DF719949CF700BED707 /* 评论输入文字页面.png in Resources */,
+				25CA2DFC19949CF700BED707 /* 社团组织.png in Resources */,
+				25CA2DFB19949CF700BED707 /* 社团成员.png in Resources */,
+				25CA2DF819949CF700BED707 /* 评论输入页面.png in Resources */,
+				25CA2DF519949CF700BED707 /* 活动详细分享.png in Resources */,
+				25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */,
 				25392FE4198FA35B0094CE6B /* appicon152.png in Resources */,
+				25CA2DF419949CF700BED707 /* 活动详细.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

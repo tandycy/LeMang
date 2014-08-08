@@ -10,7 +10,7 @@
 #import "Activity.h"
 #import "ActivityTableViewController.h"
 
-@interface ActivityViewController : UIViewController <UISearchBarDelegate, UISearchDisplayDelegate>
+@interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 {
 //    IBOutlet ActivityTableViewController *ActivityList;
 
@@ -21,6 +21,7 @@
 
 @property IBOutlet UISearchBar *activitySearchBar;
 @property IBOutlet UITableView *activityList;
+@property IBOutlet UINavigationItem *question;
 
 -(IBAction)goToSearch:(id)sender;
 
