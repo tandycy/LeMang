@@ -10,7 +10,7 @@
 #import "Activity.h"
 #import "ActivityTableViewController.h"
 
-@interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIScrollViewDelegate>
 {
 //    IBOutlet ActivityTableViewController *ActivityList;
 
@@ -23,6 +23,11 @@
 @property IBOutlet UITableView *activityList;
 @property IBOutlet UINavigationItem *question;
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
+
 -(IBAction)goToSearch:(id)sender;
+
+-(IBAction)pageTurn:(UIPageControl *)sender;
 
 @end

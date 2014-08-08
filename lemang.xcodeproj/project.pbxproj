@@ -41,6 +41,7 @@
 		25CA2DFB19949CF700BED707 /* 社团成员.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF019949CF700BED707 /* 社团成员.png */; };
 		25CA2DFC19949CF700BED707 /* 社团组织.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF119949CF700BED707 /* 社团组织.png */; };
 		25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF219949CF700BED707 /* 组织页面.png */; };
+		25CA2E001994BCCF00BED707 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DFF1994BCCF00BED707 /* 11.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		25CA2DF019949CF700BED707 /* 社团成员.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "社团成员.png"; sourceTree = "<group>"; };
 		25CA2DF119949CF700BED707 /* 社团组织.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "社团组织.png"; sourceTree = "<group>"; };
 		25CA2DF219949CF700BED707 /* 组织页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组织页面.png"; sourceTree = "<group>"; };
+		25CA2DFF1994BCCF00BED707 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 		25CA2DE719949CD300BED707 /* Temp_pic */ = {
 			isa = PBXGroup;
 			children = (
+				25CA2DFF1994BCCF00BED707 /* 11.jpg */,
 				25CA2DE819949CF700BED707 /* 活动成员.png */,
 				25CA2DE919949CF700BED707 /* 活动详细.png */,
 				25CA2DEA19949CF700BED707 /* 活动详细分享.png */,
@@ -379,6 +382,7 @@
 				25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */,
 				25392FE4198FA35B0094CE6B /* appicon152.png in Resources */,
 				25CA2DF419949CF700BED707 /* 活动详细.png in Resources */,
+				25CA2E001994BCCF00BED707 /* 11.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

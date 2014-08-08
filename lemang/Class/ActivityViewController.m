@@ -30,6 +30,8 @@ typedef enum {
 @synthesize activitySearchBar;
 @synthesize activityList;
 @synthesize filteredActivityArray;
+@synthesize pageControl;
+@synthesize scrollView;
 
 NSString *navTitle;
 
@@ -50,6 +52,8 @@ NSString *navTitle;
     
     self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
 
+    
+    // initialize activity list
     activityArray = [NSArray arrayWithObjects:
                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
                                                         title:@"上海大学活动1"
@@ -110,6 +114,46 @@ NSString *navTitle;
                      ];
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
+    
+    [scrollView setContentSize:CGSizeMake(960, 380)];
+    scrollView.pagingEnabled=YES;
+    scrollView.bounces=NO;
+    [scrollView setDelegate:self];
+    scrollView.showsHorizontalScrollIndicator=NO;
+    [scrollView setContentSize:CGSizeMake(960, 128)];
+   
+    //activity scroll view
+    UIImageView *imageview1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 128)];
+    [imageview1 setImage:[UIImage imageNamed:@"11.jpg"]];
+    UIImageView *imageview2=[[UIImageView alloc]initWithFrame:CGRectMake(320, 0, 320, 128)];
+    [imageview2 setImage:[UIImage imageNamed:@"11.jpg"]];
+    UIImageView *imageview3=[[UIImageView alloc]initWithFrame:CGRectMake(640, 0, 320, 128)];
+    [imageview3 setImage:[UIImage imageNamed:@"11.jpg"]];
+    [scrollView addSubview:imageview1];
+    [scrollView addSubview:imageview2];
+    [scrollView addSubview:imageview3];
+    
+    
+   // pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(-130, 165, 320, 30)];
+    pageControl.numberOfPages=3;
+    pageControl.currentPage=0;
+   // pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
+   // pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    [pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
+   // [self.view addSubview:pageControl];
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView1{
+    CGPoint offset=scrollView1.contentOffset;
+    CGRect bounds=scrollView1.frame;
+    [self.pageControl setCurrentPage:offset.x/bounds.size.width];
+}
+
+- (IBAction)pageTurn:(UIPageControl *)sender {
+    CGSize viewsize=self.scrollView.frame.size;
+    CGRect rect=CGRectMake(sender.currentPage*viewsize.width, 0, viewsize.width, viewsize.height);
+    [self.scrollView scrollRectToVisible:rect animated:YES];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
