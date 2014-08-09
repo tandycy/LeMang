@@ -115,12 +115,6 @@
                                     <outlet property="delegate" destination="QUy-BD-bpt" id="wEx-FD-uFA"/>
                                 </connections>
                             </tableView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="98K-BO-N1t">
-                                <rect key="frame" x="20" y="157" width="39" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="currentPageIndicatorTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -131,7 +125,6 @@
                     <connections>
                         <outlet property="activityList" destination="9Hg-RG-Qen" id="49S-f3-P9k"/>
                         <outlet property="activitySearchBar" destination="obB-DF-Kw4" id="jd8-ls-9rj"/>
-                        <outlet property="pageControl" destination="98K-BO-N1t" id="aFu-HO-IPw"/>
                         <outlet property="scrollView" destination="6Bi-6k-BTf" id="BLG-8b-5UT"/>
                         <outlet property="searchDisplayController" destination="Ih2-Ul-UgE" id="CxD-hU-Q37"/>
                     </connections>

@@ -47,9 +47,10 @@ NSString *navTitle;
 
 - (void)viewDidLoad
 {
+    NSLog(@"load");
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    NSLog(@"load2");
     self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
 
     
@@ -114,7 +115,7 @@ NSString *navTitle;
                      ];
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
-    
+    NSLog(@"load3");
     [scrollView setContentSize:CGSizeMake(960, 380)];
     scrollView.pagingEnabled=YES;
     scrollView.bounces=NO;
@@ -134,13 +135,14 @@ NSString *navTitle;
     [scrollView addSubview:imageview3];
     
     
-   // pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(-130, 165, 320, 30)];
+    pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(-130, 100, 320, 30)];
     pageControl.numberOfPages=3;
     pageControl.currentPage=0;
-   // pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
-   // pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
+    pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     [pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
-   // [self.view addSubview:pageControl];
+    [self.activityList addSubview:pageControl];
+    
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView1{
@@ -180,8 +182,8 @@ NSString *navTitle;
     
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-      // cell = [activityList dequeueReusableCellWithIdentifier:CellIdentifier];
         activity = [self.filteredActivityArray objectAtIndex:indexPath.row];
+     //   NSLog(@"%f",self.searchDisplayController.searchResultsTableView.rowHeight);
     }
     else
     {
@@ -245,11 +247,13 @@ NSString *navTitle;
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    [self.searchDisplayController.searchResultsTableView setRowHeight:95];
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     return YES;
 }
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
+    [self.searchDisplayController.searchResultsTableView setRowHeight:95];
     [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
     return YES;
 }
