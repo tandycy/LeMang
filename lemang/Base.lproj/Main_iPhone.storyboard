@@ -165,14 +165,19 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="4hl-RY-qp1"/>
-                                    <barButtonItem title="Item" id="HaC-lE-k1h"/>
-                                    <barButtonItem title="Item" id="8By-gx-v6o"/>
-                                    <barButtonItem title="Item" id="vaJ-AG-dBh"/>
+                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="CFd-5N-ZGt"/>
+                                    <barButtonItem title="分享" id="4hl-RY-qp1"/>
+                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="DiX-Fc-qMI"/>
+                                    <barButtonItem title="喜欢" id="HaC-lE-k1h"/>
+                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="hWK-Ae-p6F"/>
+                                    <barButtonItem title="报名" id="8By-gx-v6o"/>
+                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="4Bf-Qh-g1x"/>
+                                    <barButtonItem title="评论" id="vaJ-AG-dBh"/>
+                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="GAA-5J-vCU"/>
                                 </items>
                             </toolbar>
                             <containerView contentMode="scaleToFill" id="cUd-sv-Pio">
-                                <rect key="frame" x="0.0" y="63" width="320" height="464"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="461"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </containerView>
@@ -181,7 +186,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="0eX-SI-LR4"/>
                     <connections>
-                        <outlet property="containerView" destination="cUd-sv-Pio" id="Qdk-Uj-CJp"/>
+                        <outlet property="containerView" destination="cUd-sv-Pio" id="0sg-W7-Ixl"/>
+                        <outlet property="toolBar" destination="9lu-Fs-TMI" id="dlF-8d-aen"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYJ-DO-7Of" userLabel="First Responder" sceneMemberID="firstResponder"/>

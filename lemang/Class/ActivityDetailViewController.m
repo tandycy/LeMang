@@ -16,6 +16,7 @@
 
 @synthesize title;
 @synthesize containerView;
+@synthesize toolBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,8 +42,9 @@
        
     UITableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
     [self addChildViewController:tableVC];
-    [self.containerView addSubview:tableVC.view];
+    [containerView addSubview:tableVC.view];
     [self didMoveToParentViewController:tableVC];
+    [self.view addSubview:toolBar];
     
 }
 
