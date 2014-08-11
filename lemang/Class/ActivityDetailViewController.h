@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Activity.h"
 
 @interface ActivityDetailViewController : UIViewController
 {
-    NSString *title;
+    Activity *activity;
 }
 
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) Activity *activity;
 
 @property IBOutlet UIView *containerView;
 @property IBOutlet UIToolbar *toolBar;

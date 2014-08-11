@@ -273,7 +273,7 @@ NSString *navTitle;
     {
         activity = [self.activityArray objectAtIndex:indexPath.row];
     }
-    viewController.title = activity.title;
+    viewController.activity = activity;
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

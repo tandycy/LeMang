@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Activity.h"
-#import "ActivityTableViewController.h"
 
 @interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIScrollViewDelegate>
 {

@@ -50,11 +50,11 @@
                                     </connections>
                                 </scrollView>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="ActivityTableCell" selectionStyle="none" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ActivityTableCell" rowHeight="95" id="mhn-tz-nB2">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="ActivityTableCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ActivityTableCell" rowHeight="95" id="mhn-tz-nB2">
                                         <rect key="frame" x="0.0" y="214" width="320" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mhn-tz-nB2" id="fZs-TX-U39">
-                                            <rect key="frame" x="0.0" y="0.0" width="253" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kt3-1k-5bM">
@@ -65,7 +65,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oiU-qv-xiX">
-                                                    <rect key="frame" x="10" y="10" width="0.0" height="72"/>
+                                                    <rect key="frame" x="10" y="10" width="67" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h1I-b2-2Hc">
@@ -107,9 +107,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <connections>
-                                            <segue destination="E5T-Hb-497" kind="push" trigger="accessoryAction" id="Z5q-ij-TJP"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -177,7 +174,7 @@
                                 </items>
                             </toolbar>
                             <containerView contentMode="scaleToFill" id="cUd-sv-Pio">
-                                <rect key="frame" x="0.0" y="63" width="320" height="461"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </containerView>
@@ -227,7 +224,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gx4-bT-eqx">
-                                    <rect key="frame" x="20" y="5" width="42" height="21"/>
+                                    <rect key="frame" x="20" y="5" width="224" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
@@ -400,6 +397,13 @@
                             <outlet property="delegate" destination="84k-Kl-0UC" id="0Jp-y8-AdD"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="amount" destination="Dkq-VP-8KT" id="aHN-kQ-cSb"/>
+                        <outlet property="hot" destination="SCu-dV-4gg" id="SQR-Yk-1AY"/>
+                        <outlet property="joinState" destination="kou-a7-wNk" id="EEO-rF-YrZ"/>
+                        <outlet property="titleImgView" destination="oVs-ZV-wMi" id="IZL-8y-RxE"/>
+                        <outlet property="titleLabel" destination="Gx4-bT-eqx" id="5Y6-cl-lC1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMM-L4-Nur" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

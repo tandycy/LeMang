@@ -7,6 +7,7 @@
 //
 
 #import "ActivityDetailViewController.h"
+#import "ActivityDetailTableViewController.h"
 
 @interface ActivityDetailViewController ()
 
@@ -17,6 +18,7 @@
 @synthesize title;
 @synthesize containerView;
 @synthesize toolBar;
+@synthesize activity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +33,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = title;
+  //  self.navigationItem.title = activity.title;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1], UITextAttributeTextColor,
                                                                      [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1], UITextAttributeTextShadowColor,
@@ -39,8 +41,10 @@
                                                                      [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
                                                                      nil]];
     [self.tabBarController.tabBar setHidden:YES];
-       
-    UITableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
+   
+    ActivityDetailTableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
+    tableVC.activity = activity;
+    
     [self addChildViewController:tableVC];
     [containerView addSubview:tableVC.view];
     [self didMoveToParentViewController:tableVC];

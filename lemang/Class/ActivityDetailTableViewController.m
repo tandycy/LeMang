@@ -1,18 +1,23 @@
 //
-//  ActivityTableViewController.m
+//  ActivityDetailTableViewController.m
 //  lemang
 //
-//  Created by 汤 骋原 on 14-8-1.
+//  Created by 汤 骋原 on 14-8-11.
 //  Copyright (c) 2014年 university media. All rights reserved.
 //
 
-#import "ActivityTableViewController.h"
+#import "ActivityDetailTableViewController.h"
 
-@interface ActivityTableViewController ()
+@interface ActivityDetailTableViewController ()
 
 @end
 
-@implementation ActivityTableViewController
+@implementation ActivityDetailTableViewController
+
+@synthesize activity;
+@synthesize titleLabel;
+@synthesize amount, hot, joinState;
+@synthesize titleImgView;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +31,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    titleLabel.text = activity.title;
+    amount.text = activity.member;
+    hot.text = activity.fav;
+    titleImgView.image = activity.img;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -56,16 +65,6 @@
     return 0;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
 /*
 // Override to support conditional editing of the table view.
