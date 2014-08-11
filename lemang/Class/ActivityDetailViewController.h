@@ -15,4 +15,6 @@
 
 @property (nonatomic, retain) NSString *title;
 
+@property IBOutlet UIView *containerView;
+
 @end

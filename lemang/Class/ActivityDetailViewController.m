@@ -15,6 +15,7 @@
 @implementation ActivityDetailViewController
 
 @synthesize title;
+@synthesize containerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +38,12 @@
                                                                      [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
                                                                      nil]];
     [self.tabBarController.tabBar setHidden:YES];
+       
+    UITableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
+    [self addChildViewController:tableVC];
+    [self.containerView addSubview:tableVC.view];
+    [self didMoveToParentViewController:tableVC];
+    
 }
 
 - (void)didReceiveMemoryWarning

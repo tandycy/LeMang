@@ -21,12 +21,9 @@
 
 @property IBOutlet UISearchBar *activitySearchBar;
 @property IBOutlet UITableView *activityList;
-@property IBOutlet UINavigationItem *question;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
-
--(IBAction)goToSearch:(id)sender;
 
 -(IBAction)pageTurn:(UIPageControl *)sender;
 

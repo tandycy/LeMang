@@ -183,7 +183,6 @@ NSString *navTitle;
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         activity = [self.filteredActivityArray objectAtIndex:indexPath.row];
-     //   NSLog(@"%f",self.searchDisplayController.searchResultsTableView.rowHeight);
     }
     else
     {
@@ -247,13 +246,13 @@ NSString *navTitle;
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    [self.searchDisplayController.searchResultsTableView setRowHeight:95];
+    [self.searchDisplayController.searchResultsTableView setRowHeight:95]; //set searchResultTable Row Height
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     return YES;
 }
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
-    [self.searchDisplayController.searchResultsTableView setRowHeight:95];
+    [self.searchDisplayController.searchResultsTableView setRowHeight:95]; //set searchResultTable Row Height
     [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
     return YES;
 }
