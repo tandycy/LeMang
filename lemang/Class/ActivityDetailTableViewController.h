@@ -17,6 +17,8 @@
     UILabel *hot;
     UILabel *amount;
     UIImageView *titleImgView;
+    UILabel *address;
+    UILabel *time;
 }
 
 @property (nonatomic, retain) Activity *activity;
@@ -25,5 +27,7 @@
 @property IBOutlet UILabel *hot;
 @property IBOutlet UILabel *amount;
 @property IBOutlet UIImageView *titleImgView;
+@property IBOutlet UILabel *address;
+@property IBOutlet UILabel *time;
 
 @end

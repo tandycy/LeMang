@@ -16,7 +16,7 @@
 
 @synthesize activity;
 @synthesize titleLabel;
-@synthesize amount, hot, joinState;
+@synthesize amount, hot, joinState,address,time;
 @synthesize titleImgView;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -35,6 +35,8 @@
     amount.text = activity.member;
     hot.text = activity.fav;
     titleImgView.image = activity.img;
+    address.text = activity.title;
+    time.text = activity.date;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -48,6 +50,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
 
 #pragma mark - Table view data source
 
