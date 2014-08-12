@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */; };
+		253823FF199A097E00180DB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253823FE199A097E00180DB9 /* Images.xcassets */; };
+		25382404199A1EE300180DB9 /* group1.png in Resources */ = {isa = PBXBuildFile; fileRef = 25382403199A1EE300180DB9 /* group1.png */; };
 		25392FE4198FA35B0094CE6B /* appicon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 25392FE3198FA35B0094CE6B /* appicon152.png */; };
 		256E04291987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
 		256E042B1987A106009845A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042A1987A106009845A5 /* CoreGraphics.framework */; };
@@ -17,7 +19,6 @@
 		256E04391987A106009845A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04381987A106009845A5 /* AppDelegate.m */; };
 		256E043C1987A106009845A5 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E043A1987A106009845A5 /* Main_iPhone.storyboard */; };
 		256E043F1987A106009845A5 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E043D1987A106009845A5 /* Main_iPad.storyboard */; };
-		256E04471987A106009845A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 256E04461987A106009845A5 /* Images.xcassets */; };
 		256E044E1987A106009845A5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E044D1987A106009845A5 /* XCTest.framework */; };
 		256E044F1987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
 		256E04501987A106009845A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042C1987A106009845A5 /* UIKit.framework */; };
@@ -57,6 +58,8 @@
 /* Begin PBXFileReference section */
 		2537509519989B9A006974C9 /* ActivityDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailTableViewController.h; path = Class/ActivityDetailTableViewController.h; sourceTree = "<group>"; };
 		2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailTableViewController.m; path = Class/ActivityDetailTableViewController.m; sourceTree = "<group>"; };
+		253823FE199A097E00180DB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		25382403199A1EE300180DB9 /* group1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group1.png; sourceTree = "<group>"; };
 		25392FE3198FA35B0094CE6B /* appicon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon152.png; sourceTree = "<group>"; };
 		25392FE5198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.strings"; sourceTree = "<group>"; };
 		25392FE6198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
@@ -74,7 +77,6 @@
 		256E04381987A106009845A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		256E043B1987A106009845A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		256E043E1987A106009845A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		256E04461987A106009845A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		256E044C1987A106009845A5 /* lemangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lemangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		256E044D1987A106009845A5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		256E04551987A106009845A5 /* lemangTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "lemangTests-Info.plist"; sourceTree = "<group>"; };
@@ -171,8 +173,8 @@
 				256E04381987A106009845A5 /* AppDelegate.m */,
 				256E043A1987A106009845A5 /* Main_iPhone.storyboard */,
 				256E043D1987A106009845A5 /* Main_iPad.storyboard */,
-				256E04461987A106009845A5 /* Images.xcassets */,
 				25392FE3198FA35B0094CE6B /* appicon152.png */,
+				253823FE199A097E00180DB9 /* Images.xcassets */,
 				256E042F1987A106009845A5 /* Supporting Files */,
 			);
 			path = lemang;
@@ -273,6 +275,7 @@
 		25CA2DE719949CD300BED707 /* Temp_pic */ = {
 			isa = PBXGroup;
 			children = (
+				25382403199A1EE300180DB9 /* group1.png */,
 				25CA2DFF1994BCCF00BED707 /* 11.jpg */,
 				25CA2DE819949CF700BED707 /* 活动成员.png */,
 				25CA2DE919949CF700BED707 /* 活动详细.png */,
@@ -368,7 +371,6 @@
 			files = (
 				25CA2DF919949CF700BED707 /* 评论页面.png in Resources */,
 				256E043F1987A106009845A5 /* Main_iPad.storyboard in Resources */,
-				256E04471987A106009845A5 /* Images.xcassets in Resources */,
 				256E043C1987A106009845A5 /* Main_iPhone.storyboard in Resources */,
 				256E04331987A106009845A5 /* InfoPlist.strings in Resources */,
 				25CA2DF619949CF700BED707 /* 活动页面.png in Resources */,
@@ -378,6 +380,8 @@
 				25CA2DFC19949CF700BED707 /* 社团组织.png in Resources */,
 				25CA2DFB19949CF700BED707 /* 社团成员.png in Resources */,
 				25CA2DF819949CF700BED707 /* 评论输入页面.png in Resources */,
+				25382404199A1EE300180DB9 /* group1.png in Resources */,
+				253823FF199A097E00180DB9 /* Images.xcassets in Resources */,
 				25CA2DF519949CF700BED707 /* 活动详细分享.png in Resources */,
 				25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */,
 				25392FE4198FA35B0094CE6B /* appicon152.png in Resources */,

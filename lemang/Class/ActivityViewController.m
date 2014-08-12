@@ -19,7 +19,6 @@ typedef enum {
     ActivityFav = 106
 } ActivityListTags;
 
-
 @interface ActivityViewController ()
 
 @end
@@ -52,64 +51,75 @@ NSString *navTitle;
     // Do any additional setup after loading the view.
     NSLog(@"load2");
     self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+    //activitySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(50.0f,0.0f,200.0f,44.0f)];
+    //[activitySearchBar setPlaceholder:@"search"];
+   // [activitySearchBar setShowsCancelButton:YES];
+   // activitySearchBar.delegate = self;
+   // [self.navigationController.navigationBar addSubview:activitySearchBar];
 
+    [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1]];
     
     // initialize activity list
+    UIImage *businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
+    UIImage *schoolIcon = [UIImage imageNamed:@"school_icon.png"];
+    UIImage *groupIcon = [UIImage imageNamed:@"group_icon.png"];
+    UIImage *privateIcon = [UIImage imageNamed:@"private_icon.png"];
+    
     activityArray = [NSArray arrayWithObjects:
-                    [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                    [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                                         title:@"上海大学活动1"
-                                                        date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                                        date:@"7月25日 周五 10:00--8月10日 周日 18:00"
                                                         limit:@"限上海交大垂钓社"
-                                                        icon:[UIImage imageNamed:@"appicon152.png"]
+                                                        icon:businessIcon
                                                         member:@"47/50"
                                                         fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"上海大学活动2"
                                              date:@"7月25日 周五 10：00--8月10日 周日 18：00"
                                             limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                             icon:schoolIcon
                                            member:@"47/50"
                                               fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"上海大学活动3"
                                              date:@"7月25日 周五 10：00--8月10日 周日 18：00"
                                             limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                             icon:groupIcon
                                            member:@"47/50"
                                               fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"上海交通大学活动1"
                                              date:@"7月25日 周五 10：00--8月10日 周日 18：00"
                                             limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"appicon152.png"]
-                                           member:@"47/50"
+                                             icon:privateIcon
+                                             member:@"47/50"
                                               fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"上海交通大学活动2"
                                              date:@"7月25日 周五 10：00--8月10日 周日 18：00"
                                             limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                             icon:[UIImage imageNamed:@"group1.png"]
                                            member:@"47/50"
                                               fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"上海交通大学活动3"
                                              date:@"7月25日 周五 10：00--8月10日 周日 18：00"
                                             limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                             icon:[UIImage imageNamed:@"group1.png"]
                                            member:@"47/50"
                                               fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"上海同济大学活动1"
                                              date:@"7月25日 周五 10：00--8月10日 周日 18：00"
                                             limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                             icon:[UIImage imageNamed:@"group1.png"]
                                            member:@"47/50"
                                               fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"appicon152.png"]
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"上海同济大学活动2"
                                              date:@"7月25日 周五 10：00--8月10日 周日 18：00"
                                             limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"appicon152.png"]
+                                             icon:[UIImage imageNamed:@"group1.png"]
                                            member:@"47/50"
                                               fav:@"325"],nil
                      ];
@@ -158,11 +168,6 @@ NSString *navTitle;
     
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.tabBarController.tabBar setHidden:NO];
-}
-
 
 #pragma mark - Table view data source
 
@@ -177,6 +182,9 @@ NSString *navTitle;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
    
+   // UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_list_back.png"]];
+   // [cell setBackgroundView:cellBG];
+    
     
     Activity *activity = nil;
     
@@ -190,7 +198,7 @@ NSString *navTitle;
     }
     
     UIImageView *activityImg = (UIImageView *)[cell viewWithTag:ActivityImg];
-    activityImg.image = activity.icon;
+    activityImg.image = activity.img;
     
     UILabel *titleLable = (UILabel *)[cell viewWithTag:ActivityTitle];
     titleLable.text = activity.title;
@@ -280,11 +288,28 @@ NSString *navTitle;
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
+    [self.searchDisplayController setActive:YES];
     activitySearchBar.showsCancelButton = YES;
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     activitySearchBar.showsCancelButton = NO;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchDisplayController setActive:NO];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tabBarController.tabBar setHidden:NO];
+    //[activitySearchBar setHidden:NO];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+  //  [activitySearchBar setHidden:YES];
 }
 
 
