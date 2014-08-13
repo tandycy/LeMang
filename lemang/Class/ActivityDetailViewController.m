@@ -25,9 +25,22 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        
+        /*
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        backButton.frame = CGRectMake(0.0, 0.0, 40.0, 27.0);
+        [backButton setImage:[UIImage imageNamed:@"top_back.png"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"top_back_down.png"] forState:UIControlStateSelected];
+        [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
+        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;
+         */
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {

@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2516A7D6199B5CC000768986 /* head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2516A7D5199B5CC000768986 /* head.jpg */; };
 		2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */; };
 		253823FF199A097E00180DB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253823FE199A097E00180DB9 /* Images.xcassets */; };
 		25382404199A1EE300180DB9 /* group1.png in Resources */ = {isa = PBXBuildFile; fileRef = 25382403199A1EE300180DB9 /* group1.png */; };
+		2538240C199A2A1E00180DB9 /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 25382409199A2A1E00180DB9 /* UIImageButton.m */; };
+		2538240D199A2A1E00180DB9 /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538240B199A2A1E00180DB9 /* UITableGridViewCell.m */; };
+		25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */; };
+		25382412199A2CBA00180DB9 /* doge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25382411199A2CBA00180DB9 /* doge.jpg */; };
 		25392FE4198FA35B0094CE6B /* appicon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 25392FE3198FA35B0094CE6B /* appicon152.png */; };
 		256E04291987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
 		256E042B1987A106009845A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042A1987A106009845A5 /* CoreGraphics.framework */; };
@@ -56,10 +61,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2516A7D5199B5CC000768986 /* head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head.jpg; sourceTree = "<group>"; };
 		2537509519989B9A006974C9 /* ActivityDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailTableViewController.h; path = Class/ActivityDetailTableViewController.h; sourceTree = "<group>"; };
 		2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailTableViewController.m; path = Class/ActivityDetailTableViewController.m; sourceTree = "<group>"; };
 		253823FE199A097E00180DB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		25382403199A1EE300180DB9 /* group1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group1.png; sourceTree = "<group>"; };
+		25382408199A2A1E00180DB9 /* UIImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageButton.h; sourceTree = "<group>"; };
+		25382409199A2A1E00180DB9 /* UIImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageButton.m; sourceTree = "<group>"; };
+		2538240A199A2A1E00180DB9 /* UITableGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableGridViewCell.h; sourceTree = "<group>"; };
+		2538240B199A2A1E00180DB9 /* UITableGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableGridViewCell.m; sourceTree = "<group>"; };
+		2538240E199A2AF900180DB9 /* ActivityMemberTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityMemberTableViewController.h; path = Class/ActivityMemberTableViewController.h; sourceTree = "<group>"; };
+		2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityMemberTableViewController.m; path = Class/ActivityMemberTableViewController.m; sourceTree = "<group>"; };
+		25382411199A2CBA00180DB9 /* doge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge.jpg; sourceTree = "<group>"; };
 		25392FE3198FA35B0094CE6B /* appicon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon152.png; sourceTree = "<group>"; };
 		25392FE5198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.strings"; sourceTree = "<group>"; };
 		25392FE6198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
@@ -223,13 +236,15 @@
 		256E04731987B1CE009845A5 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				25C7F334198B75FB00AB8B2F /* ActivityList */,
+				25C7F334198B75FB00AB8B2F /* Activity */,
 				256E046D1987AACA009845A5 /* ActivityViewController.h */,
 				256E046E1987AACA009845A5 /* ActivityViewController.m */,
 				256E04771987B2BA009845A5 /* ActivityDetailViewController.h */,
 				256E04781987B2BA009845A5 /* ActivityDetailViewController.m */,
 				2537509519989B9A006974C9 /* ActivityDetailTableViewController.h */,
 				2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */,
+				2538240E199A2AF900180DB9 /* ActivityMemberTableViewController.h */,
+				2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -263,20 +278,26 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
-		25C7F334198B75FB00AB8B2F /* ActivityList */ = {
+		25C7F334198B75FB00AB8B2F /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				25382408199A2A1E00180DB9 /* UIImageButton.h */,
+				25382409199A2A1E00180DB9 /* UIImageButton.m */,
+				2538240A199A2A1E00180DB9 /* UITableGridViewCell.h */,
+				2538240B199A2A1E00180DB9 /* UITableGridViewCell.m */,
 				25C7F335198B7A3500AB8B2F /* Activity.h */,
 				25C7F336198B7A3500AB8B2F /* Activity.m */,
 			);
-			name = ActivityList;
+			name = Activity;
 			sourceTree = "<group>";
 		};
 		25CA2DE719949CD300BED707 /* Temp_pic */ = {
 			isa = PBXGroup;
 			children = (
+				2516A7D5199B5CC000768986 /* head.jpg */,
 				25382403199A1EE300180DB9 /* group1.png */,
 				25CA2DFF1994BCCF00BED707 /* 11.jpg */,
+				25382411199A2CBA00180DB9 /* doge.jpg */,
 				25CA2DE819949CF700BED707 /* 活动成员.png */,
 				25CA2DE919949CF700BED707 /* 活动详细.png */,
 				25CA2DEA19949CF700BED707 /* 活动详细分享.png */,
@@ -385,8 +406,10 @@
 				25CA2DF519949CF700BED707 /* 活动详细分享.png in Resources */,
 				25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */,
 				25392FE4198FA35B0094CE6B /* appicon152.png in Resources */,
+				2516A7D6199B5CC000768986 /* head.jpg in Resources */,
 				25CA2DF419949CF700BED707 /* 活动详细.png in Resources */,
 				25CA2E001994BCCF00BED707 /* 11.jpg in Resources */,
+				25382412199A2CBA00180DB9 /* doge.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,12 +431,15 @@
 				256E04391987A106009845A5 /* AppDelegate.m in Sources */,
 				256E04351987A106009845A5 /* main.m in Sources */,
 				256E04651987AA6B009845A5 /* HomeViewController.m in Sources */,
+				2538240C199A2A1E00180DB9 /* UIImageButton.m in Sources */,
 				256E04721987AADA009845A5 /* UserViewController.m in Sources */,
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
 				256E047C1987B2E5009845A5 /* OrganizationDetailViewController.m in Sources */,
+				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
 				256E046C1987AAB9009845A5 /* OrganizationViewController.m in Sources */,
 				256E046F1987AACA009845A5 /* ActivityViewController.m in Sources */,
+				2538240D199A2A1E00180DB9 /* UITableGridViewCell.m in Sources */,
 				256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
