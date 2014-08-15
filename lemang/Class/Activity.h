@@ -26,8 +26,6 @@
 @property (nonatomic, copy) NSString *member;
 @property (nonatomic, copy) NSString *fav;
 
-
-
 + (id)activityOfCategory:(NSString*)category img:(UIImage*)img title:(NSString*)title date:(NSString*)date
                    limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member fav:(NSString*)fav;
 

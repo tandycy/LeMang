@@ -23,7 +23,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="首页" image="wm_tab_mytakeaway_normal" id="u1e-5L-l1D"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="首页" image="main_mainpage_off" id="u1e-5L-l1D"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,15 +162,15 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="CFd-5N-ZGt"/>
-                                    <barButtonItem title="分享" id="4hl-RY-qp1"/>
-                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="DiX-Fc-qMI"/>
-                                    <barButtonItem title="喜欢" id="HaC-lE-k1h"/>
-                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="hWK-Ae-p6F"/>
-                                    <barButtonItem title="报名" id="8By-gx-v6o"/>
-                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="4Bf-Qh-g1x"/>
-                                    <barButtonItem title="评论" id="vaJ-AG-dBh"/>
-                                    <barButtonItem width="25" style="plain" systemItem="fixedSpace" id="GAA-5J-vCU"/>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="CFd-5N-ZGt"/>
+                                    <barButtonItem image="bottom_share_on" width="52" id="4hl-RY-qp1"/>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="DiX-Fc-qMI"/>
+                                    <barButtonItem image="bottom_like_on" width="52" id="HaC-lE-k1h"/>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="hWK-Ae-p6F"/>
+                                    <barButtonItem image="bottom_sign_on" width="52" id="8By-gx-v6o"/>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="4Bf-Qh-g1x"/>
+                                    <barButtonItem image="bottom_comment_on" width="52" id="vaJ-AG-dBh"/>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="GAA-5J-vCU"/>
                                 </items>
                             </toolbar>
                             <containerView contentMode="scaleToFill" id="cUd-sv-Pio">
@@ -244,21 +244,49 @@
             </objects>
             <point key="canvasLocation" x="1944" y="-2399"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Activity Comment Table View Controller-->
         <scene sceneID="hKT-i3-pjW">
             <objects>
-                <tableViewController id="wTj-2a-Qnh" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uqz-em-V7R">
+                <tableViewController id="wTj-2a-Qnh" customClass="ActivityCommentTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="204" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" id="uqz-em-V7R">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CKZ-pd-5Ig">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CommentCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" rowHeight="125" id="CKZ-pd-5Ig">
+                                <rect key="frame" x="0.0" y="22" width="320" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CKZ-pd-5Ig" id="CTE-gA-SfA">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IKL-sN-Iou">
+                                            <rect key="frame" x="70" y="10" width="137" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SC8-pH-0Qp">
+                                            <rect key="frame" x="8" y="8" width="49" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_frame" id="vU3-26-qZk">
+                                            <rect key="frame" x="62" y="5" width="8" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="lhL-sl-jLU">
+                                            <rect key="frame" x="230" y="10" width="79" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123123123123123123123123123" lineBreakMode="wordWrap" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="mqM-Lz-9Mf">
+                                            <rect key="frame" x="76" y="32" width="239" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -506,7 +534,7 @@
         <scene sceneID="YqP-oO-dV9">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Awc-3w-PQI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="3" title="活动" image="yy_tab_icon_activity" id="ce3-uy-WMW"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="活动" image="main_activity_off" id="ce3-uy-WMW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="USF-7X-247">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -557,7 +585,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="组织" image="wm_tab_shop_normal" id="L5g-Zb-zWI"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="组织" image="main_organization_off" id="L5g-Zb-zWI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjD-nu-I9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -581,7 +609,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="4" title="用户" image="yy_tab_icon_mine" id="flk-uA-ptm"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="用户" image="main_user_off" id="flk-uA-ptm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4n-J3-zxO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -589,10 +617,17 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow_frame" width="6" height="59"/>
+        <image name="bottom_comment_on" width="53" height="22"/>
+        <image name="bottom_like_on" width="54" height="20"/>
+        <image name="bottom_share_on" width="54" height="20"/>
+        <image name="bottom_sign_on" width="52" height="22"/>
+        <image name="main_activity_off" width="27" height="25"/>
+        <image name="main_mainpage_off" width="27" height="26"/>
+        <image name="main_organization_off" width="27" height="26"/>
+        <image name="main_user_off" width="25" height="25"/>
         <image name="wm_tab_mytakeaway_normal" width="24" height="23"/>
         <image name="wm_tab_shop_normal" width="29" height="23"/>
-        <image name="yy_tab_icon_activity" width="34" height="34"/>
-        <image name="yy_tab_icon_mine" width="34" height="34"/>
         <image name="活动详细.png" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -10,6 +10,6 @@
 
 @interface UIImageButton : UIButton
 
-@property(nonatomic,assign)int row;//第几行
-@property(nonatomic,assign)int column;//第几列
+@property (nonatomic,assign) int row;
+@property (nonatomic,assign) int column;
 @end

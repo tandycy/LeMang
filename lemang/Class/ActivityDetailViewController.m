@@ -53,7 +53,7 @@
                                                                      [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
                                                                      [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
                                                                      nil]];
-    [self.tabBarController.tabBar setHidden:YES];
+   // [self.tabBarController.tabBar setHidden:YES];
    
     ActivityDetailTableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
     tableVC.activity = activity;
@@ -71,6 +71,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tabBarController.tabBar setUserInteractionEnabled:NO];
+    [self.tabBarController.tabBar setHidden:YES];
+}
 /*
 #pragma mark - Navigation
 

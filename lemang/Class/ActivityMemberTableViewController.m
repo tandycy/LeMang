@@ -76,7 +76,7 @@
         
         UIImageView *cbg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"member_back.png"]];
         cell.backgroundView = cbg;
-        cell.selectedBackgroundView = [[UIView alloc]init];
+      //  cell.selectedBackgroundView = [[UIView alloc]init];
         
         UIImageView *creatorImg = [[UIImageView alloc] initWithImage:[self cutCenterImage:[UIImage imageNamed:@"head.jpg"]  size:CGSizeMake(50, 50)]];
         UILabel *creatorHead = [[UILabel alloc]initWithFrame:CGRectMake(15, 10, 50, 50)];
@@ -88,10 +88,10 @@
         creatorSchool.text = @"上海交大";
         creatorColleage.text = @"电信学院";
         
-        creatorName.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
-        creatorName.textColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
-        creatorSchool.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
-        creatorColleage.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
+        creatorName.font = [UIFont fontWithName:defaultBoldFont size:13];
+        creatorName.textColor = defaultMainColor;
+        creatorSchool.font = [UIFont fontWithName:defaultBoldFont size:13];
+        creatorColleage.font = [UIFont fontWithName:defaultBoldFont size:13];
         
         [creatorHead addSubview:creatorImg];
         [cell addSubview:creatorHead];
@@ -114,9 +114,9 @@
             
             UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, 50, 20)];
             name.text = @"doge!";
-            name.font = [UIFont fontWithName:@"heiti sc" size:11];
+            name.font = [UIFont fontWithName:defaultFont size:11];
             name.textAlignment = UITextAlignmentCenter;
-            name.textColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
+            name.textColor = defaultMainColor;
 
             button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
             if (i==0) {

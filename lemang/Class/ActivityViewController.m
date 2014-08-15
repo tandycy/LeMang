@@ -57,7 +57,7 @@ NSString *navTitle;
    // activitySearchBar.delegate = self;
    // [self.navigationController.navigationBar addSubview:activitySearchBar];
 
-    [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1]];
+    
     
     // initialize activity list
     UIImage *businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
@@ -304,12 +304,14 @@ NSString *navTitle;
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:NO];
+    [self.tabBarController.tabBar setUserInteractionEnabled:YES];
     //[activitySearchBar setHidden:NO];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
   //  [activitySearchBar setHidden:YES];
+    
 }
 
 

@@ -16,6 +16,8 @@
 		25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */; };
 		25382412199A2CBA00180DB9 /* doge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25382411199A2CBA00180DB9 /* doge.jpg */; };
 		25392FE4198FA35B0094CE6B /* appicon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 25392FE3198FA35B0094CE6B /* appicon152.png */; };
+		2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2545E01D199CB67000F99CC7 /* ActivityComment.m */; };
+		2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */; };
 		256E04291987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
 		256E042B1987A106009845A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042A1987A106009845A5 /* CoreGraphics.framework */; };
 		256E042D1987A106009845A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042C1987A106009845A5 /* UIKit.framework */; };
@@ -62,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		2516A7D5199B5CC000768986 /* head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head.jpg; sourceTree = "<group>"; };
+		2532699C199DBE510054F989 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Class/Constants.h; sourceTree = "<group>"; };
 		2537509519989B9A006974C9 /* ActivityDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailTableViewController.h; path = Class/ActivityDetailTableViewController.h; sourceTree = "<group>"; };
 		2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailTableViewController.m; path = Class/ActivityDetailTableViewController.m; sourceTree = "<group>"; };
 		253823FE199A097E00180DB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -78,6 +81,10 @@
 		25392FE6198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
 		25392FE7198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		25392FE8198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2545E01C199CB67000F99CC7 /* ActivityComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityComment.h; path = Class/ActivityComment.h; sourceTree = "<group>"; };
+		2545E01D199CB67000F99CC7 /* ActivityComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityComment.m; path = Class/ActivityComment.m; sourceTree = "<group>"; };
+		2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommentTableViewController.h; path = Class/ActivityCommentTableViewController.h; sourceTree = "<group>"; };
+		2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommentTableViewController.m; path = Class/ActivityCommentTableViewController.m; sourceTree = "<group>"; };
 		256E04251987A106009845A5 /* lemang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lemang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		256E04281987A106009845A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		256E042A1987A106009845A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -180,6 +187,7 @@
 		256E042E1987A106009845A5 /* lemang */ = {
 			isa = PBXGroup;
 			children = (
+				2532699C199DBE510054F989 /* Constants.h */,
 				25CA2DE719949CD300BED707 /* Temp_pic */,
 				256E04661987AA74009845A5 /* Class */,
 				256E04371987A106009845A5 /* AppDelegate.h */,
@@ -243,6 +251,8 @@
 				256E04781987B2BA009845A5 /* ActivityDetailViewController.m */,
 				2537509519989B9A006974C9 /* ActivityDetailTableViewController.h */,
 				2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */,
+				2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */,
+				2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */,
 				2538240E199A2AF900180DB9 /* ActivityMemberTableViewController.h */,
 				2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */,
 			);
@@ -286,6 +296,8 @@
 				2538240A199A2A1E00180DB9 /* UITableGridViewCell.h */,
 				2538240B199A2A1E00180DB9 /* UITableGridViewCell.m */,
 				25C7F335198B7A3500AB8B2F /* Activity.h */,
+				2545E01C199CB67000F99CC7 /* ActivityComment.h */,
+				2545E01D199CB67000F99CC7 /* ActivityComment.m */,
 				25C7F336198B7A3500AB8B2F /* Activity.m */,
 			);
 			name = Activity;
@@ -428,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */,
 				256E04391987A106009845A5 /* AppDelegate.m in Sources */,
 				256E04351987A106009845A5 /* main.m in Sources */,
 				256E04651987AA6B009845A5 /* HomeViewController.m in Sources */,
@@ -436,6 +449,7 @@
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
 				256E047C1987B2E5009845A5 /* OrganizationDetailViewController.m in Sources */,
+				2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */,
 				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
 				256E046C1987AAB9009845A5 /* OrganizationViewController.m in Sources */,
 				256E046F1987AACA009845A5 /* ActivityViewController.m in Sources */,
