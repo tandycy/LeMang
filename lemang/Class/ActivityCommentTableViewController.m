@@ -72,19 +72,19 @@
     imgs[2] = [UIImage imageNamed:@"group1.png"];
     
     ActivityComment *comment1 = [[ActivityComment alloc]init];
-    comment1 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"tom" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment1 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"追女神未果的屌丝" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     
     ActivityComment *comment2 = [[ActivityComment alloc]init];
-    comment2 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"tom1" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment2 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是楼上的爸爸" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     
     ActivityComment *comment3 = [[ActivityComment alloc]init];
-    comment3 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"tom2" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment3 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我只能抢板凳了" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     ActivityComment *comment4 = [[ActivityComment alloc]init];
-    comment4 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"tom2" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment4 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"有地板坐坐也不错" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     ActivityComment *comment5 = [[ActivityComment alloc]init];
-    comment5 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"tom2" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment5 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"你们这帮水笔" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     ActivityComment *comment6 = [[ActivityComment alloc]init];
-    comment6 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"tom2" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment6 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是版主楼上都死" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     
     tableData[0] = comment1;
     tableData[1] = comment2;
@@ -92,7 +92,7 @@
     tableData[3] = comment4;
     tableData[4] = comment5;
     tableData[5] = comment6;
-    NSLog(@"%lu",(unsigned long)tableData.count);
+   // NSLog(@"%lu",(unsigned long)tableData.count);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,11 +121,12 @@
     
     commentName.text = comment.commentName;
     commentName.textColor = [UIColor colorWithRed:0.17647059 green:0.17647059 blue:0.17647059 alpha:1];
+    commentName.font = [UIFont fontWithName:defaultBoldFont size:15];
     commentIcon.image = comment.commentIcon;
     
     commentDetail.text = comment.commentDetail;
     commentDetail.textColor = [UIColor colorWithRed:0.41176471 green:0.41176471 blue:0.41176471 alpha:1];
-    commentDetail.font = [UIFont fontWithName:defaultFont size:11];
+    commentDetail.font = [UIFont fontWithName:defaultFont size:13];
     CGSize labelSize = {0, 0};
     labelSize = [commentDetail.text sizeWithFont:commentDetail.font
                                constrainedToSize:CGSizeMake(240.0, 5000)
