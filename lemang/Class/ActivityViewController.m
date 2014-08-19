@@ -9,6 +9,8 @@
 #import "ActivityViewController.h"
 #import "ActivityDetailViewController.h"
 
+#define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
+
 typedef enum {
 	ActivityImg = 100,
 	ActivityTitle = 101,
@@ -46,29 +48,50 @@ NSString *navTitle;
 
 - (void)refreshActivityData
 {
-    @try
-    {
-        NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/tags";
-        NSURL *URL = [NSURL URLWithString:URLString];
-        
-        NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
-        [URLRequest addValue:@"application/json; charset=utf-8" forHTTPHeaderField: @"Content-Type"];
-        [URLRequest addValue:@"Basicuser:user" forHTTPHeaderField: @"Authorization"];
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    NSString *authInfo = @"Basic user:user";
+    
+    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    
+    [URLRequest setHTTPMethod:@"GET"];
+    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
+   // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
+    
+    
+
+   
+        NSURLResponse * response;
+        NSError * error;
+    
+        NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
+        if (error) {
+            NSLog(@"a connection could not be created or request fails.");
+            NSLog(@"Error: %@", [error localizedDescription]);
+        }
         //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
-        [URLRequest setHTTPMethod:@"GET"];
-        
-        
+    
+    
         NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
         
         receivedData=[[NSMutableData alloc] initWithData:nil];
         
         if (connection) {
             receivedData = [NSMutableData new];
+            NSLog(@"rd%@",receivedData);
         }
-    }
-    @catch (NSException * e)
-    {
-        NSLog(@"%@",e.reason);
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if ([challenge previousFailureCount] == 0) {
+        NSURLCredential *newCredential;
+        newCredential=[NSURLCredential credentialWithUser:@"users" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
+        [[challenge sender] useCredential:newCredential
+               forAuthenticationChallenge:challenge];
+    } else {
+        [[challenge sender] cancelAuthenticationChallenge:challenge];
     }
 }
 
@@ -96,6 +119,7 @@ NSString *navTitle;
     NSLog(@"请求完成…");
     NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
    // [self reloadView:dict];
+    
     NSString *results = [[NSString alloc]
                          initWithBytes:[receivedData bytes]
                          length:[receivedData length]
@@ -108,7 +132,6 @@ NSString *navTitle;
     NSLog(@"load");
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"load2");
     //self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
     //activitySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(50.0f,0.0f,200.0f,44.0f)];
     //[activitySearchBar setPlaceholder:@"search"];

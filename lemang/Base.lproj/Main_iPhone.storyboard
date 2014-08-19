@@ -119,7 +119,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Nqc-Nk-Swj">
-                        <barButtonItem key="leftBarButtonItem" image="main_activity_off" id="jqI-ed-Na5"/>
+                        <barButtonItem key="leftBarButtonItem" image="main_top_select" id="59a-iY-1an">
+                            <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="main_top_create_activity" id="hvh-y2-5rK">
+                            <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
@@ -834,6 +839,8 @@
         <image name="main_activity_off" width="27" height="25"/>
         <image name="main_mainpage_off" width="27" height="26"/>
         <image name="main_organization_off" width="27" height="26"/>
+        <image name="main_top_create_activity" width="28" height="35"/>
+        <image name="main_top_select" width="23" height="33"/>
         <image name="main_user_off" width="25" height="25"/>
         <image name="more_button" width="47" height="17"/>
         <image name="rate_star_whole" width="14" height="14"/>
