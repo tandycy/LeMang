@@ -44,6 +44,65 @@ NSString *navTitle;
     return self;
 }
 
+- (void)refreshActivityData
+{
+    @try
+    {
+        NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/tags";
+        NSURL *URL = [NSURL URLWithString:URLString];
+        
+        NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+        [URLRequest addValue:@"application/json; charset=utf-8" forHTTPHeaderField: @"Content-Type"];
+        [URLRequest addValue:@"Basicuser:user" forHTTPHeaderField: @"Authorization"];
+        //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
+        [URLRequest setHTTPMethod:@"GET"];
+        
+        
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
+        
+        receivedData=[[NSMutableData alloc] initWithData:nil];
+        
+        if (connection) {
+            receivedData = [NSMutableData new];
+        }
+    }
+    @catch (NSException * e)
+    {
+        NSLog(@"%@",e.reason);
+    }
+}
+
+#pragma mark- NSURLConnection 回调方法
+- (void)connection:(NSURLConnection *)aConn didReceiveResponse:(NSURLResponse *)response
+
+{
+    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+    if ([response respondsToSelector:@selector(allHeaderFields)]) {
+        NSDictionary *dictionary = [httpResponse allHeaderFields];
+        //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);
+        
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data { //①
+    [receivedData appendData:data];
+}
+-(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
+    NSLog(@"%@",[error localizedDescription]);
+}
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection {       //  ②
+    NSLog(@"请求完成…");
+    NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
+   // [self reloadView:dict];
+    NSString *results = [[NSString alloc]
+                         initWithBytes:[receivedData bytes]
+                         length:[receivedData length]
+                         encoding:NSUTF8StringEncoding];
+    NSLog(@"results=%@",results);
+}
+
 - (void)viewDidLoad
 {
     NSLog(@"load");
@@ -56,6 +115,8 @@ NSString *navTitle;
    // [activitySearchBar setShowsCancelButton:YES];
    // activitySearchBar.delegate = self;
    // [self.navigationController.navigationBar addSubview:activitySearchBar];
+    
+    [self refreshActivityData];
 
     
     
