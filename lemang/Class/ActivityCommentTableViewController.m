@@ -151,7 +151,7 @@
     if (dc) {
         [dc removeFromSuperview];
     }
-    UIButton *deleteComment = [[UIButton alloc]initWithFrame:CGRectMake(295, commentDetail.frame.origin.y+commentDetail.frame.size.height+70, 14, 20)];
+    UIButton *deleteComment = [[UIButton alloc]initWithFrame:CGRectMake(290, commentDetail.frame.origin.y+commentDetail.frame.size.height+65, 28, 30)];
     [deleteComment setBackgroundImage:[UIImage imageNamed:@"delete.png"] forState:UIControlStateNormal];
     [deleteComment setBackgroundImage:[UIImage imageNamed:@"delete_down.png"] forState:UIControlStateSelected];
     [deleteComment addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];

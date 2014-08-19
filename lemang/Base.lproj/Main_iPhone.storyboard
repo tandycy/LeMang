@@ -191,6 +191,145 @@
             </objects>
             <point key="canvasLocation" x="764" y="-1939"/>
         </scene>
+        <!--Organization Table View Controller - 组织-->
+        <scene sceneID="Vc7-sc-vQp">
+            <objects>
+                <tableViewController id="hbP-KD-ZZ3" customClass="OrganizationTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="22" sectionFooterHeight="22" id="cAx-Wl-o7C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="OrganizationTableCell" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="OrganizationTableCell" rowHeight="86" id="T6a-fB-9jj">
+                                <rect key="frame" x="0.0" y="86" width="320" height="86"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T6a-fB-9jj" id="awD-Zz-4SV">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交大吉他社" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Iov-nA-xpg">
+                                            <rect key="frame" x="93" y="7" width="199" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Erh-r1-DAg">
+                                            <rect key="frame" x="11" y="7" width="70" height="71"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="限交大闵行校区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gxg-d8-Rdk">
+                                            <rect key="frame" x="96" y="34" width="232" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buisness_icon" id="dag-Hy-mMh">
+                                            <rect key="frame" x="289" y="7" width="21" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like_number" id="ZRa-8a-cM7">
+                                            <rect key="frame" x="295" y="65" width="13" height="13"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大一" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UHD-HE-gep">
+                                            <rect key="frame" x="240" y="32" width="68" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="106" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2ZA-EP-U75">
+                                            <rect key="frame" x="231" y="63" width="59" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <segue destination="Ht5-n3-fPN" kind="push" id="14l-bC-c2f"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hbP-KD-ZZ3" id="fNs-QY-ny1"/>
+                            <outlet property="delegate" destination="hbP-KD-ZZ3" id="Cjg-c9-2pU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="组织" id="93b-WY-cbg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2SS-XO-cKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="359" y="-1193"/>
+        </scene>
+        <!--Organization Detail Table View Controller-->
+        <scene sceneID="mp6-dF-drI">
+            <objects>
+                <tableViewController id="Ht5-n3-fPN" customClass="OrganizationDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xdg-fj-vgl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="CzO-ih-SZc">
+                            <rect key="frame" x="0.0" y="64" width="320" height="200"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国银行中银大厦支行" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qFJ-Ia-ECb">
+                                    <rect key="frame" x="11" y="7" width="289" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="P19-oV-QLR">
+                                    <rect key="frame" x="11" y="36" width="90" height="90"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="orgDetailCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="orgDetailCell" id="bul-tn-Gv4">
+                                <rect key="frame" x="0.0" y="286" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bul-tn-Gv4" id="YAr-Rs-FzB">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ht5-n3-fPN" id="NlS-Dt-dwv"/>
+                            <outlet property="delegate" destination="Ht5-n3-fPN" id="ylG-EM-wVK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ii9-yp-YH2"/>
+                    <connections>
+                        <outlet property="orgDetailTitleView" destination="CzO-ih-SZc" id="pDX-sK-4SK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZaP-h8-9oo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768" y="-1195"/>
+        </scene>
+        <!--Navigation Controller - 组织-->
+        <scene sceneID="T17-IK-XOW">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="gRo-jH-M2v" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="3" title="组织" image="main_organization_off" id="9nn-42-3eM"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rRQ-T2-mN0">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hbP-KD-ZZ3" kind="relationship" relationship="rootViewController" id="kWq-0W-4FE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9O-zO-vtE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-108" y="-1193"/>
+        </scene>
         <!--Activity Member Table View Controller-->
         <scene sceneID="tJl-tg-73L">
             <objects>
@@ -615,7 +754,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMM-L4-Nur" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1156" y="-1951"/>
+            <point key="canvasLocation" x="1156" y="-1939"/>
         </scene>
         <!--Navigation Controller - 活动-->
         <scene sceneID="YqP-oO-dV9">
@@ -645,38 +784,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="CZ4-MO-1fc" kind="relationship" relationship="viewControllers" id="SUk-Ux-ee1"/>
-                        <segue destination="6le-qu-e0C" kind="relationship" relationship="viewControllers" id="HuA-wA-Yxu"/>
                         <segue destination="Awc-3w-PQI" kind="relationship" relationship="viewControllers" id="e5P-9Q-RLb"/>
+                        <segue destination="gRo-jH-M2v" kind="relationship" relationship="viewControllers" id="7xJ-Ss-xxr"/>
                         <segue destination="54A-gO-o5g" kind="relationship" relationship="viewControllers" id="OaK-IM-D3v"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1073" y="-1576"/>
-        </scene>
-        <!--Organization View Controller - 组织-->
-        <scene sceneID="eRZ-me-rdq">
-            <objects>
-                <viewController id="6le-qu-e0C" customClass="OrganizationViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="k6V-po-Suv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="组织" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="ezC-84-Pdh">
-                                <rect key="frame" x="20" y="170" width="280" height="42"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="组织" image="main_organization_off" id="L5g-Zb-zWI"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zjD-nu-I9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-83" y="-1162"/>
         </scene>
         <!--User View Controller - 用户-->
         <scene sceneID="Kfv-Zu-Igl">
@@ -709,11 +824,13 @@
         <image name="bottom_like_on" width="54" height="20"/>
         <image name="bottom_share_on" width="54" height="20"/>
         <image name="bottom_sign_on" width="52" height="22"/>
+        <image name="buisness_icon" width="21" height="21"/>
         <image name="detail" width="30" height="62"/>
         <image name="doge.jpg" width="197" height="171"/>
         <image name="doge2.jpg" width="80" height="80"/>
         <image name="doge3.jpg" width="80" height="80"/>
         <image name="doge4.jpg" width="80" height="80"/>
+        <image name="like_number" width="12" height="11"/>
         <image name="main_activity_off" width="27" height="25"/>
         <image name="main_mainpage_off" width="27" height="26"/>
         <image name="main_organization_off" width="27" height="26"/>
