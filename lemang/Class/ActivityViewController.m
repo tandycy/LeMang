@@ -50,7 +50,7 @@ NSString *navTitle;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSLog(@"load2");
-    self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+    //self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
     //activitySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(50.0f,0.0f,200.0f,44.0f)];
     //[activitySearchBar setPlaceholder:@"search"];
    // [activitySearchBar setShowsCancelButton:YES];
