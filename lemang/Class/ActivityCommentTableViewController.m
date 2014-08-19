@@ -192,14 +192,19 @@
 }
 
 -(void)deleteButtonClicked:(UIButton *)button{
+    
     UITableViewCell *cell = (UITableViewCell*)[button.superview superview];
     UITableView* table=(UITableView*)[[cell superview] nextResponder];
     NSIndexPath* index=[table indexPathForCell:cell];
-    
+    	
     NSLog(@"%@",index);
     [tableData removeObjectAtIndex:index.row];
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView reloadData];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除成功" message:@"成功删除了该条评论。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    [alertView show];
+    
 }
 
 

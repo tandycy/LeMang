@@ -8,6 +8,7 @@
 
 #import "ActivityDetailViewController.h"
 #import "ActivityDetailTableViewController.h"
+#import "Constants.h"
 
 @interface ActivityDetailViewController ()
 
@@ -57,6 +58,8 @@
    
     ActivityDetailTableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
     tableVC.activity = activity;
+    
+    toolBar.tintColor = defaultMainColor;
     
     [self addChildViewController:tableVC];
     [containerView addSubview:tableVC.view];

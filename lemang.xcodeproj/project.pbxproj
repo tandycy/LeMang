@@ -16,6 +16,9 @@
 		25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */; };
 		25382412199A2CBA00180DB9 /* doge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25382411199A2CBA00180DB9 /* doge.jpg */; };
 		25392FE4198FA35B0094CE6B /* appicon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 25392FE3198FA35B0094CE6B /* appicon152.png */; };
+		253AB34E19A206DF008A93A3 /* doge2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34B19A206DF008A93A3 /* doge2.jpg */; };
+		253AB34F19A206DF008A93A3 /* doge3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34C19A206DF008A93A3 /* doge3.jpg */; };
+		253AB35019A206DF008A93A3 /* doge4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34D19A206DF008A93A3 /* doge4.jpg */; };
 		2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2545E01D199CB67000F99CC7 /* ActivityComment.m */; };
 		2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */; };
 		256E04291987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
@@ -81,6 +84,9 @@
 		25392FE6198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
 		25392FE7198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		25392FE8198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		253AB34B19A206DF008A93A3 /* doge2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge2.jpg; sourceTree = "<group>"; };
+		253AB34C19A206DF008A93A3 /* doge3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge3.jpg; sourceTree = "<group>"; };
+		253AB34D19A206DF008A93A3 /* doge4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge4.jpg; sourceTree = "<group>"; };
 		2545E01C199CB67000F99CC7 /* ActivityComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityComment.h; path = Class/ActivityComment.h; sourceTree = "<group>"; };
 		2545E01D199CB67000F99CC7 /* ActivityComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityComment.m; path = Class/ActivityComment.m; sourceTree = "<group>"; };
 		2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommentTableViewController.h; path = Class/ActivityCommentTableViewController.h; sourceTree = "<group>"; };
@@ -296,9 +302,9 @@
 				2538240A199A2A1E00180DB9 /* UITableGridViewCell.h */,
 				2538240B199A2A1E00180DB9 /* UITableGridViewCell.m */,
 				25C7F335198B7A3500AB8B2F /* Activity.h */,
+				25C7F336198B7A3500AB8B2F /* Activity.m */,
 				2545E01C199CB67000F99CC7 /* ActivityComment.h */,
 				2545E01D199CB67000F99CC7 /* ActivityComment.m */,
-				25C7F336198B7A3500AB8B2F /* Activity.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -306,6 +312,9 @@
 		25CA2DE719949CD300BED707 /* Temp_pic */ = {
 			isa = PBXGroup;
 			children = (
+				253AB34B19A206DF008A93A3 /* doge2.jpg */,
+				253AB34C19A206DF008A93A3 /* doge3.jpg */,
+				253AB34D19A206DF008A93A3 /* doge4.jpg */,
 				2516A7D5199B5CC000768986 /* head.jpg */,
 				25382403199A1EE300180DB9 /* group1.png */,
 				25CA2DFF1994BCCF00BED707 /* 11.jpg */,
@@ -406,9 +415,11 @@
 				256E043F1987A106009845A5 /* Main_iPad.storyboard in Resources */,
 				256E043C1987A106009845A5 /* Main_iPhone.storyboard in Resources */,
 				256E04331987A106009845A5 /* InfoPlist.strings in Resources */,
+				253AB34F19A206DF008A93A3 /* doge3.jpg in Resources */,
 				25CA2DF619949CF700BED707 /* 活动页面.png in Resources */,
 				25CA2DFA19949CF700BED707 /* 商家组织.png in Resources */,
 				25CA2DF319949CF700BED707 /* 活动成员.png in Resources */,
+				253AB34E19A206DF008A93A3 /* doge2.jpg in Resources */,
 				25CA2DF719949CF700BED707 /* 评论输入文字页面.png in Resources */,
 				25CA2DFC19949CF700BED707 /* 社团组织.png in Resources */,
 				25CA2DFB19949CF700BED707 /* 社团成员.png in Resources */,
@@ -417,6 +428,7 @@
 				253823FF199A097E00180DB9 /* Images.xcassets in Resources */,
 				25CA2DF519949CF700BED707 /* 活动详细分享.png in Resources */,
 				25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */,
+				253AB35019A206DF008A93A3 /* doge4.jpg in Resources */,
 				25392FE4198FA35B0094CE6B /* appicon152.png in Resources */,
 				2516A7D6199B5CC000768986 /* head.jpg in Resources */,
 				25CA2DF419949CF700BED707 /* 活动详细.png in Resources */,
