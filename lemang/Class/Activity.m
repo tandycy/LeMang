@@ -18,9 +18,10 @@
 @synthesize icon;
 @synthesize member;
 @synthesize fav;
+@synthesize memberUpper;
 
 + (id)activityOfCategory:(NSString*)category img:(UIImage*)img title:(NSString*)title date:(NSString*)date
-limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member fav:(NSString*)fav
+                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state
 {
     Activity *newActivity = [[self alloc] init];
     newActivity.category = category;
@@ -29,8 +30,10 @@ limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member fav:(NSStrin
     newActivity.date = date;
     newActivity.limit = limit;
     newActivity.member = member;
+    newActivity.memberUpper = memberUpper;
     newActivity.icon = icon;
     newActivity.fav = fav;
+    newActivity.state = state;
     return newActivity;
 }
 

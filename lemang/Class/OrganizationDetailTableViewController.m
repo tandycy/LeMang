@@ -8,6 +8,16 @@
 
 #import "OrganizationDetailTableViewController.h"
 #import "Constants.h"
+#import "ActivityDetailViewController.h"
+#import "Activity.h"
+
+typedef enum {
+	ActivityMember = 100,
+	ActivityTitle = 101,
+	ActivityState = 102,
+} OrgActivityListTags;
+
+
 
 @interface OrganizationDetailTableViewController ()
 
@@ -15,6 +25,7 @@
 
 @implementation OrganizationDetailTableViewController
 
+@synthesize activityArray;
 @synthesize orgDetailTitleView;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -22,6 +33,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        activityArray = [[NSArray alloc]init];
     }
     return self;
 }
@@ -29,6 +41,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self createActivityData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,6 +72,71 @@
     
 }
 
+- (void)createActivityData
+{
+    UIImage *businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
+    UIImage *schoolIcon = [UIImage imageNamed:@"school_icon.png"];
+    UIImage *groupIcon = [UIImage imageNamed:@"group_icon.png"];
+    UIImage *privateIcon = [UIImage imageNamed:@"private_icon.png"];
+    
+    activityArray = [NSArray arrayWithObjects:
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
+                                            title:@"上大一日游"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"限上海大学学生"
+                                             icon:schoolIcon
+                                           member:@"47"
+                                      memberUpper:@"50"
+                                              fav:@"325"
+                                            state:0],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
+                                            title:@"南翔垂钓活动"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:groupIcon
+                                           member:@"40"
+                                      memberUpper:@"120"
+                                              fav:@"500"
+                                            state:1],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
+                                            title:@"南京骑行三日游"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"不限人员"
+                                             icon:privateIcon
+                                           member:@"77"
+                                      memberUpper:@"250"
+                                              fav:@"1000"
+                                            state:0],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
+                                            title:@"上海电信充值100送100"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"所有在校大一新生"
+                                             icon:businessIcon
+                                           member:@"100"
+                                      memberUpper:@"100"
+                                              fav:@"100"
+                                            state:1],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
+                                            title:@"同济十大歌手预选赛"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"限上海同济大学学生"
+                                             icon:schoolIcon
+                                           member:@"77"
+                                      memberUpper:@"250"
+                                              fav:@"1000"
+                                            state:0],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
+                                            title:@"上海大学活动1"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"限上海交大垂钓社"
+                                             icon:businessIcon
+                                           member:@"47"
+                                      memberUpper:@"100"
+                                              fav:@"20"
+                                            state:1],
+                     nil];
+
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -78,7 +157,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 10;
+    return activityArray.count;
 }
 
 
@@ -96,8 +175,23 @@
     UIImageView *bg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"activity_bar.png"]];
     [cell addSubview:bg];
     
+    Activity *activity = nil;
+    activity = [self.activityArray objectAtIndex:indexPath.row];
     
-   
+    UILabel *activityMember = (UILabel*)[cell viewWithTag:ActivityMember];
+    activityMember.text = activity.member;
+    
+    UILabel *activityTitle = (UILabel*)[cell viewWithTag:ActivityTitle];
+    activityTitle.text = activity.title;
+    
+    UIImageView *activityState = (UIImageView*)[cell viewWithTag:ActivityState];
+    UIImage *on = [UIImage imageNamed:@"activity_state_on.png"];
+    UIImage *off = [UIImage imageNamed:@"activity_state_off.png"];
+    if (activity.state) {
+        activityState.image = on;
+    }
+    else activityState.image = off;
+    
     return cell;
 }
 
@@ -125,6 +219,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
+    viewController.navigationItem.title = @"活动详细页面";
+    
+    viewController.activity = [self.activityArray objectAtIndex:indexPath.row];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 /*

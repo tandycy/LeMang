@@ -79,6 +79,7 @@
     [self.tabBarController.tabBar setUserInteractionEnabled:NO];
     [self.tabBarController.tabBar setHidden:YES];
 }
+
 /*
 #pragma mark - Navigation
 

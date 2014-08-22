@@ -8,11 +8,13 @@
 
 #import "ActivityCommentTableViewController.h"
 #import "ActivityComment.h"
+#import "ActivityCommetImageDetailViewController.h"
 #import "Constants.h"
 
 @interface ActivityCommentTableViewController ()
 {
     NSMutableArray *tableData;
+    ActivityCommetImageDetailViewController *viewController;
 }
 
 @end
@@ -32,6 +34,8 @@
 {
     [super viewDidLoad];
     [self createUserData];
+    
+    viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommetImageDetailViewController"];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -69,22 +73,23 @@
     NSMutableArray *imgs = [[NSMutableArray alloc]init];
     imgs[0] = [UIImage imageNamed:@"doge.jpg"];
     imgs[1] = [UIImage imageNamed:@"head.jpg"];
-    imgs[2] = [UIImage imageNamed:@"group1.png"];
+    imgs[2] = [UIImage imageNamed:@"活动成员.png"];
     
     ActivityComment *comment1 = [[ActivityComment alloc]init];
-    comment1 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"追女神未果的屌丝" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment1 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是楼主" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     
     ActivityComment *comment2 = [[ActivityComment alloc]init];
-    comment2 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是楼上的爸爸" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment2 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是二楼" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:NULL
+                ];
     
     ActivityComment *comment3 = [[ActivityComment alloc]init];
-    comment3 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我只能抢板凳了" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment3 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是三楼" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     ActivityComment *comment4 = [[ActivityComment alloc]init];
-    comment4 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"有地板坐坐也不错" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment4 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是四楼" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     ActivityComment *comment5 = [[ActivityComment alloc]init];
-    comment5 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"你们这帮水笔" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment5 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是五楼" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     ActivityComment *comment6 = [[ActivityComment alloc]init];
-    comment6 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是版主楼上都死" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
+    comment6 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是六楼" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:NULL];
     
     tableData[0] = comment1;
     tableData[1] = comment2;
@@ -136,22 +141,37 @@
     commentDetail.frame = CGRectMake(commentDetail.frame.origin.x, commentDetail.frame.origin.y, commentDetail.frame.size.width, labelSize.height);
     [commentDetail sizeToFit];
     
+    
     for (int i=0; i<3; i++) {
-        UIImageView *cimg = [cell viewWithTag:(210+i)];
+        UIButton *cimg = [cell viewWithTag:(210+i)];
         if (cimg) {
             [cimg removeFromSuperview];
         }
-        UIImageView *commentImg = [[UIImageView alloc]initWithFrame:CGRectMake( 70+60*i, commentDetail.frame.origin.y + commentDetail.frame.size.height+10, 50, 50)];
+        if (comment.commentImg != NULL){
+        UIImageView *commentImg = [[UIImageView alloc]initWithFrame:CGRectMake( 0, 0, 50, 50)];
         commentImg.image = comment.commentImg[i];
-        commentImg.tag = (210+i);
-        [cell addSubview:commentImg];
+        UIButton *commentImgButton = [[UIButton alloc]initWithFrame:CGRectMake( 70+60*i, commentDetail.frame.origin.y + commentDetail.frame.size.height+10, 50, 50)];
+      //  commentImg.backgroundColor = [[UIColor alloc]initWithPatternImage:comment.commentImg[i]];
+        [commentImgButton addSubview:commentImg];
+        commentImgButton.tag = (210+i);
+        [commentImgButton addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIImage *temp = comment.commentImg[i];
+        viewController.img = temp;
+        
+        [cell addSubview:commentImgButton];
+    }
     }
 
     UIButton *dc = [cell viewWithTag:209];
     if (dc) {
         [dc removeFromSuperview];
     }
-    UIButton *deleteComment = [[UIButton alloc]initWithFrame:CGRectMake(290, commentDetail.frame.origin.y+commentDetail.frame.size.height+65, 28, 30)];
+    UIButton *deleteComment;
+    if (comment.commentImg == NULL) {
+      deleteComment  = [[UIButton alloc]initWithFrame:CGRectMake(290, commentDetail.frame.origin.y+commentDetail.frame.size.height+15, 28, 30)];
+    }
+    else deleteComment = [[UIButton alloc]initWithFrame:CGRectMake(290, commentDetail.frame.origin.y+commentDetail.frame.size.height+65, 28, 30)];
     [deleteComment setBackgroundImage:[UIImage imageNamed:@"delete.png"] forState:UIControlStateNormal];
     [deleteComment setBackgroundImage:[UIImage imageNamed:@"delete_down.png"] forState:UIControlStateSelected];
     [deleteComment addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -162,24 +182,45 @@
     if (cd) {
         [cd removeFromSuperview];
     }
-    UILabel *commentDate = [[UILabel alloc]initWithFrame:CGRectMake(70, commentDetail.frame.origin.y+commentDetail.frame.size.height+70, 63, 12)];
+    UILabel *commentDate;
+    if (comment.commentImg==NULL) {
+        commentDate = [[UILabel alloc]initWithFrame:CGRectMake(70, commentDetail.frame.origin.y+commentDetail.frame.size.height+20, 63, 12)];
+    }
+   else commentDate = [[UILabel alloc]initWithFrame:CGRectMake(70, commentDetail.frame.origin.y+commentDetail.frame.size.height+70, 63, 12)];
     commentDate.text = @"8-4 14:04";
     commentDate.textColor = [UIColor colorWithRed:0.41176471 green:0.41176471 blue:0.41176471 alpha:1];
     commentDate.font = [UIFont fontWithName:defaultFont size:11];
     commentDate.tag = 208;
     [cell addSubview:commentDate];
     
-    NSLog(@"%@",commentName.text);
-    NSLog(@"%@",commentIcon.image);
-    NSLog(@"%@",commentDetail.text);
-    NSLog(@"%@",indexPath);
+    NSLog(@"%@",comment.commentImg);
+
  
     return cell;
+}
+
+-(void)imageItemClick:(UIButton *)button{
+
+    NSLog(@"superview: %@",button.superview);
+    NSLog(@"superview.superview: %@",button.superview.superview);
+    
+  //  [self.navigationController modalViewController:viewController];
+    viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:viewController animated:YES];
+  //  [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 {
+    ActivityComment *comment = [tableData objectAtIndex:indexPath.row];
+    if (comment.commentImg == NULL) {
+        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        UILabel *commentDetail = (UILabel *)[cell viewWithTag:202];
+        
+        return 42 + commentDetail.frame.size.height + 40;
+    }
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     UILabel *commentDetail = (UILabel *)[cell viewWithTag:202];
     

@@ -51,7 +51,7 @@ NSString *navTitle;
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
     NSURL *URL = [NSURL URLWithString:URLString];
     
-    NSString *authInfo = @"Basic user:user";
+   // NSString *authInfo = @"Basic user:user";
     
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     
@@ -87,7 +87,7 @@ NSString *navTitle;
 {
     if ([challenge previousFailureCount] == 0) {
         NSURLCredential *newCredential;
-        newCredential=[NSURLCredential credentialWithUser:@"users" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
+        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
         [[challenge sender] useCredential:newCredential
                forAuthenticationChallenge:challenge];
     } else {
@@ -139,7 +139,7 @@ NSString *navTitle;
    // activitySearchBar.delegate = self;
    // [self.navigationController.navigationBar addSubview:activitySearchBar];
     
-    [self refreshActivityData];
+    
 
     
     
@@ -151,62 +151,60 @@ NSString *navTitle;
     
     activityArray = [NSArray arrayWithObjects:
                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                                        title:@"上海大学活动1"
+                                                        title:@"上大一日游"
                                                         date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                                        limit:@"限上海交大垂钓社"
-                                                        icon:businessIcon
-                                                        member:@"47/50"
-                                                        fav:@"325"],
+                                                        limit:@"限上海大学学生"
+                                                        icon:schoolIcon
+                                                        member:@"47"
+                                                        memberUpper:@"50"
+                                                        fav:@"325"
+                                                        state:0],
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海大学活动2"
-                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
-                                            limit:@"限上海交大垂钓社"
-                                             icon:schoolIcon
-                                           member:@"47/50"
-                                              fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海大学活动3"
-                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            title:@"南翔垂钓活动"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
                                             limit:@"限上海交大垂钓社"
                                              icon:groupIcon
-                                           member:@"47/50"
-                                              fav:@"325"],
+                                           member:@"40"
+                                            memberUpper:@"120"
+                                              fav:@"500"
+                                            state:1],
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海交通大学活动1"
-                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
-                                            limit:@"限上海交大垂钓社"
+                                            title:@"南京骑行三日游"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"不限人员"
                                              icon:privateIcon
-                                             member:@"47/50"
-                                              fav:@"325"],
+                                           member:@"77"
+                                            memberUpper:@"250"
+                                              fav:@"1000"
+                                            state:0],
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海交通大学活动2"
-                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
-                                            limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"group1.png"]
-                                           member:@"47/50"
-                                              fav:@"325"],
+                                            title:@"上海电信充值100送100"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"所有在校大一新生"
+                                             icon:businessIcon
+                                           member:@"100"
+                                      memberUpper:@"100"
+                                              fav:@"100"
+                                            state:1],
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海交通大学活动3"
-                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
-                                            limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"group1.png"]
-                                           member:@"47/50"
-                                              fav:@"325"],
+                                            title:@"同济十大歌手预选赛"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"限上海同济大学学生"
+                                             icon:schoolIcon
+                                           member:@"77"
+                                      memberUpper:@"250"
+                                              fav:@"1000"
+                                            state:0],
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海同济大学活动1"
-                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
+                                            title:@"上海大学活动1"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
                                             limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"group1.png"]
-                                           member:@"47/50"
-                                              fav:@"325"],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海同济大学活动2"
-                                             date:@"7月25日 周五 10：00--8月10日 周日 18：00"
-                                            limit:@"限上海交大垂钓社"
-                                             icon:[UIImage imageNamed:@"group1.png"]
-                                           member:@"47/50"
-                                              fav:@"325"],nil
-                     ];
+                                             icon:businessIcon
+                                           member:@"47"
+                                      memberUpper:@"100"
+                                              fav:@"20"
+                                            state:1],
+                     nil];
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
     NSLog(@"load3");
@@ -297,7 +295,7 @@ NSString *navTitle;
     typeIcon.image = activity.icon;
     
     UILabel *memberLable = (UILabel *)[cell viewWithTag:ActivityMember];
-    memberLable.text = activity.member;
+    memberLable.text = [memberLable.text stringByAppendingFormat:@"%@/%@",activity.member, activity.memberUpper];
     
     UILabel *favLable = (UILabel *)[cell viewWithTag:ActivityFav];
     favLable.text = activity.fav;
@@ -389,6 +387,7 @@ NSString *navTitle;
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    [self refreshActivityData];
     //[activitySearchBar setHidden:NO];
 }
 

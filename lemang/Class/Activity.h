@@ -15,7 +15,9 @@
     NSString *limit;
     UIImage *icon;
     NSString *member;
+    NSString *memberUpper;
     NSString *fav;
+    BOOL *state;
 }
 @property (nonatomic, copy) NSString *category;
 @property (nonatomic, copy) UIImage *img;
@@ -24,9 +26,11 @@
 @property (nonatomic, copy) NSString *limit;
 @property (nonatomic, copy) UIImage *icon;
 @property (nonatomic, copy) NSString *member;
+@property (nonatomic, copy) NSString *memberUpper;
 @property (nonatomic, copy) NSString *fav;
+@property (nonatomic) BOOL *state;
 
 + (id)activityOfCategory:(NSString*)category img:(UIImage*)img title:(NSString*)title date:(NSString*)date
-                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member fav:(NSString*)fav;
+                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state;
 
 @end

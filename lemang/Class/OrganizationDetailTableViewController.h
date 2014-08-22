@@ -11,5 +11,6 @@
 @interface OrganizationDetailTableViewController : UITableViewController
 
 @property IBOutlet UIView *orgDetailTitleView;
+@property (strong,nonatomic) NSArray *activityArray;
 
 @end

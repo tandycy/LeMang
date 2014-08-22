@@ -1,19 +1,18 @@
 //
-//  OrganizationTableViewController.m
+//  CreateOrganizationTableViewController.m
 //  lemang
 //
-//  Created by 汤 骋原 on 14-8-19.
+//  Created by 汤 骋原 on 14-8-21.
 //  Copyright (c) 2014年 university media. All rights reserved.
 //
 
-#import "OrganizationTableViewController.h"
-#import "Constants.h"
+#import "CreateOrganizationTableViewController.h"
 
-@interface OrganizationTableViewController ()
+@interface CreateOrganizationTableViewController ()
 
 @end
 
-@implementation OrganizationTableViewController
+@implementation CreateOrganizationTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -43,69 +41,31 @@
 }
 
 #pragma mark - Table view data source
-
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 10;
+    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"OrganizationTableCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...s
-    if (cell == nil)
-    {
-        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    }
-    
-    
-    cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"org_back.png"]];
-    cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"org_back_down.png"]];
-    
-    
-    UILabel *memberNumberBack = [[UILabel alloc]initWithFrame:CGRectMake(11, 62, 70, 15)];
-    UIImageView *memberNumberBackImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"like_number_back.png"]];
-    [memberNumberBack addSubview:memberNumberBackImg];
-    [cell addSubview:memberNumberBack];
-    
-    UILabel *memberNumber = [[UILabel alloc]initWithFrame:CGRectMake(36, 63, 45, 14)];
-    memberNumber.text = @"100";
-    memberNumber.font = [UIFont fontWithName:defaultFont size:13];
-    memberNumber.textColor = [UIColor whiteColor];
-    [cell addSubview:memberNumber];
-    
-    UILabel *memberIcon = [[UILabel alloc]initWithFrame:CGRectMake(18, 63, 10, 10)];
-    UIImageView *memberIconImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"member_number.png"]];
-    [memberIcon addSubview:memberIconImg];
-    [cell addSubview:memberIcon];
+    // Configure the cell...
     
     return cell;
 }
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.tabBarController.tabBar setHidden:NO];
-    [self.tabBarController.tabBar setUserInteractionEnabled:YES];
-    //[activitySearchBar setHidden:NO];
-}
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
