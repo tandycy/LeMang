@@ -13,8 +13,6 @@
 		2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */; };
 		253823FF199A097E00180DB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253823FE199A097E00180DB9 /* Images.xcassets */; };
 		25382404199A1EE300180DB9 /* group1.png in Resources */ = {isa = PBXBuildFile; fileRef = 25382403199A1EE300180DB9 /* group1.png */; };
-		2538240C199A2A1E00180DB9 /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 25382409199A2A1E00180DB9 /* UIImageButton.m */; };
-		2538240D199A2A1E00180DB9 /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538240B199A2A1E00180DB9 /* UITableGridViewCell.m */; };
 		25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */; };
 		25382412199A2CBA00180DB9 /* doge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25382411199A2CBA00180DB9 /* doge.jpg */; };
 		25392FE4198FA35B0094CE6B /* appicon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 25392FE3198FA35B0094CE6B /* appicon152.png */; };
@@ -38,9 +36,19 @@
 		256E045A1987A106009845A5 /* lemangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04591987A106009845A5 /* lemangTests.m */; };
 		256E04651987AA6B009845A5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04641987AA6B009845A5 /* HomeViewController.m */; };
 		256E046F1987AACA009845A5 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E046E1987AACA009845A5 /* ActivityViewController.m */; };
-		256E04721987AADA009845A5 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04711987AADA009845A5 /* UserViewController.m */; };
 		256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256E04781987B2BA009845A5 /* ActivityDetailViewController.m */; };
 		257CD60A19A36EF1001FF078 /* ActivityCommetImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 257CD60919A36EF1001FF078 /* ActivityCommetImageDetailViewController.m */; };
+		258087A719A71C37005E308D /* UserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087A619A71C37005E308D /* UserTableViewController.m */; };
+		258087AA19A71C4C005E308D /* UserInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087A919A71C4C005E308D /* UserInfoTableViewController.m */; };
+		258087AD19A71C63005E308D /* MyAcitivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087AC19A71C63005E308D /* MyAcitivityTableViewController.m */; };
+		258087B719A71D0E005E308D /* MyFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087B519A71D0E005E308D /* MyFriendsTableViewController.m */; };
+		258087B819A71D0E005E308D /* MyOrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087B619A71D0E005E308D /* MyOrganizationTableViewController.m */; };
+		258087BB19A71D59005E308D /* MyMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087BA19A71D59005E308D /* MyMessageTableViewController.m */; };
+		258087BE19A71D7C005E308D /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087BD19A71D7C005E308D /* UserLoginViewController.m */; };
+		258087C119A71DB9005E308D /* UserRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C019A71DB9005E308D /* UserRegisterViewController.m */; };
+		258087C419A71DCB005E308D /* UserVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C319A71DCB005E308D /* UserVerifyViewController.m */; };
+		258087C919A71EED005E308D /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C619A71EED005E308D /* UIImageButton.m */; };
+		258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C819A71EED005E308D /* UITableGridViewCell.m */; };
 		25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */; };
 		25C7F337198B7A3500AB8B2F /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F336198B7A3500AB8B2F /* Activity.m */; };
 		25CA2DF319949CF700BED707 /* 活动成员.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE819949CF700BED707 /* 活动成员.png */; };
@@ -78,10 +86,6 @@
 		2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailTableViewController.m; path = Class/ActivityDetailTableViewController.m; sourceTree = "<group>"; };
 		253823FE199A097E00180DB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		25382403199A1EE300180DB9 /* group1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group1.png; sourceTree = "<group>"; };
-		25382408199A2A1E00180DB9 /* UIImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageButton.h; sourceTree = "<group>"; };
-		25382409199A2A1E00180DB9 /* UIImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageButton.m; sourceTree = "<group>"; };
-		2538240A199A2A1E00180DB9 /* UITableGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableGridViewCell.h; sourceTree = "<group>"; };
-		2538240B199A2A1E00180DB9 /* UITableGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableGridViewCell.m; sourceTree = "<group>"; };
 		2538240E199A2AF900180DB9 /* ActivityMemberTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityMemberTableViewController.h; path = Class/ActivityMemberTableViewController.h; sourceTree = "<group>"; };
 		2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityMemberTableViewController.m; path = Class/ActivityMemberTableViewController.m; sourceTree = "<group>"; };
 		25382411199A2CBA00180DB9 /* doge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge.jpg; sourceTree = "<group>"; };
@@ -118,12 +122,32 @@
 		256E04641987AA6B009845A5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Class/HomeViewController.m; sourceTree = "<group>"; };
 		256E046D1987AACA009845A5 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewController.h; path = Class/ActivityViewController.h; sourceTree = "<group>"; };
 		256E046E1987AACA009845A5 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewController.m; path = Class/ActivityViewController.m; sourceTree = "<group>"; };
-		256E04701987AADA009845A5 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = Class/UserViewController.h; sourceTree = "<group>"; };
-		256E04711987AADA009845A5 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = Class/UserViewController.m; sourceTree = "<group>"; };
 		256E04771987B2BA009845A5 /* ActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailViewController.h; path = Class/ActivityDetailViewController.h; sourceTree = "<group>"; };
 		256E04781987B2BA009845A5 /* ActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailViewController.m; path = Class/ActivityDetailViewController.m; sourceTree = "<group>"; };
 		257CD60819A36EF1001FF078 /* ActivityCommetImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommetImageDetailViewController.h; path = Class/ActivityCommetImageDetailViewController.h; sourceTree = "<group>"; };
 		257CD60919A36EF1001FF078 /* ActivityCommetImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommetImageDetailViewController.m; path = Class/ActivityCommetImageDetailViewController.m; sourceTree = "<group>"; };
+		258087A519A71C37005E308D /* UserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserTableViewController.h; path = Class/UserTableViewController.h; sourceTree = "<group>"; };
+		258087A619A71C37005E308D /* UserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserTableViewController.m; path = Class/UserTableViewController.m; sourceTree = "<group>"; };
+		258087A819A71C4C005E308D /* UserInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoTableViewController.h; path = Class/UserInfoTableViewController.h; sourceTree = "<group>"; };
+		258087A919A71C4C005E308D /* UserInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoTableViewController.m; path = Class/UserInfoTableViewController.m; sourceTree = "<group>"; };
+		258087AB19A71C63005E308D /* MyAcitivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyAcitivityTableViewController.h; path = Class/MyAcitivityTableViewController.h; sourceTree = "<group>"; };
+		258087AC19A71C63005E308D /* MyAcitivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyAcitivityTableViewController.m; path = Class/MyAcitivityTableViewController.m; sourceTree = "<group>"; };
+		258087AE19A71C73005E308D /* MyOrganizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyOrganizationTableViewController.h; path = Class/MyOrganizationTableViewController.h; sourceTree = "<group>"; };
+		258087B419A71D0E005E308D /* MyFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFriendsTableViewController.h; path = Class/MyFriendsTableViewController.h; sourceTree = "<group>"; };
+		258087B519A71D0E005E308D /* MyFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFriendsTableViewController.m; path = Class/MyFriendsTableViewController.m; sourceTree = "<group>"; };
+		258087B619A71D0E005E308D /* MyOrganizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyOrganizationTableViewController.m; path = Class/MyOrganizationTableViewController.m; sourceTree = "<group>"; };
+		258087B919A71D59005E308D /* MyMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMessageTableViewController.h; path = Class/MyMessageTableViewController.h; sourceTree = "<group>"; };
+		258087BA19A71D59005E308D /* MyMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMessageTableViewController.m; path = Class/MyMessageTableViewController.m; sourceTree = "<group>"; };
+		258087BC19A71D7C005E308D /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserLoginViewController.h; path = Class/UserLoginViewController.h; sourceTree = "<group>"; };
+		258087BD19A71D7C005E308D /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserLoginViewController.m; path = Class/UserLoginViewController.m; sourceTree = "<group>"; };
+		258087BF19A71DB9005E308D /* UserRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserRegisterViewController.h; path = Class/UserRegisterViewController.h; sourceTree = "<group>"; };
+		258087C019A71DB9005E308D /* UserRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserRegisterViewController.m; path = Class/UserRegisterViewController.m; sourceTree = "<group>"; };
+		258087C219A71DCB005E308D /* UserVerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserVerifyViewController.h; path = Class/UserVerifyViewController.h; sourceTree = "<group>"; };
+		258087C319A71DCB005E308D /* UserVerifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserVerifyViewController.m; path = Class/UserVerifyViewController.m; sourceTree = "<group>"; };
+		258087C519A71EED005E308D /* UIImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageButton.h; path = Class/UIImageButton.h; sourceTree = "<group>"; };
+		258087C619A71EED005E308D /* UIImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageButton.m; path = Class/UIImageButton.m; sourceTree = "<group>"; };
+		258087C719A71EED005E308D /* UITableGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITableGridViewCell.h; path = Class/UITableGridViewCell.h; sourceTree = "<group>"; };
+		258087C819A71EED005E308D /* UITableGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableGridViewCell.m; path = Class/UITableGridViewCell.m; sourceTree = "<group>"; };
 		25874DA919A5FFE000264B4D /* CreateOrganizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateOrganizationTableViewController.h; path = Class/CreateOrganizationTableViewController.h; sourceTree = "<group>"; };
 		25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateOrganizationTableViewController.m; path = Class/CreateOrganizationTableViewController.m; sourceTree = "<group>"; };
 		25C7F335198B7A3500AB8B2F /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Activity.h; path = Class/Activity.h; sourceTree = "<group>"; };
@@ -276,8 +300,24 @@
 		256E04741987B1D6009845A5 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				256E04701987AADA009845A5 /* UserViewController.h */,
-				256E04711987AADA009845A5 /* UserViewController.m */,
+				258087A519A71C37005E308D /* UserTableViewController.h */,
+				258087A619A71C37005E308D /* UserTableViewController.m */,
+				258087A819A71C4C005E308D /* UserInfoTableViewController.h */,
+				258087A919A71C4C005E308D /* UserInfoTableViewController.m */,
+				258087AB19A71C63005E308D /* MyAcitivityTableViewController.h */,
+				258087AC19A71C63005E308D /* MyAcitivityTableViewController.m */,
+				258087AE19A71C73005E308D /* MyOrganizationTableViewController.h */,
+				258087B619A71D0E005E308D /* MyOrganizationTableViewController.m */,
+				258087B419A71D0E005E308D /* MyFriendsTableViewController.h */,
+				258087B519A71D0E005E308D /* MyFriendsTableViewController.m */,
+				258087B919A71D59005E308D /* MyMessageTableViewController.h */,
+				258087BA19A71D59005E308D /* MyMessageTableViewController.m */,
+				258087BC19A71D7C005E308D /* UserLoginViewController.h */,
+				258087BD19A71D7C005E308D /* UserLoginViewController.m */,
+				258087BF19A71DB9005E308D /* UserRegisterViewController.h */,
+				258087C019A71DB9005E308D /* UserRegisterViewController.m */,
+				258087C219A71DCB005E308D /* UserVerifyViewController.h */,
+				258087C319A71DCB005E308D /* UserVerifyViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -307,10 +347,10 @@
 		25C7F334198B75FB00AB8B2F /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				25382408199A2A1E00180DB9 /* UIImageButton.h */,
-				25382409199A2A1E00180DB9 /* UIImageButton.m */,
-				2538240A199A2A1E00180DB9 /* UITableGridViewCell.h */,
-				2538240B199A2A1E00180DB9 /* UITableGridViewCell.m */,
+				258087C519A71EED005E308D /* UIImageButton.h */,
+				258087C619A71EED005E308D /* UIImageButton.m */,
+				258087C719A71EED005E308D /* UITableGridViewCell.h */,
+				258087C819A71EED005E308D /* UITableGridViewCell.m */,
 				25C7F335198B7A3500AB8B2F /* Activity.h */,
 				25C7F336198B7A3500AB8B2F /* Activity.m */,
 				2545E01C199CB67000F99CC7 /* ActivityComment.h */,
@@ -462,22 +502,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				258087B819A71D0E005E308D /* MyOrganizationTableViewController.m in Sources */,
+				258087A719A71C37005E308D /* UserTableViewController.m in Sources */,
+				258087C119A71DB9005E308D /* UserRegisterViewController.m in Sources */,
 				2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */,
+				258087BE19A71D7C005E308D /* UserLoginViewController.m in Sources */,
 				256E04391987A106009845A5 /* AppDelegate.m in Sources */,
+				258087C419A71DCB005E308D /* UserVerifyViewController.m in Sources */,
 				256E04351987A106009845A5 /* main.m in Sources */,
+				258087AD19A71C63005E308D /* MyAcitivityTableViewController.m in Sources */,
 				256E04651987AA6B009845A5 /* HomeViewController.m in Sources */,
-				2538240C199A2A1E00180DB9 /* UIImageButton.m in Sources */,
-				256E04721987AADA009845A5 /* UserViewController.m in Sources */,
+				258087AA19A71C4C005E308D /* UserInfoTableViewController.m in Sources */,
+				258087BB19A71D59005E308D /* MyMessageTableViewController.m in Sources */,
+				258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */,
 				251CEBBB19A31FBC00C80BAF /* OrganizationTableViewController.m in Sources */,
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
+				258087C919A71EED005E308D /* UIImageButton.m in Sources */,
+				258087B719A71D0E005E308D /* MyFriendsTableViewController.m in Sources */,
 				2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */,
 				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
 				257CD60A19A36EF1001FF078 /* ActivityCommetImageDetailViewController.m in Sources */,
 				256E046F1987AACA009845A5 /* ActivityViewController.m in Sources */,
 				25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */,
 				251CEBBE19A33D5B00C80BAF /* OrganizationDetailTableViewController.m in Sources */,
-				2538240D199A2A1E00180DB9 /* UITableGridViewCell.m in Sources */,
 				256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

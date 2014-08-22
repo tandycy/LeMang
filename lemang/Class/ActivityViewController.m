@@ -51,36 +51,36 @@ NSString *navTitle;
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
     NSURL *URL = [NSURL URLWithString:URLString];
     
-   // NSString *authInfo = @"Basic user:user";
+    // NSString *authInfo = @"Basic user:user";
     
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     
     [URLRequest setHTTPMethod:@"GET"];
     [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
-   // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
+    // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
     
     
-
-   
-        NSURLResponse * response;
-        NSError * error;
-    
-        NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
-        if (error) {
-            NSLog(@"a connection could not be created or request fails.");
-            NSLog(@"Error: %@", [error localizedDescription]);
-        }
-        //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
     
     
-        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
-        
-        receivedData=[[NSMutableData alloc] initWithData:nil];
-        
-        if (connection) {
-            receivedData = [NSMutableData new];
-            NSLog(@"rd%@",receivedData);
-        }
+    NSURLResponse * response;
+    NSError * error;
+    
+    NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
+    if (error) {
+        NSLog(@"a connection could not be created or request fails.");
+        NSLog(@"Error: %@", [error localizedDescription]);
+    }
+    //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
+    
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
+    
+    receivedData=[[NSMutableData alloc] initWithData:nil];
+    
+    if (connection) {
+        receivedData = [NSMutableData new];
+        NSLog(@"rd%@",receivedData);
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
@@ -118,7 +118,7 @@ NSString *navTitle;
 - (void) connectionDidFinishLoading: (NSURLConnection*) connection {       //  ②
     NSLog(@"请求完成…");
     NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
-   // [self reloadView:dict];
+    // [self reloadView:dict];
     
     NSString *results = [[NSString alloc]
                          initWithBytes:[receivedData bytes]
@@ -135,14 +135,10 @@ NSString *navTitle;
     //self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
     //activitySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(50.0f,0.0f,200.0f,44.0f)];
     //[activitySearchBar setPlaceholder:@"search"];
-   // [activitySearchBar setShowsCancelButton:YES];
-   // activitySearchBar.delegate = self;
-   // [self.navigationController.navigationBar addSubview:activitySearchBar];
-    
-    
-
-    
-    
+    // [activitySearchBar setShowsCancelButton:YES];
+    // activitySearchBar.delegate = self;
+    // [self.navigationController.navigationBar addSubview:activitySearchBar];
+    [self refreshActivityData];
     // initialize activity list
     UIImage *businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
     UIImage *schoolIcon = [UIImage imageNamed:@"school_icon.png"];
@@ -150,22 +146,22 @@ NSString *navTitle;
     UIImage *privateIcon = [UIImage imageNamed:@"private_icon.png"];
     
     activityArray = [NSArray arrayWithObjects:
-                    [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                                        title:@"上大一日游"
-                                                        date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                                        limit:@"限上海大学学生"
-                                                        icon:schoolIcon
-                                                        member:@"47"
-                                                        memberUpper:@"50"
-                                                        fav:@"325"
-                                                        state:0],
+                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
+                                            title:@"上大一日游"
+                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
+                                            limit:@"限上海大学学生"
+                                             icon:schoolIcon
+                                           member:@"47"
+                                      memberUpper:@"50"
+                                              fav:@"325"
+                                            state:0],
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"南翔垂钓活动"
                                              date:@"7月25日 周五 10:00--8月10日 周日 18:00"
                                             limit:@"限上海交大垂钓社"
                                              icon:groupIcon
                                            member:@"40"
-                                            memberUpper:@"120"
+                                      memberUpper:@"120"
                                               fav:@"500"
                                             state:1],
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
@@ -174,7 +170,7 @@ NSString *navTitle;
                                             limit:@"不限人员"
                                              icon:privateIcon
                                            member:@"77"
-                                            memberUpper:@"250"
+                                      memberUpper:@"250"
                                               fav:@"1000"
                                             state:0],
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
@@ -214,7 +210,7 @@ NSString *navTitle;
     [scrollView setDelegate:self];
     scrollView.showsHorizontalScrollIndicator=NO;
     [scrollView setContentSize:CGSizeMake(960, 128)];
-   
+    
     //activity scroll view
     UIImageView *imageview1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 128)];
     [imageview1 setImage:[UIImage imageNamed:@"11.jpg"]];
@@ -258,14 +254,14 @@ NSString *navTitle;
     static NSString *CellIdentifier = @"ActivityTableCell";
     UITableViewCell *cell = [activityList dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.accessoryType = UITableViewCellAccessoryNone;
-  
+    
     if ( cell == nil )
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-   
-   // UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_list_back.png"]];
-   // [cell setBackgroundView:cellBG];
+    
+    // UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_list_back.png"]];
+    // [cell setBackgroundView:cellBG];
     
     
     Activity *activity = nil;
@@ -387,26 +383,25 @@ NSString *navTitle;
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
-    [self refreshActivityData];
     //[activitySearchBar setHidden:NO];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-  //  [activitySearchBar setHidden:YES];
+    //  [activitySearchBar setHidden:YES];
     
 }
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
