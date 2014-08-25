@@ -49,7 +49,7 @@ NSString *navTitle;
 
 - (void)refreshActivityData
 {
-    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association";
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
     NSURL *URL = [NSURL URLWithString:URLString];
     
     // NSString *authInfo = @"Basic user:user";
@@ -213,7 +213,7 @@ NSString *navTitle;
     
     // initialize activity list
     
-    
+    /*
     activityArray = [NSArray arrayWithObjects:
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
                                             title:@"上大一日游"
@@ -462,7 +462,7 @@ NSString *navTitle;
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
     //[self refreshActivityData];
     //[activitySearchBar setHidden:NO];
-    [self refreshActivityData];
+   // [self refreshActivityData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
