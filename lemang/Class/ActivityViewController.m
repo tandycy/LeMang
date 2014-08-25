@@ -69,6 +69,8 @@ NSString *navTitle;
     }
     //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
     
+    NSURLResponse * response;
+    NSError * error;
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
     

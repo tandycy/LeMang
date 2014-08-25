@@ -29,14 +29,14 @@
         
         
         /*
-        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        backButton.frame = CGRectMake(0.0, 0.0, 40.0, 27.0);
-        [backButton setImage:[UIImage imageNamed:@"top_back.png"] forState:UIControlStateNormal];
-        [backButton setImage:[UIImage imageNamed:@"top_back_down.png"] forState:UIControlStateSelected];
-        [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-        temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
-        self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;
+         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+         backButton.frame = CGRectMake(0.0, 0.0, 40.0, 27.0);
+         [backButton setImage:[UIImage imageNamed:@"top_back.png"] forState:UIControlStateNormal];
+         [backButton setImage:[UIImage imageNamed:@"top_back_down.png"] forState:UIControlStateSelected];
+         [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+         UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+         temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
+         self.navigationItem.leftBarButtonItem = temporaryBarButtonItem;
          */
     }
     return self;
@@ -47,15 +47,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-  //  self.navigationItem.title = activity.title;
+    //  self.navigationItem.title = activity.title;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1], UITextAttributeTextColor,
                                                                      [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1], UITextAttributeTextShadowColor,
                                                                      [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
                                                                      [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
                                                                      nil]];
-   // [self.tabBarController.tabBar setHidden:YES];
-   
+    // [self.tabBarController.tabBar setHidden:YES];
+    
     ActivityDetailTableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
     tableVC.activity = activity;
     
@@ -81,14 +81,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

@@ -36,7 +36,7 @@
     [self createUserData];
     
     viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommetImageDetailViewController"];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -81,7 +81,6 @@
     ActivityComment *comment2 = [[ActivityComment alloc]init];
     comment2 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是二楼" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:NULL
                 ];
-    
     ActivityComment *comment3 = [[ActivityComment alloc]init];
     comment3 = [ActivityComment commentsOfCategory:@"comment1" commentName:@"我是三楼" commentIcon:[UIImage imageNamed:@"doge.jpg"] commentTitle:@"好看的电影" commentDetail:@"今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！今天看了超好看的电影，我真是这辈子都无憾了！" commentImg:imgs];
     ActivityComment *comment4 = [[ActivityComment alloc]init];
@@ -97,7 +96,7 @@
     tableData[3] = comment4;
     tableData[4] = comment5;
     tableData[5] = comment6;
-   // NSLog(@"%lu",(unsigned long)tableData.count);
+    // NSLog(@"%lu",(unsigned long)tableData.count);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,7 +115,7 @@
         cell.backgroundColor = [UIColor colorWithRed:0.95294118 green:0.95294118 blue:0.95294118 alpha:1];
     }
     else cell.backgroundColor = [UIColor whiteColor];
- 
+    
     cell.selectedBackgroundView = [[UIView alloc] init];
     
     ActivityComment *comment = [tableData objectAtIndex:indexPath.row];
@@ -148,28 +147,28 @@
             [cimg removeFromSuperview];
         }
         if (comment.commentImg != NULL){
-        UIImageView *commentImg = [[UIImageView alloc]initWithFrame:CGRectMake( 0, 0, 50, 50)];
-        commentImg.image = comment.commentImg[i];
-        UIButton *commentImgButton = [[UIButton alloc]initWithFrame:CGRectMake( 70+60*i, commentDetail.frame.origin.y + commentDetail.frame.size.height+10, 50, 50)];
-      //  commentImg.backgroundColor = [[UIColor alloc]initWithPatternImage:comment.commentImg[i]];
-        [commentImgButton addSubview:commentImg];
-        commentImgButton.tag = (210+i);
-        [commentImgButton addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIImage *temp = comment.commentImg[i];
-        viewController.img = temp;
-        
-        [cell addSubview:commentImgButton];
+            UIImageView *commentImg = [[UIImageView alloc]initWithFrame:CGRectMake( 0, 0, 50, 50)];
+            commentImg.image = comment.commentImg[i];
+            UIButton *commentImgButton = [[UIButton alloc]initWithFrame:CGRectMake( 70+60*i, commentDetail.frame.origin.y + commentDetail.frame.size.height+10, 50, 50)];
+            //  commentImg.backgroundColor = [[UIColor alloc]initWithPatternImage:comment.commentImg[i]];
+            [commentImgButton addSubview:commentImg];
+            commentImgButton.tag = (210+i);
+            [commentImgButton addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UIImage *temp = comment.commentImg[i];
+            viewController.img = temp;
+            
+            [cell addSubview:commentImgButton];
+        }
     }
-    }
-
+    
     UIButton *dc = [cell viewWithTag:209];
     if (dc) {
         [dc removeFromSuperview];
     }
     UIButton *deleteComment;
     if (comment.commentImg == NULL) {
-      deleteComment  = [[UIButton alloc]initWithFrame:CGRectMake(290, commentDetail.frame.origin.y+commentDetail.frame.size.height+15, 28, 30)];
+        deleteComment  = [[UIButton alloc]initWithFrame:CGRectMake(290, commentDetail.frame.origin.y+commentDetail.frame.size.height+15, 28, 30)];
     }
     else deleteComment = [[UIButton alloc]initWithFrame:CGRectMake(290, commentDetail.frame.origin.y+commentDetail.frame.size.height+65, 28, 30)];
     [deleteComment setBackgroundImage:[UIImage imageNamed:@"delete.png"] forState:UIControlStateNormal];
@@ -186,7 +185,7 @@
     if (comment.commentImg==NULL) {
         commentDate = [[UILabel alloc]initWithFrame:CGRectMake(70, commentDetail.frame.origin.y+commentDetail.frame.size.height+20, 63, 12)];
     }
-   else commentDate = [[UILabel alloc]initWithFrame:CGRectMake(70, commentDetail.frame.origin.y+commentDetail.frame.size.height+70, 63, 12)];
+    else commentDate = [[UILabel alloc]initWithFrame:CGRectMake(70, commentDetail.frame.origin.y+commentDetail.frame.size.height+70, 63, 12)];
     commentDate.text = @"8-4 14:04";
     commentDate.textColor = [UIColor colorWithRed:0.41176471 green:0.41176471 blue:0.41176471 alpha:1];
     commentDate.font = [UIFont fontWithName:defaultFont size:11];
@@ -194,21 +193,21 @@
     [cell addSubview:commentDate];
     
     NSLog(@"%@",comment.commentImg);
-
- 
+    
+    
     return cell;
 }
 
 -(void)imageItemClick:(UIButton *)button{
-
+    
     NSLog(@"superview: %@",button.superview);
     NSLog(@"superview.superview: %@",button.superview.superview);
     
-  //  [self.navigationController modalViewController:viewController];
+    //  [self.navigationController modalViewController:viewController];
     viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
     viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:viewController animated:YES];
-  //  [self.navigationController pushViewController:viewController animated:YES];
+    //  [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -237,7 +236,7 @@
     UITableViewCell *cell = (UITableViewCell*)[button.superview superview];
     UITableView* table=(UITableView*)[[cell superview] nextResponder];
     NSIndexPath* index=[table indexPathForCell:cell];
-    	
+    
     NSLog(@"%@",index);
     [tableData removeObjectAtIndex:index.row];
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationNone];
@@ -250,44 +249,44 @@
 
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
 

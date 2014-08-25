@@ -1,18 +1,18 @@
 //
-//  UserViewController.m
+//  UserLoginViewController.m
 //  lemang
 //
-//  Created by 汤 骋原 on 14-7-29.
+//  Created by 汤 骋原 on 14-8-22.
 //  Copyright (c) 2014年 university media. All rights reserved.
 //
 
-#import "UserViewController.h"
+#import "UserLoginViewController.h"
 
-@interface UserViewController ()
+@interface UserLoginViewController ()
 
 @end
 
-@implementation UserViewController
+@implementation UserLoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
