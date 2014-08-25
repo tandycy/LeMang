@@ -9,6 +9,7 @@
 #import "ActivityViewCell.h"
 
 @implementation ActivityViewCell
+@synthesize activityIconImg;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -48,7 +49,7 @@
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response{
     //可以在显示图片前先用本地的一个loading.gif来占位。
     UIImage *img = [[UIImage alloc] initWithContentsOfFile:@"loading.gif"];
-    [self.imageView setImage:img];
+    [activityIconImg setImage:img];
     imgData = [[NSMutableData alloc] init];
     //保存接收到的响应对象，以便响应完毕后的状态。
     _response = response;
@@ -68,7 +69,7 @@
     if(response.statusCode == 200){
         //请求成功
         UIImage *img=[UIImage imageWithData:imgData];
-        [self.imageView setImage:img];
+        [activityIconImg setImage:img];
     }
 }
 @end

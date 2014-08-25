@@ -168,7 +168,7 @@ NSString *navTitle;
         }
         
         NSString* imgUrlString = temp[@"iconUrl"];
-        imgUrlString = @"http://www.baidu.com/img/bdlogo.png"; // TSET URL HERE
+        imgUrlString = @"http://pic13.nipic.com/20110405/4572067_232048222000_2.jpg"; // TSET URL HERE
         
         NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
         
