@@ -10,7 +10,7 @@
 
 @interface Activity : NSObject{
     long activityId;
-    UIImage *img;
+    NSURL *img;
     NSString *title;
     NSString *date;
     NSString *limit;
@@ -21,7 +21,7 @@
     BOOL *state;
 }
 @property (nonatomic, copy) NSString *category;
-@property (nonatomic, copy) UIImage *img;
+@property (nonatomic, copy) NSURL *img;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, copy) NSString *limit;
@@ -32,7 +32,7 @@
 @property (nonatomic) BOOL *state;
 @property (nonatomic) long activityId;
 
-+ (id)activityOfCategory:(NSString*)category img:(UIImage*)img title:(NSString*)title date:(NSString*)date
++ (id)activityOfCategory:(NSString*)category img:(NSURL*)img title:(NSString*)title date:(NSString*)date
                    limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(long)activitiId;
 
 @end
