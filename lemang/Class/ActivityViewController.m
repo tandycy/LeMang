@@ -48,7 +48,7 @@ NSString *navTitle;
 
 - (void)refreshActivityData
 {
-    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association";
     NSURL *URL = [NSURL URLWithString:URLString];
     
     // NSString *authInfo = @"Basic user:user";
@@ -138,7 +138,9 @@ NSString *navTitle;
     // [activitySearchBar setShowsCancelButton:YES];
     // activitySearchBar.delegate = self;
     // [self.navigationController.navigationBar addSubview:activitySearchBar];
-    [self refreshActivityData];
+    
+    //[self refreshActivityData];
+    
     // initialize activity list
     UIImage *businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
     UIImage *schoolIcon = [UIImage imageNamed:@"school_icon.png"];
@@ -384,6 +386,7 @@ NSString *navTitle;
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
     //[activitySearchBar setHidden:NO];
+    [self refreshActivityData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

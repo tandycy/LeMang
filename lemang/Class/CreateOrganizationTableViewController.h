@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateOrganizationTableViewController : UITableViewController
+@interface CreateOrganizationTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource> 
+{
+    NSArray *pickerArray;
+    NSArray *schoolPickerArray;
+    NSArray *collegePickerArray;
+}
+
+- (IBAction)selectButton:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
+@property (strong, nonatomic) IBOutlet UIPickerView *selectPicker;
+@property (strong, nonatomic) IBOutlet UITextField *schoolTextField;
+@property (strong, nonatomic) IBOutlet UITextField *collegeTextField;
 
 @end

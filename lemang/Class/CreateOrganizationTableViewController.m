@@ -14,6 +14,10 @@
 
 @implementation CreateOrganizationTableViewController
 
+@synthesize selectPicker;
+@synthesize schoolTextField,collegeTextField;
+@synthesize doneToolbar;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -27,6 +31,20 @@
 {
     [super viewDidLoad];
     
+    schoolPickerArray = [NSArray arrayWithObjects:@"交通大学",@"上海大学",@"同济大学",@"复旦大学", nil];
+    collegePickerArray = [NSArray arrayWithObjects:@"软件工程",@"计算机信息与技术",@"工程技术",@"文法",@"广播电视传媒",nil];
+    schoolTextField.inputView = selectPicker;
+    schoolTextField.inputAccessoryView = doneToolbar;
+    schoolTextField.delegate = self;
+    [schoolTextField addTarget:self action:@selector(schoolOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    collegeTextField.inputView = selectPicker;
+    collegeTextField.inputAccessoryView = doneToolbar;
+    collegeTextField.delegate = self;
+    [collegeTextField addTarget:self action:@selector(collegeOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    selectPicker.delegate = self;
+    selectPicker.dataSource = self;
+    selectPicker.frame = CGRectMake(0, 480, 320, 216);
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -34,10 +52,52 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (IBAction)schoolOnEditing:(id)sender {
+    pickerArray = schoolPickerArray;
+    [selectPicker reloadAllComponents];
+}
+
+- (IBAction)collegeOnEditing:(id)sender {
+    pickerArray = collegePickerArray;
+    [selectPicker reloadAllComponents];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)selectButton:(id)sender {
+    if (schoolTextField.isEditing) {
+        [schoolTextField endEditing:YES];
+    }
+    else if(collegeTextField.isEditing)
+    {
+        [collegeTextField endEditing:YES];
+    }
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+-(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [pickerArray count];
+}
+-(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [pickerArray objectAtIndex:row];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    NSInteger row = [selectPicker selectedRowInComponent:0];
+    if (schoolTextField.isEditing) {
+        textField = schoolTextField;
+    }
+    else if(collegeTextField.isEditing)
+    {
+        textField = collegeTextField;
+    }
+    textField.text = [pickerArray objectAtIndex:row];
 }
 
 #pragma mark - Table view data source
