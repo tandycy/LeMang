@@ -60,18 +60,15 @@ NSString *navTitle;
     // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
     
     
-    
-    
     NSURLResponse * response;
     NSError * error;
     
-    NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
     if (error) {
         NSLog(@"a connection could not be created or request fails.");
         NSLog(@"Error: %@", [error localizedDescription]);
     }
     //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
-    
+ 
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
     
@@ -79,7 +76,7 @@ NSString *navTitle;
     
     if (connection) {
         receivedData = [NSMutableData new];
-        NSLog(@"rd%@",receivedData);
+        NSLog(@"rdm%@",receivedData);
     }
 }
 
@@ -109,22 +106,94 @@ NSString *navTitle;
     
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data { //①
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [receivedData appendData:data];
 }
 -(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
     NSLog(@"%@",[error localizedDescription]);
 }
-- (void) connectionDidFinishLoading: (NSURLConnection*) connection {       //  ②
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
     NSLog(@"请求完成…");
-    NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
-    // [self reloadView:dict];
+    activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
     
+    
+    UIImage* bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
+    UIImage* schoolIcon = [UIImage imageNamed:@"school_icon.png"];
+    UIImage* groupIcon = [UIImage imageNamed:@"group_icon.png"];
+    UIImage* privateIcon = [UIImage imageNamed:@"private_icon.png"];
+    
+    //NSDictionary* dicContent = activityData[@"content"];
+    NSMutableArray* newActivityArray = [NSMutableArray arrayWithCapacity:50];
+    
+
+    for (int i = 0; i < activityData.count; i++)
+    {
+        NSDictionary* temp = activityData[i];
+        
+        NSDictionary* creator = temp[@"createdBy"];
+        NSString* group = temp[@"activityGroup"];
+        NSString* type = temp[@"activityType"];
+        
+        NSString* createDate = temp[@"createdDate"];
+        NSArray* members = temp[@"activityMember"];
+        
+        int memberNum = 0;
+        if (members != Nil) {
+            memberNum = members.count;
+        }
+        
+        //NSString* tittle = temp[@"title"];
+        NSString* peopleLimit = temp[@"peopleLimit"];
+        NSString* regionLimit = temp[@"regionLimit"];
+        long tempId = temp[@"id"];
+        
+        UIImage* iconImg;
+        
+        if ([group isEqualToString:@"Association"])
+        {
+            iconImg = groupIcon;
+        }
+        else if ([group isEqualToString:@"Company"])
+        {
+            iconImg = bussinessIcon;
+        }
+        else if ([group isEqualToString:@"University"])
+        {
+            iconImg = schoolIcon;
+        }
+        else if ([group isEqualToString:@"Department"])
+        {
+            iconImg = privateIcon;
+        }
+        
+        UIImage* activityIconImg = [UIImage imageNamed:@"group1.png"];
+        if (temp[@"iconUrl"] != nil)
+        {
+        }
+        
+        [newActivityArray addObject:[Activity
+                  activityOfCategory:@"All"
+                                 img:activityIconImg
+                               title:temp[@"title"]
+                                date:createDate
+                               limit:regionLimit
+                                icon:schoolIcon
+                              member:[NSString stringWithFormat:@"%d",memberNum]
+                         memberUpper:peopleLimit
+                                 fav:@"325"
+                               state:0
+                           activitiId:tempId]];
+    }
+    activityArray = newActivityArray;
+    self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
+    [activityList reloadData];
+    /*
     NSString *results = [[NSString alloc]
                          initWithBytes:[receivedData bytes]
                          length:[receivedData length]
                          encoding:NSUTF8StringEncoding];
     NSLog(@"results=%@",results);
+     */
 }
 
 - (void)viewDidLoad
@@ -142,10 +211,7 @@ NSString *navTitle;
     //[self refreshActivityData];
     
     // initialize activity list
-    UIImage *businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
-    UIImage *schoolIcon = [UIImage imageNamed:@"school_icon.png"];
-    UIImage *groupIcon = [UIImage imageNamed:@"group_icon.png"];
-    UIImage *privateIcon = [UIImage imageNamed:@"private_icon.png"];
+    
     
     activityArray = [NSArray arrayWithObjects:
                      [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
@@ -203,6 +269,10 @@ NSString *navTitle;
                                               fav:@"20"
                                             state:1],
                      nil];
+     */
+    
+    [self refreshActivityData];
+    
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
     NSLog(@"load3");
@@ -287,7 +357,8 @@ NSString *navTitle;
     dateLable.text = activity.date;
     
     UILabel *limitLable = (UILabel *)[cell viewWithTag:ActivityLimit];
-    limitLable.text = activity.limit;
+    limitLable.text = @"";
+    limitLable.text = [limitLable.text stringByAppendingFormat:@"%@",activity.limit];
     
     UIImageView *typeIcon = (UIImageView *)[cell viewWithTag:ActivityTypeIcon];
     typeIcon.image = activity.icon;
@@ -385,6 +456,7 @@ NSString *navTitle;
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    //[self refreshActivityData];
     //[activitySearchBar setHidden:NO];
     [self refreshActivityData];
 }
