@@ -12,7 +12,8 @@
 @interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIScrollViewDelegate>
 {
 //    IBOutlet ActivityTableViewController *ActivityList;
-     NSMutableData *receivedData; 
+    NSMutableData *receivedData;
+    NSArray* activityData;
 
 }
 @property (strong,nonatomic) NSArray *activityArray;

@@ -9,7 +9,7 @@
 #import "Activity.h"
 
 @implementation Activity
-
+@synthesize activityId;
 @synthesize category;
 @synthesize img;
 @synthesize title;
@@ -21,7 +21,7 @@
 @synthesize memberUpper;
 
 + (id)activityOfCategory:(NSString*)category img:(UIImage*)img title:(NSString*)title date:(NSString*)date
-                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state
+                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(long)activitiId
 {
     Activity *newActivity = [[self alloc] init];
     newActivity.category = category;
@@ -34,6 +34,7 @@
     newActivity.icon = icon;
     newActivity.fav = fav;
     newActivity.state = state;
+    newActivity->activityId = activitiId;
     return newActivity;
 }
 

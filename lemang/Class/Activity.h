@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Activity : NSObject{
+    long activityId;
     UIImage *img;
     NSString *title;
     NSString *date;
@@ -29,8 +30,9 @@
 @property (nonatomic, copy) NSString *memberUpper;
 @property (nonatomic, copy) NSString *fav;
 @property (nonatomic) BOOL *state;
+@property (nonatomic) long activityId;
 
 + (id)activityOfCategory:(NSString*)category img:(UIImage*)img title:(NSString*)title date:(NSString*)date
-                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state;
+                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(long)activitiId;
 
 @end

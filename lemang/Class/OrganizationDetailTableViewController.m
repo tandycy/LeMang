@@ -74,6 +74,7 @@ typedef enum {
 
 - (void)createActivityData
 {
+    /*
     UIImage *businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
     UIImage *schoolIcon = [UIImage imageNamed:@"school_icon.png"];
     UIImage *groupIcon = [UIImage imageNamed:@"group_icon.png"];
@@ -135,6 +136,7 @@ typedef enum {
                                               fav:@"20"
                                             state:1],
                      nil];
+     */
 
 }
 
