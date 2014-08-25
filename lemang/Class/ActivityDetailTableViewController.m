@@ -34,7 +34,7 @@
     titleLabel.text = activity.title;
     amount.text = activity.member;
     hot.text = activity.fav;
-    titleImgView.image = activity.img;
+    //titleImgView.image = activity.img;
     address.text = activity.title;
     time.text = activity.date;
     

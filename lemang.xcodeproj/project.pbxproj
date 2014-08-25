@@ -63,6 +63,7 @@
 		25CA2DFC19949CF700BED707 /* 社团组织.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF119949CF700BED707 /* 社团组织.png */; };
 		25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF219949CF700BED707 /* 组织页面.png */; };
 		25CA2E001994BCCF00BED707 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DFF1994BCCF00BED707 /* 11.jpg */; };
+		EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,8 @@
 		25CA2DF119949CF700BED707 /* 社团组织.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "社团组织.png"; sourceTree = "<group>"; };
 		25CA2DF219949CF700BED707 /* 组织页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组织页面.png"; sourceTree = "<group>"; };
 		25CA2DFF1994BCCF00BED707 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
+		EE9BCB3C19AB45E700710F90 /* ActivityViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewCell.h; path = Class/ActivityViewCell.h; sourceTree = "<group>"; };
+		EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewCell.m; path = Class/ActivityViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +283,8 @@
 		256E04731987B1CE009845A5 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				EE9BCB3C19AB45E700710F90 /* ActivityViewCell.h */,
+				EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */,
 				25C7F334198B75FB00AB8B2F /* Activity */,
 				256E046D1987AACA009845A5 /* ActivityViewController.h */,
 				256E046E1987AACA009845A5 /* ActivityViewController.m */,
@@ -436,7 +441,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -527,6 +532,7 @@
 				25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */,
 				251CEBBE19A33D5B00C80BAF /* OrganizationDetailTableViewController.m in Sources */,
 				256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */,
+				EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,7 +745,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

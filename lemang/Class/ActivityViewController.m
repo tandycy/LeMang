@@ -8,6 +8,7 @@
 
 #import "ActivityViewController.h"
 #import "ActivityDetailViewController.h"
+#import "ActivityViewCell.h"
 
 #define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
 
@@ -166,14 +167,14 @@ NSString *navTitle;
             iconImg = privateIcon;
         }
         
-        UIImage* activityIconImg = [UIImage imageNamed:@"group1.png"];
-        if (temp[@"iconUrl"] != nil)
-        {
-        }
+        NSString* imgUrlString = temp[@"iconUrl"];
+        imgUrlString = @"http://www.baidu.com/img/bdlogo.png"; // TSET URL HERE
+        
+        NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
         
         [newActivityArray addObject:[Activity
                   activityOfCategory:@"All"
-                                 img:activityIconImg
+                                 img:imgUrl
                                title:temp[@"title"]
                                 date:createDate
                                limit:regionLimit
@@ -324,7 +325,7 @@ NSString *navTitle;
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ActivityTableCell";
-    UITableViewCell *cell = [activityList dequeueReusableCellWithIdentifier:CellIdentifier];
+    ActivityViewCell *cell = [activityList dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     if ( cell == nil )
@@ -348,7 +349,10 @@ NSString *navTitle;
     }
     
     UIImageView *activityImg = (UIImageView *)[cell viewWithTag:ActivityImg];
-    activityImg.image = activity.img;
+    if (activity.img == nil)
+        activityImg.image = [UIImage imageNamed:@"group1.png"];
+    else
+        [cell SetIconImgUrl:activity.img];
     
     UILabel *titleLable = (UILabel *)[cell viewWithTag:ActivityTitle];
     titleLable.text = activity.title;
