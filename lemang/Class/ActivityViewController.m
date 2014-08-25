@@ -68,9 +68,7 @@ NSString *navTitle;
         NSLog(@"Error: %@", [error localizedDescription]);
     }
     //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
-    
-    NSURLResponse * response;
-    NSError * error;
+ 
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
     
@@ -119,7 +117,7 @@ NSString *navTitle;
     activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
     
     
-    UIImage* businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
+    UIImage* bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
     UIImage* schoolIcon = [UIImage imageNamed:@"school_icon.png"];
     UIImage* groupIcon = [UIImage imageNamed:@"group_icon.png"];
     UIImage* privateIcon = [UIImage imageNamed:@"private_icon.png"];
@@ -144,24 +142,44 @@ NSString *navTitle;
             memberNum = members.count;
         }
         
-        NSString* tittle = temp[@"title"];
-        NSData* peopleLimit = temp[@"peopleLimit"];
+        //NSString* tittle = temp[@"title"];
+        NSString* peopleLimit = temp[@"peopleLimit"];
+        NSString* regionLimit = temp[@"regionLimit"];
         long tempId = temp[@"id"];
         
         UIImage* iconImg;
         
         if ([group isEqualToString:@"Association"])
+        {
             iconImg = groupIcon;
+        }
+        else if ([group isEqualToString:@"Company"])
+        {
+            iconImg = bussinessIcon;
+        }
+        else if ([group isEqualToString:@"University"])
+        {
+            iconImg = schoolIcon;
+        }
+        else if ([group isEqualToString:@"Department"])
+        {
+            iconImg = privateIcon;
+        }
+        
+        UIImage* activityIconImg = [UIImage imageNamed:@"group1.png"];
+        if (temp[@"iconUrl"] != nil)
+        {
+        }
         
         [newActivityArray addObject:[Activity
                   activityOfCategory:@"All"
-                                 img:[UIImage imageNamed:@"group1.png"]
+                                 img:activityIconImg
                                title:temp[@"title"]
                                 date:createDate
-                               limit:@"限上海大学学生"
+                               limit:regionLimit
                                 icon:schoolIcon
                               member:[NSString stringWithFormat:@"%d",memberNum]
-                         memberUpper:@"50"
+                         memberUpper:peopleLimit
                                  fav:@"325"
                                state:0
                            activitiId:tempId]];
@@ -346,7 +364,8 @@ NSString *navTitle;
     dateLable.text = activity.date;
     
     UILabel *limitLable = (UILabel *)[cell viewWithTag:ActivityLimit];
-    limitLable.text = activity.limit;
+    limitLable.text = @"";
+    limitLable.text = [limitLable.text stringByAppendingFormat:@"%@",activity.limit];
     
     UIImageView *typeIcon = (UIImageView *)[cell viewWithTag:ActivityTypeIcon];
     typeIcon.image = activity.icon;
