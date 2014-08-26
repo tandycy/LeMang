@@ -50,6 +50,7 @@
 		258087C919A71EED005E308D /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C619A71EED005E308D /* UIImageButton.m */; };
 		258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C819A71EED005E308D /* UITableGridViewCell.m */; };
 		25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */; };
+		25BAA3D219ACAFC500E87856 /* CreateActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BAA3D119ACAFC500E87856 /* CreateActivityTableViewController.m */; };
 		25C7F337198B7A3500AB8B2F /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F336198B7A3500AB8B2F /* Activity.m */; };
 		25CA2DF319949CF700BED707 /* 活动成员.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE819949CF700BED707 /* 活动成员.png */; };
 		25CA2DF419949CF700BED707 /* 活动详细.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE919949CF700BED707 /* 活动详细.png */; };
@@ -151,6 +152,8 @@
 		258087C819A71EED005E308D /* UITableGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableGridViewCell.m; path = Class/UITableGridViewCell.m; sourceTree = "<group>"; };
 		25874DA919A5FFE000264B4D /* CreateOrganizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateOrganizationTableViewController.h; path = Class/CreateOrganizationTableViewController.h; sourceTree = "<group>"; };
 		25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateOrganizationTableViewController.m; path = Class/CreateOrganizationTableViewController.m; sourceTree = "<group>"; };
+		25BAA3D019ACAFC500E87856 /* CreateActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateActivityTableViewController.h; path = Class/CreateActivityTableViewController.h; sourceTree = "<group>"; };
+		25BAA3D119ACAFC500E87856 /* CreateActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateActivityTableViewController.m; path = Class/CreateActivityTableViewController.m; sourceTree = "<group>"; };
 		25C7F335198B7A3500AB8B2F /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Activity.h; path = Class/Activity.h; sourceTree = "<group>"; };
 		25C7F336198B7A3500AB8B2F /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Activity.m; path = Class/Activity.m; sourceTree = "<group>"; };
 		25CA2DE819949CF700BED707 /* 活动成员.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动成员.png"; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				257CD60919A36EF1001FF078 /* ActivityCommetImageDetailViewController.m */,
 				2538240E199A2AF900180DB9 /* ActivityMemberTableViewController.h */,
 				2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */,
+				25BAA3D019ACAFC500E87856 /* CreateActivityTableViewController.h */,
+				25BAA3D119ACAFC500E87856 /* CreateActivityTableViewController.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -441,7 +446,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -517,6 +522,7 @@
 				256E04351987A106009845A5 /* main.m in Sources */,
 				258087AD19A71C63005E308D /* MyAcitivityTableViewController.m in Sources */,
 				256E04651987AA6B009845A5 /* HomeViewController.m in Sources */,
+				25BAA3D219ACAFC500E87856 /* CreateActivityTableViewController.m in Sources */,
 				258087AA19A71C4C005E308D /* UserInfoTableViewController.m in Sources */,
 				258087BB19A71D59005E308D /* MyMessageTableViewController.m in Sources */,
 				258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */,
@@ -745,7 +751,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

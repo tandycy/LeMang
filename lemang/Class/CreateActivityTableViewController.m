@@ -1,18 +1,22 @@
 //
-//  UserTableViewController.m
+//  CreateActivityTableViewController.m
 //  lemang
 //
-//  Created by 汤 骋原 on 14-8-22.
+//  Created by 汤 骋原 on 14-8-26.
 //  Copyright (c) 2014年 university media. All rights reserved.
 //
 
-#import "UserTableViewController.h"
+#import "CreateActivityTableViewController.h"
 
-@interface UserTableViewController ()
+@interface CreateActivityTableViewController ()
+{
+    UIDatePicker *datePicker;
+    UILabel *lab;
+}
 
 @end
 
-@implementation UserTableViewController
+@implementation CreateActivityTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,6 +36,35 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 初始化UIDatePicker
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 200, 320, 216)];
+    // 设置时区
+    [datePicker setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    // 设置当前显示时间
+    //[datePicker setDate:tempDate animated:YES];
+    // 设置显示最大时间（此处为当前时间）
+    [datePicker setMaximumDate:[NSDate date]];
+    // 设置UIDatePicker的显示模式
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    // 当值发生改变的时候调用的方法
+    [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventTouchDownRepeat];
+    [self.view addSubview:datePicker];
+    // 获得当前UIPickerDate所在的时间
+
+    lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 200, 320, 50)];
+    
+    [self.view addSubview:lab];
+    
+}
+
+- (IBAction)datePickerValueChanged:(id)sender {
+   NSDate * selected = [datePicker date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *dateAndTime =  [dateFormatter stringFromDate:selected];
+    lab.text = dateAndTime;
+   // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时间提示" message:dateAndTime delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+   // [alert show];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,18 +73,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.tabBarController.tabBar setHidden:NO];
-}
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [self.tabBarController.tabBar setHidden:YES];
-}
 
-#pragma mark - Table view data source
 /*
+#pragma mark - Table view data source
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
@@ -66,7 +92,7 @@
     return 0;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
