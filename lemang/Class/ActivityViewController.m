@@ -59,9 +59,7 @@ NSString *navTitle;
     [URLRequest setHTTPMethod:@"GET"];
     [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
     // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
-    
-    
-    NSURLResponse * response;
+ 
     NSError * error;
     
     if (error) {
@@ -145,9 +143,7 @@ NSString *navTitle;
         
         //NSString* tittle = temp[@"title"];
         NSString* peopleLimit = temp[@"peopleLimit"];
-        NSString* regionLimit = temp[@"regionLimit"];
-        long tempId = temp[@"id"];
-        
+        NSString* regionLimit = temp[@"regionLimit"];        
         UIImage* iconImg;
         
         if ([group isEqualToString:@"Association"])
@@ -183,7 +179,7 @@ NSString *navTitle;
                          memberUpper:peopleLimit
                                  fav:@"325"
                                state:0
-                           activitiId:tempId]];
+                           activitiId:temp[@"id"]]];
     }
     activityArray = newActivityArray;
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
