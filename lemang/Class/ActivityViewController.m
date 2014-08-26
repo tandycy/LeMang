@@ -348,9 +348,14 @@ NSString *navTitle;
         activity = [self.activityArray objectAtIndex:indexPath.row];
     }
     
+    cell.linkedActivity = activity;
+    
     UIImageView *activityImg = (UIImageView *)[cell viewWithTag:ActivityImg];
     if (activity.img == nil)
+    {
         activityImg.image = [UIImage imageNamed:@"group1.png"];
+        activity.cachedImg = [UIImage imageNamed:@"group1.png"];
+    }
     else
         [cell SetIconImgUrl:activity.img];
     

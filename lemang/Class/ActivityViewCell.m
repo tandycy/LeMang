@@ -10,6 +10,7 @@
 
 @implementation ActivityViewCell
 @synthesize activityIconImg;
+@synthesize linkedActivity;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -70,6 +71,7 @@
         //请求成功
         UIImage *img=[UIImage imageWithData:imgData];
         [activityIconImg setImage:img];
+        linkedActivity.cachedImg = img;
     }
 }
 @end

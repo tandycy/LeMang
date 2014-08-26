@@ -11,6 +11,7 @@
 @interface Activity : NSObject{
     long activityId;
     NSURL *img;
+    UIImage* cachedImg;
     NSString *title;
     NSString *date;
     NSString *limit;
@@ -22,6 +23,7 @@
 }
 @property (nonatomic, copy) NSString *category;
 @property (nonatomic, copy) NSURL *img;
+@property (nonatomic, copy) UIImage* cachedImg;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *date;
 @property (nonatomic, copy) NSString *limit;

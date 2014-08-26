@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Activity.h"
 
 @interface ActivityViewCell : UITableViewCell
 {
     NSURLConnection* connection;
     NSMutableData* imgData;
     NSURLResponse* _response;
+    Activity* linkedActivity;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *activityIconImg;
+@property (nonatomic) Activity* linkedActivity;
 
 - (void) SetIconImgUrl : (NSURL*)url;
 

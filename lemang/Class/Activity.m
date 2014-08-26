@@ -12,6 +12,7 @@
 @synthesize activityId;
 @synthesize category;
 @synthesize img;
+@synthesize cachedImg;
 @synthesize title;
 @synthesize date;
 @synthesize limit;
