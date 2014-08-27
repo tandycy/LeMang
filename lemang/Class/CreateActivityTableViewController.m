@@ -18,6 +18,9 @@
 
 @implementation CreateActivityTableViewController
 
+@synthesize date;
+@synthesize datePicker;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -31,38 +34,36 @@
 {
     [super viewDidLoad];
     
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    // 初始化UIDatePicker
-    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 200, 320, 216)];
-    // 设置时区
-    [datePicker setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    // 设置当前显示时间
-    //[datePicker setDate:tempDate animated:YES];
-    // 设置显示最大时间（此处为当前时间）
-    [datePicker setMaximumDate:[NSDate date]];
-    // 设置UIDatePicker的显示模式
-    [datePicker setDatePickerMode:UIDatePickerModeDate];
-    // 当值发生改变的时候调用的方法
-    [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventTouchDownRepeat];
-    [self.view addSubview:datePicker];
-    // 获得当前UIPickerDate所在的时间
-
-    lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 200, 320, 50)];
+    //date.inputAccessoryView = doneToolbar;
+    //date.delegate = self;
     
-    [self.view addSubview:lab];
+    date.inputView = datePicker;
+    [datePicker setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [datePicker setMinimumDate:[NSDate date]];
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+    datePicker.frame =  CGRectMake(0, 480, 320, 260);
+    
+
+   // lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 200, 320, 50)];
+    
+   // [self.view addSubview:lab];
     
 }
+
 
 - (IBAction)datePickerValueChanged:(id)sender {
    NSDate * selected = [datePicker date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateAndTime =  [dateFormatter stringFromDate:selected];
-    lab.text = dateAndTime;
+    date.text = dateAndTime;
    // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时间提示" message:dateAndTime delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
    // [alert show];
 }
