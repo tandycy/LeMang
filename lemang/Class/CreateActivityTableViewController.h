@@ -10,4 +10,7 @@
 
 @interface CreateActivityTableViewController : UITableViewController
 
+@property (strong, nonatomic) IBOutlet UITextField *date;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 @end

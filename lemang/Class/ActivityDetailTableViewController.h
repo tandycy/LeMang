@@ -13,6 +13,7 @@
 {
     Activity *activity;
     UILabel *titleLabel;
+    UILabel *activityDescription;
     UILabel *joinState;
     UILabel *hot;
     UILabel *amount;
@@ -26,6 +27,7 @@
 
 @property (nonatomic, retain) Activity *activity;
 @property IBOutlet UILabel *titleLabel;
+@property IBOutlet UILabel *activityDescription;
 @property IBOutlet UILabel *joinState;
 @property IBOutlet UILabel *hot;
 @property IBOutlet UILabel *amount;
