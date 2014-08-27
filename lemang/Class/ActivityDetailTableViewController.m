@@ -121,7 +121,8 @@
 }
 - (void) connectionDidFinishLoading: (NSURLConnection*) connection {
     NSLog(@"请求完成…");
-    activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
+    activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
+    
 }
 /*
 

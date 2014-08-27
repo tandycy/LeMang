@@ -61,6 +61,8 @@ NSString *navTitle;
     // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
  
     NSError * error;
+    NSURLResponse * response;
+    NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
     
     if (error) {
         NSLog(@"a connection could not be created or request fails.");
