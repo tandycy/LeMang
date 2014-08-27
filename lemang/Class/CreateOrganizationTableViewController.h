@@ -18,6 +18,9 @@
 }
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewBig;
 @property (strong, nonatomic) IBOutlet UIButton *pickImgButton;
+@property (strong, nonatomic) IBOutlet UITextField *orgName;
+@property (strong, nonatomic) IBOutlet UITextView *orgDescription;
+
 - (IBAction)OnClickPickImage:(id)sender;
 - (IBAction)OnClickPickCamera:(id)sender;
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;

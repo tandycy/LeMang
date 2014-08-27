@@ -934,7 +934,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <sections>
                             <tableViewSection id="tD6-GI-9bc">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="XFP-4P-X3j">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="XFP-4P-X3j">
                                         <rect key="frame" x="0.0" y="64" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XFP-4P-X3j" id="Ypp-ff-KW2">
@@ -956,8 +956,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="191" id="4e3-YH-SVd">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="191" id="4e3-YH-SVd">
                                         <rect key="frame" x="0.0" y="124" width="320" height="191"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4e3-YH-SVd" id="dYa-Mq-5Xo">
@@ -979,8 +980,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="120" id="oCV-Sc-PSN">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="120" id="oCV-Sc-PSN">
                                         <rect key="frame" x="0.0" y="315" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oCV-Sc-PSN" id="TkF-8D-69x">
@@ -1002,8 +1004,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="73" id="s7S-yp-SSR">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="73" id="s7S-yp-SSR">
                                         <rect key="frame" x="0.0" y="435" width="320" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s7S-yp-SSR" id="dzl-xp-wcT">
@@ -1029,8 +1032,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 </segmentedControl>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="74" id="YHh-Js-3YT">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="74" id="YHh-Js-3YT">
                                         <rect key="frame" x="0.0" y="508" width="320" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YHh-Js-3YT" id="QrR-pE-WK6">
@@ -1051,8 +1055,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="74" id="BEJ-Qq-ywy">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="74" id="BEJ-Qq-ywy">
                                         <rect key="frame" x="0.0" y="582" width="320" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BEJ-Qq-ywy" id="Ogs-Fh-bb7">
@@ -1073,8 +1078,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="172" id="N7q-P7-six">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="172" id="N7q-P7-six">
                                         <rect key="frame" x="0.0" y="656" width="320" height="172"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N7q-P7-six" id="zJs-5h-fJb">
@@ -1115,6 +1121,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1128,6 +1135,8 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     <connections>
                         <outlet property="collegeTextField" destination="qUg-5W-yq1" id="meX-uy-3AD"/>
                         <outlet property="doneToolbar" destination="wgD-e2-Vy4" id="1zy-jv-tj5"/>
+                        <outlet property="orgDescription" destination="e2W-7o-4BB" id="hNO-rx-cYo"/>
+                        <outlet property="orgName" destination="hUE-Fn-Hqb" id="NZd-eI-wQA"/>
                         <outlet property="pickImgButton" destination="JQd-8v-KET" id="m0V-px-IuL"/>
                         <outlet property="schoolTextField" destination="Gnh-tq-TLq" id="1TJ-Q6-Ykt"/>
                         <outlet property="selectPicker" destination="P3W-Nd-1en" id="et6-LU-HpD"/>
