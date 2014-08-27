@@ -51,6 +51,14 @@
 		258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C819A71EED005E308D /* UITableGridViewCell.m */; };
 		25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */; };
 		25BAA3D219ACAFC500E87856 /* CreateActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BAA3D119ACAFC500E87856 /* CreateActivityTableViewController.m */; };
+		25C3A0F719ADC4EC00BB48B3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25C3A0E719ADC4EC00BB48B3 /* MJRefresh.bundle */; };
+		25C3A0F819ADC4EC00BB48B3 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0EA19ADC4EC00BB48B3 /* MJRefreshBaseView.m */; };
+		25C3A0F919ADC4EC00BB48B3 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0EC19ADC4EC00BB48B3 /* MJRefreshConst.m */; };
+		25C3A0FA19ADC4EC00BB48B3 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0EE19ADC4EC00BB48B3 /* MJRefreshFooterView.m */; };
+		25C3A0FB19ADC4EC00BB48B3 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0F019ADC4EC00BB48B3 /* MJRefreshHeaderView.m */; };
+		25C3A0FC19ADC4EC00BB48B3 /* UIScrollView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0F219ADC4EC00BB48B3 /* UIScrollView+Extension.m */; };
+		25C3A0FD19ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0F419ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m */; };
+		25C3A0FE19ADC4EC00BB48B3 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0F619ADC4EC00BB48B3 /* UIView+Extension.m */; };
 		25C7F337198B7A3500AB8B2F /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F336198B7A3500AB8B2F /* Activity.m */; };
 		25CA2DF319949CF700BED707 /* 活动成员.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE819949CF700BED707 /* 活动成员.png */; };
 		25CA2DF419949CF700BED707 /* 活动详细.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE919949CF700BED707 /* 活动详细.png */; };
@@ -154,6 +162,22 @@
 		25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateOrganizationTableViewController.m; path = Class/CreateOrganizationTableViewController.m; sourceTree = "<group>"; };
 		25BAA3D019ACAFC500E87856 /* CreateActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateActivityTableViewController.h; path = Class/CreateActivityTableViewController.h; sourceTree = "<group>"; };
 		25BAA3D119ACAFC500E87856 /* CreateActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateActivityTableViewController.m; path = Class/CreateActivityTableViewController.m; sourceTree = "<group>"; };
+		25C3A0E719ADC4EC00BB48B3 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		25C3A0E819ADC4EC00BB48B3 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		25C3A0E919ADC4EC00BB48B3 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		25C3A0EA19ADC4EC00BB48B3 /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		25C3A0EB19ADC4EC00BB48B3 /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		25C3A0EC19ADC4EC00BB48B3 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		25C3A0ED19ADC4EC00BB48B3 /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		25C3A0EE19ADC4EC00BB48B3 /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		25C3A0EF19ADC4EC00BB48B3 /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		25C3A0F019ADC4EC00BB48B3 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
+		25C3A0F119ADC4EC00BB48B3 /* UIScrollView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Extension.h"; sourceTree = "<group>"; };
+		25C3A0F219ADC4EC00BB48B3 /* UIScrollView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Extension.m"; sourceTree = "<group>"; };
+		25C3A0F319ADC4EC00BB48B3 /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
+		25C3A0F419ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
+		25C3A0F519ADC4EC00BB48B3 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		25C3A0F619ADC4EC00BB48B3 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		25C7F335198B7A3500AB8B2F /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Activity.h; path = Class/Activity.h; sourceTree = "<group>"; };
 		25C7F336198B7A3500AB8B2F /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Activity.m; path = Class/Activity.m; sourceTree = "<group>"; };
 		25CA2DE819949CF700BED707 /* 活动成员.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动成员.png"; sourceTree = "<group>"; };
@@ -229,6 +253,7 @@
 		256E042E1987A106009845A5 /* lemang */ = {
 			isa = PBXGroup;
 			children = (
+				25C3A0E619ADC4EC00BB48B3 /* MJRefresh */,
 				2532699C199DBE510054F989 /* Constants.h */,
 				25CA2DE719949CD300BED707 /* Temp_pic */,
 				256E04661987AA74009845A5 /* Class */,
@@ -352,6 +377,29 @@
 				256E04641987AA6B009845A5 /* HomeViewController.m */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		25C3A0E619ADC4EC00BB48B3 /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				25C3A0E719ADC4EC00BB48B3 /* MJRefresh.bundle */,
+				25C3A0E819ADC4EC00BB48B3 /* MJRefresh.h */,
+				25C3A0E919ADC4EC00BB48B3 /* MJRefreshBaseView.h */,
+				25C3A0EA19ADC4EC00BB48B3 /* MJRefreshBaseView.m */,
+				25C3A0EB19ADC4EC00BB48B3 /* MJRefreshConst.h */,
+				25C3A0EC19ADC4EC00BB48B3 /* MJRefreshConst.m */,
+				25C3A0ED19ADC4EC00BB48B3 /* MJRefreshFooterView.h */,
+				25C3A0EE19ADC4EC00BB48B3 /* MJRefreshFooterView.m */,
+				25C3A0EF19ADC4EC00BB48B3 /* MJRefreshHeaderView.h */,
+				25C3A0F019ADC4EC00BB48B3 /* MJRefreshHeaderView.m */,
+				25C3A0F119ADC4EC00BB48B3 /* UIScrollView+Extension.h */,
+				25C3A0F219ADC4EC00BB48B3 /* UIScrollView+Extension.m */,
+				25C3A0F319ADC4EC00BB48B3 /* UIScrollView+MJRefresh.h */,
+				25C3A0F419ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m */,
+				25C3A0F519ADC4EC00BB48B3 /* UIView+Extension.h */,
+				25C3A0F619ADC4EC00BB48B3 /* UIView+Extension.m */,
+			);
+			path = MJRefresh;
 			sourceTree = "<group>";
 		};
 		25C7F334198B75FB00AB8B2F /* Activity */ = {
@@ -485,6 +533,7 @@
 				25CA2DFB19949CF700BED707 /* 社团成员.png in Resources */,
 				25CA2DF819949CF700BED707 /* 评论输入页面.png in Resources */,
 				25382404199A1EE300180DB9 /* group1.png in Resources */,
+				25C3A0F719ADC4EC00BB48B3 /* MJRefresh.bundle in Resources */,
 				253823FF199A097E00180DB9 /* Images.xcassets in Resources */,
 				25CA2DF519949CF700BED707 /* 活动详细分享.png in Resources */,
 				25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */,
@@ -515,14 +564,18 @@
 				258087B819A71D0E005E308D /* MyOrganizationTableViewController.m in Sources */,
 				258087A719A71C37005E308D /* UserTableViewController.m in Sources */,
 				258087C119A71DB9005E308D /* UserRegisterViewController.m in Sources */,
+				25C3A0FC19ADC4EC00BB48B3 /* UIScrollView+Extension.m in Sources */,
 				2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */,
 				258087BE19A71D7C005E308D /* UserLoginViewController.m in Sources */,
+				25C3A0FB19ADC4EC00BB48B3 /* MJRefreshHeaderView.m in Sources */,
 				256E04391987A106009845A5 /* AppDelegate.m in Sources */,
 				258087C419A71DCB005E308D /* UserVerifyViewController.m in Sources */,
 				256E04351987A106009845A5 /* main.m in Sources */,
 				258087AD19A71C63005E308D /* MyAcitivityTableViewController.m in Sources */,
 				256E04651987AA6B009845A5 /* HomeViewController.m in Sources */,
+				25C3A0F819ADC4EC00BB48B3 /* MJRefreshBaseView.m in Sources */,
 				25BAA3D219ACAFC500E87856 /* CreateActivityTableViewController.m in Sources */,
+				25C3A0FA19ADC4EC00BB48B3 /* MJRefreshFooterView.m in Sources */,
 				258087AA19A71C4C005E308D /* UserInfoTableViewController.m in Sources */,
 				258087BB19A71D59005E308D /* MyMessageTableViewController.m in Sources */,
 				258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */,
@@ -530,7 +583,10 @@
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
 				258087C919A71EED005E308D /* UIImageButton.m in Sources */,
+				25C3A0FE19ADC4EC00BB48B3 /* UIView+Extension.m in Sources */,
 				258087B719A71D0E005E308D /* MyFriendsTableViewController.m in Sources */,
+				25C3A0FD19ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m in Sources */,
+				25C3A0F919ADC4EC00BB48B3 /* MJRefreshConst.m in Sources */,
 				2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */,
 				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
 				257CD60A19A36EF1001FF078 /* ActivityCommetImageDetailViewController.m in Sources */,
