@@ -1464,6 +1464,13 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FdD-38-ujJ">
+                                                    <rect key="frame" x="10" y="28" width="300" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">中国工商银行（全称：中国工商银行股份有限公司）成立于1984年，是中国五大银行之首，世界五百强企业之一，拥有中国最大的客户群，是中国最大的商业银行。 中国工商银行是中国最大的国有独资商业银行，基本任务是依据国家的法律和法规，通过国内外开展融资活动筹集社会资金，加强信贷资金管理，支持企业生产和技术改造，为我国经济建设服务。</string>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1605,6 +1612,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     </tableView>
                     <navigationItem key="navigationItem" id="x0U-hM-z7r"/>
                     <connections>
+                        <outlet property="activityDescription" destination="FdD-38-ujJ" id="btV-qC-fwR"/>
                         <outlet property="address" destination="RL3-hI-LWu" id="ETQ-IM-xck"/>
                         <outlet property="amount" destination="Dkq-VP-8KT" id="aHN-kQ-cSb"/>
                         <outlet property="hot" destination="SCu-dV-4gg" id="SQR-Yk-1AY"/>

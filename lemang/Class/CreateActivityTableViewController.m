@@ -44,6 +44,7 @@
     //date.delegate = self;
     
     date.inputView = datePicker;
+    
     [datePicker setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     [datePicker setMinimumDate:[NSDate date]];
     [datePicker setDatePickerMode:UIDatePickerModeDate];
