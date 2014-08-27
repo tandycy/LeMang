@@ -271,7 +271,7 @@ NSString *navTitle;
                      nil];
      */
     
-    [self refreshActivityData];
+   // [self refreshActivityData];
     
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
