@@ -22,7 +22,7 @@
 @synthesize memberUpper;
 
 + (id)activityOfCategory:(NSString*)category img:(NSURL*)img title:(NSString*)title date:(NSString*)date
-                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(long)activitiId
+                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(NSNumber*)activitiId
 {
     Activity *newActivity = [[self alloc] init];
     newActivity.category = category;
@@ -35,7 +35,7 @@
     newActivity.icon = icon;
     newActivity.fav = fav;
     newActivity.state = state;
-    newActivity->activityId = activitiId;
+    newActivity.activityId = activitiId;
     return newActivity;
 }
 
