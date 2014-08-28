@@ -22,7 +22,7 @@
     UILabel *time;
     
     NSMutableData* receivedData;
-    NSArray* activityData;
+    NSDictionary* activityData;
 }
 
 @property (nonatomic, retain) Activity *activity;
@@ -34,6 +34,7 @@
 @property IBOutlet UIImageView *titleImgView;
 @property IBOutlet UILabel *address;
 @property IBOutlet UILabel *time;
+@property (strong, nonatomic) IBOutlet UILabel *detailContent;
 
 - (void) refreshActivityDetail;
 

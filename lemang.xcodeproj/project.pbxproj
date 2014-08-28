@@ -286,15 +286,12 @@
 		256E04731987B1CE009845A5 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				EE9BCB3F19ADC2EE00710F90 /* ActivityDetail */,
 				EE9BCB3C19AB45E700710F90 /* ActivityViewCell.h */,
 				EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */,
 				25C7F334198B75FB00AB8B2F /* Activity */,
 				256E046D1987AACA009845A5 /* ActivityViewController.h */,
 				256E046E1987AACA009845A5 /* ActivityViewController.m */,
-				256E04771987B2BA009845A5 /* ActivityDetailViewController.h */,
-				256E04781987B2BA009845A5 /* ActivityDetailViewController.m */,
-				2537509519989B9A006974C9 /* ActivityDetailTableViewController.h */,
-				2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */,
 				2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */,
 				2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */,
 				257CD60819A36EF1001FF078 /* ActivityCommetImageDetailViewController.h */,
@@ -394,6 +391,17 @@
 			name = Temp_pic;
 			sourceTree = "<group>";
 		};
+		EE9BCB3F19ADC2EE00710F90 /* ActivityDetail */ = {
+			isa = PBXGroup;
+			children = (
+				256E04771987B2BA009845A5 /* ActivityDetailViewController.h */,
+				256E04781987B2BA009845A5 /* ActivityDetailViewController.m */,
+				2537509519989B9A006974C9 /* ActivityDetailTableViewController.h */,
+				2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */,
+			);
+			name = ActivityDetail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -446,7 +454,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -751,7 +759,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

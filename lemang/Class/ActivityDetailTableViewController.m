@@ -124,6 +124,10 @@
     NSLog(@"请求完成…");
     activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
     
+    NSString* detailInfo = @"";//activityData[@"description"];
+    detailInfo = [detailInfo stringByAppendingFormat:@"%@", activityData[@"description"]];
+    
+    _detailContent.text = detailInfo;
 }
 /*
 
