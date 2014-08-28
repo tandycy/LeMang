@@ -128,6 +128,25 @@
     detailInfo = [detailInfo stringByAppendingFormat:@"%@", activityData[@"description"]];
     
     _detailContent.text = detailInfo;
+    
+    NSArray* memberArray = activityData[@"activityMember"];
+    NSUInteger memberNumber = memberArray.count;
+    
+    _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
+    
+    if (memberNumber > 0)
+    {
+        //
+    }
+    
+    NSArray* commentArray = activityData[@"activityComment"];
+    NSUInteger commentNumber = commentArray.count;
+    
+    _totalCommentNumber.text = [NSString stringWithFormat:@"(%d)",commentNumber];
+    if (commentNumber > 0)
+    {
+        //
+    }
 }
 /*
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Activity.h"
+#import "IconImageViewLoader.h"
 
 @interface ActivityDetailTableViewController : UITableViewController
 {
@@ -34,7 +35,15 @@
 @property IBOutlet UIImageView *titleImgView;
 @property IBOutlet UILabel *address;
 @property IBOutlet UILabel *time;
+
 @property (strong, nonatomic) IBOutlet UILabel *detailContent;
+@property (strong, nonatomic) IBOutlet UILabel *totalMemberNum;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon1;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon2;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon3;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon4;
+
+@property (strong, nonatomic) IBOutlet UILabel *totalCommentNumber;
 
 - (void) refreshActivityDetail;
 

@@ -1603,19 +1603,19 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                     <rect key="frame" x="300" y="23" width="12" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge.jpg" id="r7p-dQ-lUB">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge.jpg" id="r7p-dQ-lUB" customClass="IconImageViewLoader">
                                                     <rect key="frame" x="64" y="10" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge2.jpg" id="DfR-op-fCi">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge2.jpg" id="DfR-op-fCi" customClass="IconImageViewLoader">
                                                     <rect key="frame" x="122" y="10" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge3.jpg" id="xge-A3-db6">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge3.jpg" id="xge-A3-db6" customClass="IconImageViewLoader">
                                                     <rect key="frame" x="180" y="10" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge4.jpg" id="bRF-AU-Yiu">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doge4.jpg" id="bRF-AU-Yiu" customClass="IconImageViewLoader">
                                                     <rect key="frame" x="238" y="10" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1713,9 +1713,15 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="detailContent" destination="FdD-38-ujJ" id="s7o-qE-1Xz"/>
                         <outlet property="hot" destination="SCu-dV-4gg" id="SQR-Yk-1AY"/>
                         <outlet property="joinState" destination="kou-a7-wNk" id="EEO-rF-YrZ"/>
+                        <outlet property="memberIcon1" destination="r7p-dQ-lUB" id="Lq8-AG-gMf"/>
+                        <outlet property="memberIcon2" destination="DfR-op-fCi" id="DRX-6a-QuT"/>
+                        <outlet property="memberIcon3" destination="xge-A3-db6" id="Rif-Kt-fmk"/>
+                        <outlet property="memberIcon4" destination="bRF-AU-Yiu" id="lQB-ZL-8Uu"/>
                         <outlet property="time" destination="c0y-rC-eY5" id="9mc-XY-rUq"/>
                         <outlet property="titleImgView" destination="oVs-ZV-wMi" id="IZL-8y-RxE"/>
                         <outlet property="titleLabel" destination="Gx4-bT-eqx" id="5Y6-cl-lC1"/>
+                        <outlet property="totalCommentNumber" destination="Zjv-oc-Hri" id="I5p-k5-EGw"/>
+                        <outlet property="totalMemberNum" destination="9TP-FT-9rj" id="HXK-fQ-Vjg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMM-L4-Nur" userLabel="First Responder" sceneMemberID="firstResponder"/>
