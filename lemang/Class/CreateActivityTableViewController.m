@@ -12,14 +12,17 @@
 {
     UIDatePicker *datePicker;
     UILabel *lab;
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *nowDate;
 }
 
 @end
 
 @implementation CreateActivityTableViewController
 
-@synthesize date;
-@synthesize datePicker;
+@synthesize startDate,endDate;
+@synthesize datePicker,allDayTrigger;
+@synthesize actName,actDescription;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,28 +46,69 @@
     //date.inputAccessoryView = doneToolbar;
     //date.delegate = self;
     
-    date.inputView = datePicker;
+    startDate.inputView = datePicker;
+    endDate.inputView = datePicker;
     
-    [datePicker setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [datePicker setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:3600*8]];
     [datePicker setMinimumDate:[NSDate date]];
-    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [allDayTrigger addTarget:self action:@selector(allDayTriggerChanged:) forControlEvents:UIControlEventValueChanged];
     [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     datePicker.frame =  CGRectMake(0, 480, 320, 260);
+    
+    nowDate = [[NSDateFormatter alloc]init];
+    [nowDate setDateFormat:@"yyyy年MM月dd日"];
+    startDate.text = [nowDate stringFromDate:[NSDate date]];
+    endDate.text = [nowDate stringFromDate:[NSDate date]];
+    NSLog(@"%@",[nowDate stringFromDate:[NSDate date]]);
+    NSLog(@"%@",nowDate);
     
 
    // lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 200, 320, 50)];
     
    // [self.view addSubview:lab];
     
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
+    
+}
+
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [self.actName resignFirstResponder];
+    [self.actDescription resignFirstResponder];
+}
+
+- (IBAction)allDayTriggerChanged:(id)sender {
+    if (allDayTrigger.isOn) {
+        [datePicker setDatePickerMode:UIDatePickerModeDate];
+        [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+    }
+    else {
+        [dateFormatter setDateFormat:@"yyyy年MM月dd日 hh:mm:ss"];
+        [datePicker setDatePickerMode:UIDatePickerModeDateAndTime];
+    }
 }
 
 
 - (IBAction)datePickerValueChanged:(id)sender {
    NSDate * selected = [datePicker date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    dateFormatter = [[NSDateFormatter alloc] init];
+    if (allDayTrigger.isOn) {
+        [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+    }
+    else [dateFormatter setDateFormat:@"yyyy年MM月dd日  hh:mm"];
+    
     NSString *dateAndTime =  [dateFormatter stringFromDate:selected];
-    date.text = dateAndTime;
+    if (startDate.isEditing) {
+        startDate.text = dateAndTime;
+    }
+    else if (endDate.isEditing)
+    {
+        endDate.text =dateAndTime;
+    }
+    
    // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时间提示" message:dateAndTime delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
    // [alert show];
 }
