@@ -72,6 +72,7 @@
 		25CA2DFC19949CF700BED707 /* 社团组织.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF119949CF700BED707 /* 社团组织.png */; };
 		25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF219949CF700BED707 /* 组织页面.png */; };
 		25CA2E001994BCCF00BED707 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DFF1994BCCF00BED707 /* 11.jpg */; };
+		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +193,8 @@
 		25CA2DF119949CF700BED707 /* 社团组织.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "社团组织.png"; sourceTree = "<group>"; };
 		25CA2DF219949CF700BED707 /* 组织页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "组织页面.png"; sourceTree = "<group>"; };
 		25CA2DFF1994BCCF00BED707 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
+		EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoader.h; path = Class/IconImageViewLoader.h; sourceTree = "<group>"; };
+		EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoader.m; path = Class/IconImageViewLoader.m; sourceTree = "<group>"; };
 		EE9BCB3C19AB45E700710F90 /* ActivityViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewCell.h; path = Class/ActivityViewCell.h; sourceTree = "<group>"; };
 		EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewCell.m; path = Class/ActivityViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -300,6 +303,7 @@
 		256E04661987AA74009845A5 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				EE44A53619AF1CA7004B0E5B /* Global */,
 				256E04761987B1E8009845A5 /* Home */,
 				256E04751987B1DE009845A5 /* Organization */,
 				256E04741987B1D6009845A5 /* User */,
@@ -439,6 +443,15 @@
 			name = Temp_pic;
 			sourceTree = "<group>";
 		};
+		EE44A53619AF1CA7004B0E5B /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */,
+				EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
 		EE9BCB3F19ADC2EE00710F90 /* ActivityDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +589,7 @@
 				2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */,
 				258087BE19A71D7C005E308D /* UserLoginViewController.m in Sources */,
 				25C3A0FB19ADC4EC00BB48B3 /* MJRefreshHeaderView.m in Sources */,
+				EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */,
 				256E04391987A106009845A5 /* AppDelegate.m in Sources */,
 				258087C419A71DCB005E308D /* UserVerifyViewController.m in Sources */,
 				256E04351987A106009845A5 /* main.m in Sources */,
