@@ -74,6 +74,7 @@
 		25CA2E001994BCCF00BED707 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DFF1994BCCF00BED707 /* 11.jpg */; };
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */; };
+		EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC7756719B0702B0035B400 /* OrganizationViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +198,8 @@
 		EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoader.m; path = Class/IconImageViewLoader.m; sourceTree = "<group>"; };
 		EE9BCB3C19AB45E700710F90 /* ActivityViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewCell.h; path = Class/ActivityViewCell.h; sourceTree = "<group>"; };
 		EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewCell.m; path = Class/ActivityViewCell.m; sourceTree = "<group>"; };
+		EEC7756619B0702B0035B400 /* OrganizationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationViewCell.h; path = Class/OrganizationViewCell.h; sourceTree = "<group>"; };
+		EEC7756719B0702B0035B400 /* OrganizationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganizationViewCell.m; path = Class/OrganizationViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +370,8 @@
 				251CEBBD19A33D5B00C80BAF /* OrganizationDetailTableViewController.m */,
 				25874DA919A5FFE000264B4D /* CreateOrganizationTableViewController.h */,
 				25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */,
+				EEC7756619B0702B0035B400 /* OrganizationViewCell.h */,
+				EEC7756719B0702B0035B400 /* OrganizationViewCell.m */,
 			);
 			name = Organization;
 			sourceTree = "<group>";
@@ -603,6 +608,7 @@
 				258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */,
 				251CEBBB19A31FBC00C80BAF /* OrganizationTableViewController.m in Sources */,
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
+				EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
 				258087C919A71EED005E308D /* UIImageButton.m in Sources */,
 				25C3A0FE19ADC4EC00BB48B3 /* UIView+Extension.m in Sources */,
