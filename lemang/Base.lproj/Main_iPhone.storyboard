@@ -770,6 +770,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     <navigationItem key="navigationItem" id="ii9-yp-YH2"/>
                     <connections>
                         <outlet property="orgDetailTitleView" destination="CzO-ih-SZc" id="pDX-sK-4SK"/>
+                        <outlet property="organizationDetail" destination="9Wt-mT-f0W" id="Xz2-CB-wI5"/>
+                        <outlet property="organizationIcon" destination="P19-oV-QLR" id="Bwh-Gn-tE8"/>
+                        <outlet property="orgnizationTittle" destination="qFJ-Ia-ECb" id="Na9-kx-rfE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaP-h8-9oo" userLabel="First Responder" sceneMemberID="firstResponder"/>

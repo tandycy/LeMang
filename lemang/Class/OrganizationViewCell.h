@@ -29,5 +29,8 @@
 
 - (void) updateData:(NSDictionary*)newData;
 - (void) updateDisplay;
+- (NSDictionary*) getLocalData;
+- (UIImage*) getLocalIconImage;
+- (NSString*) filtStr:(NSString*)inputStr;
 
 @end

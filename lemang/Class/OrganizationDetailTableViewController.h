@@ -15,6 +15,9 @@
 @property (strong,nonatomic) OrganizationViewCell *linkedCell;
 @property (strong,nonatomic) NSArray *activityArray;
 
+@property (strong, nonatomic) IBOutlet UILabel *orgnizationTittle;
+@property (strong, nonatomic) IBOutlet UIImageView *organizationIcon;
+@property (strong, nonatomic) IBOutlet UILabel *organizationDetail;
 - (void) updateDisplay;
 
 @end

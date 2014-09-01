@@ -43,6 +43,16 @@
     return result;
 }
 
+- (NSDictionary*) getLocalData
+{
+    return localData;
+}
+
+- (UIImage*) getLocalIconImage
+{
+    return localIconImg;
+}
+
 - (void) updateDisplay
 {
     if (localData == Nil)

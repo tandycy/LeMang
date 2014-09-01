@@ -76,7 +76,15 @@ typedef enum {
 
 - (void) updateDisplay
 {
-    //
+    if (linkedCell == NULL)
+        return;
+    _orgnizationTittle.text = linkedCell.organizationNameTxt.text;
+
+    NSDictionary* orgData = [linkedCell getLocalData];
+    NSString* detailStr = [linkedCell filtStr:orgData[@"description"]];
+    _organizationDetail.text = detailStr;
+    _organizationIcon.image = [linkedCell getLocalIconImage];
+    
 }
 
 - (void)createActivityData
