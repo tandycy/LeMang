@@ -62,6 +62,7 @@
     if (urlStr.length == 0)
     {
         _organizationIcon.image = [[UIImage alloc] initWithContentsOfFile:@"loading.gif"];
+        localIconImg = _organizationIcon.image;
     }
     else
     {
@@ -80,15 +81,18 @@
     //保存接收到的响应对象，以便响应完毕后的状态。
     _response = response;
 }
+
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
     //_data为NSMutableData类型的私有属性，用于保存从网络上接收到的数据。
     //也可以从此委托中获取到图片加载的进度。
     [imgData appendData:data];
     NSLog(@"%lld%%", data.length/_response.expectedContentLength * 100);
 }
+
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error{
     //请求异常，在此可以进行出错后的操作，如给UIImageView设置一张默认的图片等。
 }
+
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection{
     //加载成功，在此的加载成功并不代表图片加载成功，需要判断HTTP返回状态。
     NSHTTPURLResponse*response=(NSHTTPURLResponse*)_response;
@@ -97,6 +101,7 @@
         //请求成功
         UIImage *img=[UIImage imageWithData:imgData];
         [_organizationIcon setImage:img];
+        localIconImg = _organizationIcon.image;
     }
 }
 

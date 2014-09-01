@@ -16,6 +16,8 @@
     NSURLConnection* connection;
     NSMutableData* imgData;
     NSURLResponse* _response;
+    
+    UIImage* localIconImg;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *organizationNameTxt;

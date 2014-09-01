@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrganizationViewCell.h"
 
 @interface OrganizationDetailTableViewController : UITableViewController
 
 @property IBOutlet UIView *orgDetailTitleView;
+@property (strong,nonatomic) OrganizationViewCell *linkedCell;
 @property (strong,nonatomic) NSArray *activityArray;
+
+- (void) updateDisplay;
 
 @end

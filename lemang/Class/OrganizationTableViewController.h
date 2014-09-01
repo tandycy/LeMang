@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OrganizationViewCell.h"
+#import "OrganizationDetailTableViewController.h"
 
 @interface OrganizationTableViewController : UITableViewController
 {    

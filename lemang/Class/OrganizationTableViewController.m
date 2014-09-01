@@ -182,6 +182,22 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    OrganizationDetailTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OrganizationDetailView"];
+//    viewController.navigationItem.title = @"组织详细页面";
+    
+    static NSString *cellIdentifier = @"OrganizationTableCell";
+    OrganizationViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    // Configure the cell...s
+    if (cell == nil)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    }
+    
+    viewController.linkedCell = cell;
+    
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
  /*

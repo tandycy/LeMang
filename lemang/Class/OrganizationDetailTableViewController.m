@@ -25,6 +25,7 @@ typedef enum {
 
 @implementation OrganizationDetailTableViewController
 
+@synthesize linkedCell;
 @synthesize activityArray;
 @synthesize orgDetailTitleView;
 
@@ -70,6 +71,12 @@ typedef enum {
     [orgDetailTitleView addSubview:orgLocation];
     [orgDetailTitleView addSubview:orgtemp];
     
+    [self updateDisplay];
+}
+
+- (void) updateDisplay
+{
+    //
 }
 
 - (void)createActivityData
