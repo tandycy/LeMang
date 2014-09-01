@@ -36,10 +36,11 @@
 
 - (NSString*) filtStr:(NSString*)inputStr
 {
-    if (inputStr == Nil)
-        return @">null>";
-    else
-        return inputStr;
+    NSString* result = @"";
+    
+    result = [result stringByAppendingFormat:@"%@", inputStr];
+    
+    return result;
 }
 
 - (void) updateDisplay
@@ -47,7 +48,8 @@
     if (localData == Nil)
         return;
     
-    _organizationNameTxt.text = [self filtStr:localData[@"name"]];
+    NSString* orgName = [self filtStr:localData[@"name"]];
+    _organizationNameTxt.text = orgName;
     _memberLimitTxt.text = [self filtStr:localData[@"peopleLimit"]];
     _areaLimitTxt.text = [self filtStr:localData[@"regionLimit"]];
     
@@ -56,13 +58,14 @@
     
     // Download icon
     
-    NSURL* iconUrl = localData[@"iconUrl"];
-    if (iconUrl == nil)
+    NSString* urlStr = [self filtStr:localData[@"iconUrl"]];
+    if (urlStr.length == 0)
     {
         _organizationIcon.image = [[UIImage alloc] initWithContentsOfFile:@"loading.gif"];
     }
     else
     {
+        NSURL* iconUrl = [NSURL URLWithString:urlStr];
         NSURLRequest* request = [NSURLRequest requestWithURL:iconUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
         
         connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
@@ -89,10 +92,12 @@
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection{
     //加载成功，在此的加载成功并不代表图片加载成功，需要判断HTTP返回状态。
     NSHTTPURLResponse*response=(NSHTTPURLResponse*)_response;
-    if(response.statusCode == 200){
+    if(response.statusCode == 200)
+    {
         //请求成功
-    UIImage *img=[UIImage imageWithData:imgData];
-    [_organizationIcon setImage:img];    }
+        UIImage *img=[UIImage imageWithData:imgData];
+        [_organizationIcon setImage:img];
+    }
 }
 
 

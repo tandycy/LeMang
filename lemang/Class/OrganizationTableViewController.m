@@ -113,15 +113,18 @@
     NSLog(@"请求完成…");
     organizationData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
     
+    [_localTabelView reloadData];
+    /*
     for (int i = 0; i < organizationData.count; i++)
     {
         NSDictionary* data = organizationData[i];
     }
+     */
 }
 
 #pragma mark - Table view data source
 
-/*
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
@@ -133,22 +136,20 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 10;
+    return organizationData.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"OrganizationTableCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    OrganizationViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...s
     if (cell == nil)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     }
-    
     
     cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"org_back.png"]];
     cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"org_back_down.png"]];
@@ -170,14 +171,20 @@
     [memberIcon addSubview:memberIconImg];
     [cell addSubview:memberIcon];
     
+    NSInteger npath = indexPath.item;
+    
+    NSDictionary* orgData = organizationData[npath];
+    
+    [cell updateData:orgData];
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
- */
 
+ /*
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:NO];

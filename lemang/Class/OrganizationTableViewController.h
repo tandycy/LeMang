@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrganizationViewCell.h"
 
 @interface OrganizationTableViewController : UITableViewController
 {    
     NSMutableData* receivedData;
     NSArray* organizationData;
 }
+@property (strong, nonatomic) IBOutlet UITableView *localTabelView;
 
 @end
