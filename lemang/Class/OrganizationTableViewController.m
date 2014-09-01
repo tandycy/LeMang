@@ -29,6 +29,8 @@
     [super viewDidLoad];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self refreshOrganizationData];//refresh here
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -42,8 +44,84 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) refreshOrganizationData
+{
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association";
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    // NSString *authInfo = @"Basic user:user";
+    
+    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    
+    [URLRequest setHTTPMethod:@"GET"];
+    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
+    // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
+    
+    NSError * error;
+    NSURLResponse * response;
+    NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
+    
+    if (error) {
+        NSLog(@"a connection could not be created or request fails.");
+        NSLog(@"Error: %@", [error localizedDescription]);
+    }
+    //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
+    
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
+    
+    receivedData=[[NSMutableData alloc] initWithData:nil];
+    
+    if (connection) {
+        receivedData = [NSMutableData new];
+        NSLog(@"rdm%@",receivedData);
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if ([challenge previousFailureCount] == 0) {
+        NSURLCredential *newCredential;
+        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
+        [[challenge sender] useCredential:newCredential
+               forAuthenticationChallenge:challenge];
+    } else {
+        [[challenge sender] cancelAuthenticationChallenge:challenge];
+    }
+}
+
+#pragma mark- NSURLConnection 回调方法
+- (void)connection:(NSURLConnection *)aConn didReceiveResponse:(NSURLResponse *)response
+
+{
+    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+    if ([response respondsToSelector:@selector(allHeaderFields)]) {
+        NSDictionary *dictionary = [httpResponse allHeaderFields];
+        //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);        
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [receivedData appendData:data];
+}
+-(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
+    NSLog(@"%@",[error localizedDescription]);
+}
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
+    NSLog(@"请求完成…");
+    organizationData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
+    
+    for (int i = 0; i < organizationData.count; i++)
+    {
+        NSArray* data = organizationData[i];
+    }
+}
+
 #pragma mark - Table view data source
 
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
@@ -98,6 +176,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+ */
 
 -(void)viewWillAppear:(BOOL)animated
 {

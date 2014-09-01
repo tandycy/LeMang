@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OrganizationTableViewController : UITableViewController
+{    
+    NSMutableData* receivedData;
+    NSArray* organizationData;
+}
 
 @end

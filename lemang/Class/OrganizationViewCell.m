@@ -26,4 +26,9 @@
     // Configure the view for the selected state
 }
 
+- (void) updateData:(NSArray *)newData
+{
+    // TODO
+}
+
 @end
