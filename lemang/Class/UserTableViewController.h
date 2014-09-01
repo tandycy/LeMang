@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IconImageViewLoader.h"
 
 @interface UserTableViewController : UITableViewController
+{
+    NSMutableData *receivedData;
+    NSDictionary* userData;
+}
+@property (strong, nonatomic) IBOutlet UILabel *userNameText;
+@property (strong, nonatomic) IBOutlet UILabel *userGenderText;
+@property (strong, nonatomic) IBOutlet UILabel *userSchoolText;
+@property (strong, nonatomic) IBOutlet UILabel *userDescText;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *userIconImageLoader;
 
 @end

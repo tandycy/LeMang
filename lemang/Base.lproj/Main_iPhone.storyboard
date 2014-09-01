@@ -790,7 +790,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <rect key="frame" x="0.0" y="64" width="320" height="125"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="782-Gp-x3p">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="782-Gp-x3p" customClass="IconImageViewLoader">
                                     <rect key="frame" x="20" y="13" width="70" height="70"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
@@ -821,26 +821,26 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                         <segue destination="cAD-Xe-TFc" kind="push" id="skR-yi-pXs"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jFB-qr-ahq">
-                                    <rect key="frame" x="107" y="13" width="42" height="21"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jFB-qr-ahq">
+                                    <rect key="frame" x="107" y="13" width="149" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HKv-LY-Mwe">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HKv-LY-Mwe">
                                     <rect key="frame" x="107" y="42" width="42" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jbn-IB-xj9">
-                                    <rect key="frame" x="167" y="42" width="42" height="21"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="school" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jbn-IB-xj9">
+                                    <rect key="frame" x="167" y="42" width="79" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kA7-cz-xFT">
-                                    <rect key="frame" x="107" y="71" width="42" height="21"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kA7-cz-xFT">
+                                    <rect key="frame" x="107" y="71" width="139" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
@@ -960,6 +960,13 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="用户中心" id="LTi-N9-Ols"/>
+                    <connections>
+                        <outlet property="userDescText" destination="kA7-cz-xFT" id="LO7-US-5Y1"/>
+                        <outlet property="userGenderText" destination="HKv-LY-Mwe" id="dzd-ya-W5T"/>
+                        <outlet property="userIconImageLoader" destination="782-Gp-x3p" id="Tb9-zL-zy3"/>
+                        <outlet property="userNameText" destination="jFB-qr-ahq" id="mp9-ik-2Xg"/>
+                        <outlet property="userSchoolText" destination="jbn-IB-xj9" id="mNH-OT-9F7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVw-Mf-wgi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

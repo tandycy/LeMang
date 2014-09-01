@@ -32,6 +32,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self refreshUserData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,6 +50,121 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:YES];
+}
+
+- (void)refreshUserData
+{
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/1";
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    // NSString *authInfo = @"Basic user:user";
+    
+    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    
+    [URLRequest setHTTPMethod:@"GET"];
+    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
+    // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
+    
+    NSError * error;
+    NSURLResponse * response;
+    NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
+    
+    if (error) {
+        NSLog(@"a connection could not be created or request fails.");
+        NSLog(@"Error: %@", [error localizedDescription]);
+    }
+    //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
+    
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
+    
+    receivedData=[[NSMutableData alloc] initWithData:nil];
+    
+    if (connection) {
+        receivedData = [NSMutableData new];
+        NSLog(@"rdm%@",receivedData);
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if ([challenge previousFailureCount] == 0) {
+        NSURLCredential *newCredential;
+        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
+        [[challenge sender] useCredential:newCredential
+               forAuthenticationChallenge:challenge];
+    } else {
+        [[challenge sender] cancelAuthenticationChallenge:challenge];
+    }
+}
+
+- (NSString*) filtStr:(NSString*)inputStr
+{
+    NSString* result = @"";
+    
+    result = [result stringByAppendingFormat:@"%@", inputStr];
+    
+    return result;
+}
+
+#pragma mark- NSURLConnection 回调方法
+- (void)connection:(NSURLConnection *)aConn didReceiveResponse:(NSURLResponse *)response
+
+{
+    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+    if ([response respondsToSelector:@selector(allHeaderFields)]) {
+        NSDictionary *dictionary = [httpResponse allHeaderFields];
+        //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);
+        
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [receivedData appendData:data];
+}
+-(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
+    NSLog(@"%@",[error localizedDescription]);
+}
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
+    NSLog(@"请求完成…");
+    userData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
+    
+    _userNameText.text = [self filtStr:userData[@"name"]];
+    _userGenderText.text = @"<null>";
+    _userSchoolText.text = [self filtStr:userData[@"university"]];
+    NSDictionary* profileData = userData[@"profile"];
+    
+    if ([profileData isKindOfClass:[NSDictionary class]])
+    {
+        _userGenderText.text = [self filtStr:profileData[@"gender"]];
+        _userDescText.text = [self filtStr:profileData[@"signature"]];
+    }
+    else
+    {
+             //
+    }
+    
+    /*
+     {
+     area = "<null>";
+     authentication = "<null>";
+     contacts =     {
+     CELL = 12315;
+     };
+     department = "<null>";
+     id = 1;
+     loginName = admin;
+     name = Admin;
+     password = 691b14d79bf0fa2215f155235df5e670b64394cc;
+     profile = "<null>";
+     registerDate = "2012-06-04 01:00:00";
+     roles = admin;
+     salt = 7efbd59d9741d34f;
+     university = "<null>";
+     }
+     */
 }
 
 #pragma mark - Table view data source

@@ -71,7 +71,7 @@
     NSString* urlStr = [self filtStr:localData[@"iconUrl"]];
     if (urlStr.length == 0)
     {
-        _organizationIcon.image = [[UIImage alloc] initWithContentsOfFile:@"loading.gif"];
+        _organizationIcon.image = [[UIImage alloc] initWithContentsOfFile:@"appicon152.png"];
         localIconImg = _organizationIcon.image;
     }
     else
