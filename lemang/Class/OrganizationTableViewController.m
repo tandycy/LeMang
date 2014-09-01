@@ -115,7 +115,7 @@
     
     for (int i = 0; i < organizationData.count; i++)
     {
-        NSArray* data = organizationData[i];
+        NSDictionary* data = organizationData[i];
     }
 }
 

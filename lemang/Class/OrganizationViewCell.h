@@ -10,6 +10,12 @@
 
 @interface OrganizationViewCell : UITableViewCell
 {
+    NSDictionary* localData;
+    NSString* organizationId;
+    
+    NSURLConnection* connection;
+    NSMutableData* imgData;
+    NSURLResponse* _response;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *organizationNameTxt;
@@ -19,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *memberLimitTxt;
 @property (strong, nonatomic) IBOutlet UILabel *areaLimitTxt;
 
-- (void) updateData:(NSArray*)newData;
+- (void) updateData:(NSDictionary*)newData;
+- (void) updateDisplay;
 
 @end
