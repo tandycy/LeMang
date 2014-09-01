@@ -10,6 +10,9 @@
 #import "Constants.h"
 
 @interface OrganizationTableViewController ()
+{
+    //OrganizationViewCell *cell;
+}
 
 @end
 
@@ -114,6 +117,7 @@
     organizationData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
     
     [_localTabelView reloadData];
+    NSLog(@"@reloadData");
     /*
     for (int i = 0; i < organizationData.count; i++)
     {
@@ -143,12 +147,12 @@
 {
     static NSString *cellIdentifier = @"OrganizationTableCell";
     
-    OrganizationViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    OrganizationViewCell *cell = [_localTabelView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...s
     if (cell == nil)
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell = [_localTabelView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     }
     
     cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"org_back.png"]];
@@ -171,9 +175,8 @@
     [memberIcon addSubview:memberIconImg];
     [cell addSubview:memberIcon];
     
-    NSInteger npath = indexPath.item;
     
-    NSDictionary* orgData = organizationData[npath];
+    NSDictionary* orgData = organizationData[indexPath.row];
     
     [cell updateData:orgData];
     
@@ -188,7 +191,7 @@
     
     static NSString *cellIdentifier = @"OrganizationTableCell";
     OrganizationViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
+    [cell updateData:organizationData[indexPath.row]];
     // Configure the cell...s
     if (cell == nil)
     {
@@ -196,6 +199,7 @@
     }
     
     viewController.linkedCell = cell;
+    //NSLog(@"%@",cell);
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
