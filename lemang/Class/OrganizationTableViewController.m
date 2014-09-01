@@ -118,12 +118,13 @@
     
     [_localTabelView reloadData];
     NSLog(@"@reloadData");
-    /*
+    
     for (int i = 0; i < organizationData.count; i++)
     {
         NSDictionary* data = organizationData[i];
+        NSLog(@"%@",data);
     }
-     */
+    
 }
 
 #pragma mark - Table view data source
