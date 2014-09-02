@@ -73,6 +73,8 @@
 		25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DF219949CF700BED707 /* 组织页面.png */; };
 		25CA2E001994BCCF00BED707 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DFF1994BCCF00BED707 /* 11.jpg */; };
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
+		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
+		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
 		EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */; };
 		EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC7756719B0702B0035B400 /* OrganizationViewCell.m */; };
 /* End PBXBuildFile section */
@@ -196,6 +198,10 @@
 		25CA2DFF1994BCCF00BED707 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
 		EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoader.h; path = Class/IconImageViewLoader.h; sourceTree = "<group>"; };
 		EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoader.m; path = Class/IconImageViewLoader.m; sourceTree = "<group>"; };
+		EE54DB1719B563EF0000845F /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Class/UserManager.h; sourceTree = "<group>"; };
+		EE54DB1819B563EF0000845F /* UserManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UserManager.mm; path = Class/UserManager.mm; sourceTree = "<group>"; };
+		EE54DB1A19B56A270000845F /* StringEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringEncoder.h; path = Class/StringEncoder.h; sourceTree = "<group>"; };
+		EE54DB1B19B56A270000845F /* StringEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringEncoder.m; path = Class/StringEncoder.m; sourceTree = "<group>"; };
 		EE9BCB3C19AB45E700710F90 /* ActivityViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewCell.h; path = Class/ActivityViewCell.h; sourceTree = "<group>"; };
 		EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewCell.m; path = Class/ActivityViewCell.m; sourceTree = "<group>"; };
 		EEC7756619B0702B0035B400 /* OrganizationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationViewCell.h; path = Class/OrganizationViewCell.h; sourceTree = "<group>"; };
@@ -451,8 +457,12 @@
 		EE44A53619AF1CA7004B0E5B /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				EE54DB1719B563EF0000845F /* UserManager.h */,
+				EE54DB1819B563EF0000845F /* UserManager.mm */,
 				EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */,
 				EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */,
+				EE54DB1A19B56A270000845F /* StringEncoder.h */,
+				EE54DB1B19B56A270000845F /* StringEncoder.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -597,6 +607,7 @@
 				EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */,
 				256E04391987A106009845A5 /* AppDelegate.m in Sources */,
 				258087C419A71DCB005E308D /* UserVerifyViewController.m in Sources */,
+				EE54DB1919B563EF0000845F /* UserManager.mm in Sources */,
 				256E04351987A106009845A5 /* main.m in Sources */,
 				258087AD19A71C63005E308D /* MyAcitivityTableViewController.m in Sources */,
 				256E04651987AA6B009845A5 /* HomeViewController.m in Sources */,
@@ -623,6 +634,7 @@
 				251CEBBE19A33D5B00C80BAF /* OrganizationDetailTableViewController.m in Sources */,
 				256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */,
 				EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */,
+				EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

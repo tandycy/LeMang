@@ -84,6 +84,9 @@
         receivedData = [NSMutableData new];
         NSLog(@"rdm%@",receivedData);
     }
+
+    //[[UserManager Instance] InitLocalData];
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
@@ -133,6 +136,7 @@
     
     _userNameText.text = [self filtStr:userData[@"name"]];
     _userGenderText.text = @"<null>";
+    _userDescText.text = @"<null>";
     _userSchoolText.text = [self filtStr:userData[@"university"]];
     NSDictionary* profileData = userData[@"profile"];
     

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "IconImageViewLoader.h"
+#import "UserManager.h"
 
 @interface UserTableViewController : UITableViewController
 {
