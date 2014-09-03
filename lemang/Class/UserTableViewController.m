@@ -33,9 +33,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    
+    [self clearUserData];
     [UserManager Instance].loginDelegate = self;
-    [self refreshUserData];
+    [[UserManager Instance] InitLocalData];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,9 +57,9 @@
 
 - (void) UserLoginContact
 {
-    if ([UserManager Instance].InitLocalData)
+    if ([UserManager IsInitSuccess])
     {
-        //
+        [self refreshUserData];
     }
     else
     {
@@ -67,9 +68,15 @@
     }
 }
 
+- (void)clearUserData
+{
+    //
+}
+
 - (void)refreshUserData
 {
-    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/1";
+    int idStr = [[UserManager Instance] GetLocalUserId];
+    NSString* URLString = [NSString stringWithFormat: @"http://e.taoware.com:8080/quickstart/api/v1/user/%d", idStr];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     // NSString *authInfo = @"Basic user:user";
@@ -99,7 +106,6 @@
         receivedData = [NSMutableData new];
         NSLog(@"rdm%@",receivedData);
     }
-    [[UserManager Instance] InitLocalData];
     
 }
 

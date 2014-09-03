@@ -20,7 +20,7 @@
 {
     NSString* localUserName;
     NSString* localPassword;
-    NSString* localUserId;
+    int localUserId;
     bool initedLocalData;
     
     NSMutableData* receivedData;
@@ -29,10 +29,11 @@
 }
 
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
-
 + (UserManager*) Instance;
 
-- (bool) InitLocalData;
++ (bool) IsInitSuccess;
+- (int) GetLocalUserId;
+- (void) InitLocalData;
 - (void) UpdateLocalData;
 
 @end

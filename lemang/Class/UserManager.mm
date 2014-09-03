@@ -19,7 +19,12 @@ static UserManager* managerInstance;
 
 @synthesize loginDelegate;
 
-- (bool) InitLocalData
++ (bool) IsInitSuccess
+{
+    return [UserManager Instance]->initedLocalData;
+}
+
+- (void)InitLocalData
 {
     NSMutableDictionary* dict =  [ [ NSMutableDictionary alloc ] initWithContentsOfFile:@"/Profile.plist" ];
     localUserName = [ dict objectForKey:@"userName" ];
@@ -29,7 +34,6 @@ static UserManager* managerInstance;
     if (localUserName == nil)
     {
         initedLocalData = FALSE;
-        return false;
     }
     
     NSData* userPw = [dict objectForKey:@"userKey"];
@@ -55,8 +59,6 @@ static UserManager* managerInstance;
         receivedData = [NSMutableData new];
         NSLog(@"rdm%@",receivedData);
     }
-    
-    return true;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
@@ -107,19 +109,26 @@ static UserManager* managerInstance;
     initedLocalData = false;
     for (int i = 0; i < userData.count; i++)
     {
-        NSString* logName = userData[i][@"loginName"];
+        NSDictionary* data = userData[i];
+        NSString* logName = data[@"loginName"];
         
         NSComparisonResult res = [logName compare:localUserName];
         
         if (res == NSOrderedSame)
         {
-            localUserId = userData[i][@"id"];
+            NSNumber* idNum = data[@"id"];
+            localUserId = [idNum integerValue];
             initedLocalData = true;
             break;
         }
     }
     
     [loginDelegate UserLoginContact];
+}
+
+- (int) GetLocalUserId
+{
+    return localUserId;
 }
 
 - (void) UpdateLocalData
