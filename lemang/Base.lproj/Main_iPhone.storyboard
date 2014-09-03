@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -817,9 +817,6 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <state key="normal" title="注销">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
-                                    <connections>
-                                        <segue destination="cAD-Xe-TFc" kind="push" id="skR-yi-pXs"/>
-                                    </connections>
                                 </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jFB-qr-ahq">
                                     <rect key="frame" x="107" y="13" width="149" height="21"/>
@@ -1033,7 +1030,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <!--User Login View Controller-->
         <scene sceneID="NPn-Tj-tWr">
             <objects>
-                <viewController id="cAD-Xe-TFc" customClass="UserLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserLoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cAD-Xe-TFc" customClass="UserLoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="miD-EM-eh9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1078,9 +1075,6 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                 <state key="normal" title="注册">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="XEq-Yw-Ved" kind="push" id="5bd-44-KWV"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

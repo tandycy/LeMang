@@ -29,7 +29,7 @@ static UserManager* managerInstance;
     NSMutableDictionary* dict =  [ [ NSMutableDictionary alloc ] initWithContentsOfFile:@"/Profile.plist" ];
     localUserName = [ dict objectForKey:@"userName" ];
     
-    localUserName = @"user";
+    localUserName = @"user1";
     
     if (localUserName == nil)
     {

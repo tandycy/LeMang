@@ -14,6 +14,8 @@
 
 @implementation UserLoginViewController
 
+@synthesize userName, userPass;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +29,103 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self initUserLoginView];
+    
+    //click anywhere hide keyboard
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
+}
+
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [userName resignFirstResponder];
+    [userPass resignFirstResponder];
+}
+
+-(void)initUserLoginView
+{
+    // init view with white bg
+    self.view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    //init user head button with click response
+    UIButton *headButton  = [[UIButton alloc]initWithFrame:CGRectMake(125, 50, 70, 70)];
+    UIImageView *headImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 70, 70)];
+    headImg.image = [UIImage imageNamed:@"user_icon_de.png"];
+    headImg.contentMode = UIViewContentModeScaleToFill;
+    [headButton addTarget:self action:@selector(headClick:) forControlEvents:UIControlEventTouchUpInside];
+    [headButton addSubview:headImg];
+    [self.view addSubview:headButton];
+    
+    //init username and password input field
+    userName = [[UITextField alloc]initWithFrame:CGRectMake(50, 140, 220, 30)];
+    userName.backgroundColor = [UIColor lightGrayColor];
+    userName.placeholder = @"Please input your username";
+    [self.view addSubview:userName];
+    
+    userPass = [[UITextField alloc]initWithFrame:CGRectMake(50, 180, 220, 30)];
+    userPass.backgroundColor = [UIColor lightGrayColor];
+    userPass.placeholder = @"Please input your password";
+    [self.view addSubview:userPass];
+    
+    //init ok and cancel button
+    UIButton *ok = [[UIButton alloc]initWithFrame:CGRectMake(60, 220, 80, 30)];
+    [ok setBackgroundColor:[UIColor blueColor]];
+    [ok setTitle:@"ok" forState:UIControlStateNormal];
+    [ok addTarget:self action:@selector(okClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(180, 220, 80, 30)];
+    [cancel setTitle:@"cancel" forState:UIControlStateNormal];
+    [cancel setBackgroundColor:[UIColor blueColor]];
+    [cancel addTarget:self action:@selector(okClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:ok];
+    [self.view addSubview:cancel];
+    
+    //init forget password and regist button
+    UIButton *forgetPass = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.frame.size.height-30, 100, 20)];
+    [forgetPass setBackgroundColor:[UIColor blueColor]];
+    [forgetPass setTitle:@"forgetPass" forState:UIControlStateNormal];
+    [forgetPass addTarget:self action:@selector(forgetPassClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *regist = [[UIButton alloc]initWithFrame:CGRectMake(190, self.view.frame.size.height-30, 100, 20)];
+    [regist setTitle:@"regist" forState:UIControlStateNormal];
+    [regist setBackgroundColor:[UIColor blueColor]];
+    [regist addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:forgetPass];
+    [self.view addSubview:regist];
+}
+
+-(void)headClick:(UIButton*)button
+{
+    //do head button click
+}
+
+-(void)okClick:(UIButton*)button
+{
+    //do ok button click
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)cancelClick:(UIButton*)button
+{
+    //do cancel button click
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+-(void)forgetPassClick:(UIButton*)button
+{
+    //do forgetPass button click
+    //jump to forgetpass view? or html5
+}
+
+-(void)registClick:(UIButton*)button
+{
+    //do regist button click
+    //jump to registpass view
 }
 
 - (void)didReceiveMemoryWarning

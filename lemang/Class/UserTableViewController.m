@@ -7,6 +7,7 @@
 //
 
 #import "UserTableViewController.h"
+#import "UserLoginViewController.h"
 
 @interface UserTableViewController ()
 
@@ -47,6 +48,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self UserLoginContact];
     [self.tabBarController.tabBar setHidden:NO];
 }
 
@@ -63,14 +65,26 @@
     }
     else
     {
-        // Login failed
-//        [self presentViewController:<#(UIViewController *)#> animated:<#(BOOL)#> completion:<#^(void)completion#>]
+        NSLog(@"login failed");
+             // Login failed
+        [self changePopoverSize];
     }
 }
 
 - (void)clearUserData
 {
     //
+}
+
+- (void)popUpULVC
+{
+    UserLoginViewController *ULVC = [[UserLoginViewController alloc]init];
+    [self presentModalViewController:ULVC animated:YES];
+}
+
+- (void)changePopoverSize
+{
+    [self performSelector:@selector(popUpULVC) withObject:@"Happy aha" afterDelay:1];
 }
 
 - (void)refreshUserData
