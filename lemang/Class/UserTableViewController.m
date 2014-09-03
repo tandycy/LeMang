@@ -48,7 +48,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self UserLoginContact];
     [self.tabBarController.tabBar setHidden:NO];
 }
 
@@ -65,9 +64,8 @@
     }
     else
     {
-        NSLog(@"login failed");
-             // Login failed
-        [self changePopoverSize];
+        // Login failed
+        [self popOverDelay];
     }
 }
 
@@ -76,15 +74,18 @@
     //
 }
 
+// insert popOverDelay into login failed solution.
+// Example: [self popOverDelay];
+
 - (void)popUpULVC
 {
     UserLoginViewController *ULVC = [[UserLoginViewController alloc]init];
     [self presentModalViewController:ULVC animated:YES];
 }
 
-- (void)changePopoverSize
+- (void)popOverDelay
 {
-    [self performSelector:@selector(popUpULVC) withObject:@"Happy aha" afterDelay:1];
+    [self performSelector:@selector(popUpULVC) withObject:@"delay 1s" afterDelay:1];
 }
 
 - (void)refreshUserData
