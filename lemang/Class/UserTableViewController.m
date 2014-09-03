@@ -33,6 +33,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    
+    [UserManager Instance].loginDelegate = self;
     [self refreshUserData];
 }
 
@@ -50,6 +52,19 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:YES];
+}
+
+- (void) UserLoginContact
+{
+    if ([UserManager Instance].InitLocalData)
+    {
+        //
+    }
+    else
+    {
+        // Login failed
+//        [self presentViewController:<#(UIViewController *)#> animated:<#(BOOL)#> completion:<#^(void)completion#>]
+    }
 }
 
 - (void)refreshUserData
@@ -84,8 +99,7 @@
         receivedData = [NSMutableData new];
         NSLog(@"rdm%@",receivedData);
     }
-
-    //[[UserManager Instance] InitLocalData];
+    [[UserManager Instance] InitLocalData];
     
 }
 
