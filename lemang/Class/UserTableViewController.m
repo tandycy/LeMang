@@ -36,7 +36,7 @@
     
     [self clearUserData];
     [UserManager Instance].loginDelegate = self;
-    [[UserManager Instance] InitLocalData];
+    [[UserManager Instance] LogInCheck];
     
 }
 
@@ -71,7 +71,7 @@
 
 - (void)clearUserData
 {
-    //
+    // TODO
 }
 
 // insert popOverDelay into login failed solution.
@@ -128,7 +128,7 @@
 {
     if ([challenge previousFailureCount] == 0) {
         NSURLCredential *newCredential;
-        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
+        newCredential=[NSURLCredential credentialWithUser:[UserManager UserName] password:[UserManager UserPW]                                              persistence:NSURLCredentialPersistenceNone];
         [[challenge sender] useCredential:newCredential
                forAuthenticationChallenge:challenge];
     } else {

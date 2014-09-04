@@ -24,22 +24,59 @@ static UserManager* managerInstance;
     return [UserManager Instance]->initedLocalData;
 }
 
++ (NSString*) UserName
+{
+    if ([UserManager IsInitSuccess])
+    {
+        return [UserManager Instance]->localUserName;
+    }
+    else
+    {
+        return @"";
+    }
+}
+
++ (NSString*) UserPW
+{
+    if ([UserManager IsInitSuccess])
+    {
+        return [UserManager Instance]->localPassword;
+    }
+    else
+    {
+        return @"";
+    }
+}
+
 - (void)InitLocalData
 {
     NSMutableDictionary* dict =  [ [ NSMutableDictionary alloc ] initWithContentsOfFile:@"/Profile.plist" ];
     localUserName = [ dict objectForKey:@"userName" ];
     
-    localUserName = @"user";
+    NSData* userPw = [dict objectForKey:@"userKey"];
+    localPassword = [NSData AES256Decode:userPw];
+}
+
+- (void)DoLogIn:(NSString *)name :(NSString *)pw
+{
+    localUserName = name;
+    localPassword = pw;
+    
+    [self LogInCheck];
+}
+
+- (void)LogInCheck
+{
+    //localUserName = @"user";
     
     if (localUserName == nil)
     {
         initedLocalData = FALSE;
+        [loginDelegate UserLoginContact];
+        return;
     }
     
-    NSData* userPw = [dict objectForKey:@"userKey"];
-    localPassword = [NSData AES256Decode:userPw];
-    
-    localPassword = @"user";
+    //localPassword = @"user";
     
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/q?search_LIKE_loginName=";
     urlString = [urlString stringByAppendingString:localUserName];
@@ -164,6 +201,7 @@ static UserManager* managerInstance;
         {
             managerInstance = [super allocWithZone:zone];
             managerInstance->initedLocalData = false;
+            [managerInstance InitLocalData];
             return managerInstance;
         }
     }

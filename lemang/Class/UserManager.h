@@ -30,10 +30,14 @@
 
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
 + (UserManager*) Instance;
++ (NSString*) UserName;
++ (NSString*) UserPW;
 
 + (bool) IsInitSuccess;
 - (int) GetLocalUserId;
-- (void) InitLocalData;
+- (void) DoLogIn : (NSString*)name :(NSString*)pw;
+//- (void) InitLocalData;
+- (void) LogInCheck;
 - (void) UpdateLocalData;
 
 @end

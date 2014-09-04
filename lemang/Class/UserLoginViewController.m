@@ -99,6 +99,21 @@
     [self.view addSubview:regist];
 }
 
+- (void) UserLoginContact
+{
+    if ([UserManager IsInitSuccess])
+    {
+        // TODO: return to previous page and refresh
+        NSLog(@"Log in success");
+        [[UserManager Instance] UpdateLocalData];
+    }
+    else
+    {
+        // WTF?
+        NSLog(@"Log in fail.");
+    }
+}
+
 -(void)headClick:(UIButton*)button
 {
     //do head button click
@@ -108,6 +123,9 @@
 {
     //do ok button click
     [self dismissModalViewControllerAnimated:YES];
+    
+    [UserManager Instance].loginDelegate = self;
+    [[UserManager Instance] DoLogIn:userName.text :userPass.text];
 }
 
 -(void)cancelClick:(UIButton*)button
