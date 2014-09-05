@@ -1101,21 +1101,17 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_icon_de" id="Tv0-qO-awX">
-                                <rect key="frame" x="125" y="46" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" id="N1n-an-LhP">
                                 <rect key="frame" x="60" y="162" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请确认密码" minimumFontSize="17" id="OgH-EE-WPF">
                                 <rect key="frame" x="60" y="200" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择您的学校" minimumFontSize="17" id="zwf-VT-zZu">
                                 <rect key="frame" x="60" y="238" width="200" height="30"/>
@@ -1139,7 +1135,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                 <rect key="frame" x="60" y="124" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aWb-XV-ZhS">
                                 <rect key="frame" x="137" y="352" width="46" height="30"/>
@@ -1151,6 +1147,13 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <action selector="doRegist:" destination="XEq-Yw-Ved" eventType="touchUpInside" id="gWy-Mz-ACe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ml9-lM-0M9">
+                                <rect key="frame" x="125" y="42" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="user_icon_de">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1160,6 +1163,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="myArea" destination="jjS-xh-1Bt" id="oOZ-Fk-1MN"/>
                         <outlet property="myCollege" destination="bNr-ik-OAC" id="8zl-4W-jyE"/>
                         <outlet property="myUniversity" destination="zwf-VT-zZu" id="QN3-FH-kUe"/>
+                        <outlet property="pickImgButton" destination="ml9-lM-0M9" id="T0Q-2A-Lpw"/>
                         <outlet property="selectPicker" destination="fcq-iC-Nv3" id="aWW-Qm-ZdE"/>
                         <outlet property="userName" destination="U07-Fb-W03" id="7mE-JV-3UE"/>
                         <outlet property="userPW" destination="N1n-an-LhP" id="ekd-JT-2dF"/>

@@ -14,7 +14,16 @@
     NSArray *schoolPickerArray;
     NSArray *collegePickerArray;
     NSArray *areaPickerArray;
+    UIImagePickerController *imagePicker;
+    UIImage *image;
 }
+@property (strong, nonatomic) IBOutlet UIImageView *imgViewBig;
+@property (strong, nonatomic) IBOutlet UIButton *pickImgButton;
+
+- (IBAction)OnClickPickImage:(id)sender;
+- (IBAction)OnClickPickCamera:(id)sender;
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info;
+
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITextField *userPW;
 @property (strong, nonatomic) IBOutlet UITextField *userPWConform;
