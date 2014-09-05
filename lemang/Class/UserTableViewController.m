@@ -99,6 +99,8 @@
 {
     // TODO
     _userNameText.text = @"未登录";
+    
+    [self userLoginState:false];
 }
 
 // insert popOverDelay into login failed solution.
@@ -122,7 +124,6 @@
 - (IBAction)DoLogOut:(id)sender {
     [[UserManager Instance] ClearLocalUserData];
     [self clearUserDataDisplay];
-    [self userLoginState:[UserManager IsInitSuccess]];
 }
 
 - (void)refreshUserData
@@ -132,6 +133,8 @@
         [self clearUserDataDisplay];
         return;
     }
+    
+    [self userLoginState:true];
     
     int idStr = [[UserManager Instance] GetLocalUserId];
     NSString* URLString = [NSString stringWithFormat: @"http://e.taoware.com:8080/quickstart/api/v1/user/%d", idStr];
