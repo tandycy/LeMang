@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UserRegisterViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITextField *userName;
+@property (strong, nonatomic) IBOutlet UITextField *userPW;
+@property (strong, nonatomic) IBOutlet UIButton *DoRegister;
 
 @end

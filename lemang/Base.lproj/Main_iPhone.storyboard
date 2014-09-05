@@ -1123,6 +1123,11 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="une-x9-juj"/>
+                    <connections>
+                        <outlet property="DoRegister" destination="aWb-XV-ZhS" id="whS-tw-gwy"/>
+                        <outlet property="userName" destination="U07-Fb-W03" id="7mE-JV-3UE"/>
+                        <outlet property="userPW" destination="N1n-an-LhP" id="ekd-JT-2dF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ivl-Hq-agp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
