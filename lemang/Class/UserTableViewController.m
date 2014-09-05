@@ -10,7 +10,7 @@
 
 @interface UserTableViewController ()
 {
-    UIButton *loginButton;
+    //UIButton *loginButton;
 }
 
 @end
@@ -36,11 +36,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    loginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
-    loginButton.backgroundColor = [UIColor blueColor];
-    loginButton.titleLabel.text = @"login!";
-    [loginButton addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:loginButton];
+   // loginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
+   // loginButton.backgroundColor = [UIColor blueColor];
+    //loginButton.titleLabel.text = @"login!";
+    [self.loginButton addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self clearUserDataDisplay];
     [UserManager Instance].loginDelegate = self;
@@ -81,18 +80,42 @@
         [self.userSchoolText setHidden:false];
         [self.userDescText setHidden:false];
         [self.userGenderText setHidden:false];
-        [loginButton setHidden:true];
+        [self.rankButton setHidden:false];
+        [self.verifyButton setHidden:false];
+        [self.mobilePhoneButton setHidden:false];
+        [self.loginButton setTitle:@"注销" forState:UIControlStateNormal];
+        [self.accCell setUserInteractionEnabled:true];
+        [self.myActCell setUserInteractionEnabled:true];
+        [self.myFriendsCell setUserInteractionEnabled:true];
+        [self.myOrgCell setUserInteractionEnabled:true];
     }
     else{
         [self.userSchoolText setHidden:true];
         [self.userDescText setHidden:true];
         [self.userGenderText setHidden:true];
-        [loginButton setHidden:false];
+        [self.rankButton setHidden:true];
+        [self.verifyButton setHidden:true];
+        [self.mobilePhoneButton setHidden:true];
+        [self.loginButton setTitle:@"登陆" forState:UIControlStateNormal];
+        [self.accCell setUserInteractionEnabled:false];
+        [self.myActCell setUserInteractionEnabled:false];
+        [self.myFriendsCell setUserInteractionEnabled:false];
+        [self.myOrgCell setUserInteractionEnabled:false];
     }
 }
 
 -(IBAction)loginClick:(id)sender{
-    [self popUpULVC];
+    if ([UserManager IsInitSuccess])
+    {
+        [[UserManager Instance] ClearLocalUserData];
+        [self clearUserDataDisplay];
+        [self userLoginState:[UserManager IsInitSuccess]];
+    }
+    else
+    {
+        // Login failed
+        [self popUpULVC];
+    }
 }
 
 - (void)clearUserDataDisplay
@@ -108,7 +131,8 @@
 {
     if (ULVC == Nil)
     {
-        ULVC = [[UserLoginViewController alloc]init];
+        //ULVC = [[UserLoginViewController alloc]init];
+        ULVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UserLoginViewController"];
         ULVC.owner = self;
     }
     [self presentModalViewController:ULVC animated:YES];
@@ -117,12 +141,6 @@
 - (void)popOverDelay
 {
     [self performSelector:@selector(popUpULVC) withObject:@"delay 1s" afterDelay:1];
-}
-
-- (IBAction)DoLogOut:(id)sender {
-    [[UserManager Instance] ClearLocalUserData];
-    [self clearUserDataDisplay];
-    [self userLoginState:[UserManager IsInitSuccess]];
 }
 
 - (void)refreshUserData

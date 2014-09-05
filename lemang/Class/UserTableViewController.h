@@ -23,6 +23,17 @@
 @property (strong, nonatomic) IBOutlet UILabel *userDescText;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *userIconImageLoader;
 
+@property (strong, nonatomic) IBOutlet UIButton *rankButton;
+@property (strong, nonatomic) IBOutlet UIButton *verifyButton;
+@property (strong, nonatomic) IBOutlet UIButton *mobilePhoneButton;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+
+@property (strong, nonatomic) IBOutlet UITableViewCell *accCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *myOrgCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *myActCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *myFriendsCell;
+
+
 - (IBAction)DoLogOut:(id)sender;
 - (void) refreshUserData;
 

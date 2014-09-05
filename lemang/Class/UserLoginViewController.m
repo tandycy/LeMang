@@ -8,6 +8,7 @@
 
 #import "UserLoginViewController.h"
 #import "UserTableViewController.h"
+#import "UserRegisterViewController.h"
 
 @interface UserLoginViewController ()
 
@@ -155,6 +156,12 @@
 {
     //do regist button click
     //jump to registpass view
+    //[self dismissModalViewControllerAnimated:YES];
+    //UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self];
+    UserRegisterViewController *URVL = [self.storyboard instantiateViewControllerWithIdentifier:@"UserRegisterViewController"];
+    NSLog(@"%@",URVL);
+    //[nav pushViewController:URVL animated:YES];
+    [self presentModalViewController:URVL animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

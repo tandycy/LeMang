@@ -35,6 +35,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)doRegist:(id)sender{
+    [self dismissModalViewControllerAnimated:NO];
+}
 /*
 #pragma mark - Navigation
 

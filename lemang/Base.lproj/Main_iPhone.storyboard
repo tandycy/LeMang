@@ -812,14 +812,11 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xF8-bd-YwS">
-                                    <rect key="frame" x="262" y="91" width="30" height="30"/>
+                                    <rect key="frame" x="264" y="91" width="30" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="注销">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
-                                    <connections>
-                                        <action selector="DoLogOut:" destination="K6g-v5-ZrZ" eventType="touchUpInside" id="4IE-oP-2nQ"/>
-                                    </connections>
                                 </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jFB-qr-ahq">
                                     <rect key="frame" x="107" y="13" width="149" height="21"/>
@@ -875,11 +872,11 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <sections>
                             <tableViewSection id="QBo-v0-rwu">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="Ueq-B5-4Oq">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="Ueq-B5-4Oq">
                                         <rect key="frame" x="0.0" y="189" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ueq-B5-4Oq" id="3rK-ge-ZQO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的账户" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HmZ-Vo-iew">
@@ -894,7 +891,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <segue destination="xa0-67-cxw" kind="push" id="OO9-4p-jT9"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="sr7-ka-JCV">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="sr7-ka-JCV">
                                         <rect key="frame" x="0.0" y="233" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sr7-ka-JCV" id="bWU-rb-fJg">
@@ -913,7 +910,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <segue destination="Iyw-2R-GfU" kind="push" id="Uc4-1W-cfP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="VgX-NM-JzT">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="VgX-NM-JzT">
                                         <rect key="frame" x="0.0" y="277" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VgX-NM-JzT" id="7F6-vh-009">
@@ -932,7 +929,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <segue destination="n6G-Es-Jse" kind="push" id="2dL-Z9-a6E"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="Yor-En-u4b">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="Yor-En-u4b">
                                         <rect key="frame" x="0.0" y="321" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yor-En-u4b" id="w5k-HP-WBi">
@@ -961,11 +958,19 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     </tableView>
                     <navigationItem key="navigationItem" title="用户中心" id="LTi-N9-Ols"/>
                     <connections>
+                        <outlet property="accCell" destination="Ueq-B5-4Oq" id="Jgv-18-6mL"/>
+                        <outlet property="loginButton" destination="xF8-bd-YwS" id="HWF-cx-sZF"/>
+                        <outlet property="mobilePhoneButton" destination="Pcs-Wz-Y6v" id="Cjx-0B-22t"/>
+                        <outlet property="myActCell" destination="VgX-NM-JzT" id="X2h-wH-pPP"/>
+                        <outlet property="myFriendsCell" destination="Yor-En-u4b" id="Cc6-nw-v7W"/>
+                        <outlet property="myOrgCell" destination="sr7-ka-JCV" id="6eG-lw-c5W"/>
+                        <outlet property="rankButton" destination="B5G-9k-25Z" id="bnF-5a-QMQ"/>
                         <outlet property="userDescText" destination="kA7-cz-xFT" id="LO7-US-5Y1"/>
                         <outlet property="userGenderText" destination="HKv-LY-Mwe" id="dzd-ya-W5T"/>
                         <outlet property="userIconImageLoader" destination="782-Gp-x3p" id="Tb9-zL-zy3"/>
                         <outlet property="userNameText" destination="jFB-qr-ahq" id="mp9-ik-2Xg"/>
                         <outlet property="userSchoolText" destination="jbn-IB-xj9" id="mNH-OT-9F7"/>
+                        <outlet property="verifyButton" destination="Hv1-gu-pKQ" id="5C6-e9-1rO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVw-Mf-wgi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1091,7 +1096,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <!--User Register View Controller-->
         <scene sceneID="g0H-21-emi">
             <objects>
-                <viewController id="XEq-Yw-Ved" customClass="UserRegisterViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserRegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XEq-Yw-Ved" customClass="UserRegisterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e8G-qg-lsE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1118,13 +1123,15 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="doRegist:" destination="XEq-Yw-Ved" eventType="touchUpInside" id="gWy-Mz-ACe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="une-x9-juj"/>
                     <connections>
-                        <outlet property="DoRegister" destination="aWb-XV-ZhS" id="whS-tw-gwy"/>
                         <outlet property="userName" destination="U07-Fb-W03" id="7mE-JV-3UE"/>
                         <outlet property="userPW" destination="N1n-an-LhP" id="ekd-JT-2dF"/>
                     </connections>
