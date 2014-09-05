@@ -7,6 +7,7 @@
 //
 
 #import "UserLoginViewController.h"
+#import "UserTableViewController.h"
 
 @interface UserLoginViewController ()
 
@@ -15,6 +16,7 @@
 @implementation UserLoginViewController
 
 @synthesize userName, userPass;
+@synthesize owner;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,6 +108,13 @@
         // TODO: return to previous page and refresh
         NSLog(@"Log in success");
         [[UserManager Instance] UpdateLocalData];
+        
+        [self dismissModalViewControllerAnimated:YES];
+        
+        if ([owner isKindOfClass:[UserTableViewController class]])
+        {
+            [(UserTableViewController*)owner refreshUserData];
+        }
     }
     else
     {
@@ -122,7 +131,6 @@
 -(void)okClick:(UIButton*)button
 {
     //do ok button click
-    [self dismissModalViewControllerAnimated:YES];
     
     [UserManager Instance].loginDelegate = self;
     [[UserManager Instance] DoLogIn:userName.text :userPass.text];

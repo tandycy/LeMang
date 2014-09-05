@@ -13,5 +13,5 @@
 
 @property (nonatomic, retain) IBOutlet UITextField *userName;
 @property (nonatomic, retain) IBOutlet UITextField *userPass;
-
+@property (nonatomic, strong) UITableViewController* owner;
 @end

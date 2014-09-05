@@ -7,7 +7,6 @@
 //
 
 #import "UserTableViewController.h"
-#import "UserLoginViewController.h"
 
 @interface UserTableViewController ()
 
@@ -79,7 +78,11 @@
 
 - (void)popUpULVC
 {
-    UserLoginViewController *ULVC = [[UserLoginViewController alloc]init];
+    if (ULVC == Nil)
+    {
+        ULVC = [[UserLoginViewController alloc]init];
+        ULVC.owner = self;
+    }
     [self presentModalViewController:ULVC animated:YES];
 }
 
@@ -90,6 +93,9 @@
 
 - (void)refreshUserData
 {
+    if (![UserManager IsInitSuccess])
+        return;
+    
     int idStr = [[UserManager Instance] GetLocalUserId];
     NSString* URLString = [NSString stringWithFormat: @"http://e.taoware.com:8080/quickstart/api/v1/user/%d", idStr];
     NSURL *URL = [NSURL URLWithString:URLString];

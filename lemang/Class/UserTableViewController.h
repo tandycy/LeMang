@@ -9,16 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "IconImageViewLoader.h"
 #import "UserManager.h"
+#import "UserLoginViewController.h"
 
 @interface UserTableViewController : UITableViewController
 {
     NSMutableData *receivedData;
     NSDictionary* userData;
+    UserLoginViewController* ULVC;
 }
 @property (strong, nonatomic) IBOutlet UILabel *userNameText;
 @property (strong, nonatomic) IBOutlet UILabel *userGenderText;
 @property (strong, nonatomic) IBOutlet UILabel *userSchoolText;
 @property (strong, nonatomic) IBOutlet UILabel *userDescText;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *userIconImageLoader;
+
+- (void) refreshUserData;
 
 @end
