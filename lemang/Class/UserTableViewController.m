@@ -9,6 +9,9 @@
 #import "UserTableViewController.h"
 
 @interface UserTableViewController ()
+{
+    UIButton *loginButton;
+}
 
 @end
 
@@ -33,6 +36,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    loginButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 30)];
+    loginButton.backgroundColor = [UIColor blueColor];
+    loginButton.titleLabel.text = @"login!";
+    [loginButton addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:loginButton];
+    
     [self clearUserDataDisplay];
     [UserManager Instance].loginDelegate = self;
     [[UserManager Instance] LogInCheck];
@@ -48,24 +57,42 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:NO];
+    [self userLoginState:[UserManager IsInitSuccess]];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [self.tabBarController.tabBar setHidden:YES];
-}
 
 - (void) UserLoginContact
 {
     if ([UserManager IsInitSuccess])
     {
         [self refreshUserData];
+        NSLog(@"refresh");
     }
     else
     {
         // Login failed
         [self popOverDelay];
     }
+}
+
+-(void)userLoginState:(BOOL)state
+{
+    if (state) {
+        [self.userSchoolText setHidden:false];
+        [self.userDescText setHidden:false];
+        [self.userGenderText setHidden:false];
+        [loginButton setHidden:true];
+    }
+    else{
+        [self.userSchoolText setHidden:true];
+        [self.userDescText setHidden:true];
+        [self.userGenderText setHidden:true];
+        [loginButton setHidden:false];
+    }
+}
+
+-(IBAction)loginClick:(id)sender{
+    [self popUpULVC];
 }
 
 - (void)clearUserDataDisplay
@@ -95,6 +122,7 @@
 - (IBAction)DoLogOut:(id)sender {
     [[UserManager Instance] ClearLocalUserData];
     [self clearUserDataDisplay];
+    [self userLoginState:[UserManager IsInitSuccess]];
 }
 
 - (void)refreshUserData

@@ -65,11 +65,14 @@
     userName = [[UITextField alloc]initWithFrame:CGRectMake(50, 140, 220, 30)];
     userName.backgroundColor = [UIColor lightGrayColor];
     userName.placeholder = @"Please input your username";
+    userName.autocapitalizationType = UITextAutocapitalizationTypeNone;
     [self.view addSubview:userName];
     
     userPass = [[UITextField alloc]initWithFrame:CGRectMake(50, 180, 220, 30)];
     userPass.backgroundColor = [UIColor lightGrayColor];
     userPass.placeholder = @"Please input your password";
+    userPass.keyboardType = UIKeyboardTypeAlphabet;
+    userPass.secureTextEntry = true;
     [self.view addSubview:userPass];
     
     //init ok and cancel button
