@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *userDescText;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *userIconImageLoader;
 
+- (IBAction)DoLogOut:(id)sender;
 - (void) refreshUserData;
 
 @end

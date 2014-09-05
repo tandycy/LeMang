@@ -817,6 +817,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <state key="normal" title="注销">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="DoLogOut:" destination="K6g-v5-ZrZ" eventType="touchUpInside" id="4IE-oP-2nQ"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jFB-qr-ahq">
                                     <rect key="frame" x="107" y="13" width="149" height="21"/>

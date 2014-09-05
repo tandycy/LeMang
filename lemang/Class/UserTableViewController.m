@@ -33,7 +33,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self clearUserData];
+    [self clearUserDataDisplay];
     [UserManager Instance].loginDelegate = self;
     [[UserManager Instance] LogInCheck];
     
@@ -68,9 +68,10 @@
     }
 }
 
-- (void)clearUserData
+- (void)clearUserDataDisplay
 {
     // TODO
+    _userNameText.text = @"未登录";
 }
 
 // insert popOverDelay into login failed solution.
@@ -91,10 +92,18 @@
     [self performSelector:@selector(popUpULVC) withObject:@"delay 1s" afterDelay:1];
 }
 
+- (IBAction)DoLogOut:(id)sender {
+    [[UserManager Instance] ClearLocalUserData];
+    [self clearUserDataDisplay];
+}
+
 - (void)refreshUserData
 {
     if (![UserManager IsInitSuccess])
+    {
+        [self clearUserDataDisplay];
         return;
+    }
     
     int idStr = [[UserManager Instance] GetLocalUserId];
     NSString* URLString = [NSString stringWithFormat: @"http://e.taoware.com:8080/quickstart/api/v1/user/%d", idStr];

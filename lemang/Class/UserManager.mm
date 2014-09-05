@@ -168,6 +168,14 @@ static UserManager* managerInstance;
     return localUserId;
 }
 
+- (void) ClearLocalUserData
+{
+    localUserName = @"";
+    localPassword = @"";
+    initedLocalData = false;
+    [self UpdateLocalData];
+}
+
 - (void) UpdateLocalData
 {
     NSMutableDictionary* dict = [ [ NSMutableDictionary alloc ] initWithContentsOfFile:@"/Profile.plist" ];

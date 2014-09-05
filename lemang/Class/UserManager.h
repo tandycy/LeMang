@@ -36,6 +36,7 @@
 + (bool) IsInitSuccess;
 - (int) GetLocalUserId;
 - (void) DoLogIn : (NSString*)name :(NSString*)pw;
+- (void) ClearLocalUserData;
 //- (void) InitLocalData;
 - (void) LogInCheck;
 - (void) UpdateLocalData;
