@@ -8,9 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserRegisterViewController : UIViewController
+@interface UserRegisterViewController : UIViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
+{
+    NSArray *pickerArray;
+    NSArray *schoolPickerArray;
+    NSArray *collegePickerArray;
+    NSArray *areaPickerArray;
+}
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITextField *userPW;
+@property (strong, nonatomic) IBOutlet UITextField *userPWConform;
+@property (strong, nonatomic) IBOutlet UITextField *myUniversity;
+@property (strong, nonatomic) IBOutlet UITextField *myArea;
+@property (strong, nonatomic) IBOutlet UITextField *myCollege;
 @property (strong, nonatomic) IBOutlet UIButton *DoRegister;
+
+@property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
+@property (strong, nonatomic) IBOutlet UIPickerView *selectPicker;
+
 
 @end

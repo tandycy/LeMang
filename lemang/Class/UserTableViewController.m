@@ -142,7 +142,7 @@
 
 - (void)popOverDelay
 {
-    [self performSelector:@selector(popUpULVC) withObject:@"delay 1s" afterDelay:1];
+    [self performSelector:@selector(popUpULVC) withObject:@"delay 0.1s" afterDelay:0.1];
 }
 
 - (void)refreshUserData

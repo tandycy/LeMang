@@ -1101,26 +1101,50 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Tv0-qO-awX">
-                                <rect key="frame" x="90" y="93" width="140" height="140"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_icon_de" id="Tv0-qO-awX">
+                                <rect key="frame" x="125" y="46" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="N1n-an-LhP">
-                                <rect key="frame" x="60" y="279" width="200" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" id="N1n-an-LhP">
+                                <rect key="frame" x="60" y="162" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="U07-Fb-W03">
-                                <rect key="frame" x="60" y="241" width="200" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请确认密码" minimumFontSize="17" id="OgH-EE-WPF">
+                                <rect key="frame" x="60" y="200" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择您的学校" minimumFontSize="17" id="zwf-VT-zZu">
+                                <rect key="frame" x="60" y="238" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择您的校区" minimumFontSize="17" id="jjS-xh-1Bt">
+                                <rect key="frame" x="60" y="276" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择您的院系" minimumFontSize="17" id="bNr-ik-OAC">
+                                <rect key="frame" x="60" y="314" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" id="U07-Fb-W03">
+                                <rect key="frame" x="60" y="124" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aWb-XV-ZhS">
-                                <rect key="frame" x="137" y="312" width="46" height="30"/>
+                                <rect key="frame" x="137" y="352" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="注册">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1132,11 +1156,32 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     </view>
                     <navigationItem key="navigationItem" id="une-x9-juj"/>
                     <connections>
+                        <outlet property="doneToolbar" destination="QXq-tb-XMN" id="9n6-0F-SeU"/>
+                        <outlet property="myArea" destination="jjS-xh-1Bt" id="oOZ-Fk-1MN"/>
+                        <outlet property="myCollege" destination="bNr-ik-OAC" id="8zl-4W-jyE"/>
+                        <outlet property="myUniversity" destination="zwf-VT-zZu" id="QN3-FH-kUe"/>
+                        <outlet property="selectPicker" destination="fcq-iC-Nv3" id="aWW-Qm-ZdE"/>
                         <outlet property="userName" destination="U07-Fb-W03" id="7mE-JV-3UE"/>
                         <outlet property="userPW" destination="N1n-an-LhP" id="ekd-JT-2dF"/>
+                        <outlet property="userPWConform" destination="OgH-EE-WPF" id="nqX-kh-evY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ivl-Hq-agp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pickerView contentMode="scaleToFill" id="fcq-iC-Nv3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                </pickerView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="QXq-tb-XMN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem title=" 完成" id="vzz-se-rIh">
+                            <connections>
+                                <action selector="selectButton:" destination="XEq-Yw-Ved" id="Ryf-Ul-SlT"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
             </objects>
             <point key="canvasLocation" x="948" y="999"/>
         </scene>
@@ -2234,6 +2279,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <image name="main_user_off" width="25" height="25"/>
         <image name="more_button" width="47" height="17"/>
         <image name="rate_star_whole" width="14" height="14"/>
+        <image name="user_icon_de" width="70" height="70"/>
         <image name="user_icon_de.png" width="27" height="26"/>
         <image name="wm_tab_mytakeaway_normal" width="24" height="23"/>
         <image name="wm_tab_shop_normal" width="29" height="23"/>
