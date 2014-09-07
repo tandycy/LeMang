@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -1118,6 +1118,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="OnSchoolChange:" destination="XEq-Yw-Ved" eventType="editingDidEnd" id="LXM-dI-lwx"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择您的校区" minimumFontSize="17" id="jjS-xh-1Bt">
                                 <rect key="frame" x="60" y="276" width="200" height="30"/>
@@ -1144,7 +1147,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="doRegist:" destination="XEq-Yw-Ved" eventType="touchUpInside" id="gWy-Mz-ACe"/>
+                                    <action selector="DoRegister:" destination="XEq-Yw-Ved" eventType="touchUpInside" id="aym-jQ-dul"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ml9-lM-0M9">
@@ -1154,12 +1157,20 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DjX-2f-67w">
+                                <rect key="frame" x="60" y="406" width="200" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="une-x9-juj"/>
                     <connections>
                         <outlet property="doneToolbar" destination="QXq-tb-XMN" id="9n6-0F-SeU"/>
+                        <outlet property="infoText" destination="DjX-2f-67w" id="iZ5-Fx-kNO"/>
                         <outlet property="myArea" destination="jjS-xh-1Bt" id="oOZ-Fk-1MN"/>
                         <outlet property="myCollege" destination="bNr-ik-OAC" id="8zl-4W-jyE"/>
                         <outlet property="myUniversity" destination="zwf-VT-zZu" id="QN3-FH-kUe"/>

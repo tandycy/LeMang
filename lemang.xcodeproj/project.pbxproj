@@ -75,6 +75,8 @@
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
 		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
+		EE9B1DAF19BC2C76001E2C7C /* SchoolManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE9B1DAE19BC2C76001E2C7C /* SchoolManager.mm */; };
+		EE9B1DB219BC34F8001E2C7C /* HttpGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */; };
 		EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */; };
 		EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC7756719B0702B0035B400 /* OrganizationViewCell.m */; };
 /* End PBXBuildFile section */
@@ -202,6 +204,10 @@
 		EE54DB1819B563EF0000845F /* UserManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UserManager.mm; path = Class/UserManager.mm; sourceTree = "<group>"; };
 		EE54DB1A19B56A270000845F /* StringEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringEncoder.h; path = Class/StringEncoder.h; sourceTree = "<group>"; };
 		EE54DB1B19B56A270000845F /* StringEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringEncoder.m; path = Class/StringEncoder.m; sourceTree = "<group>"; };
+		EE9B1DAD19BC2C76001E2C7C /* SchoolManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolManager.h; path = Class/SchoolManager.h; sourceTree = "<group>"; };
+		EE9B1DAE19BC2C76001E2C7C /* SchoolManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SchoolManager.mm; path = Class/SchoolManager.mm; sourceTree = "<group>"; };
+		EE9B1DB019BC34F8001E2C7C /* HttpGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpGetter.h; path = Class/HttpGetter.h; sourceTree = "<group>"; };
+		EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpGetter.m; path = Class/HttpGetter.m; sourceTree = "<group>"; };
 		EE9BCB3C19AB45E700710F90 /* ActivityViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityViewCell.h; path = Class/ActivityViewCell.h; sourceTree = "<group>"; };
 		EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewCell.m; path = Class/ActivityViewCell.m; sourceTree = "<group>"; };
 		EEC7756619B0702B0035B400 /* OrganizationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationViewCell.h; path = Class/OrganizationViewCell.h; sourceTree = "<group>"; };
@@ -463,6 +469,10 @@
 				EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */,
 				EE54DB1A19B56A270000845F /* StringEncoder.h */,
 				EE54DB1B19B56A270000845F /* StringEncoder.m */,
+				EE9B1DAD19BC2C76001E2C7C /* SchoolManager.h */,
+				EE9B1DAE19BC2C76001E2C7C /* SchoolManager.mm */,
+				EE9B1DB019BC34F8001E2C7C /* HttpGetter.h */,
+				EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -623,11 +633,13 @@
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
 				258087C919A71EED005E308D /* UIImageButton.m in Sources */,
 				25C3A0FE19ADC4EC00BB48B3 /* UIView+Extension.m in Sources */,
+				EE9B1DB219BC34F8001E2C7C /* HttpGetter.m in Sources */,
 				258087B719A71D0E005E308D /* MyFriendsTableViewController.m in Sources */,
 				25C3A0FD19ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m in Sources */,
 				25C3A0F919ADC4EC00BB48B3 /* MJRefreshConst.m in Sources */,
 				2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */,
 				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
+				EE9B1DAF19BC2C76001E2C7C /* SchoolManager.mm in Sources */,
 				257CD60A19A36EF1001FF078 /* ActivityCommetImageDetailViewController.m in Sources */,
 				256E046F1987AACA009845A5 /* ActivityViewController.m in Sources */,
 				25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */,

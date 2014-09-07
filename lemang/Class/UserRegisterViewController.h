@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SchoolManager.h"
 
 @interface UserRegisterViewController : UIViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
 {
@@ -16,6 +17,8 @@
     NSArray *areaPickerArray;
     UIImagePickerController *imagePicker;
     UIImage *image;
+    
+    NSMutableData* receivedData;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewBig;
 @property (strong, nonatomic) IBOutlet UIButton *pickImgButton;
@@ -32,8 +35,11 @@
 @property (strong, nonatomic) IBOutlet UITextField *myCollege;
 @property (strong, nonatomic) IBOutlet UIButton *DoRegister;
 
+@property (strong, nonatomic) IBOutlet UILabel *infoText;
 @property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
 @property (strong, nonatomic) IBOutlet UIPickerView *selectPicker;
 
+- (IBAction)OnSchoolChange:(id)sender;
+- (IBAction)DoRegister:(id)sender;
 
 @end

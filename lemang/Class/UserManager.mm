@@ -255,8 +255,11 @@ static UserManager* managerInstance;
 
 @end
 
-struct Garbo
+struct UserGarbo
 {
-    ~Garbo(){[managerInstance realRelease];}
+    ~UserGarbo()
+    {
+        [managerInstance realRelease];
+    }
 };
-static Garbo garbo;
+static UserGarbo userGarbo;

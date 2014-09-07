@@ -67,9 +67,9 @@
 
 -(void)universityListInit
 {
-    schoolPickerArray = [NSArray arrayWithObjects:@"交通大学",@"上海大学",@"同济大学",@"复旦大学", nil];
-    collegePickerArray = [NSArray arrayWithObjects:@"软件工程",@"计算机信息与技术",@"工程技术",@"文法",@"广播电视传媒",nil];
-    areaPickerArray = [NSArray arrayWithObjects:@"嘉定校区",@"沪西校区",@"沪北校区",@"四平校区",nil];
+    schoolPickerArray = [SchoolManager GetSchoolNameList];
+    //collegePickerArray = [NSArray arrayWithObjects:@"软件工程",@"计算机信息与技术",@"工程技术",@"文法",@"广播电视传媒",nil];
+    //areaPickerArray = [NSArray arrayWithObjects:@"嘉定校区",@"沪西校区",@"沪北校区",@"四平校区",nil];
 }
 
 -(void)registViewInit
@@ -177,9 +177,6 @@
     textField.text = [pickerArray objectAtIndex:row];
 }
 
--(IBAction)doRegist:(id)sender{
-    [self dismissModalViewControllerAnimated:NO];
-}
 /*
 #pragma mark - Navigation
 
@@ -303,5 +300,131 @@
     [imageData writeToFile:fullPathToFile atomically:NO];
 }
 
+
+- (IBAction)OnSchoolChange:(id)sender {
+    myArea.text = @"";
+    myCollege.text = @"";
+    
+    // TODO: load area and collage data
+}
+
+- (IBAction)DoRegister:(id)sender {
+    _infoText.text = @"";
+    
+    if (userName.text.length == 0)
+    {
+        _infoText.text = @"请输入用户名";
+        return;
+    }
+    
+    if (userPW.text.length == 0)
+    {
+        _infoText.text = @"密码不能为空";
+        return;
+    }
+    
+    if (userPW.text.length < 6)
+    {
+        _infoText.text = @"密码长度不小于6字符";
+        return;
+    }
+    
+    if ([userPW.text compare:userPWConform.text])
+    {
+        _infoText.text = @"两次密码不一致";
+        return;
+    }
+    
+    if (myUniversity.text.length == 0)
+    {
+        _infoText.text = @"学校不能为空";
+        return;
+    }
+    
+    [self ConfirmRegister];
+}
+
+- (void) ConfirmRegister
+{
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    NSURL* URL = [NSURL URLWithString:urlString];
+    
+    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    
+    [URLRequest setHTTPMethod:@"POST"];
+    [URLRequest addValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
+    
+    NSString* postString = @"";
+
+    postString = [postString stringByAppendingFormat:@"{\"loginName\":\"%@\",\"name\":\"%@\",", userName.text, userName.text];
+    postString = [postString stringByAppendingFormat:@"\"plainPassword\":\"%@\",", userPW.text];
+    
+    NSNumber* schoolId = [SchoolManager GetSchoolId:myUniversity.text];
+    if (schoolId == nil)
+    {
+        _infoText.text = @"学校信息错误";
+        return;
+    }
+    postString = [postString stringByAppendingFormat:@"\"university\":{\"id\":%@},\"area\":{\"id\":%d},\"department\":{\"id\":%d}", schoolId, 1,1];
+    
+    //{ "loginName": "jason", "name": "jason", "plainPassword": "test", "university": {"id": 1}, "area": {"id": 1}, "department": {"id": 1} }
+    
+    NSData* postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [URLRequest setHTTPBody:postData];
+    
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
+    
+    receivedData=[[NSMutableData alloc] initWithData:nil];
+    
+    if (connection) {
+        receivedData = [NSMutableData new];
+        NSLog(@"rdm%@",receivedData);
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if ([challenge previousFailureCount] == 0) {
+        NSURLCredential *newCredential;
+        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
+        [[challenge sender] useCredential:newCredential
+               forAuthenticationChallenge:challenge];
+    } else {
+        [[challenge sender] cancelAuthenticationChallenge:challenge];
+    }
+}
+
+#pragma mark- NSURLConnection 回调方法
+- (void)connection:(NSURLConnection *)aConn didReceiveResponse:(NSURLResponse *)response
+
+{
+    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+    if ([response respondsToSelector:@selector(allHeaderFields)]) {
+        NSDictionary *dictionary = [httpResponse allHeaderFields];
+        //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);
+        
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [receivedData appendData:data];
+}
+-(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
+    NSLog(@"%@",[error localizedDescription]);
+}
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
+    NSLog(@"请求完成…");
+    NSError* error;
+    NSData* userData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:&error];
+
+    // TODO: log in
+    
+    [self dismissModalViewControllerAnimated:NO];
+}
 
 @end

@@ -43,7 +43,8 @@
     
     [self clearUserDataDisplay];
     [UserManager Instance].loginDelegate = self;
-    [[UserManager Instance] LogInCheck];
+    [[UserManager Instance] LogInCheck];    
+    [SchoolManager InitSchoolList] ;
     
 }
 

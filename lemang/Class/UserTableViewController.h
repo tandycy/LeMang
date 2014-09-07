@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "IconImageViewLoader.h"
 #import "UserManager.h"
+#import "SchoolManager.h"
 #import "UserLoginViewController.h"
 
 @interface UserTableViewController : UITableViewController
