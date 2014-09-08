@@ -46,6 +46,23 @@
     [[UserManager Instance] LogInCheck];    
     [SchoolManager InitSchoolList] ;
     
+    /*
+    NSURL *url = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/university"];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request startSynchronous];
+    [request setUsername:@"user"];
+    [request setPassword:@"user"];
+    
+    NSError *error = [request error];
+    
+    if (!error) {
+        
+        NSString *response = [request responseString];
+        
+    }
+     */
 }
 
 - (void)didReceiveMemoryWarning

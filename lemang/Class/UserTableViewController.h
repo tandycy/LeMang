@@ -12,6 +12,8 @@
 #import "SchoolManager.h"
 #import "UserLoginViewController.h"
 
+#import "AsiHttpRequest/Classes/ASIHTTPRequest.h"
+
 @interface UserTableViewController : UITableViewController
 {
     NSMutableData *receivedData;
