@@ -11,6 +11,7 @@
 #import "UserManager.h"
 #import "SchoolManager.h"
 #import "UserLoginViewController.h"
+#import "Base64.h"
 
 #import "AsiHttpRequest/Classes/ASIHTTPRequest.h"
 

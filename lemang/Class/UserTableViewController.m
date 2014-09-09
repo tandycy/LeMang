@@ -50,17 +50,21 @@
     NSURL *url = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/university"];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    
-    [request startSynchronous];
     [request setUsername:@"user"];
     [request setPassword:@"user"];
+    
+    //[request setDomain:@"e.taoware.com"];
+    //[request setAuthenticationScheme:(NSString*)kCFHTTPAuthenticationSchemeBasic];
+    //[request addBasicAuthenticationHeaderWithUsername:@"admin" andPassword:@"admin"];
+    
+    
+    [request startSynchronous];
+
     
     NSError *error = [request error];
     
     if (!error) {
-        
         NSString *response = [request responseString];
-        
     }
      */
 }

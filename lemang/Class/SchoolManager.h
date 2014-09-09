@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AsiHttpRequest/Classes/ASIHTTPRequest.h"
+#import "SchoolItem.h"
 
 @interface SchoolManager : NSObject
 {

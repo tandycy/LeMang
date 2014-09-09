@@ -125,6 +125,7 @@ static SchoolManager* managerInstance;
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
     
+    
     receivedData=[[NSMutableData alloc] initWithData:nil];
     
     if (connection) {
@@ -178,7 +179,6 @@ static SchoolManager* managerInstance;
         //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);
         
     }
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -191,6 +191,18 @@ static SchoolManager* managerInstance;
     NSLog(@"请求完成…");
     schoolList = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
     self->isInited = true;
+    
+    for (int i = 0; i < schoolList.count; i++)
+    {
+        NSString* name = schoolList[i][@"name"];
+        NSNumber* schoolid =schoolList[i][@"id"];
+        
+        SchoolItem* newitem = [[SchoolItem alloc]init];
+        
+        [newitem InitSchool:name :schoolid];
+        
+        [schoolDic setValue:newitem forKey:name];
+    }
 }
 
 @end

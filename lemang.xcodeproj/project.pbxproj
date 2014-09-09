@@ -99,6 +99,8 @@
 		28DC153619BD5E8100DE97F0 /* ASIS3ServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC151A19BD5E8000DE97F0 /* ASIS3ServiceRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		28DC153719BD5E8100DE97F0 /* README-GHUnit in Resources */ = {isa = PBXBuildFile; fileRef = 28DC151D19BD5E8000DE97F0 /* README-GHUnit */; };
 		28DC153819BD5E8100DE97F0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC152019BD5E8000DE97F0 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153A19BE1E5200DE97F0 /* Base64.m */; };
+		28DC153E19BE8F8500DE97F0 /* SchoolItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153D19BE8F8500DE97F0 /* SchoolItem.m */; };
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
 		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
@@ -279,6 +281,10 @@
 		28DC151D19BD5E8000DE97F0 /* README-GHUnit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-GHUnit"; sourceTree = "<group>"; };
 		28DC151F19BD5E8000DE97F0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		28DC152019BD5E8000DE97F0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		28DC153919BE1E5200DE97F0 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64.h; path = Class/Base64.h; sourceTree = "<group>"; };
+		28DC153A19BE1E5200DE97F0 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Base64.m; path = Class/Base64.m; sourceTree = "<group>"; };
+		28DC153C19BE8F8500DE97F0 /* SchoolItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolItem.h; path = Class/SchoolItem.h; sourceTree = "<group>"; };
+		28DC153D19BE8F8500DE97F0 /* SchoolItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolItem.m; path = Class/SchoolItem.m; sourceTree = "<group>"; };
 		EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoader.h; path = Class/IconImageViewLoader.h; sourceTree = "<group>"; };
 		EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoader.m; path = Class/IconImageViewLoader.m; sourceTree = "<group>"; };
 		EE54DB1719B563EF0000845F /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Class/UserManager.h; sourceTree = "<group>"; };
@@ -669,6 +675,10 @@
 				EE9B1DAE19BC2C76001E2C7C /* SchoolManager.mm */,
 				EE9B1DB019BC34F8001E2C7C /* HttpGetter.h */,
 				EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */,
+				28DC153919BE1E5200DE97F0 /* Base64.h */,
+				28DC153A19BE1E5200DE97F0 /* Base64.m */,
+				28DC153C19BE8F8500DE97F0 /* SchoolItem.h */,
+				28DC153D19BE8F8500DE97F0 /* SchoolItem.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -811,6 +821,7 @@
 				28DC152319BD5E8000DE97F0 /* ASIDataDecompressor.m in Sources */,
 				2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */,
 				258087BE19A71D7C005E308D /* UserLoginViewController.m in Sources */,
+				28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */,
 				25C3A0FB19ADC4EC00BB48B3 /* MJRefreshHeaderView.m in Sources */,
 				28DC152E19BD5E8100DE97F0 /* ASICloudFilesObject.m in Sources */,
 				28DC152819BD5E8000DE97F0 /* ASINetworkQueue.m in Sources */,
@@ -833,6 +844,7 @@
 				28DC153419BD5E8100DE97F0 /* ASIS3ObjectRequest.m in Sources */,
 				28DC153019BD5E8100DE97F0 /* ASICloudFilesRequest.m in Sources */,
 				258087BB19A71D59005E308D /* MyMessageTableViewController.m in Sources */,
+				28DC153E19BE8F8500DE97F0 /* SchoolItem.m in Sources */,
 				258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */,
 				251CEBBB19A31FBC00C80BAF /* OrganizationTableViewController.m in Sources */,
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
