@@ -17,10 +17,11 @@
     NSMutableData* receivedData;
     bool isInited;
     
-    NSDictionary* schoolDic;
+    NSMutableDictionary* schoolDic;
 }
 
 - (void) RefreshSchoolList;
++ (SchoolItem*) GetSchoolItem:(NSString*)SchoolName;
 + (NSNumber*) GetSchoolId:(NSString*)SchoolName;
 + (SchoolManager*) Instance;
 + (void) InitSchoolList;

@@ -14,6 +14,54 @@
 {
     localName = name;
     localId = schoolId;
+    
+    [self RefreshArea];
+    [self RefreshDepart];
+}
+
+- (NSNumber*)GetId
+{
+    return localId;
+}
+
+- (NSNumber*) GetAreaId:(NSString *)areaName
+{
+    NSNumber* aid = areaDic[areaName];
+    return aid;
+}
+
+- (NSNumber*) GetDepartId:(NSString *)departName
+{
+    NSNumber* did = departDic[departName];
+    return did;
+}
+
+- (NSArray*) GetAreaList
+{
+    NSMutableArray* result = [[NSMutableArray alloc]init];
+    
+    for (NSString* key in areaDic)
+    {
+        [result addObject:key];
+    }
+    
+    return result;
+}
+
+- (NSArray*) GetDepartList
+{
+    NSMutableArray* result = [[NSMutableArray alloc]init];
+    
+    for (NSString* key in departDic)
+    {
+        [result addObject:key];
+    }
+    
+    return result;
+}
+
+- (void) RefreshArea
+{
     NSString* areaString = @"http://e.taoware.com:8080/quickstart/api/v1/area/university/";
     areaString = [areaString stringByAppendingFormat:@"%@/", localId];
     NSURL* areaUrl = [NSURL URLWithString:areaString];
@@ -22,9 +70,39 @@
     [request setUsername:@"admin"];
     [request setPassword:@"admin"];
     
-    //[request setDomain:@"e.taoware.com"];
-    //[request setAuthenticationScheme:(NSString*)kCFHTTPAuthenticationSchemeBasic];
-    //[request addBasicAuthenticationHeaderWithUsername:@"admin" andPassword:@"admin"];
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    
+    if (!error) {
+        //NSString *response = [request responseString];
+        NSData* areaData = [request responseData];
+        
+        NSArray* areaList = [NSJSONSerialization JSONObjectWithData:areaData options:NSJSONReadingAllowFragments error:nil];
+        
+        if (areaDic == nil)
+            areaDic = [[NSMutableDictionary alloc]init];
+        [areaDic removeAllObjects];
+        
+        for ( int i = 0; i < areaList.count; i++)
+        {
+            NSString* areaName = areaList[i][@"name"];
+            NSNumber* areaId = areaList[i][@"id"];
+            
+            [areaDic setObject:areaId forKey:areaName];
+        }
+    }
+}
+
+- (void) RefreshDepart
+{
+    NSString* areaString = @"http://e.taoware.com:8080/quickstart/api/v1/department/university/";
+    areaString = [areaString stringByAppendingFormat:@"%@/", localId];
+    NSURL* areaUrl = [NSURL URLWithString:areaString];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:areaUrl];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
     
     [request startSynchronous];
     
@@ -32,9 +110,21 @@
     
     if (!error) {
         //NSString *response = [request responseString];
-        NSArray* areaData = [request responseData];
+        NSData* areaData = [request responseData];
         
-        NSString* resStr = [request responseString];
+        NSArray* areaList = [NSJSONSerialization JSONObjectWithData:areaData options:NSJSONReadingAllowFragments error:nil];
+        
+        if (departDic == nil)
+            departDic = [[NSMutableDictionary alloc]init];
+        [departDic removeAllObjects];
+        
+        for ( int i = 0; i < areaList.count; i++)
+        {
+            NSString* departName = areaList[i][@"name"];
+            NSNumber* areaId = areaList[i][@"id"];
+            
+            [departDic setObject:areaId forKey:departName];
+        }
     }
 }
 
@@ -51,13 +141,4 @@
     }
 }
 
-- (void)requestDone:(ASIHTTPRequest *)request
-{
-    NSString *response = [request responseString];
-}
-
-- (void)requestWentWrong:(ASIHTTPRequest *)request
-{
-    NSError *error = [request error];
-}
 @end

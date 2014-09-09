@@ -39,7 +39,7 @@
 @property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
 @property (strong, nonatomic) IBOutlet UIPickerView *selectPicker;
 
-- (IBAction)OnSchoolChange:(id)sender;
 - (IBAction)DoRegister:(id)sender;
+- (IBAction)OnSchoolChanged:(UITextField *)sender;
 
 @end

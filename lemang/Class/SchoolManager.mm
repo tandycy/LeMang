@@ -58,11 +58,9 @@ static SchoolManager* managerInstance;
 {
     NSMutableArray* result = [[NSMutableArray alloc]init];
     
-    for (int i = 0; i < schoolList.count; i++)
+    for (NSString* key in schoolDic)
     {
-        //NSNumber* schoolId = schoolList[i][@"id"];
-        NSString* name = schoolList[i][@"name"];
-        [result addObject:name];
+        [result addObject:key];
     }
         
     return result;
@@ -71,7 +69,7 @@ static SchoolManager* managerInstance;
 + (NSArray*) GetSchoolNameList
 {
     if (![SchoolManager IsInited])
-        return [NSArray alloc];
+        return nil;
     
     return [[SchoolManager Instance]getSchoolNames];
 }
@@ -86,18 +84,20 @@ static SchoolManager* managerInstance;
 
 - (NSNumber*) getSchoolId:(NSString*)schoolName
 {
-    for (int i = 0; i < schoolList.count; i++)
-    {
-        //NSNumber* schoolId = schoolList[i][@"id"];
-        NSString* name = schoolList[i][@"name"];
-        if ([name compare:schoolName])
-        {
-            NSNumber* schoolid =schoolList[i][@"id"];
-            return schoolid;
-        }
-    }
+    SchoolItem* item = schoolDic[schoolName];
+    
+    if (item != nil)
+        return [item GetId];
     
     return 0;
+}
+
++ (SchoolItem*) GetSchoolItem:(NSString *)SchoolName
+{
+    if (![SchoolManager IsInited])
+        return Nil;
+    
+    return [SchoolManager Instance]->schoolDic[SchoolName];
 }
 
 + (void) InitSchoolList
@@ -132,28 +132,6 @@ static SchoolManager* managerInstance;
         receivedData = [NSMutableData new];
         NSLog(@"rdm%@",receivedData);
     }
-}
-
-- (void) GetSchoolArea : (NSNumber*)schoolId
-{
-    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlString = [urlString stringByAppendingFormat:@"%d", [schoolId integerValue]];
-    NSURL* URL = [NSURL URLWithString:urlString];
-    
-    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
-    
-    [URLRequest setHTTPMethod:@"GET"];
-    [URLRequest addValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
-    
-    receivedData=[[NSMutableData alloc] initWithData:nil];
-    
-    if (connection) {
-        receivedData = [NSMutableData new];
-        NSLog(@"rdm%@",receivedData);
-    }
-
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
@@ -191,6 +169,11 @@ static SchoolManager* managerInstance;
     NSLog(@"请求完成…");
     schoolList = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
     self->isInited = true;
+    
+    if (schoolDic == nil)
+        schoolDic = [[NSMutableDictionary alloc]init];
+    else
+        [schoolDic removeAllObjects];
     
     for (int i = 0; i < schoolList.count; i++)
     {

@@ -140,6 +140,7 @@
 - (IBAction)selectButton:(id)sender {
     if (myUniversity.isEditing) {
         [myUniversity endEditing:YES];
+        [self OnSchoolChange];
     }
     else if(myCollege.isEditing)
     {
@@ -301,13 +302,6 @@
 }
 
 
-- (IBAction)OnSchoolChange:(id)sender {
-    myArea.text = @"";
-    myCollege.text = @"";
-    
-    // TODO: load area and collage data
-}
-
 - (IBAction)DoRegister:(id)sender {
     _infoText.text = @"";
     
@@ -344,6 +338,22 @@
     [self ConfirmRegister];
 }
 
+- (IBAction)OnSchoolChanged:(UITextField *)sender {
+    
+    [self OnSchoolChange];
+}
+
+- (void) OnSchoolChange
+{
+    myArea.text = @"";
+    myCollege.text = @"";
+    
+    SchoolItem* item = [SchoolManager GetSchoolItem:myUniversity.text];
+    
+    areaPickerArray = [item GetAreaList];
+    collegePickerArray = [item GetDepartList];
+}
+
 - (void) ConfirmRegister
 {
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
@@ -359,13 +369,27 @@
     postString = [postString stringByAppendingFormat:@"{\"loginName\":\"%@\",\"name\":\"%@\",", userName.text, userName.text];
     postString = [postString stringByAppendingFormat:@"\"plainPassword\":\"%@\",", userPW.text];
     
-    NSNumber* schoolId = [SchoolManager GetSchoolId:myUniversity.text];
-    if (schoolId == nil)
+    SchoolItem* schoolItem = [SchoolManager GetSchoolItem:myUniversity.text];
+    NSNumber* schoolId = [schoolItem GetId];
+    if (schoolItem == nil)
     {
         _infoText.text = @"学校信息错误";
         return;
     }
-    postString = [postString stringByAppendingFormat:@"\"university\":{\"id\":%@},\"area\":{\"id\":%d},\"department\":{\"id\":%d}", schoolId, 1,1];
+    NSNumber* areaId = [schoolItem GetAreaId:myArea.text];
+    if (areaId == nil)
+    {
+        _infoText.text = @"校区信息错误";
+        return;
+    }
+    NSNumber* departId = [schoolItem GetDepartId:myCollege.text];
+    if (departId == nil)
+    {
+        _infoText.text = @"学院信息错误";
+        return;
+    }
+    
+    postString = [postString stringByAppendingFormat:@"\"university\":{\"id\":%@},\"area\":{\"id\":%d},\"department\":{\"id\":%d}", schoolId, areaId,departId];
     
     //{ "loginName": "jason", "name": "jason", "plainPassword": "test", "university": {"id": 1}, "area": {"id": 1}, "department": {"id": 1} }
     

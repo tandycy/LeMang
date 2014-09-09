@@ -1119,7 +1119,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="OnSchoolChange:" destination="XEq-Yw-Ved" eventType="editingDidEnd" id="LXM-dI-lwx"/>
+                                    <action selector="OnSchoolChanged:" destination="XEq-Yw-Ved" eventType="valueChanged" id="wy5-Uk-fpB"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择您的校区" minimumFontSize="17" id="jjS-xh-1Bt">
