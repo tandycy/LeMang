@@ -389,7 +389,7 @@
         return;
     }
     
-    postString = [postString stringByAppendingFormat:@"\"university\":{\"id\":%@},\"area\":{\"id\":%d},\"department\":{\"id\":%d}", schoolId, areaId,departId];
+    postString = [postString stringByAppendingFormat:@"\"university\":{\"id\":%@},\"area\":{\"id\":%d},\"department\":{\"id\":%d}}", schoolId, areaId,departId];
     
     //{ "loginName": "jason", "name": "jason", "plainPassword": "test", "university": {"id": 1}, "area": {"id": 1}, "department": {"id": 1} }
     
