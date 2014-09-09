@@ -14,16 +14,17 @@
 {
     localName = name;
     localId = schoolId;
-    NSString* areaUrl = @"http://e.taoware.com:8080/quickstart/api/v1/area/university/";
-    areaUrl = [areaUrl stringByAppendingFormat:@"%@", localId];
+    NSString* areaString = @"http://e.taoware.com:8080/quickstart/api/v1/area/university/";
+    areaString = [areaString stringByAppendingFormat:@"%@/", localId];
+    NSURL* areaUrl = [NSURL URLWithString:areaString];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:areaUrl];
     [request setUsername:@"admin"];
     [request setPassword:@"admin"];
     
-    [request setDomain:@"e.taoware.com"];
-    [request setAuthenticationScheme:(NSString*)kCFHTTPAuthenticationSchemeBasic];
-    [request addBasicAuthenticationHeaderWithUsername:@"admin" andPassword:@"admin"];
+    //[request setDomain:@"e.taoware.com"];
+    //[request setAuthenticationScheme:(NSString*)kCFHTTPAuthenticationSchemeBasic];
+    //[request addBasicAuthenticationHeaderWithUsername:@"admin" andPassword:@"admin"];
     
     [request startSynchronous];
     
@@ -32,6 +33,8 @@
     if (!error) {
         //NSString *response = [request responseString];
         NSArray* areaData = [request responseData];
+        
+        NSString* resStr = [request responseString];
     }
 }
 
