@@ -9,5 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface UserInfoTableViewController : UITableViewController
+{
+    //
+}
+- (IBAction)OnChangeIcon:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIImageView *userIcon;
+@property (strong, nonatomic) IBOutlet UILabel *userName;
+@property (strong, nonatomic) IBOutlet UILabel *userNickName;
+@property (strong, nonatomic) IBOutlet UILabel *userSign;
+@property (strong, nonatomic) IBOutlet UILabel *schoolNumber;
+@property (strong, nonatomic) IBOutlet UILabel *schoolName;
+@property (strong, nonatomic) IBOutlet UILabel *departName;
+@property (strong, nonatomic) IBOutlet UILabel *phoneNumber;
+@property (strong, nonatomic) IBOutlet UILabel *qqNumber;
 
 @end

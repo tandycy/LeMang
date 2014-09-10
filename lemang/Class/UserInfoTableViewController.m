@@ -116,4 +116,6 @@
 }
 */
 
+- (IBAction)OnChangeIcon:(id)sender {
+}
 @end
