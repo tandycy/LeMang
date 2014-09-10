@@ -117,11 +117,13 @@ static SchoolManager* managerInstance;
 {   
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/university";
     NSURL* URL = [NSURL URLWithString:urlString];
-    
+    /*
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     
     [URLRequest setHTTPMethod:@"GET"];
     [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
+    
+    [URLRequest setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
     
@@ -132,18 +134,61 @@ static SchoolManager* managerInstance;
         receivedData = [NSMutableData new];
         NSLog(@"rdm%@",receivedData);
     }
+     */
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    [request setDelegate:self];
+    [request startAsynchronous];
 }
 
+- (void)requestFinished:(ASIHTTPRequest*)request
+{
+    NSString* resp = [request responseString];
+    receivedData = [request responseData];
+    
+    schoolList = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
+    self->isInited = true;
+    
+    if (schoolDic == nil)
+        schoolDic = [[NSMutableDictionary alloc]init];
+    else
+        [schoolDic removeAllObjects];
+    
+    for (int i = 0; i < schoolList.count; i++)
+    {
+        NSString* name = schoolList[i][@"name"];
+        NSNumber* schoolid =schoolList[i][@"id"];
+        
+        SchoolItem* newitem = [[SchoolItem alloc]init];
+        
+        [newitem InitSchool:name :schoolid];
+        
+        [schoolDic setValue:newitem forKey:name];
+    }
+}
+
+- (void)requestFailed:(ASIHTTPRequest*)request
+{
+    NSError* error = [request error];
+    NSLog(@"Init school error: %d",error.code);
+}
+
+/*
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-    if ([challenge previousFailureCount] == 0) {
+    if ([challenge previousFailureCount] == 0)
+    {
         NSURLCredential *newCredential;
-        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
-        [[challenge sender] useCredential:newCredential
-               forAuthenticationChallenge:challenge];
-    } else {
+        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user" persistence:NSURLCredentialPersistenceNone];
+        [[challenge sender] useCredential:newCredential forAuthenticationChallenge:challenge];
+    }
+    else
+    {
         [[challenge sender] cancelAuthenticationChallenge:challenge];
     }
+    
 }
 
 #pragma mark- NSURLConnection 回调方法
@@ -186,7 +231,9 @@ static SchoolManager* managerInstance;
         
         [schoolDic setValue:newitem forKey:name];
     }
+    
 }
+ */
 
 @end
 

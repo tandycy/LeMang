@@ -362,7 +362,7 @@
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     
     [URLRequest setHTTPMethod:@"POST"];
-    [URLRequest addValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
+    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
     
     NSString* postString = @"";
 
@@ -389,13 +389,20 @@
         return;
     }
     
-    postString = [postString stringByAppendingFormat:@"\"university\":{\"id\":%@},\"area\":{\"id\":%d},\"department\":{\"id\":%d}}", schoolId, areaId,departId];
+    postString = [postString stringByAppendingFormat:@"\"university\":{\"id\":%@},\"area\":{\"id\":%@},\"department\":{\"id\":%@}}", schoolId, areaId,departId];
+    
+    //NSLog(postString);
     
     //{ "loginName": "jason", "name": "jason", "plainPassword": "test", "university": {"id": 1}, "area": {"id": 1}, "department": {"id": 1} }
     
     NSData* postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
     [URLRequest setHTTPBody:postData];
+    NSString* dataLength = [NSString stringWithFormat:@"%d", [postString length]];
+    [URLRequest setValue:dataLength forHTTPHeaderField:@"Content-Length"];
+    [URLRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
+    //[URLRequest addValue:@"no-cache" forHTTPHeaderField:@"Cache-Control"];
+    
     
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
@@ -433,6 +440,7 @@
         
     }
     
+    NSLog(@"%@", response);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {

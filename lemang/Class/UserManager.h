@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "StringEncoder.h"
+#import "ASIHTTPRequest.h"
 
 @protocol UserLoginDelegate <NSObject>
 

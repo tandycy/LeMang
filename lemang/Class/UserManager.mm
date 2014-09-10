@@ -83,6 +83,52 @@ static UserManager* managerInstance;
     
     NSURL* URL = [NSURL URLWithString:urlString];
     
+    [ASIHTTPRequest clearSession];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];
+    [request setUsername:localUserName];
+    [request setPassword:localPassword];
+    
+    //[request setCachePolicy:ASIDontLoadCachePolicy];
+    
+    //[request setUseSessionPersistence:NO];
+    
+    [request setAuthenticationScheme:(NSString*)kCFHTTPAuthenticationSchemeBasic];
+    request.shouldPresentCredentialsBeforeChallenge = YES;
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    NSString *response;
+    if (!error) {
+        response = [request responseString];
+        
+        NSData* loginData = [request responseData];
+        
+        NSArray* userData = [NSJSONSerialization JSONObjectWithData:loginData options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        initedLocalData = false;
+        for (int i = 0; i < userData.count; i++)
+        {
+            NSDictionary* data = userData[i];
+            NSString* logName = data[@"loginName"];
+            
+            NSComparisonResult res = [logName compare:localUserName];
+            
+            if (res == NSOrderedSame)
+            {
+                NSNumber* idNum = data[@"id"];
+                localUserId = [idNum integerValue];
+                initedLocalData = true;
+                break;
+            }
+        }
+        
+        [loginDelegate UserLoginContact];
+    }
+    
+    
+    /*
+    
     NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
     
     [URLRequest setHTTPMethod:@"GET"];
@@ -96,8 +142,9 @@ static UserManager* managerInstance;
         receivedData = [NSMutableData new];
         NSLog(@"rdm%@",receivedData);
     }
+     */
 }
-
+/*
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     if ([challenge previousFailureCount] == 0) {
@@ -162,6 +209,7 @@ static UserManager* managerInstance;
     
     [loginDelegate UserLoginContact];
 }
+ */
 
 - (int) GetLocalUserId
 {
