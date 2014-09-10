@@ -356,13 +356,11 @@
 
 - (void) ConfirmRegister
 {
-    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    NSURL* URL = [NSURL URLWithString:urlString];
-    
-    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
-    
-    [URLRequest setHTTPMethod:@"POST"];
-    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
+    if ([UserManager IsUserNameExists:userName.text])
+    {
+        _infoText.text = @"用户名已存在";
+        return;
+    }
     
     NSString* postString = @"";
 
@@ -391,19 +389,25 @@
     
     postString = [postString stringByAppendingFormat:@"\"university\":{\"id\":%@},\"area\":{\"id\":%@},\"department\":{\"id\":%@}}", schoolId, areaId,departId];
     
+    NSString* dataLength = [NSString stringWithFormat:@"%d", [postString length]];
+    NSData* postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    
     //NSLog(postString);
     
     //{ "loginName": "jason", "name": "jason", "plainPassword": "test", "university": {"id": 1}, "area": {"id": 1}, "department": {"id": 1} }
     
-    NSData* postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    NSURL* URL = [NSURL URLWithString:urlString];
     
+    /*
+    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    
+    [URLRequest setHTTPMethod:@"POST"];
+    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
     [URLRequest setHTTPBody:postData];
-    NSString* dataLength = [NSString stringWithFormat:@"%d", [postString length]];
+    
     [URLRequest setValue:dataLength forHTTPHeaderField:@"Content-Length"];
     [URLRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-    //[URLRequest addValue:@"no-cache" forHTTPHeaderField:@"Cache-Control"];
-    
-    
     
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
     
@@ -413,9 +417,47 @@
         receivedData = [NSMutableData new];
         NSLog(@"rdm%@",receivedData);
     }
+    */
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
     
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    
+//    [request setValue:@"application/json;charset=UTF-8" forKey: @"Content-Type"];
+    [request addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [request addRequestHeader:@"Content-Length" value:dataLength];
+    
+    [request setRequestMethod:@"POST"];
+    [request appendPostData:postData];
+    
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    NSString *response;
+    
+    bool registerDone = false;
+    
+    if (!error) {
+        response = [request responseString];
+        int returnCode = [request responseStatusCode];
+        NSLog(@"%@ - %d",response,returnCode);
+        
+        if (returnCode == 201)
+            registerDone = true;
+    }
+    
+    if (registerDone)
+    {
+        [[UserManager Instance]DoLogIn:userName.text :userPW.text];
+        [self dismissModalViewControllerAnimated:NO];
+    }
+    else
+    {
+        _infoText.text = @"注册用户失败";
+    }
 }
 
+/*
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     if ([challenge previousFailureCount] == 0) {
@@ -458,5 +500,6 @@
     
     [self dismissModalViewControllerAnimated:NO];
 }
+ */
 
 @end

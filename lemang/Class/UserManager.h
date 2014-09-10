@@ -34,6 +34,8 @@
 + (NSString*) UserName;
 + (NSString*) UserPW;
 
++ (bool)IsUserNameExists:(NSString*)nameData;
+
 + (bool) IsInitSuccess;
 - (int) GetLocalUserId;
 - (void) DoLogIn : (NSString*)name :(NSString*)pw;

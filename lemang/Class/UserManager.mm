@@ -65,6 +65,43 @@ static UserManager* managerInstance;
     [self LogInCheck];
 }
 
++ (bool) IsUserNameExists:(NSString *)nameData
+{
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/q?search_LIKE_loginName=";
+    urlString = [urlString stringByAppendingString:nameData];
+    
+    NSURL* URL = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    NSString *response;
+    if (!error) {
+        response = [request responseString];
+        
+        NSData* loginData = [request responseData];
+        NSArray* userData = [NSJSONSerialization JSONObjectWithData:loginData options:NSJSONReadingAllowFragments error:nil][@"content"];
+
+        for (int i = 0; i < userData.count; i++)
+        {
+            NSDictionary* data = userData[i];
+            NSString* logName = data[@"loginName"];
+            
+            NSComparisonResult res = [logName compare:nameData];
+            
+            if (res == NSOrderedSame)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 - (void)LogInCheck
 {
     //localUserName = @"user";
@@ -88,10 +125,6 @@ static UserManager* managerInstance;
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];
     [request setUsername:localUserName];
     [request setPassword:localPassword];
-    
-    //[request setCachePolicy:ASIDontLoadCachePolicy];
-    
-    //[request setUseSessionPersistence:NO];
     
     [request setAuthenticationScheme:(NSString*)kCFHTTPAuthenticationSchemeBasic];
     request.shouldPresentCredentialsBeforeChallenge = YES;
