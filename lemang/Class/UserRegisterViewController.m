@@ -232,15 +232,11 @@
     image= [info objectForKey:@"UIImagePickerControllerEditedImage"];
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
     {
-        //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     }
-    UIImage *theImage = [UserRegisterViewController imageWithImageSimple:image scaledToSize:CGSizeMake(120.0, 120.0)];
-    UIImage *midImage = [UserRegisterViewController imageWithImageSimple:image scaledToSize:CGSizeMake(210.0, 210.0)];
+
     UIImage *bigImage = [UserRegisterViewController imageWithImageSimple:image scaledToSize:CGSizeMake(440.0, 440.0)];
-    //[theImage retain];
-    [self saveImage:theImage WithName:@"salesImageSmall.jpg"];
-    [self saveImage:midImage WithName:@"salesImageMid.jpg"];
-    [self saveImage:bigImage WithName:@"salesImageBig.jpg"];
+    [self saveImage:bigImage WithName:@"iconImageBig.jpg"];
     
     self.imgViewBig.image = image;
     UIImageView *buttonView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 77, 77)];
@@ -248,8 +244,7 @@
     [self.pickImgButton addSubview:buttonView];
     
     [self dismissModalViewControllerAnimated:YES];
-    //[self refreshData];
-    //[picker release];
+
 }
 
 - (void)upLoadSalesBigImage:(NSString *)bigImage MidImage:(NSString *)midImage SmallImage:(NSString *)smallImage
@@ -448,6 +443,8 @@
     
     if (registerDone)
     {
+        [self UploadIconFile];
+        _imgViewBig.image = [_imgViewBig.image initWithContentsOfFile:@"user_icon_de.png"];
         [[UserManager Instance]DoLogIn:userName.text :userPW.text];
         [self dismissModalViewControllerAnimated:NO];
     }
@@ -455,6 +452,11 @@
     {
         _infoText.text = @"注册用户失败";
     }
+}
+
+- (void) UploadIconFile
+{
+    //
 }
 
 /*

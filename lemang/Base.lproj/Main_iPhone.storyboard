@@ -2074,6 +2074,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                     <state key="normal" title="更换">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="OnChangeIcon:" destination="xa0-67-cxw" eventType="touchUpInside" id="a1x-oN-6dI"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王佳" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MUx-Nw-kwI">
                                                     <rect key="frame" x="20" y="13" width="111" height="21"/>
@@ -2273,6 +2276,17 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="我的账户" id="4PI-M9-zkg"/>
+                    <connections>
+                        <outlet property="departName" destination="hN6-5l-lPk" id="8iv-Nt-do5"/>
+                        <outlet property="phoneNumber" destination="f1w-pM-dPX" id="EwI-f5-CdU"/>
+                        <outlet property="qqNumber" destination="5bI-LD-y33" id="Up6-MW-akf"/>
+                        <outlet property="schoolName" destination="3be-E5-EOY" id="1oF-81-dXi"/>
+                        <outlet property="schoolNumber" destination="Aaq-fT-SMt" id="xWd-SR-wWu"/>
+                        <outlet property="userIcon" destination="kMw-lw-P3q" id="Dnr-8K-COB"/>
+                        <outlet property="userName" destination="MUx-Nw-kwI" id="uGf-zT-hFM"/>
+                        <outlet property="userNickName" destination="EVM-sB-fgu" id="wav-Vm-GNr"/>
+                        <outlet property="userSign" destination="tSb-kC-nRd" id="QRa-94-bMW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftX-hX-lId" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
