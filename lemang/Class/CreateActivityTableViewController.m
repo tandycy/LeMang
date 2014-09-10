@@ -7,6 +7,7 @@
 //
 
 #import "CreateActivityTableViewController.h"
+#import "Constants.h"
 
 @interface CreateActivityTableViewController ()
 {
@@ -14,6 +15,7 @@
     UILabel *lab;
     NSDateFormatter *dateFormatter;
     NSDateFormatter *nowDate;
+    UILabel *textViewHolder;
 }
 
 @end
@@ -23,6 +25,7 @@
 @synthesize startDate,endDate;
 @synthesize datePicker,allDayTrigger;
 @synthesize actName,actDescription;
+@synthesize doneToolbar;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,6 +40,14 @@
 {
     [super viewDidLoad];
     
+    actDescription.delegate = self;
+
+    textViewHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
+    textViewHolder.font = [UIFont fontWithName:defaultFont  size:15];
+    textViewHolder.text = @"请输入活动描述...";
+    textViewHolder.enabled = NO;//lable必须设置为不可用
+    textViewHolder.backgroundColor = [UIColor clearColor];
+    [actDescription addSubview:textViewHolder];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -47,7 +58,9 @@
     //date.delegate = self;
     
     startDate.inputView = datePicker;
+    startDate.inputAccessoryView = doneToolbar;
     endDate.inputView = datePicker;
+    endDate.inputAccessoryView = doneToolbar;
     
     [datePicker setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:3600*8]];
     [datePicker setMinimumDate:[NSDate date]];
@@ -73,11 +86,20 @@
     
 }
 
-
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
 {
     [self.actName resignFirstResponder];
     [self.actDescription resignFirstResponder];
+}
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+    //self.actDescription.text =  textView.text;
+    if (textView.text.length == 0) {
+        textViewHolder.text = @"请输入活动描述...";
+    }else{
+        textViewHolder.text = @"";
+    }
 }
 
 - (IBAction)allDayTriggerChanged:(id)sender {
@@ -88,6 +110,16 @@
     else {
         [dateFormatter setDateFormat:@"yyyy年MM月dd日 hh:mm:ss"];
         [datePicker setDatePickerMode:UIDatePickerModeDateAndTime];
+    }
+}
+
+- (IBAction)selectButton:(id)sender {
+    if (startDate.isEditing) {
+        [startDate endEditing:YES];
+    }
+    else if(endDate.isEditing)
+    {
+        [endDate endEditing:YES];
     }
 }
 

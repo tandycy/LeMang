@@ -17,5 +17,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *endDate;
 @property (strong, nonatomic) IBOutlet UISwitch *allDayTrigger;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
+
+- (IBAction)selectButton:(id)sender;
 
 @end
