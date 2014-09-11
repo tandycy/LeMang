@@ -10,7 +10,7 @@
 
 @interface CreateActivityTableViewController : UITableViewController
 
-@property (strong, nonatomic) IBOutlet UITextField *actName;
+@property (strong, nonatomic) IBOutlet UITextView *actName;
 @property (strong, nonatomic) IBOutlet UITextView *actDescription;
 
 @property (strong, nonatomic) IBOutlet UITextField *startDate;

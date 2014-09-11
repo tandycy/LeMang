@@ -304,6 +304,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="actDescription" destination="tY6-RX-KpY" id="MEq-Ge-H3b"/>
+                        <outlet property="actName" destination="kQY-vH-uRp" id="tGB-PC-3rZ"/>
                         <outlet property="allDayTrigger" destination="Ksr-jZ-nPU" id="IR8-14-sye"/>
                         <outlet property="datePicker" destination="PDX-V0-4ns" id="3wh-G2-6hh"/>
                         <outlet property="doneToolbar" destination="68z-c1-vW3" id="QgY-Pc-SSB"/>

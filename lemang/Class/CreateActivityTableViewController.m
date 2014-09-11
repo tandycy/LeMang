@@ -15,7 +15,8 @@
     UILabel *lab;
     NSDateFormatter *dateFormatter;
     NSDateFormatter *nowDate;
-    UILabel *textViewHolder;
+    UILabel *descriptionHolder;
+    UILabel *nameHolder;
 }
 
 @end
@@ -41,13 +42,23 @@
     [super viewDidLoad];
     
     actDescription.delegate = self;
+    actName.delegate = self;
 
-    textViewHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
-    textViewHolder.font = [UIFont fontWithName:defaultFont  size:15];
-    textViewHolder.text = @"请输入活动描述...";
-    textViewHolder.enabled = NO;//lable必须设置为不可用
-    textViewHolder.backgroundColor = [UIColor clearColor];
-    [actDescription addSubview:textViewHolder];
+    
+    
+    nameHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
+    nameHolder.font = [UIFont fontWithName:defaultFont  size:15];
+    nameHolder.text = @"请输入活动标题...";
+    nameHolder.enabled = NO;//lable必须设置为不可用
+    nameHolder.backgroundColor = [UIColor clearColor];
+    [actName addSubview:nameHolder];
+    
+    descriptionHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
+    descriptionHolder.font = [UIFont fontWithName:defaultFont  size:15];
+    descriptionHolder.text = @"请输入活动描述...";
+    descriptionHolder.enabled = NO;//lable必须设置为不可用
+    descriptionHolder.backgroundColor = [UIColor clearColor];
+    [actDescription addSubview:descriptionHolder];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -95,10 +106,20 @@
 -(void)textViewDidChange:(UITextView *)textView
 {
     //self.actDescription.text =  textView.text;
-    if (textView.text.length == 0) {
-        textViewHolder.text = @"请输入活动描述...";
-    }else{
-        textViewHolder.text = @"";
+    if (textView == actName) {
+        if (textView.text.length == 0) {
+            nameHolder.text = @"请输入活动标题...";
+        }else{
+            nameHolder.text = @"";
+        }
+    }
+    else if (textView == actDescription)
+    {
+        if (textView.text.length == 0) {
+            descriptionHolder.text = @"请输入活动描述...";
+        }else{
+            descriptionHolder.text = @"";
+        }
     }
 }
 
