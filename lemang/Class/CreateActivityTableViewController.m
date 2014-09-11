@@ -122,6 +122,19 @@
     }
 }
 
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    
+    if (textView == actName) {
+        if ([text isEqualToString:@"\n"]) {
+            [actName resignFirstResponder];
+            return NO;
+        }
+    }
+    return YES;    
+    
+}
+
 - (IBAction)allDayTriggerChanged:(id)sender {
     dateFormatter = [[NSDateFormatter alloc] init];
     if (allDayTrigger.isOn) {
