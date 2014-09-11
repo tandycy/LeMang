@@ -92,7 +92,7 @@
     _qqNumber.text = @"";
     _wechatId.text = @"";
     
-    _userIcon.image = [_userIcon.image initWithContentsOfFile:@"user_icon_de.png"];
+    _userIcon.image = [UIImage imageNamed:@"user_icon_de.png"];
 }
 
 /*
