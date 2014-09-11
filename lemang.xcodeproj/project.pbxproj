@@ -60,6 +60,7 @@
 		25C3A0FD19ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0F419ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m */; };
 		25C3A0FE19ADC4EC00BB48B3 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0F619ADC4EC00BB48B3 /* UIView+Extension.m */; };
 		25C7F337198B7A3500AB8B2F /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F336198B7A3500AB8B2F /* Activity.m */; };
+		25C8830819C1909700F727AF /* CreateActivityDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C8830719C1909700F727AF /* CreateActivityDetailTableViewController.m */; };
 		25CA2DF319949CF700BED707 /* 活动成员.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE819949CF700BED707 /* 活动成员.png */; };
 		25CA2DF419949CF700BED707 /* 活动详细.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE919949CF700BED707 /* 活动详细.png */; };
 		25CA2DF519949CF700BED707 /* 活动详细分享.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DEA19949CF700BED707 /* 活动详细分享.png */; };
@@ -216,6 +217,8 @@
 		25C3A0F619ADC4EC00BB48B3 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		25C7F335198B7A3500AB8B2F /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Activity.h; path = Class/Activity.h; sourceTree = "<group>"; };
 		25C7F336198B7A3500AB8B2F /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Activity.m; path = Class/Activity.m; sourceTree = "<group>"; };
+		25C8830619C1909700F727AF /* CreateActivityDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateActivityDetailTableViewController.h; path = Class/CreateActivityDetailTableViewController.h; sourceTree = "<group>"; };
+		25C8830719C1909700F727AF /* CreateActivityDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateActivityDetailTableViewController.m; path = Class/CreateActivityDetailTableViewController.m; sourceTree = "<group>"; };
 		25CA2DE819949CF700BED707 /* 活动成员.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动成员.png"; sourceTree = "<group>"; };
 		25CA2DE919949CF700BED707 /* 活动详细.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动详细.png"; sourceTree = "<group>"; };
 		25CA2DEA19949CF700BED707 /* 活动详细分享.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "活动详细分享.png"; sourceTree = "<group>"; };
@@ -443,6 +446,8 @@
 				2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */,
 				25BAA3D019ACAFC500E87856 /* CreateActivityTableViewController.h */,
 				25BAA3D119ACAFC500E87856 /* CreateActivityTableViewController.m */,
+				25C8830619C1909700F727AF /* CreateActivityDetailTableViewController.h */,
+				25C8830719C1909700F727AF /* CreateActivityDetailTableViewController.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -749,7 +754,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -876,6 +881,7 @@
 				28DC153519BD5E8100DE97F0 /* ASIS3Request.m in Sources */,
 				28DC152A19BD5E8000DE97F0 /* ASICloudFilesCDNRequest.m in Sources */,
 				25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */,
+				25C8830819C1909700F727AF /* CreateActivityDetailTableViewController.m in Sources */,
 				28DC152519BD5E8000DE97F0 /* ASIFormDataRequest.m in Sources */,
 				251CEBBE19A33D5B00C80BAF /* OrganizationDetailTableViewController.m in Sources */,
 				28DC152B19BD5E8000DE97F0 /* ASICloudFilesContainer.m in Sources */,
@@ -1094,7 +1100,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,
