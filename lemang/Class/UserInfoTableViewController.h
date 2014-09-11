@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface UserInfoTableViewController : UITableViewController
 {
@@ -23,5 +24,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *departName;
 @property (strong, nonatomic) IBOutlet UILabel *phoneNumber;
 @property (strong, nonatomic) IBOutlet UILabel *qqNumber;
+@property (strong, nonatomic) IBOutlet UILabel *wechatId;
 
 @end

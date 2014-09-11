@@ -26,6 +26,8 @@
     
     NSMutableData* receivedData;
     
+    NSDictionary* localUserData;
+    
     id <UserLoginDelegate> loginDelegate;
 }
 
@@ -33,6 +35,7 @@
 + (UserManager*) Instance;
 + (NSString*) UserName;
 + (NSString*) UserPW;
++ (NSDictionary*) LocalUserData;
 
 + (bool)IsUserNameExists:(NSString*)nameData;
 

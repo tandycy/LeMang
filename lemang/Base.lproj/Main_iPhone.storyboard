@@ -2260,6 +2260,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="userName" destination="MUx-Nw-kwI" id="uGf-zT-hFM"/>
                         <outlet property="userNickName" destination="EVM-sB-fgu" id="wav-Vm-GNr"/>
                         <outlet property="userSign" destination="tSb-kC-nRd" id="QRa-94-bMW"/>
+                        <outlet property="wechatId" destination="f8Y-Na-EXV" id="UVy-BF-Eg7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftX-hX-lId" userLabel="First Responder" sceneMemberID="firstResponder"/>

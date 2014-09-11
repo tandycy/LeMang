@@ -101,6 +101,7 @@
 		28DC153819BD5E8100DE97F0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC152019BD5E8000DE97F0 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153A19BE1E5200DE97F0 /* Base64.m */; };
 		28DC153E19BE8F8500DE97F0 /* SchoolItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153D19BE8F8500DE97F0 /* SchoolItem.m */; };
+		EE28E93E19C152D000E0E8A6 /* profile.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE28E93D19C152D000E0E8A6 /* profile.plist */; };
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
 		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
@@ -285,6 +286,7 @@
 		28DC153A19BE1E5200DE97F0 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Base64.m; path = Class/Base64.m; sourceTree = "<group>"; };
 		28DC153C19BE8F8500DE97F0 /* SchoolItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolItem.h; path = Class/SchoolItem.h; sourceTree = "<group>"; };
 		28DC153D19BE8F8500DE97F0 /* SchoolItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolItem.m; path = Class/SchoolItem.m; sourceTree = "<group>"; };
+		EE28E93D19C152D000E0E8A6 /* profile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = profile.plist; path = lemang/Class/profile.plist; sourceTree = "<group>"; };
 		EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoader.h; path = Class/IconImageViewLoader.h; sourceTree = "<group>"; };
 		EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoader.m; path = Class/IconImageViewLoader.m; sourceTree = "<group>"; };
 		EE54DB1719B563EF0000845F /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Class/UserManager.h; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		256E041C1987A106009845A5 = {
 			isa = PBXGroup;
 			children = (
+				EE28E93D19C152D000E0E8A6 /* profile.plist */,
 				256E042E1987A106009845A5 /* lemang */,
 				256E04531987A106009845A5 /* lemangTests */,
 				256E04271987A106009845A5 /* Frameworks */,
@@ -746,7 +749,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -771,6 +774,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE28E93E19C152D000E0E8A6 /* profile.plist in Resources */,
 				28DC153719BD5E8100DE97F0 /* README-GHUnit in Resources */,
 				25CA2DF919949CF700BED707 /* 评论页面.png in Resources */,
 				256E043F1987A106009845A5 /* Main_iPad.storyboard in Resources */,
@@ -1090,7 +1094,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

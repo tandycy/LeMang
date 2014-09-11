@@ -50,7 +50,8 @@ static UserManager* managerInstance;
 
 - (void)InitLocalData
 {
-    NSMutableDictionary* dict =  [ [ NSMutableDictionary alloc ] initWithContentsOfFile:@"/Profile.plist" ];
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"profile" ofType:@"plist"];
+    NSMutableDictionary* dict =  [ [ NSMutableDictionary alloc ] initWithContentsOfFile:plistPath];
     localUserName = [ dict objectForKey:@"userName" ];
     
     NSData* userPw = [dict objectForKey:@"userKey"];
@@ -102,6 +103,18 @@ static UserManager* managerInstance;
     return false;
 }
 
++ (NSDictionary*) LocalUserData
+{
+    if ([UserManager IsInitSuccess])
+    {
+        return [UserManager Instance]->localUserData;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 - (void)LogInCheck
 {
     //localUserName = @"user";
@@ -151,98 +164,16 @@ static UserManager* managerInstance;
             {
                 NSNumber* idNum = data[@"id"];
                 localUserId = [idNum integerValue];
+                localUserData = data;
                 initedLocalData = true;
+                [self UpdateLocalData];
                 break;
             }
         }
         
         [loginDelegate UserLoginContact];
-    }
-    
-    
-    /*
-    
-    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
-    
-    [URLRequest setHTTPMethod:@"GET"];
-    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
-    
-    receivedData=[[NSMutableData alloc] initWithData:nil];
-    
-    if (connection) {
-        receivedData = [NSMutableData new];
-        NSLog(@"rdm%@",receivedData);
-    }
-     */
+    }    
 }
-/*
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-    if ([challenge previousFailureCount] == 0) {
-        NSURLCredential *newCredential;
-        newCredential=[NSURLCredential credentialWithUser:localUserName password:localPassword                                              persistence:NSURLCredentialPersistenceNone];
-        [[challenge sender] useCredential:newCredential
-               forAuthenticationChallenge:challenge];
-    } else {
-        [[challenge sender] cancelAuthenticationChallenge:challenge];
-    }
-}
-
-- (NSString*) filtStr:(NSString*)inputStr
-{
-    NSString* result = @"";
-    
-    result = [result stringByAppendingFormat:@"%@", inputStr];
-    
-    return result;
-}
-
-#pragma mark- NSURLConnection 回调方法
-- (void)connection:(NSURLConnection *)aConn didReceiveResponse:(NSURLResponse *)response
-
-{
-    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    if ([response respondsToSelector:@selector(allHeaderFields)]) {
-        NSDictionary *dictionary = [httpResponse allHeaderFields];
-        //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);
-        
-    }
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [receivedData appendData:data];
-}
--(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
-    NSLog(@"%@",[error localizedDescription]);
-}
-- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
-    NSLog(@"请求完成…");
-    NSArray* userData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
-    
-    initedLocalData = false;
-    for (int i = 0; i < userData.count; i++)
-    {
-        NSDictionary* data = userData[i];
-        NSString* logName = data[@"loginName"];
-        
-        NSComparisonResult res = [logName compare:localUserName];
-        
-        if (res == NSOrderedSame)
-        {
-            NSNumber* idNum = data[@"id"];
-            localUserId = [idNum integerValue];
-            initedLocalData = true;
-            break;
-        }
-    }
-    
-    [loginDelegate UserLoginContact];
-}
- */
 
 - (int) GetLocalUserId
 {
@@ -259,14 +190,16 @@ static UserManager* managerInstance;
 
 - (void) UpdateLocalData
 {
-    NSMutableDictionary* dict = [ [ NSMutableDictionary alloc ] initWithContentsOfFile:@"/Profile.plist" ];
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"profile" ofType:@"plist"];
+
+    NSMutableDictionary* dict = [ [ NSMutableDictionary alloc ] initWithContentsOfFile:plistPath ];
     
     NSData* pwData = [NSData AES256Encode:localPassword];
     
     [ dict setObject:localUserName forKey:@"userName" ];
     [ dict setObject:pwData forKey:@"userKey" ];
     
-    [ dict writeToFile:@"/Profile.plist" atomically:YES ];
+    [ dict writeToFile:plistPath atomically:YES ];
 }
 
 + (UserManager*) Instance

@@ -111,7 +111,7 @@
     {
         // TODO: return to previous page and refresh
         NSLog(@"Log in success");
-        [[UserManager Instance] UpdateLocalData];
+        //[[UserManager Instance] UpdateLocalData];
         
         [self dismissModalViewControllerAnimated:YES];
         
