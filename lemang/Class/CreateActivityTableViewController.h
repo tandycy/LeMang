@@ -10,12 +10,15 @@
 
 @interface CreateActivityTableViewController : UITableViewController
 
-@property (strong, nonatomic) IBOutlet UITextField *actName;
+@property (strong, nonatomic) IBOutlet UITextView *actName;
 @property (strong, nonatomic) IBOutlet UITextView *actDescription;
 
 @property (strong, nonatomic) IBOutlet UITextField *startDate;
 @property (strong, nonatomic) IBOutlet UITextField *endDate;
 @property (strong, nonatomic) IBOutlet UISwitch *allDayTrigger;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
+
+- (IBAction)selectButton:(id)sender;
 
 @end

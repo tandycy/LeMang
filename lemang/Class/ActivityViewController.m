@@ -318,12 +318,12 @@ NSString *navTitle;
     [self.activityList addFooterWithTarget:self action:@selector(footerRereshing)];
     
     // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
-    self.activityList.headerPullToRefreshText = @"下拉可以刷新了";
-    self.activityList.headerReleaseToRefreshText = @"松开马上刷新了";
+    self.activityList.headerPullToRefreshText = @"下拉刷新";
+    self.activityList.headerReleaseToRefreshText = @"释放刷新";
     self.activityList.headerRefreshingText = @"数据刷新中...";
     
-    self.activityList.footerPullToRefreshText = @"上拉可以加载更多数据了";
-    self.activityList.footerReleaseToRefreshText = @"松开马上加载更多数据了";
+    self.activityList.footerPullToRefreshText = @"上拉可以加载更多数据";
+    self.activityList.footerReleaseToRefreshText = @"松开马上加载更多数据";
     self.activityList.footerRefreshingText = @"数据加载中...";
 }
 
@@ -518,6 +518,7 @@ NSString *navTitle;
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    [self.activityList headerEndRefreshing];
     //[self refreshActivityData];
     //[activitySearchBar setHidden:NO];
    // [self refreshActivityData];
