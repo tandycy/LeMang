@@ -84,11 +84,11 @@
                                                     <rect key="frame" x="289" y="3" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wm_tab_mytakeaway_normal" id="PSK-Ll-m1w">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="PSK-Ll-m1w">
                                                     <rect key="frame" x="294" y="45" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wm_tab_shop_normal" id="LYw-OM-iKM">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LYw-OM-iKM">
                                                     <rect key="frame" x="294" y="68" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -515,13 +515,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="CJx-PY-sdZ">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="mfN-fd-bUN">
                                                     <rect key="frame" x="0.0" y="29" width="320" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -686,6 +685,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationItem key="navigationItem" id="Zee-w8-1ip">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="kbU-je-nin"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="actArea" destination="mWo-hi-GSt" id="PMc-MK-DFg"/>
+                        <outlet property="actCollege" destination="KiH-rL-NuB" id="d1p-f4-ya1"/>
+                        <outlet property="actHost" destination="148-4T-UN5" id="zjx-6U-fdH"/>
+                        <outlet property="actHostType" destination="ypd-6C-Hsd" id="nZp-lf-23E"/>
+                        <outlet property="actUniversity" destination="n2o-Wc-PZq" id="1FC-kS-udr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xr4-dX-eFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2462,8 +2468,6 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <image name="rate_star_whole" width="14" height="14"/>
         <image name="user_icon_de" width="70" height="70"/>
         <image name="user_icon_de.png" width="27" height="26"/>
-        <image name="wm_tab_mytakeaway_normal" width="24" height="23"/>
-        <image name="wm_tab_shop_normal" width="29" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
