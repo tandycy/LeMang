@@ -17,6 +17,12 @@
     NSDateFormatter *nowDate;
     UILabel *descriptionHolder;
     UILabel *nameHolder;
+    
+    NSString *actNameString;
+    NSString *actDescriptionString;
+
+    NSDate *tempDate;
+    NSDate *tempDate2;
 }
 
 @end
@@ -44,8 +50,6 @@
     actDescription.delegate = self;
     actName.delegate = self;
 
-    
-    
     nameHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
     nameHolder.font = [UIFont fontWithName:defaultFont  size:15];
     nameHolder.text = @"请输入活动标题...";
@@ -74,7 +78,7 @@
     endDate.inputAccessoryView = doneToolbar;
     
     [datePicker setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:3600*8]];
-    [datePicker setMinimumDate:[NSDate date]];
+    //[datePicker setMinimumDate:[NSDate date]];
     [allDayTrigger addTarget:self action:@selector(allDayTriggerChanged:) forControlEvents:UIControlEventValueChanged];
     [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     datePicker.frame =  CGRectMake(0, 480, 320, 260);
@@ -83,14 +87,8 @@
     [nowDate setDateFormat:@"yyyy年MM月dd日"];
     startDate.text = [nowDate stringFromDate:[NSDate date]];
     endDate.text = [nowDate stringFromDate:[NSDate date]];
-    NSLog(@"%@",[nowDate stringFromDate:[NSDate date]]);
-    NSLog(@"%@",nowDate);
-    
+    tempDate = tempDate2 = [NSDate date];
 
-   // lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 200, 320, 50)];
-    
-   // [self.view addSubview:lab];
-    
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
@@ -105,13 +103,13 @@
 
 -(void)textViewDidChange:(UITextView *)textView
 {
-    //self.actDescription.text =  textView.text;
     if (textView == actName) {
         if (textView.text.length == 0) {
             nameHolder.text = @"请输入活动标题...";
         }else{
             nameHolder.text = @"";
         }
+        actNameString =  textView.text;
     }
     else if (textView == actDescription)
     {
@@ -120,18 +118,25 @@
         }else{
             descriptionHolder.text = @"";
         }
+        actDescriptionString = textView.text;
     }
 }
 
 - (IBAction)allDayTriggerChanged:(id)sender {
+    dateFormatter = [[NSDateFormatter alloc] init];
     if (allDayTrigger.isOn) {
         [datePicker setDatePickerMode:UIDatePickerModeDate];
         [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
     }
     else {
-        [dateFormatter setDateFormat:@"yyyy年MM月dd日 hh:mm:ss"];
+        [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm:ss"];
         [datePicker setDatePickerMode:UIDatePickerModeDateAndTime];
     }
+
+    NSString *dateAndTime =  [dateFormatter stringFromDate:tempDate];
+    NSString *dateAndTime2 = [dateFormatter stringFromDate:tempDate2];
+    startDate.text = dateAndTime;
+    endDate.text = dateAndTime2;
 }
 
 - (IBAction)selectButton:(id)sender {
@@ -151,15 +156,17 @@
     if (allDayTrigger.isOn) {
         [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
     }
-    else [dateFormatter setDateFormat:@"yyyy年MM月dd日  hh:mm"];
+    else [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm:ss"];
     
     NSString *dateAndTime =  [dateFormatter stringFromDate:selected];
     if (startDate.isEditing) {
         startDate.text = dateAndTime;
+        tempDate = selected;
     }
     else if (endDate.isEditing)
     {
         endDate.text =dateAndTime;
+        tempDate2 = selected;
     }
     
    // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时间提示" message:dateAndTime delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
