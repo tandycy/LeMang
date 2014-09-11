@@ -210,7 +210,7 @@ static UserManager* managerInstance;
     //得到完整的文件名
     NSString *filename=[plistPath1 stringByAppendingPathComponent:@"profile.plist"];
     
-   // [ dict writeToFile:filename atomically:YES ];
+    [dict writeToFile:plistPath atomically:YES];
 }
 
 + (UserManager*) Instance
