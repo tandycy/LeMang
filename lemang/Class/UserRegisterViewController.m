@@ -444,7 +444,7 @@
     if (registerDone)
     {
         [self UploadIconFile];
-        _imgViewBig.image = [_imgViewBig.image initWithContentsOfFile:@"user_icon_de.png"];
+        _imgViewBig.image = [UIImage imageNamed:@"user_icon_de.png"];
         [[UserManager Instance]DoLogIn:userName.text :userPW.text];
         [self dismissModalViewControllerAnimated:NO];
     }
