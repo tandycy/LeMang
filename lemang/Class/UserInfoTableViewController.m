@@ -214,12 +214,16 @@
     NSURL* uploadUrl = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/images/upload"];
     
     NSString* disposition = @"form-data;name=";
-    disposition = [disposition stringByAppendingFormat:@"\"%@\";filename=\"%@\"", pathResp, @"iconImageBig.png"];
+    disposition = [disposition stringByAppendingFormat:@"\"%@\";filename=\"%@\"", pathResp, @"iconImageBig.jpg"];
     
-    ASIFormDataRequest *uploadRequest = [ASIFormDataRequest requestWithURL:uploadUrl];
+    [ASIHTTPRequest clearSession];
+    ASIHTTPRequest *uploadRequest = [ASIHTTPRequest requestWithURL:uploadUrl];
     
-    [uploadRequest setUsername:[UserManager UserName]];
-    [uploadRequest setPassword:[UserManager UserPW]];
+//    [uploadRequest setUsername:[UserManager UserName]];
+//    [uploadRequest setPassword:[UserManager UserPW]];
+    
+    [uploadRequest setUsername:@"test111"];
+    [uploadRequest setPassword:@"111111"];
     
     [uploadRequest setRequestMethod:@"POST"];
     [uploadRequest addRequestHeader:@"Content-Disposition" value:disposition];
@@ -227,10 +231,11 @@
     [uploadRequest addRequestHeader:@"Content-Length" value:dataLength];
     
     //[uploadRequest appendPostData:imageData];
-    
-    [uploadRequest setFile:@"iconImageBig.png" forKey:@"filename"];
+    /*
+    [uploadRequest setFile:@"iconImageBig.jpg" forKey:@"filename"];
     [uploadRequest buildPostBody];
-
+    [uploadRequest buildRequestHeaders];
+*/
     /*
      [uploadRequest setPostValue:@"photo" forKey:@"type"];
      [uploadRequest setFile:bigImage forKey:@"file_pic_big"];
@@ -241,7 +246,14 @@
      */
     
     [uploadRequest setDelegate:self];
-    [uploadRequest startAsynchronous];
+//    [uploadRequest startAsynchronous];
+    
+    [uploadRequest startSynchronous];
+    
+    NSError* xerror = [uploadRequest error];
+    NSString* xresp = [uploadRequest responseString];
+    NSLog(@"resp %@", xresp);
+    NSLog(@"Upload file: %d - %d",xerror.code, [uploadRequest responseStatusCode]);
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request
