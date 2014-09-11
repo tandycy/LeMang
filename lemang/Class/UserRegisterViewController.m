@@ -394,25 +394,6 @@
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
     NSURL* URL = [NSURL URLWithString:urlString];
     
-    /*
-    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
-    
-    [URLRequest setHTTPMethod:@"POST"];
-    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
-    [URLRequest setHTTPBody:postData];
-    
-    [URLRequest setValue:dataLength forHTTPHeaderField:@"Content-Length"];
-    [URLRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
-    
-    receivedData=[[NSMutableData alloc] initWithData:nil];
-    
-    if (connection) {
-        receivedData = [NSMutableData new];
-        NSLog(@"rdm%@",receivedData);
-    }
-    */
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
     
     [request setUsername:@"admin"];

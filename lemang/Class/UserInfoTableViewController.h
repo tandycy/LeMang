@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "UserManager.h"
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 
 @interface UserInfoTableViewController : UITableViewController
 {
-    //
+    UIImagePickerController *imagePicker;
+    UIImage* image;
 }
 - (IBAction)OnChangeIcon:(id)sender;
 

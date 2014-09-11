@@ -34,8 +34,7 @@
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
 + (UserManager*) Instance;
 + (NSString*) UserName;
-+ (NSString*) UserPW;
-+ (NSDictionary*) LocalUserData;
++ (NSString*) UserPW;+ (NSDictionary*) LocalUserData;
 
 + (bool)IsUserNameExists:(NSString*)nameData;
 

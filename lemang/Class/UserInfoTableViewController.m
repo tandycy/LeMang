@@ -56,7 +56,7 @@
     if (userData == nil)
         return;
     
-    _userName.text = [self filtStr:userData[@"name"]];
+    _userName.text = @"未认证用户";
     _schoolName.text = [self filtStr:userData[@"university"][@"name"]];
     _departName.text =[self filtStr:userData[@"department"][@"name"]];
     
@@ -64,7 +64,7 @@
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
-        _userName.text = [self filtStr:profileData[@"nickName"]];
+        _userName.text = [self filtStr:profileData[@"fullName"]];
         _userNickName.text = [self filtStr:profileData[@"nickName"]];
         _userSign.text = [self filtStr:profileData[@"signature"]];
         _schoolNumber.text = [self filtStr:profileData[@"code"]];
@@ -94,6 +94,208 @@
     
     _userIcon.image = [UIImage imageNamed:@"user_icon_de.png"];
 }
+
+
+- (NSString*) filtStr:(NSString*)inputStr
+{
+    NSString* result = @"";
+    
+    result = [result stringByAppendingFormat:@"%@", inputStr];
+    
+    return result;
+}
+
+- (IBAction)OnChangeIcon:(id)sender
+{
+    [self UploadIconImage];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"请选择您上传照片的方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照上传" otherButtonTitles:@"从相册中选择", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"%i", buttonIndex);
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    switch (buttonIndex) {
+        case 0: {
+            imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.delegate = self;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            imagePicker.allowsEditing = YES;
+            
+            [self presentModalViewController:imagePicker animated:YES];
+            break;
+        }
+        case 1: {
+            imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.delegate = self;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            imagePicker.allowsEditing = YES;
+            
+            [self presentModalViewController:imagePicker animated:YES];
+            break;
+        }
+    }
+}
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //image= [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    image= [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
+    {
+        //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    }
+    
+    UIImage *bigImage = [UserInfoTableViewController imageWithImageSimple:image scaledToSize:CGSizeMake(440.0, 440.0)];
+    
+    //if ([UserManager IsInitSuccess])
+    //{
+        int userId = [[UserManager Instance] GetLocalUserId];
+        NSString* fileName = [NSString stringWithFormat:@"userIcon_%d", userId];
+    //}
+    
+    [self saveImage:bigImage WithName:@"iconImageBig.jpg"];
+    
+    self.userIcon.image = image;
+    UIImageView *buttonView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 77, 77)];
+    buttonView.image = image;
+//    [self.pickImgButton addSubview:buttonView];
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+    [self UploadIconImage];
+}
+
+- (void)UploadIconImage
+{
+    if (![UserManager IsInitSuccess])
+        return;
+    int userId = [[UserManager Instance] GetLocalUserId];
+    
+    NSData* imageData = UIImageJPEGRepresentation(image, 1.0);
+    if (!imageData)
+        return;
+    NSString* dataLength = [NSString stringWithFormat:@"%d",imageData.length];
+    
+    NSString* fileName = [NSString stringWithFormat:@"userIcon_%d", userId];
+    NSString* firstPath = @"http://e.taoware.com:8080/quickstart/api/v1/images/profile/";
+    firstPath = [firstPath stringByAppendingFormat:@"%d?imageName=%@.jpg", userId, fileName];
+    
+    NSURL* URL = [NSURL URLWithString:firstPath];
+    ASIHTTPRequest *putRequest = [ASIHTTPRequest requestWithURL:URL];
+    [putRequest setUsername:[UserManager UserName]];
+    [putRequest setPassword:[UserManager UserPW]];
+    
+    [putRequest setRequestMethod:@"PUT"];
+    [putRequest startSynchronous];
+    
+    NSError *error = [putRequest error];
+    NSString* pathResp;
+    
+    if (!error)
+    {
+        pathResp = [putRequest responseString];
+    }
+    else
+    {
+        // TODO
+        return;
+    }
+    
+    NSString* secondPath = @"http://e.taoware.com:8080/quickstart/resources";
+    secondPath = [secondPath stringByAppendingString:pathResp];
+    NSLog(@"path %@", secondPath);
+    
+    NSURL* uploadUrl = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/images/upload"];
+    
+    NSString* disposition = @"form-data;name=";
+    disposition = [disposition stringByAppendingFormat:@"\"%@\";filename=\"%@\"", pathResp, @"iconImageBig.png"];
+    
+    ASIFormDataRequest *uploadRequest = [ASIFormDataRequest requestWithURL:uploadUrl];
+    
+    [uploadRequest setUsername:[UserManager UserName]];
+    [uploadRequest setPassword:[UserManager UserPW]];
+    
+    [uploadRequest setRequestMethod:@"POST"];
+    [uploadRequest addRequestHeader:@"Content-Disposition" value:disposition];
+    [uploadRequest addRequestHeader:@"Content-Type" value:@"image/jpeg"];
+    [uploadRequest addRequestHeader:@"Content-Length" value:dataLength];
+    
+    //[uploadRequest appendPostData:imageData];
+    
+    [uploadRequest setFile:@"iconImageBig.png" forKey:@"filename"];
+    [uploadRequest buildPostBody];
+
+    /*
+     [uploadRequest setPostValue:@"photo" forKey:@"type"];
+     [uploadRequest setFile:bigImage forKey:@"file_pic_big"];
+     [uploadRequest buildPostBody];
+     [uploadRequest setDelegate:self];
+     [uploadRequest setTimeOutSeconds:TIME_OUT_SECONDS];
+     [uploadRequest startAsynchronous];
+     */
+    
+    [uploadRequest setDelegate:self];
+    [uploadRequest startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest*)request
+{
+    NSString* resp = [request responseString];
+
+    NSLog(@"done %@", resp);
+}
+
+- (void)requestFailed:(ASIHTTPRequest*)request
+{
+    NSError* error = [request error];
+    NSString* resp = [request responseString];
+    NSLog(@"resp %@", resp);
+    NSLog(@"Upload file: %d - %d",error.code, [request responseStatusCode]);
+}
+
+
+- (NSString *)documentFolderPath
+{
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+}
+
++ (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    // Return the new image.
+    return newImage;
+}
+
+#pragma mark 保存图片到document
+- (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName
+{
+    NSData* imageData = UIImagePNGRepresentation(tempImage);
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    // Now we get the full path to the file
+    NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
+    // and then we write it out
+    [imageData writeToFile:fullPathToFile atomically:NO];
+}
+
 
 /*
  #pragma mark - Table view data source
@@ -172,15 +374,4 @@
  }
  */
 
-- (NSString*) filtStr:(NSString*)inputStr
-{
-    NSString* result = @"";
-    
-    result = [result stringByAppendingFormat:@"%@", inputStr];
-    
-    return result;
-}
-
-- (IBAction)OnChangeIcon:(id)sender {
-}
 @end
