@@ -51,6 +51,7 @@ static UserManager* managerInstance;
 - (void)InitLocalData
 {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"profile" ofType:@"plist"];
+    NSLog(@"load path: %@", plistPath);
     NSMutableDictionary* dict =  [ [ NSMutableDictionary alloc ] initWithContentsOfFile:plistPath];
     localUserName = [ dict objectForKey:@"userName" ];
     
@@ -119,9 +120,10 @@ static UserManager* managerInstance;
 {
     //localUserName = @"user";
     
+    initedLocalData = FALSE;
+    
     if (localUserName == nil)
     {
-        initedLocalData = FALSE;
         [loginDelegate UserLoginContact];
         return;
     }
@@ -170,9 +172,9 @@ static UserManager* managerInstance;
                 break;
             }
         }
-        
-        [loginDelegate UserLoginContact];
-    }    
+    }
+    
+    [loginDelegate UserLoginContact];
 }
 
 - (int) GetLocalUserId
@@ -191,6 +193,8 @@ static UserManager* managerInstance;
 - (void) UpdateLocalData
 {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"profile" ofType:@"plist"];
+    
+    NSLog(@"save path %@", plistPath);
 
     NSMutableDictionary* dict = [ [ NSMutableDictionary alloc ] initWithContentsOfFile:plistPath ];
     
@@ -199,7 +203,14 @@ static UserManager* managerInstance;
     [ dict setObject:localUserName forKey:@"userName" ];
     [ dict setObject:pwData forKey:@"userKey" ];
     
-    [ dict writeToFile:plistPath atomically:YES ];
+    //获取应用程序沙盒的Documents目录
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *plistPath1 = [paths objectAtIndex:0];
+    
+    //得到完整的文件名
+    NSString *filename=[plistPath1 stringByAppendingPathComponent:@"profile.plist"];
+    
+   // [ dict writeToFile:filename atomically:YES ];
 }
 
 + (UserManager*) Instance
