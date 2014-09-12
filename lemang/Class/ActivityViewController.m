@@ -50,151 +50,113 @@ NSString *navTitle;
 
 - (void)refreshActivityData
 {
-    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
+    currentPage = 0;
+    nextPage = 1;
+    pageSize = 10;
+    
+    if (activityArray == nil)
+        activityArray = [[NSMutableArray alloc]init];
+    [activityArray removeAllObjects];
+    [self appendActivityData];
+}
+
+- (void) appendActivityData
+{
+    if (currentPage == nextPage)
+        return;
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity?page=";
+    URLString = [URLString stringByAppendingFormat:@"%d&page.size=%d&sortType=auto", nextPage, pageSize];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     // NSString *authInfo = @"Basic user:user";
     
-    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+ //    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
     
-    [URLRequest setHTTPMethod:@"GET"];
-    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
-    // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
- 
-    NSError * error;
-    NSURLResponse * response;
-    NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest setUsername:@"admin"];
+    [URLRequest setPassword:@"admin"];
     
-    if (error) {
-        NSLog(@"a connection could not be created or request fails.");
-        NSLog(@"Error: %@", [error localizedDescription]);
-    }
-    //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
- 
+    [URLRequest startSynchronous];
     
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
+    NSError *error = [URLRequest error];
     
-    receivedData=[[NSMutableData alloc] initWithData:nil];
-    
-    if (connection) {
-        receivedData = [NSMutableData new];
-        NSLog(@"rdm%@",receivedData);
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-    if ([challenge previousFailureCount] == 0) {
-        NSURLCredential *newCredential;
-        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
-        [[challenge sender] useCredential:newCredential
-               forAuthenticationChallenge:challenge];
-    } else {
-        [[challenge sender] cancelAuthenticationChallenge:challenge];
-    }
-}
-
-#pragma mark- NSURLConnection 回调方法
-- (void)connection:(NSURLConnection *)aConn didReceiveResponse:(NSURLResponse *)response
-
-{
-    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    if ([response respondsToSelector:@selector(allHeaderFields)]) {
-        NSDictionary *dictionary = [httpResponse allHeaderFields];
-        //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);
-        
-    }
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [receivedData appendData:data];
-}
--(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
-    NSLog(@"%@",[error localizedDescription]);
-}
-- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
-    NSLog(@"请求完成…");
-    activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
-    
-    
-    UIImage* bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
-    UIImage* schoolIcon = [UIImage imageNamed:@"school_icon.png"];
-    UIImage* groupIcon = [UIImage imageNamed:@"group_icon.png"];
-    UIImage* privateIcon = [UIImage imageNamed:@"private_icon.png"];
-    
-    //NSDictionary* dicContent = activityData[@"content"];
-    NSMutableArray* newActivityArray = [NSMutableArray arrayWithCapacity:50];
-    
-
-    for (int i = 0; i < activityData.count; i++)
+    if (!error)
     {
-        NSDictionary* temp = activityData[i];
+        NSDictionary* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil];
         
-        NSDictionary* creator = temp[@"createdBy"];
-        NSString* group = temp[@"activityGroup"];
-        NSString* type = temp[@"activityType"];
+        NSArray* activityData = returnData[@"content"];
         
-        NSString* createDate = temp[@"createdDate"];
-        NSArray* members = temp[@"activityMember"];
+        // Update data list info
+        NSNumber* totalPage = returnData[@"totalPages"];
+        maxPage = totalPage.integerValue;
         
-        int memberNum = 0;
-        if (members != Nil) {
-            memberNum = members.count;
-        }
+        if (currentPage == maxPage)
+            nextPage = maxPage;
+        else
+            nextPage = currentPage+1;
         
-        //NSString* tittle = temp[@"title"];
-        NSString* peopleLimit = temp[@"peopleLimit"];
-        NSString* regionLimit = temp[@"regionLimit"];        
-        UIImage* iconImg;
-        
-        if ([group isEqualToString:@"Association"])
+        for (int i = 0; i < activityData.count; i++)
         {
-            iconImg = groupIcon;
+            NSDictionary* temp = activityData[i];
+            
+            NSDictionary* creator = temp[@"createdBy"];
+            NSString* group = temp[@"activityGroup"];
+            NSString* type = temp[@"activityType"];
+            
+            NSString* createDate = temp[@"createdDate"];
+            NSArray* members = temp[@"activityMember"];
+            
+            int memberNum = 0;
+            if (members != Nil) {
+                memberNum = members.count;
+            }
+            
+            //NSString* tittle = temp[@"title"];
+            NSString* peopleLimit = temp[@"peopleLimit"];
+            NSString* regionLimit = temp[@"regionLimit"];
+            UIImage* iconImg;
+            
+            if ([group isEqualToString:@"Association"])
+            {
+                iconImg = groupIcon;
+            }
+            else if ([group isEqualToString:@"Company"])
+            {
+                iconImg = bussinessIcon;
+            }
+            else if ([group isEqualToString:@"University"])
+            {
+                iconImg = schoolIcon;
+            }
+            else if ([group isEqualToString:@"Department"])
+            {
+                iconImg = privateIcon;
+            }
+            
+            NSString* imgUrlString = temp[@"iconUrl"];
+            imgUrlString = @"http://pic13.nipic.com/20110405/4572067_232048222000_2.jpg"; // TSET URL HERE
+            
+            NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
+            
+            [activityArray addObject:[Activity
+                                         activityOfCategory:@"All"
+                                         img:imgUrl
+                                         title:temp[@"title"]
+                                         date:createDate
+                                         limit:regionLimit
+                                         icon:schoolIcon
+                                         member:[NSString stringWithFormat:@"%d",memberNum]
+                                         memberUpper:peopleLimit
+                                         fav:@"325"
+                                         state:0
+                                         activitiId:temp[@"id"]]];
         }
-        else if ([group isEqualToString:@"Company"])
-        {
-            iconImg = bussinessIcon;
-        }
-        else if ([group isEqualToString:@"University"])
-        {
-            iconImg = schoolIcon;
-        }
-        else if ([group isEqualToString:@"Department"])
-        {
-            iconImg = privateIcon;
-        }
-        
-        NSString* imgUrlString = temp[@"iconUrl"];
-        imgUrlString = @"http://pic13.nipic.com/20110405/4572067_232048222000_2.jpg"; // TSET URL HERE
-        
-        NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
-        
-        [newActivityArray addObject:[Activity
-                  activityOfCategory:@"All"
-                                 img:imgUrl
-                               title:temp[@"title"]
-                                date:createDate
-                               limit:regionLimit
-                                icon:schoolIcon
-                              member:[NSString stringWithFormat:@"%d",memberNum]
-                         memberUpper:peopleLimit
-                                 fav:@"325"
-                               state:0
-                           activitiId:temp[@"id"]]];
+        self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
+        [activityList reloadData];
     }
-    activityArray = newActivityArray;
-    self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
-    [activityList reloadData];
-    /*
-    NSString *results = [[NSString alloc]
-                         initWithBytes:[receivedData bytes]
-                         length:[receivedData length]
-                         encoding:NSUTF8StringEncoding];
-    NSLog(@"results=%@",results);
-     */
 }
+
 
 - (void)viewDidLoad
 {
@@ -210,68 +172,14 @@ NSString *navTitle;
     // activitySearchBar.delegate = self;
     // [self.navigationController.navigationBar addSubview:activitySearchBar];
     
-    //[self refreshActivityData];
-    
+   
     // initialize activity list
     
-    /*
-    activityArray = [NSArray arrayWithObjects:
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上大一日游"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"限上海大学学生"
-                                             icon:schoolIcon
-                                           member:@"47"
-                                      memberUpper:@"50"
-                                              fav:@"325"
-                                            state:0],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"南翔垂钓活动"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"限上海交大垂钓社"
-                                             icon:groupIcon
-                                           member:@"40"
-                                      memberUpper:@"120"
-                                              fav:@"500"
-                                            state:1],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"南京骑行三日游"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"不限人员"
-                                             icon:privateIcon
-                                           member:@"77"
-                                      memberUpper:@"250"
-                                              fav:@"1000"
-                                            state:0],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海电信充值100送100"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"所有在校大一新生"
-                                             icon:businessIcon
-                                           member:@"100"
-                                      memberUpper:@"100"
-                                              fav:@"100"
-                                            state:1],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"同济十大歌手预选赛"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"限上海同济大学学生"
-                                             icon:schoolIcon
-                                           member:@"77"
-                                      memberUpper:@"250"
-                                              fav:@"1000"
-                                            state:0],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海大学活动1"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"限上海交大垂钓社"
-                                             icon:businessIcon
-                                           member:@"47"
-                                      memberUpper:@"100"
-                                              fav:@"20"
-                                            state:1],
-                     nil];
-     */
+    bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
+    schoolIcon = [UIImage imageNamed:@"school_icon.png"];
+    groupIcon = [UIImage imageNamed:@"group_icon.png"];
+    privateIcon = [UIImage imageNamed:@"private_icon.png"];
+    
     
    // [self refreshActivityData];
     
@@ -346,7 +254,7 @@ NSString *navTitle;
 - (void)footerRereshing
 {
     // 1.添加数据
-    //[self refreshActivityData];
+    [self appendActivityData];
     
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
