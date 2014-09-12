@@ -63,7 +63,11 @@ NSString *navTitle;
 - (void) appendActivityData
 {
     if (currentPage == nextPage)
+    {
+        NSLog(@"activity at final page: %d, refresh cancel", currentPage);
         return;
+    }
+    NSLog(@"append activity data for page: %d", nextPage);
     
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity?page=";
     URLString = [URLString stringByAppendingFormat:@"%d&page.size=%d&sortType=auto", nextPage, pageSize];
@@ -91,6 +95,7 @@ NSString *navTitle;
         NSNumber* totalPage = returnData[@"totalPages"];
         maxPage = totalPage.integerValue;
         
+        currentPage = nextPage;
         if (currentPage == maxPage)
             nextPage = maxPage;
         else
@@ -334,7 +339,8 @@ NSString *navTitle;
     typeIcon.image = activity.icon;
     
     UILabel *memberLable = (UILabel *)[cell viewWithTag:ActivityMember];
-    memberLable.text = [memberLable.text stringByAppendingFormat:@"%@/%@",activity.member, activity.memberUpper];
+    memberLable.text = [NSString stringWithFormat:@"%@/%@",activity.member, activity.memberUpper];
+   // memberLable.text = [memberLable.text stringByAppendingFormat:@"%@/%@",activity.member, activity.memberUpper];
     
     UILabel *favLable = (UILabel *)[cell viewWithTag:ActivityFav];
     favLable.text = activity.fav;
