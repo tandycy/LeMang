@@ -213,8 +213,13 @@
     
     NSURL* uploadUrl = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/images/upload"];
     
+    NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    //获取完整路径
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:@"iconImageBig.jpg"];
+    
     NSString* disposition = @"form-data;name=";
-    disposition = [disposition stringByAppendingFormat:@"\"%@\";filename=\"%@\"", pathResp, @"iconImageBig.jpg"];
+    disposition = [disposition stringByAppendingFormat:@"\"%@\";filename=\"%@\"", pathResp, @"doge2.jpg"];
     
     [ASIHTTPRequest clearSession];
     ASIHTTPRequest *uploadRequest = [ASIHTTPRequest requestWithURL:uploadUrl];
@@ -228,9 +233,11 @@
     [uploadRequest setRequestMethod:@"POST"];
     [uploadRequest addRequestHeader:@"Content-Disposition" value:disposition];
     [uploadRequest addRequestHeader:@"Content-Type" value:@"image/jpeg"];
-    [uploadRequest addRequestHeader:@"Content-Length" value:dataLength];
+   // [uploadRequest addRequestHeader:@"Content-Length" value:dataLength];
+    [uploadRequest addRequestHeader:@"Cache-Control" value:@"no-cache"];
+    [uploadRequest setTimeOutSeconds:15];
     
-    //[uploadRequest appendPostData:imageData];
+    [uploadRequest appendPostData:imageData];
     /*
     [uploadRequest setFile:@"iconImageBig.jpg" forKey:@"filename"];
     [uploadRequest buildPostBody];
@@ -245,22 +252,21 @@
      [uploadRequest startAsynchronous];
      */
     
+    
+    
     [uploadRequest setDelegate:self];
-//    [uploadRequest startAsynchronous];
+    [uploadRequest startAsynchronous];
     
-    [uploadRequest startSynchronous];
+   // [uploadRequest startSynchronous];
     
-    NSError* xerror = [uploadRequest error];
-    NSString* xresp = [uploadRequest responseString];
-    NSLog(@"resp %@", xresp);
-    NSLog(@"Upload file: %d - %d",xerror.code, [uploadRequest responseStatusCode]);
+   
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request
 {
     NSString* resp = [request responseString];
 
-    NSLog(@"done %@", resp);
+    NSLog(@"done %@", [request responseStatusMessage]);
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request

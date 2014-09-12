@@ -49,7 +49,7 @@
 
 - (void) refreshOrganizationData
 {
-    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association";
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association/q";
     NSURL *URL = [NSURL URLWithString:URLString];
     
     // NSString *authInfo = @"Basic user:user";

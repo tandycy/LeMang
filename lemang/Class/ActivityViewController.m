@@ -518,7 +518,7 @@ NSString *navTitle;
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
-    [self.activityList headerEndRefreshing];
+    //[self.activityList headerEndRefreshing];
     //[self refreshActivityData];
     //[activitySearchBar setHidden:NO];
    // [self refreshActivityData];
@@ -527,6 +527,7 @@ NSString *navTitle;
 - (void) viewWillDisappear:(BOOL)animated
 {
     //  [activitySearchBar setHidden:YES];
+    [self.tabBarController.tabBar setHidden:YES];
     
 }
 

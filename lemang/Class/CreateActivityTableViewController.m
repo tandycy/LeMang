@@ -8,6 +8,7 @@
 
 #import "CreateActivityTableViewController.h"
 #import "Constants.h"
+#import "CreateActivityDetailTableViewController.h"
 
 @interface CreateActivityTableViewController ()
 {
@@ -162,6 +163,20 @@
     }
 }
 
+- (IBAction)nextButton:(id)sender {
+    CreateActivityDetailTableViewController *CreateActDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityDetailTableViewController"];
+    CreateActDetailVC.navigationItem.title = @"详细页面";
+    
+    CreateActDetailVC.actTitle = actNameString;
+    CreateActDetailVC.actDescription = actDescriptionString;
+    CreateActDetailVC.actStartDate = startDate.text;
+    CreateActDetailVC.actEndDate = endDate.text;
+    CreateActDetailVC.isAllDay = allDayTrigger.isOn;
+    
+    [self.navigationController pushViewController:CreateActDetailVC animated:YES];
+    
+}
+
 
 - (IBAction)datePickerValueChanged:(id)sender {
    NSDate * selected = [datePicker date];
@@ -190,6 +205,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [SchoolManager InitSchoolList];
 }
 
 

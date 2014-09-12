@@ -9,10 +9,20 @@
 #import "CreateActivityDetailTableViewController.h"
 
 @interface CreateActivityDetailTableViewController ()
+{
+    NSArray *pickerArray;
+    NSArray *schoolArray;
+    NSArray *areaArray;
+    NSArray *collegeArray;
+}
 
 @end
 
 @implementation CreateActivityDetailTableViewController
+
+@synthesize actUniversity,actCollege,actArea;
+@synthesize dataPicker,doneToolbar;
+@synthesize actTitle,actDescription,actStartDate,actEndDate,isAllDay,actIcon;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,11 +37,25 @@
 {
     [super viewDidLoad];
     
+    [self universityListInit];
+    [self detailViewInit];
+    
+    NSLog(@"%@ - %@ - %@ - %@ - %hhd",actTitle,actDescription,actStartDate,actEndDate,isAllDay);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
+    
+}
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+   // [self.orgName resignFirstResponder];
+   // [self.orgDescription resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,10 +64,103 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)universityListInit
+{
+    schoolArray = [SchoolManager GetSchoolNameList];
+    //NSLog(@"done",schoolArray);
+}
+
 - (void)detailViewInit
 {
+    //init actUniversity|area|college dataPicker
+    actUniversity.inputView = dataPicker;
+    actUniversity.inputAccessoryView = doneToolbar;
+    actUniversity.delegate = self;
+    [actUniversity addTarget:self action:@selector(schoolOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    actArea.inputAccessoryView = doneToolbar;
+    actArea.inputView = dataPicker;
+    actArea.delegate = self;
+    [actArea addTarget:self action:@selector(areaOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+
+    actCollege.inputAccessoryView = doneToolbar;
+    actCollege.inputView = dataPicker;
+    actCollege.delegate = self;
+    [actCollege addTarget:self action:@selector(collegeOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    dataPicker.delegate = self;
+    dataPicker.dataSource = self;
+    dataPicker.frame = CGRectMake(0, 480, 320, 216);
     
 }
+
+- (IBAction)schoolOnEditing:(id)sender {
+    pickerArray = schoolArray;
+    [dataPicker reloadAllComponents];
+}
+
+- (IBAction)areaOnEditing:(id)sender {
+    pickerArray = areaArray;
+    [dataPicker reloadAllComponents];
+}
+
+- (IBAction)collegeOnEditing:(id)sender {
+    pickerArray = collegeArray;
+    [dataPicker reloadAllComponents];
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+-(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [pickerArray count];
+}
+-(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [pickerArray objectAtIndex:row];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    NSInteger row = [dataPicker selectedRowInComponent:0];
+    if (actUniversity.isEditing) {
+        textField = actUniversity;
+    }
+    else if(actArea.isEditing)
+    {
+        textField = actArea;
+    }
+    else if(actCollege.isEditing)
+    {
+        textField = actCollege;
+    }
+    textField.text = [pickerArray objectAtIndex:row];
+}
+
+- (IBAction)selectButton:(id)sender {
+    if (actUniversity.isEditing) {
+        [actUniversity endEditing:YES];
+        [self OnSchoolChange];
+    }
+    else if(actArea.isEditing)
+    {
+        [actArea endEditing:YES];
+    }
+    else if(actCollege.isEditing)
+    {
+        [actCollege endEditing:YES];
+    }
+}
+
+- (void) OnSchoolChange
+{
+    actArea.text = @"";
+    actCollege.text = @"";
+    
+    SchoolItem* item = [SchoolManager GetSchoolItem:actUniversity.text];
+    
+    areaArray = [item GetAreaList];
+    collegeArray = [item GetDepartList];
+}
+
 
 #pragma mark - Table view data source
 /*

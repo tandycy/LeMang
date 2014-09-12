@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SchoolManager.h"
+#import "UserManager.h"
 
-@interface CreateActivityDetailTableViewController : UITableViewController
+@interface CreateActivityDetailTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
 {
-    NSString *actTitle;
-    NSString *actDescription;
-    NSString *actStartDate;
-    NSString *actEndDate;
-    UIImage *actIcon;
 }
+
+@property (strong,nonatomic) NSString *actTitle;
+@property (strong,nonatomic) NSString *actDescription;
+@property (strong,nonatomic) NSString *actStartDate;
+@property (strong,nonatomic) NSString *actEndDate;
+@property BOOL isAllDay;
+@property (strong,nonatomic) UIImage *actIcon;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *actHostType;
 @property (strong, nonatomic) IBOutlet UITextField *actHost;
@@ -29,5 +33,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *actOtherLimit;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *actTags;
 @property (strong, nonatomic) IBOutlet UITextField *otherTag;
+
+@property (strong, nonatomic) IBOutlet UIPickerView *dataPicker;
+@property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
 
 @end

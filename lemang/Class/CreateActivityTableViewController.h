@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SchoolManager.h"
 
 @interface CreateActivityTableViewController : UITableViewController
 
