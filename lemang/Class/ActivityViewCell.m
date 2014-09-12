@@ -29,49 +29,31 @@
 }
 
 - (void) SetIconImgUrl:(NSURL *)url
-{
-    /*
-    if (connection != nil)
-    {
-        [connection release];
-    }
+{    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    [request setDelegate:self];
     
-    if (imgData != nil)
-    {
-        [imgData release];
-    }
-     */
+    [activityIconImg setImage:[UIImage imageNamed:@"loading.gif"]];
+    imgData = [[NSMutableData alloc] init];
     
-    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
-    
-    connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    [request startAsynchronous];
 }
 
-- (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response{
-    //可以在显示图片前先用本地的一个loading.gif来占位。
-    UIImage *img = [[UIImage alloc] initWithContentsOfFile:@"loading.gif"];
+- (void)requestFinished:(ASIHTTPRequest*)request
+{
+    imgData = [request responseData];
+    
+    UIImage *img=[UIImage imageWithData:imgData];
     [activityIconImg setImage:img];
-    imgData = [[NSMutableData alloc] init];
-    //保存接收到的响应对象，以便响应完毕后的状态。
-    _response = response;
+    linkedActivity.cachedImg = img;
 }
-- (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
-    //_data为NSMutableData类型的私有属性，用于保存从网络上接收到的数据。
-    //也可以从此委托中获取到图片加载的进度。
-    [imgData appendData:data];
-    NSLog(@"%lld%%", data.length/_response.expectedContentLength * 100);
+
+- (void)requestFailed:(ASIHTTPRequest*)request
+{
+    NSError* error = [request error];
+    NSLog(@"Download activity image fail: %d",error.code);
 }
-- (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error{
-    //请求异常，在此可以进行出错后的操作，如给UIImageView设置一张默认的图片等。
-}
-- (void)connectionDidFinishLoading:(NSURLConnection*)connection{
-    //加载成功，在此的加载成功并不代表图片加载成功，需要判断HTTP返回状态。
-    NSHTTPURLResponse*response=(NSHTTPURLResponse*)_response;
-    if(response.statusCode == 200){
-        //请求成功
-        UIImage *img=[UIImage imageWithData:imgData];
-        [activityIconImg setImage:img];
-        linkedActivity.cachedImg = img;
-    }
-}
+
 @end
