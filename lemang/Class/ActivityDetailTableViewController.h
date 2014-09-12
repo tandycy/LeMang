@@ -35,6 +35,7 @@
 @property IBOutlet UIImageView *titleImgView;
 @property IBOutlet UILabel *address;
 @property IBOutlet UILabel *time;
+@property (strong, nonatomic) IBOutlet UILabel *people;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailContent;
 @property (strong, nonatomic) IBOutlet UILabel *totalMemberNum;

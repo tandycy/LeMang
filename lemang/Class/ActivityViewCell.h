@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Activity.h"
+#import "ASIHTTPRequest.h"
 
 @interface ActivityViewCell : UITableViewCell
 {

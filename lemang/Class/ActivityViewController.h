@@ -8,15 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "Activity.h"
+#import "ASIHTTPRequest.h"
 
 @interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIScrollViewDelegate>
 {
 //    IBOutlet ActivityTableViewController *ActivityList;
-    NSMutableData *receivedData;
-    NSArray* activityData;
+   // NSMutableData *receivedData;
+   // NSArray* activityData;
 
+    int currentPage;
+    int nextPage;
+    int pageSize;
+    int maxPage;
+    
+    UIImage* bussinessIcon;
+    UIImage* schoolIcon;
+    UIImage* groupIcon;
+    UIImage* privateIcon;
 }
-@property (strong,nonatomic) NSArray *activityArray;
+@property (strong,nonatomic) NSMutableArray *activityArray;
 
 @property (strong,nonatomic) NSMutableArray *filteredActivityArray;
 

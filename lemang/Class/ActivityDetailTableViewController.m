@@ -37,6 +37,7 @@
     titleImgView.image = activity.cachedImg;
     address.text = activity.title;
     time.text = activity.date;
+    _people.text = activity.limit;
     activityDescription.text = @"中国工商银行（全称：中国工商银行股份有限公司）成立于1984年，是中国五大银行之首，世界五百强企业之一，拥有中国最大的客户群，是中国最大的商业银行。 中国工商银行是中国最大的国有独资商业银行，基本任务是依据国家的法律和法规，通过国内外开展融资活动筹集社会资金，加强信贷资金管理，支持企业生产和技术改造，为我国经济建设服务。";
     
     // Uncomment the following line to preserve selection between presentations.
@@ -61,92 +62,42 @@
     NSString* URLString = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", activity.activityId];
     NSURL *URL = [NSURL URLWithString:URLString];
     
-    // NSString *authInfo = @"Basic user:user";
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
     
-    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    [request startSynchronous];
     
-    [URLRequest setHTTPMethod:@"GET"];
-    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
-    // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
+    NSError *error = [request error];
     
-    NSError * error;
-    
-    if (error) {
-        NSLog(@"a connection could not be created or request fails.");
-        NSLog(@"Error: %@", [error localizedDescription]);
-    }
-    //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
-    
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
-    
-    receivedData=[[NSMutableData alloc] initWithData:nil];
-    
-    if (connection) {
-        receivedData = [NSMutableData new];
-        NSLog(@"rdm%@",receivedData);
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-    if ([challenge previousFailureCount] == 0) {
-        NSURLCredential *newCredential;
-        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
-        [[challenge sender] useCredential:newCredential
-               forAuthenticationChallenge:challenge];
-    } else {
-        [[challenge sender] cancelAuthenticationChallenge:challenge];
-    }
-}
-
-#pragma mark- NSURLConnection 回调方法
-- (void)connection:(NSURLConnection *)aConn didReceiveResponse:(NSURLResponse *)response
-
-{
-    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    if ([response respondsToSelector:@selector(allHeaderFields)]) {
-        NSDictionary *dictionary = [httpResponse allHeaderFields];
-        //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);
+    if (!error)
+    {
+        receivedData = [request responseData];
+        activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
         
+        NSString* detailInfo = @"";//activityData[@"description"];
+        detailInfo = [detailInfo stringByAppendingFormat:@"%@", activityData[@"description"]];
+        
+        _detailContent.text = detailInfo;
+        
+        NSArray* memberArray = activityData[@"activityMember"];
+        NSUInteger memberNumber = memberArray.count;
+        
+        _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
+        
+        if (memberNumber > 0)
+        {
+            //
+        }
+        
+        NSArray* commentArray = activityData[@"activityComment"];
+        NSUInteger commentNumber = commentArray.count;
+        
+        _totalCommentNumber.text = [NSString stringWithFormat:@"(%d)",commentNumber];
+        if (commentNumber > 0)
+        {
+            //
+        }
     }
     
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [receivedData appendData:data];
-}
--(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
-    NSLog(@"%@",[error localizedDescription]);
-}
-- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
-    NSLog(@"请求完成…");
-    activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
-    
-    NSString* detailInfo = @"";//activityData[@"description"];
-    detailInfo = [detailInfo stringByAppendingFormat:@"%@", activityData[@"description"]];
-    
-    _detailContent.text = detailInfo;
-    
-    NSArray* memberArray = activityData[@"activityMember"];
-    NSUInteger memberNumber = memberArray.count;
-    
-    _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
-    
-    if (memberNumber > 0)
-    {
-        //
-    }
-    
-    NSArray* commentArray = activityData[@"activityComment"];
-    NSUInteger commentNumber = commentArray.count;
-    
-    _totalCommentNumber.text = [NSString stringWithFormat:@"(%d)",commentNumber];
-    if (commentNumber > 0)
-    {
-        //
-    }
 }
 /*
 
