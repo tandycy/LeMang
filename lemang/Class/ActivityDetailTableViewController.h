@@ -24,6 +24,8 @@
     
     NSMutableData* receivedData;
     NSDictionary* activityData;
+    
+    NSArray* memberIconList;
 }
 
 @property (nonatomic, retain) Activity *activity;

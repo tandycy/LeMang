@@ -24,6 +24,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
     }
     return self;
 }
@@ -32,7 +33,7 @@
 {
     [super viewDidLoad];
     titleLabel.text = activity.title;
-    amount.text = activity.member;
+    amount.text = [NSString stringWithFormat:@"%@/%@",activity.member,activity.memberUpper];
     hot.text = activity.fav;
     titleImgView.image = activity.cachedImg;
     address.text = activity.title;
