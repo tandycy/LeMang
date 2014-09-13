@@ -104,6 +104,14 @@ static UserManager* managerInstance;
     return false;
 }
 
++ (UIImage*) DefaultIcon
+{
+    if ([UserManager Instance]->defaultIcon == nil)
+        [UserManager Instance]->defaultIcon = [UIImage imageNamed:@"user_icon_de.png"];
+    
+    return [UserManager Instance]->defaultIcon;
+}
+
 + (NSDictionary*) LocalUserData
 {
     if ([UserManager IsInitSuccess])

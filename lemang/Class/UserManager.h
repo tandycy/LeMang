@@ -29,12 +29,15 @@
     NSDictionary* localUserData;
     
     id <UserLoginDelegate> loginDelegate;
+    
+    UIImage* defaultIcon;
 }
 
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
 + (UserManager*) Instance;
 + (NSString*) UserName;
 + (NSString*) UserPW;+ (NSDictionary*) LocalUserData;
++ (UIImage*) DefaultIcon;
 
 + (bool)IsUserNameExists:(NSString*)nameData;
 

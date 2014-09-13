@@ -17,4 +17,5 @@
 }
 
 - (void)LoadFromUrl : (NSURL*)URL;
+- (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg;
 @end
