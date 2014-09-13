@@ -18,5 +18,6 @@
 
 @property IBOutlet UIView *containerView;
 @property IBOutlet UIToolbar *toolBar;
+@property IBOutlet UIBarButtonItem *goComment;
 
 @end

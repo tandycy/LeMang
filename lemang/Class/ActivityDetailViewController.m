@@ -8,6 +8,7 @@
 
 #import "ActivityDetailViewController.h"
 #import "ActivityDetailTableViewController.h"
+#import "CreateActivityCommentViewController.h"
 #import "Constants.h"
 
 @interface ActivityDetailViewController ()
@@ -18,7 +19,7 @@
 
 @synthesize title;
 @synthesize containerView;
-@synthesize toolBar;
+@synthesize toolBar,goComment;
 @synthesize activity;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,6 +67,13 @@
     [self didMoveToParentViewController:tableVC];
     [self.view addSubview:toolBar];
     
+    goComment.target = self;
+    goComment.action = @selector(goCommentPage:);
+}
+
+-(IBAction)goCommentPage:(id)sender{
+    CreateActivityCommentViewController *createActivityCommentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityCommentViewController"];
+    [self.navigationController pushViewController:createActivityCommentVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

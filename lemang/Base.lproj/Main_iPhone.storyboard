@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -758,6 +758,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationItem key="navigationItem" id="0eX-SI-LR4"/>
                     <connections>
                         <outlet property="containerView" destination="cUd-sv-Pio" id="0sg-W7-Ixl"/>
+                        <outlet property="goComment" destination="vaJ-AG-dBh" id="o36-7E-NG5"/>
                         <outlet property="toolBar" destination="9lu-Fs-TMI" id="dlF-8d-aen"/>
                     </connections>
                 </viewController>
@@ -1789,6 +1790,62 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WBp-3p-DkC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2017" y="-1685"/>
+        </scene>
+        <!--Create Activity Comment View Controller-->
+        <scene sceneID="0UR-5X-By3">
+            <objects>
+                <viewController storyboardIdentifier="CreateActivityCommentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nEh-9d-ebD" customClass="CreateActivityCommentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JVk-gL-42A">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="给活动评分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1ds-gD-fCk">
+                                <rect key="frame" x="20" y="72" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传活动照片" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PYc-QN-PNQ">
+                                <rect key="frame" x="20" y="285" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gXq-Zp-jvs">
+                                <rect key="frame" x="0.0" y="144" width="320" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5xG-f7-fUV">
+                                <rect key="frame" x="20" y="314" width="77" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="add_photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LjN-TW-yGZ">
+                                <rect key="frame" x="35" y="101" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZKr-j1-aEr"/>
+                    <connections>
+                        <outlet property="addPhoto" destination="5xG-f7-fUV" id="dkC-m7-fOH"/>
+                        <outlet property="commentDetail" destination="gXq-Zp-jvs" id="dGA-Qf-qQA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0HR-nD-nPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2000" y="-937"/>
         </scene>
         <!--Activity Commet Image Detail View Controller-->
         <scene sceneID="Dox-hA-ypW">
