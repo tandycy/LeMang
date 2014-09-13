@@ -205,7 +205,7 @@
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
- /*
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:NO];
