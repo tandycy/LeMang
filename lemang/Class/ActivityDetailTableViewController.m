@@ -129,6 +129,7 @@
     if (indexPath.section == 2) {
      //   NSLog(@"%@",indexPath.section);
         ActivityCommentTableViewController *ACTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommentTableViewController"];
+        [ACTVC SetCommentList:localCommentData];
         [self.navigationController pushViewController:ACTVC animated:YES];
     }
 }

@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActivityCommentCell.h"
 
 @interface ActivityCommentTableViewController : UITableViewController
+{
+    NSArray* localComments;
+    NSMutableArray* cellArray;
+}
 
 - (void) SetCommentList:(NSArray*)commentList;
 

@@ -15,6 +15,8 @@
     NSString *commentTitle;
     NSString *commentDetail;
     NSMutableArray *commentImg;
+    
+    NSDictionary* commentData;
 }
 
 @property (nonatomic,copy) NSString *category;

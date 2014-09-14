@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Activity.h"
+#import "UserManager.h"
 #import "ASIHTTPRequest.h"
 
 @interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIScrollViewDelegate>

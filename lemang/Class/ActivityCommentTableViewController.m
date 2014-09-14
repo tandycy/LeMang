@@ -66,10 +66,24 @@
     return tableData.count;
 }
 
+-(void)SetCommentList:(NSArray *)commentList
+{
+    localComments = commentList;
+}
+
 -(void)createUserData{
     
     tableData = [[NSMutableArray alloc]init];
     
+    for (int i = 0; i < localComments.count; i++)
+    {
+        NSDictionary* item = localComments[i];
+        [tableData addObject:item];
+    }
+    
+    cellArray = [NSMutableArray arrayWithCapacity:localComments.count];
+    
+    /*
     NSMutableArray *imgs = [[NSMutableArray alloc]init];
     imgs[0] = [UIImage imageNamed:@"doge.jpg"];
     imgs[1] = [UIImage imageNamed:@"head.jpg"];
@@ -97,18 +111,18 @@
     tableData[4] = comment5;
     tableData[5] = comment6;
     // NSLog(@"%lu",(unsigned long)tableData.count);
+     */
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CommentCell";
     //自定义cell类
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    ActivityCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if ( cell == nil )
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ActivityCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     if (indexPath.row & 0x1){
@@ -118,6 +132,10 @@
     
     cell.selectedBackgroundView = [[UIView alloc] init];
     
+    [cell SetComment:tableData[indexPath.row]];
+    
+    // TODO refacotr these UI layout code into comment cell class
+    /*
     ActivityComment *comment = [tableData objectAtIndex:indexPath.row];
     UILabel *commentName = (UILabel*)[cell viewWithTag:201];
     UIImageView *commentIcon = (UIImageView*)[cell viewWithTag:200];
@@ -127,8 +145,10 @@
     commentName.textColor = [UIColor colorWithRed:0.17647059 green:0.17647059 blue:0.17647059 alpha:1];
     commentName.font = [UIFont fontWithName:defaultBoldFont size:15];
     commentIcon.image = comment.commentIcon;
+     
     
     commentDetail.text = comment.commentDetail;
+    
     commentDetail.textColor = [UIColor colorWithRed:0.41176471 green:0.41176471 blue:0.41176471 alpha:1];
     commentDetail.font = [UIFont fontWithName:defaultFont size:13];
     CGSize labelSize = {0, 0};
@@ -193,6 +213,7 @@
     [cell addSubview:commentDate];
     
     NSLog(@"%@",comment.commentImg);
+    */
     
     
     return cell;
@@ -211,19 +232,22 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-
 {
-    ActivityComment *comment = [tableData objectAtIndex:indexPath.row];
-    if (comment.commentImg == NULL) {
-        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-        UILabel *commentDetail = (UILabel *)[cell viewWithTag:202];
-        
-        return 42 + commentDetail.frame.size.height + 40;
-    }
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    UILabel *commentDetail = (UILabel *)[cell viewWithTag:202];
+    NSDictionary* commentData = tableData[indexPath.row];
+    NSString* contentStr = commentData[@"content"];
     
-    return 42 + commentDetail.frame.size.height + 90;
+    CGSize labelSize = {0, 0};
+    labelSize = [contentStr sizeWithFont:[UIFont fontWithName:defaultFont size:13]
+                                 constrainedToSize:CGSizeMake(240.0, 5000)
+                                     lineBreakMode:UILineBreakModeWordWrap];;
+    int imageAdjust = 40;
+    
+    NSArray* commentImg = commentData[@"images"];
+    
+    if (commentImg.count > 0)
+        imageAdjust = 90;
+    
+    return 42 + labelSize.height + imageAdjust;
 }
 
 

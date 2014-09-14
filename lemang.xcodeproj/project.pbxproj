@@ -536,8 +536,6 @@
 				258087C819A71EED005E308D /* UITableGridViewCell.m */,
 				25C7F335198B7A3500AB8B2F /* Activity.h */,
 				25C7F336198B7A3500AB8B2F /* Activity.m */,
-				2545E01C199CB67000F99CC7 /* ActivityComment.h */,
-				2545E01D199CB67000F99CC7 /* ActivityComment.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -684,6 +682,8 @@
 				25C5213919C469A00067CB01 /* CreateActivityCommentViewController.m */,
 				28DC154019C5C98E00DE97F0 /* ActivityCommentCell.h */,
 				28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */,
+				2545E01C199CB67000F99CC7 /* ActivityComment.h */,
+				2545E01D199CB67000F99CC7 /* ActivityComment.m */,
 			);
 			name = ActivityComment;
 			sourceTree = "<group>";
