@@ -45,6 +45,11 @@
     
 }
 
+- (void)SetActivity:(Activity *)activity
+{
+    linkedActivity = activity;
+}
+
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
 {
     [commentDetail resignFirstResponder];
