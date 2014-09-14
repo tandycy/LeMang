@@ -2195,6 +2195,8 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="activityDescription" destination="FdD-38-ujJ" id="btV-qC-fwR"/>
                         <outlet property="address" destination="RL3-hI-LWu" id="ETQ-IM-xck"/>
                         <outlet property="amount" destination="Dkq-VP-8KT" id="aHN-kQ-cSb"/>
+                        <outlet property="commentContent" destination="kI3-pe-KAP" id="Wjz-19-UPt"/>
+                        <outlet property="commentTittle" destination="whR-ey-FJx" id="nUW-9b-ltz"/>
                         <outlet property="detailContent" destination="FdD-38-ujJ" id="s7o-qE-1Xz"/>
                         <outlet property="hot" destination="SCu-dV-4gg" id="SQR-Yk-1AY"/>
                         <outlet property="joinState" destination="kou-a7-wNk" id="EEO-rF-YrZ"/>

@@ -46,6 +46,8 @@
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon2;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon3;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon4;
+@property (weak, nonatomic) IBOutlet UILabel *commentTittle;
+@property (weak, nonatomic) IBOutlet UILabel *commentContent;
 
 @property (strong, nonatomic) IBOutlet UILabel *totalCommentNumber;
 
