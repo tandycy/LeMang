@@ -7,6 +7,7 @@
 //
 
 #import "ActivityDetailTableViewController.h"
+#import "ActivityCommentTableViewController.h"
 
 @interface ActivityDetailTableViewController ()
 
@@ -122,6 +123,16 @@
     }
     
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2) {
+     //   NSLog(@"%@",indexPath.section);
+        ActivityCommentTableViewController *ACTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommentTableViewController"];
+        [self.navigationController pushViewController:ACTVC animated:YES];
+    }
+}
+                                                           
 /*
 
 #pragma mark - Table view data source

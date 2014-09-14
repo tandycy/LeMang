@@ -1761,7 +1761,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <!--Activity Comment Table View Controller-->
         <scene sceneID="hKT-i3-pjW">
             <objects>
-                <tableViewController id="wTj-2a-Qnh" customClass="ActivityCommentTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ActivityCommentTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wTj-2a-Qnh" customClass="ActivityCommentTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="204" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" id="uqz-em-V7R">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2207,9 +2207,6 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="wTj-2a-Qnh" kind="push" id="6R4-7w-D5l"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
