@@ -105,13 +105,13 @@
             [memberIconList[i] LoadFromUrl:iconUrl: [UserManager DefaultIcon]];
         }
         
-        NSArray* commentArray = activityData[@"activityComment"];
-        NSUInteger commentNumber = commentArray.count;
+        localCommentData = activityData[@"activityComment"];
+        NSUInteger commentNumber = localCommentData.count;
         
         _totalCommentNumber.text = [NSString stringWithFormat:@"(%d)",commentNumber];
         if (commentNumber > 0)
         {
-            NSDictionary* commentItem = commentArray[0];
+            NSDictionary* commentItem = localCommentData[0];
             
             _commentTittle.text = commentItem[@"title"];
             _commentContent.text = commentItem[@"content"];

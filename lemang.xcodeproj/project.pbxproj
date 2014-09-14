@@ -103,6 +103,7 @@
 		28DC153819BD5E8100DE97F0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC152019BD5E8000DE97F0 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153A19BE1E5200DE97F0 /* Base64.m */; };
 		28DC153E19BE8F8500DE97F0 /* SchoolItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153D19BE8F8500DE97F0 /* SchoolItem.m */; };
+		28DC154219C5C98E00DE97F0 /* ActivityCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */; };
 		EE28E93E19C152D000E0E8A6 /* profile.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE28E93D19C152D000E0E8A6 /* profile.plist */; };
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
@@ -292,6 +293,8 @@
 		28DC153A19BE1E5200DE97F0 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Base64.m; path = Class/Base64.m; sourceTree = "<group>"; };
 		28DC153C19BE8F8500DE97F0 /* SchoolItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolItem.h; path = Class/SchoolItem.h; sourceTree = "<group>"; };
 		28DC153D19BE8F8500DE97F0 /* SchoolItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolItem.m; path = Class/SchoolItem.m; sourceTree = "<group>"; };
+		28DC154019C5C98E00DE97F0 /* ActivityCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommentCell.h; path = Class/ActivityCommentCell.h; sourceTree = "<group>"; };
+		28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommentCell.m; path = Class/ActivityCommentCell.m; sourceTree = "<group>"; };
 		EE28E93D19C152D000E0E8A6 /* profile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = profile.plist; path = lemang/Class/profile.plist; sourceTree = "<group>"; };
 		EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoader.h; path = Class/IconImageViewLoader.h; sourceTree = "<group>"; };
 		EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoader.m; path = Class/IconImageViewLoader.m; sourceTree = "<group>"; };
@@ -435,24 +438,19 @@
 		256E04731987B1CE009845A5 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				28DC153F19C5C94B00DE97F0 /* ActivityComment */,
 				EE9BCB3F19ADC2EE00710F90 /* ActivityDetail */,
 				EE9BCB3C19AB45E700710F90 /* ActivityViewCell.h */,
 				EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */,
 				25C7F334198B75FB00AB8B2F /* Activity */,
 				256E046D1987AACA009845A5 /* ActivityViewController.h */,
 				256E046E1987AACA009845A5 /* ActivityViewController.m */,
-				2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */,
-				2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */,
-				257CD60819A36EF1001FF078 /* ActivityCommetImageDetailViewController.h */,
-				257CD60919A36EF1001FF078 /* ActivityCommetImageDetailViewController.m */,
 				2538240E199A2AF900180DB9 /* ActivityMemberTableViewController.h */,
 				2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */,
 				25BAA3D019ACAFC500E87856 /* CreateActivityTableViewController.h */,
 				25BAA3D119ACAFC500E87856 /* CreateActivityTableViewController.m */,
 				25C8830619C1909700F727AF /* CreateActivityDetailTableViewController.h */,
 				25C8830719C1909700F727AF /* CreateActivityDetailTableViewController.m */,
-				25C5213819C469A00067CB01 /* CreateActivityCommentViewController.h */,
-				25C5213919C469A00067CB01 /* CreateActivityCommentViewController.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -675,6 +673,21 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		28DC153F19C5C94B00DE97F0 /* ActivityComment */ = {
+			isa = PBXGroup;
+			children = (
+				2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */,
+				2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */,
+				257CD60819A36EF1001FF078 /* ActivityCommetImageDetailViewController.h */,
+				257CD60919A36EF1001FF078 /* ActivityCommetImageDetailViewController.m */,
+				25C5213819C469A00067CB01 /* CreateActivityCommentViewController.h */,
+				25C5213919C469A00067CB01 /* CreateActivityCommentViewController.m */,
+				28DC154019C5C98E00DE97F0 /* ActivityCommentCell.h */,
+				28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */,
+			);
+			name = ActivityComment;
+			sourceTree = "<group>";
+		};
 		EE44A53619AF1CA7004B0E5B /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,6 +903,7 @@
 				25C8830819C1909700F727AF /* CreateActivityDetailTableViewController.m in Sources */,
 				28DC152519BD5E8000DE97F0 /* ASIFormDataRequest.m in Sources */,
 				251CEBBE19A33D5B00C80BAF /* OrganizationDetailTableViewController.m in Sources */,
+				28DC154219C5C98E00DE97F0 /* ActivityCommentCell.m in Sources */,
 				28DC152B19BD5E8000DE97F0 /* ASICloudFilesContainer.m in Sources */,
 				256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */,
 				EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */,

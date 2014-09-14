@@ -27,6 +27,8 @@
     NSDictionary* activityData;
     
     NSArray* memberIconList;
+    
+    NSArray* localCommentData;
 }
 
 @property (nonatomic, retain) Activity *activity;
