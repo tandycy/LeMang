@@ -7,16 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequest.h"
+#import "Activity.h"
 
 @interface CreateActivityCommentViewController : UIViewController<UITextViewDelegate>
 {
     UIImagePickerController *imagePicker;
     UIImage *image;
+    Activity* linkedActivity;
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewBig;
 @property (strong, nonatomic) IBOutlet UIButton *addPhoto;
 @property (strong, nonatomic) IBOutlet UITextView *commentDetail;
 @property (strong, nonatomic) IBOutlet UIImageView *rateStar;
+
+- (void) SetActivity:(Activity*)activity;
 
 @end

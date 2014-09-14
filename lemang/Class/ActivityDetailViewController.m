@@ -73,6 +73,7 @@
 
 -(IBAction)goCommentPage:(id)sender{
     CreateActivityCommentViewController *createActivityCommentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityCommentViewController"];
+    [createActivityCommentVC SetActivity:activity];
     [self.navigationController pushViewController:createActivityCommentVC animated:YES];
 }
 

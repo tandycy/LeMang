@@ -84,9 +84,22 @@
         
         _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
         
-        if (memberNumber > 0)
+        for (int i = 0; i < memberIconList.count; i++)
         {
-            //
+            if (i >= memberNumber)
+            {
+                [memberIconList[i] setHidden:true];
+                continue;
+            }
+            
+            [memberIconList[i] setHidden:false];
+            
+            NSDictionary* memberInfo = memberArray[i];
+            NSString* memberIconUrl = memberInfo[@""];
+            NSURL* iconUrl = [NSURL URLWithString:memberIconUrl];
+            
+            // [UIImage imageNamed:@"user_icon_de.png"];
+            [memberIconList[i] LoadFromUrl:iconUrl: [UserManager DefaultIcon]];
         }
         
         NSArray* commentArray = activityData[@"activityComment"];

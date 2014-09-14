@@ -42,6 +42,12 @@
     [request startAsynchronous];
 }
 
+- (void)LoadFromUrl:(NSURL *)URL : (UIImage*) defaultImg
+{
+    [self setImage:defaultImg];
+    [self LoadFromUrl:URL];
+}
+
 - (void)requestFinished:(ASIHTTPRequest*)request
 {
     imgData = [request responseData];
