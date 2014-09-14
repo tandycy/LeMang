@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
+#import "UserManager.h"
 #import "Activity.h"
 
 @interface CreateActivityCommentViewController : UIViewController<UITextViewDelegate>

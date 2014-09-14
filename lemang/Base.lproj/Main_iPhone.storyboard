@@ -1768,7 +1768,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CommentCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" rowHeight="125" id="CKZ-pd-5Ig">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CommentCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentCell" rowHeight="125" id="CKZ-pd-5Ig" customClass="ActivityCommentCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CKZ-pd-5Ig" id="CTE-gA-SfA">
@@ -1782,7 +1782,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SC8-pH-0Qp">
+                                        <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SC8-pH-0Qp" customClass="IconImageViewLoader">
                                             <rect key="frame" x="8" y="8" width="49" height="49"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -1802,6 +1802,11 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="commentContent" destination="mqM-Lz-9Mf" id="XSn-RH-7iO"/>
+                                    <outlet property="commentTittle" destination="IKL-sN-Iou" id="yon-A2-YeF"/>
+                                    <outlet property="creatorIcon" destination="SC8-pH-0Qp" id="dQ1-sw-Ych"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -2219,6 +2224,8 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="activityDescription" destination="FdD-38-ujJ" id="btV-qC-fwR"/>
                         <outlet property="address" destination="RL3-hI-LWu" id="ETQ-IM-xck"/>
                         <outlet property="amount" destination="Dkq-VP-8KT" id="aHN-kQ-cSb"/>
+                        <outlet property="commentContent" destination="kI3-pe-KAP" id="Wjz-19-UPt"/>
+                        <outlet property="commentTittle" destination="whR-ey-FJx" id="nUW-9b-ltz"/>
                         <outlet property="detailContent" destination="FdD-38-ujJ" id="s7o-qE-1Xz"/>
                         <outlet property="hot" destination="SCu-dV-4gg" id="SQR-Yk-1AY"/>
                         <outlet property="joinState" destination="kou-a7-wNk" id="EEO-rF-YrZ"/>

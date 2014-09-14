@@ -25,6 +25,7 @@
     UIImage* schoolIcon;
     UIImage* groupIcon;
     UIImage* privateIcon;
+    
 }
 @property (strong,nonatomic) NSMutableArray *activityArray;
 

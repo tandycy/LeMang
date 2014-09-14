@@ -10,4 +10,6 @@
 
 @interface ActivityCommentTableViewController : UITableViewController
 
+- (void) SetCommentList:(NSArray*)commentList;
+
 @end

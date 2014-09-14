@@ -28,6 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        linkedActivity = nil;
     }
     return self;
 }
@@ -48,6 +49,7 @@
 - (void)SetActivity:(Activity *)activity
 {
     linkedActivity = activity;
+    //NSLog(@"comment create set activity: %@", linkedActivity.activityId);
 }
 
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
@@ -100,7 +102,71 @@
 
 -(IBAction)commentOk:(id)sender
 {
+    if (linkedActivity == nil)
+        return;
+    
+    if (![UserManager IsInitSuccess])
+    {
+        // TODO
+        return;
+    }
+    
+    if (commentDetail.text.length < 1)
+    {
+        // TODO
+        return;
+    }
+    
     //post comment information
+    NSNumber* actId = linkedActivity.activityId;
+    int userId = [[UserManager Instance] GetLocalUserId];
+    
+    NSDateFormatter *nsdf2=[[NSDateFormatter alloc] init];
+    [nsdf2 setDateStyle:NSDateFormatterShortStyle];
+    [nsdf2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *t2=[nsdf2 stringFromDate:[NSDate date]];
+    
+    // {"activity":{"id":1},"title":"健康生活","content":"从今天开始","createdBy":{"id":2},"createdDate":"2014-08-19 10:00:01"}
+    
+    NSString* postContent = @"{\"activity\":{\"id\":";
+    postContent = [postContent stringByAppendingFormat:@"%@},\"title\":\"", actId];
+    postContent = [postContent stringByAppendingFormat:@"%@\",\"content\":\"", @"tittle"];
+    postContent = [postContent stringByAppendingFormat:@"%@\",\"createdBy\":{\"id\":", commentDetail.text];
+    postContent = [postContent stringByAppendingFormat:@"%d},\"createdDate\":\"", userId];
+    postContent = [postContent stringByAppendingFormat:@"%@\"}", t2];
+    
+    NSLog(@"comment post: %@",postContent);
+    
+    NSString* dataLength = [NSString stringWithFormat:@"%d", [postContent length]];
+    NSData* postData = [postContent dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString* urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@/comment", actId];
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    
+    [request setUsername:[UserManager UserName]];
+    [request setPassword:[UserManager UserPW]];
+    
+    //    [request setValue:@"application/json;charset=UTF-8" forKey: @"Content-Type"];
+    [request addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [request addRequestHeader:@"Content-Length" value:dataLength];
+    
+    [request setRequestMethod:@"POST"];
+    [request appendPostData:postData];
+    
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    
+    if (!error)
+    {
+        int returncode = [request responseStatusCode];
+        NSString* response = [request responseString];
+        
+        if (returncode == 201)
+        {
+            // TODO return last page, update comments
+        }
+    }
 }
 
 /*

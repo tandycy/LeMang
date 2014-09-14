@@ -41,6 +41,9 @@
     _people.text = activity.limit;
     activityDescription.text = @"中国工商银行（全称：中国工商银行股份有限公司）成立于1984年，是中国五大银行之首，世界五百强企业之一，拥有中国最大的客户群，是中国最大的商业银行。 中国工商银行是中国最大的国有独资商业银行，基本任务是依据国家的法律和法规，通过国内外开展融资活动筹集社会资金，加强信贷资金管理，支持企业生产和技术改造，为我国经济建设服务。";
     
+    _commentContent.text = @"";
+    _commentTittle.text = @"";
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -102,13 +105,19 @@
             [memberIconList[i] LoadFromUrl:iconUrl: [UserManager DefaultIcon]];
         }
         
-        NSArray* commentArray = activityData[@"activityComment"];
-        NSUInteger commentNumber = commentArray.count;
+        localCommentData = activityData[@"activityComment"];
+        NSUInteger commentNumber = localCommentData.count;
         
         _totalCommentNumber.text = [NSString stringWithFormat:@"(%d)",commentNumber];
         if (commentNumber > 0)
         {
-            //
+            NSDictionary* commentItem = localCommentData[0];
+            
+            _commentTittle.text = commentItem[@"title"];
+            _commentContent.text = commentItem[@"content"];
+            
+            // images
+            //int rating
         }
     }
     
