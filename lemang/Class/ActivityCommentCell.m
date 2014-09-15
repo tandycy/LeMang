@@ -140,6 +140,12 @@
     [request startAsynchronous];
 }
 
+-(IBAction)deleteButtonClicked:(id)sender{
+    //TO DO
+    
+}
+
+
 - (void)requestFinished:(ASIHTTPRequest*)request
 {
     NSDictionary* returnData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];

@@ -1836,30 +1836,58 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传活动照片" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PYc-QN-PNQ">
-                                <rect key="frame" x="20" y="285" width="280" height="21"/>
+                                <rect key="frame" x="20" y="291" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gXq-Zp-jvs">
-                                <rect key="frame" x="0.0" y="144" width="320" height="133"/>
+                                <rect key="frame" x="0.0" y="151" width="320" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5xG-f7-fUV">
-                                <rect key="frame" x="20" y="314" width="77" height="77"/>
+                                <rect key="frame" x="20" y="319" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="add_photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LjN-TW-yGZ">
-                                <rect key="frame" x="35" y="101" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LjN-TW-yGZ">
+                                <rect key="frame" x="47" y="101" width="39" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" image="rate_star_off">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yc6-P7-Wtk">
+                                <rect key="frame" x="94" y="101" width="39" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="rate_star_off">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tmS-Dn-nCW">
+                                <rect key="frame" x="141" y="101" width="39" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="rate_star_off">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Znt-5M-hg9">
+                                <rect key="frame" x="188" y="101" width="39" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="rate_star_off">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pKg-1t-tRf">
+                                <rect key="frame" x="235" y="101" width="39" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="rate_star_off">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -1870,6 +1898,11 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     <connections>
                         <outlet property="addPhoto" destination="5xG-f7-fUV" id="dkC-m7-fOH"/>
                         <outlet property="commentDetail" destination="gXq-Zp-jvs" id="dGA-Qf-qQA"/>
+                        <outlet property="rate1" destination="LjN-TW-yGZ" id="vFu-QO-HEF"/>
+                        <outlet property="rate2" destination="yc6-P7-Wtk" id="P3V-en-89a"/>
+                        <outlet property="rate3" destination="tmS-Dn-nCW" id="Iil-UR-1DK"/>
+                        <outlet property="rate4" destination="Znt-5M-hg9" id="hM2-k5-Q4o"/>
+                        <outlet property="rate5" destination="pKg-1t-tRf" id="PnC-UN-d7I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0HR-nD-nPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2579,6 +2612,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <image name="main_user_off" width="25" height="25"/>
         <image name="member_number" width="12" height="13"/>
         <image name="more_button" width="47" height="17"/>
+        <image name="rate_star_off" width="39" height="39"/>
         <image name="rate_star_whole" width="14" height="14"/>
         <image name="user_icon_de" width="70" height="70"/>
         <image name="user_icon_de.png" width="27" height="26"/>

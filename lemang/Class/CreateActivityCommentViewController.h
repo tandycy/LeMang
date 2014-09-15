@@ -21,7 +21,11 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewBig;
 @property (strong, nonatomic) IBOutlet UIButton *addPhoto;
 @property (strong, nonatomic) IBOutlet UITextView *commentDetail;
-@property (strong, nonatomic) IBOutlet UIImageView *rateStar;
+@property (strong, nonatomic) IBOutlet UIButton *rate1;
+@property (strong, nonatomic) IBOutlet UIButton *rate2;
+@property (strong, nonatomic) IBOutlet UIButton *rate3;
+@property (strong, nonatomic) IBOutlet UIButton *rate4;
+@property (strong, nonatomic) IBOutlet UIButton *rate5;
 
 - (void) SetActivity:(Activity*)activity;
 
