@@ -13,6 +13,9 @@
 {
     UILabel *commentHolder;
     NSString *commentString;
+    NSString *rate;
+    UIImage *rateStarOn;
+    UIImage *rateStarOff;
 }
 
 @end
@@ -20,7 +23,7 @@
 @implementation CreateActivityCommentViewController
 
 @synthesize commentDetail;
-@synthesize rateStar;
+@synthesize rate1,rate2,rate3,rate4,rate5;
 @synthesize addPhoto;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +40,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    rateStarOn = [UIImage imageNamed:@"rate_star_on.png"];
+    rateStarOff = [UIImage imageNamed:@"rate_star_off.png"];
+    
     [self initView];
+    [self initRate];
     
     
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
@@ -80,6 +87,61 @@
     okButton.action = @selector(commentOk:);
     
     [addPhoto addTarget:self action:@selector(addPhotoClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)initRate
+{
+    [rate1 addTarget:self action:@selector(rate1Clcik:) forControlEvents:UIControlEventTouchUpInside];
+    [rate2 addTarget:self action:@selector(rate2Clcik:) forControlEvents:UIControlEventTouchUpInside];
+    [rate3 addTarget:self action:@selector(rate3Clcik:) forControlEvents:UIControlEventTouchUpInside];
+    [rate4 addTarget:self action:@selector(rate4Clcik:) forControlEvents:UIControlEventTouchUpInside];
+    [rate5 addTarget:self action:@selector(rate5Clcik:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(IBAction)rate1Clcik:(id)sender
+{
+    rate = @"1";
+    [rate1 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate2 setImage:rateStarOff forState:UIControlStateNormal];
+    [rate3 setImage:rateStarOff forState:UIControlStateNormal];
+    [rate4 setImage:rateStarOff forState:UIControlStateNormal];
+    [rate5 setImage:rateStarOff forState:UIControlStateNormal];
+}
+-(IBAction)rate2Clcik:(id)sender
+{
+    rate = @"2";
+    [rate1 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate2 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate3 setImage:rateStarOff forState:UIControlStateNormal];
+    [rate4 setImage:rateStarOff forState:UIControlStateNormal];
+    [rate5 setImage:rateStarOff forState:UIControlStateNormal];
+}
+-(IBAction)rate3Clcik:(id)sender
+{
+    rate = @"3";
+    [rate1 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate2 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate3 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate4 setImage:rateStarOff forState:UIControlStateNormal];
+    [rate5 setImage:rateStarOff forState:UIControlStateNormal];
+}
+-(IBAction)rate4Clcik:(id)sender
+{
+    rate = @"4";
+    [rate1 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate2 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate3 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate4 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate5 setImage:rateStarOff forState:UIControlStateNormal];
+}
+-(IBAction)rate5Clcik:(id)sender
+{
+    rate = @"5";
+    [rate1 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate2 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate3 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate4 setImage:rateStarOn forState:UIControlStateNormal];
+    [rate5 setImage:rateStarOn forState:UIControlStateNormal];
 }
 
 -(void)textViewDidChange:(UITextView *)textView
