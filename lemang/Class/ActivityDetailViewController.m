@@ -100,4 +100,42 @@
  }
  */
 
+- (IBAction)signUp:(id)sender {
+    if (![UserManager IsInitSuccess])
+    {
+        // TODO
+        return;
+    }
+    
+    NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
+    urlstr = [urlstr stringByAppendingFormat:@"%@/user/%d", activity.activityId, [[UserManager Instance]GetLocalUserId]];
+    NSURL* url = [NSURL URLWithString:urlstr];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request setUsername:[UserManager UserName]];
+    [request setPassword:[UserManager UserPW]];
+    
+    //    [request setValue:@"application/json;charset=UTF-8" forKey: @"Content-Type"];
+    [request addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    //[request addRequestHeader:@"Content-Length" value:dataLength];
+    
+    [request setRequestMethod:@"POST"];
+    //[request appendPostData:postData];
+    
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (!error)
+    {
+        // TODO
+        int resCode = [request responseStatusCode];
+    }
+}
+
+- (IBAction)bookMark:(id)sender {
+}
+
+- (IBAction)doShare:(id)sender {
+}
 @end

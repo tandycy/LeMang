@@ -10,6 +10,7 @@
 #import "UserManager.h"
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
+#include "IconImageViewLoader.h"
 
 @interface UserInfoTableViewController : UITableViewController
 {
@@ -18,7 +19,7 @@
 }
 - (IBAction)OnChangeIcon:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UIImageView *userIcon;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *userIcon;
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *userNickName;
 @property (strong, nonatomic) IBOutlet UILabel *userSign;

@@ -25,7 +25,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
+        
     }
     return self;
 }
@@ -88,6 +88,7 @@
         
         _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
         
+        NSArray* memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
         for (int i = 0; i < memberIconList.count; i++)
         {
             if (i >= memberNumber)
@@ -131,6 +132,11 @@
         ActivityCommentTableViewController *ACTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommentTableViewController"];
         [ACTVC SetCommentList:localCommentData];
         [self.navigationController pushViewController:ACTVC animated:YES];
+    }
+    else if (indexPath.section == 1){
+        ActivityMemberTableViewController *AMTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityMemberTableViewController"];
+        [AMTVC SetActivity:activity];
+        [self.navigationController pushViewController:AMTVC animated:YES];
     }
 }
                                                            

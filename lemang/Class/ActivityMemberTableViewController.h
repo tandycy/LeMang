@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Activity.h"
 #import "Constants.h"
 
 @interface ActivityMemberTableViewController : UITableViewController
+{
+    Activity* linkedActivity;
+}
 
 @property IBOutlet UIView *containerView;
 @property IBOutlet UITableView *tbV;
+
+- (void) SetActivity:(Activity*)activity;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Activity.h"
 #import "UserManager.h"
+#import "ActivityMemberTableViewController.h"
 #import "IconImageViewLoader.h"
 
 @interface ActivityDetailTableViewController : UITableViewController
@@ -25,9 +26,7 @@
     
     NSMutableData* receivedData;
     NSDictionary* activityData;
-    
-    NSArray* memberIconList;
-    
+        
     NSArray* localCommentData;
 }
 

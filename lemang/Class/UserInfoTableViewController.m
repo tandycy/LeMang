@@ -68,6 +68,10 @@
         _userNickName.text = [self filtStr:profileData[@"nickName"]];
         _userSign.text = [self filtStr:profileData[@"signature"]];
         _schoolNumber.text = [self filtStr:profileData[@"code"]];
+        
+        NSString* urlStr = profileData[@"iconUrl"];
+        urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
+        [_userIcon LoadFromUrl:[NSURL URLWithString:urlStr]];
     }
     
     NSDictionary* contactData = userData[@"contacts"];
@@ -219,30 +223,39 @@
     NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:@"iconImageBig.jpg"];
     
     NSString* disposition = @"form-data;name=";
-    disposition = [disposition stringByAppendingFormat:@"\"%@\";filename=\"%@\"", pathResp, @"doge2.jpg"];
+    disposition = [disposition stringByAppendingFormat:@"\"%@\";filename=\"%@\"", pathResp, @"iconImageBig.jpg"];
     
     [ASIHTTPRequest clearSession];
-    ASIHTTPRequest *uploadRequest = [ASIHTTPRequest requestWithURL:uploadUrl];
+    ASIFormDataRequest *uploadRequest = [ASIFormDataRequest requestWithURL:uploadUrl];
     
 //    [uploadRequest setUsername:[UserManager UserName]];
 //    [uploadRequest setPassword:[UserManager UserPW]];
     
-    [uploadRequest setUsername:@"test111"];
-    [uploadRequest setPassword:@"111111"];
+    [uploadRequest setUsername:@"admin"];
+    [uploadRequest setPassword:@"admin"];
     
     [uploadRequest setRequestMethod:@"POST"];
+    
     [uploadRequest addRequestHeader:@"Content-Disposition" value:disposition];
     [uploadRequest addRequestHeader:@"Content-Type" value:@"image/jpeg"];
-   // [uploadRequest addRequestHeader:@"Content-Length" value:dataLength];
+
     [uploadRequest addRequestHeader:@"Cache-Control" value:@"no-cache"];
     [uploadRequest setTimeOutSeconds:15];
     
-    [uploadRequest appendPostData:imageData];
+    [uploadRequest setPostValue:pathResp forKey:@"name"];
+    [uploadRequest setFile:iconPath forKey:@"file"];
+    
+    [uploadRequest setPostFormat:ASIMultipartFormDataPostFormat];
+    [uploadRequest buildPostBody];
+    //[uploadRequest appendPostData:imageData];
+    
+    NSData* pdata = [uploadRequest postBody];
+    
     /*
     [uploadRequest setFile:@"iconImageBig.jpg" forKey:@"filename"];
     [uploadRequest buildPostBody];
     [uploadRequest buildRequestHeaders];
-*/
+     */
     /*
      [uploadRequest setPostValue:@"photo" forKey:@"type"];
      [uploadRequest setFile:bigImage forKey:@"file_pic_big"];
@@ -255,10 +268,13 @@
     
     
     [uploadRequest setDelegate:self];
-    [uploadRequest startAsynchronous];
+    //[uploadRequest startAsynchronous];
     
-   // [uploadRequest startSynchronous];
+    [uploadRequest startSynchronous];
     
+    error = [uploadRequest error];
+    int aaa = [uploadRequest responseStatusCode];
+    NSString* bbb = [uploadRequest responseString];
    
 }
 

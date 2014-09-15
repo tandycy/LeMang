@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Activity.h"
+#include "UserManager.h"
 
 @interface ActivityDetailViewController : UIViewController
 {
@@ -19,5 +20,8 @@
 @property IBOutlet UIView *containerView;
 @property IBOutlet UIToolbar *toolBar;
 @property IBOutlet UIBarButtonItem *goComment;
+- (IBAction)signUp:(id)sender;
+- (IBAction)bookMark:(id)sender;
+- (IBAction)doShare:(id)sender;
 
 @end

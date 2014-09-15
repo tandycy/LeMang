@@ -171,6 +171,10 @@
     {
         _userGenderText.text = [self filtStr:profileData[@"gender"]];
         _userDescText.text = [self filtStr:profileData[@"signature"]];
+        
+        NSString* urlStr = profileData[@"iconUrl"];
+        urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
+        [_userIconImageLoader LoadFromUrl:[NSURL URLWithString:urlStr]];
     }
     else
     {

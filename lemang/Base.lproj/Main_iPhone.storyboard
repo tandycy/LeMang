@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -756,26 +756,38 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9lu-Fs-TMI">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="CFd-5N-ZGt"/>
-                                    <barButtonItem image="bottom_share_on" width="52" id="4hl-RY-qp1"/>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="DiX-Fc-qMI"/>
-                                    <barButtonItem image="bottom_like_on" width="52" id="HaC-lE-k1h"/>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="hWK-Ae-p6F"/>
-                                    <barButtonItem image="bottom_sign_on" width="52" id="8By-gx-v6o"/>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="4Bf-Qh-g1x"/>
-                                    <barButtonItem image="bottom_comment_on" width="52" id="vaJ-AG-dBh"/>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="GAA-5J-vCU"/>
-                                </items>
-                            </toolbar>
                             <containerView contentMode="scaleToFill" id="cUd-sv-Pio">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </containerView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9lu-Fs-TMI">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="CFd-5N-ZGt"/>
+                                    <barButtonItem image="bottom_share_on" width="52" id="4hl-RY-qp1">
+                                        <connections>
+                                            <action selector="doShare:" destination="E5T-Hb-497" id="D4m-vj-16e"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="DiX-Fc-qMI"/>
+                                    <barButtonItem image="bottom_like_on" width="52" id="HaC-lE-k1h">
+                                        <connections>
+                                            <action selector="bookMark:" destination="E5T-Hb-497" id="vje-0u-2pW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="hWK-Ae-p6F"/>
+                                    <barButtonItem image="bottom_sign_on" width="52" id="8By-gx-v6o">
+                                        <connections>
+                                            <action selector="signUp:" destination="E5T-Hb-497" id="5NV-Qk-TsD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="4Bf-Qh-g1x"/>
+                                    <barButtonItem image="bottom_comment_on" width="52" id="vaJ-AG-dBh"/>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="GAA-5J-vCU"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1728,7 +1740,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <!--Activity Member Table View Controller-->
         <scene sceneID="tJl-tg-73L">
             <objects>
-                <tableViewController id="TBZ-F6-ZAU" customClass="ActivityMemberTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ActivityMemberTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TBZ-F6-ZAU" customClass="ActivityMemberTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="LDM-dl-Qp8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2136,9 +2148,6 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
-                                        <connections>
-                                            <segue destination="TBZ-F6-ZAU" kind="push" id="bQ5-a9-a6E"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -2297,7 +2306,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_icon_de.png" id="kMw-lw-P3q">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_icon_de.png" id="kMw-lw-P3q" customClass="IconImageViewLoader">
                                                     <rect key="frame" x="230" y="13" width="70" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>

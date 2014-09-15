@@ -33,7 +33,7 @@
     
     _titleArray = [[NSMutableArray alloc] initWithObjects:@"拥有者", @"管理员", @"成员", nil];
     
-    self.image = [self cutCenterImage:[UIImage imageNamed:@"head.jpg"]  size:CGSizeMake(50, 50)];
+    self.image = [UIImage imageNamed:@"user_icon_de.png"];
     
     CGSize mSize = [[UIScreen mainScreen] bounds].size;
     CGFloat screenWidth = mSize.width;
@@ -48,6 +48,12 @@
     NSLog(@"%f",self.tableView.frame.size.width);
 }
 
+- (void) SetActivity:(Activity *)activity
+{
+    linkedActivity = activity;
+    
+    
+}
 
 #pragma mark UITable datasource and delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -78,7 +84,8 @@
         cell.backgroundView = cbg;
       //  cell.selectedBackgroundView = [[UIView alloc]init];
         
-        UIImageView *creatorImg = [[UIImageView alloc] initWithImage:[self cutCenterImage:[UIImage imageNamed:@"head.jpg"]  size:CGSizeMake(50, 50)]];
+        UIImageView *creatorImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user_icon_de.png"]];
+                                   
         UILabel *creatorHead = [[UILabel alloc]initWithFrame:CGRectMake(15, 10, 50, 50)];
         UILabel *creatorName = [[UILabel alloc]initWithFrame:CGRectMake(100, 10, 200, 13)];
         UILabel *creatorSchool = [[UILabel alloc]initWithFrame:CGRectMake(100, 28, 200, 13)];
@@ -192,10 +199,7 @@
     [alert show];
 }
 
-
-
-
-
+/*
 #pragma mark 根据size截取图片中间矩形区域的图片 这里的size是正方形
 -(UIImage *)cutCenterImage:(UIImage *)image size:(CGSize)size{
     CGSize imageSize = image.size;
@@ -227,4 +231,6 @@
     
     return tmp;
 }
+ */
+                                   
 @end
