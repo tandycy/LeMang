@@ -60,6 +60,7 @@
 		25C3A0FD19ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0F419ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m */; };
 		25C3A0FE19ADC4EC00BB48B3 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0F619ADC4EC00BB48B3 /* UIView+Extension.m */; };
 		25C5213A19C469A00067CB01 /* CreateActivityCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C5213919C469A00067CB01 /* CreateActivityCommentViewController.m */; };
+		25C735E619C8337B00E596A9 /* MemberInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C735E519C8337B00E596A9 /* MemberInfoTableViewController.m */; };
 		25C7F337198B7A3500AB8B2F /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C7F336198B7A3500AB8B2F /* Activity.m */; };
 		25C8830819C1909700F727AF /* CreateActivityDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C8830719C1909700F727AF /* CreateActivityDetailTableViewController.m */; };
 		25CA2DF319949CF700BED707 /* 活动成员.png in Resources */ = {isa = PBXBuildFile; fileRef = 25CA2DE819949CF700BED707 /* 活动成员.png */; };
@@ -220,6 +221,8 @@
 		25C3A0F619ADC4EC00BB48B3 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		25C5213819C469A00067CB01 /* CreateActivityCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateActivityCommentViewController.h; path = Class/CreateActivityCommentViewController.h; sourceTree = "<group>"; };
 		25C5213919C469A00067CB01 /* CreateActivityCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateActivityCommentViewController.m; path = Class/CreateActivityCommentViewController.m; sourceTree = "<group>"; };
+		25C735E419C8337B00E596A9 /* MemberInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemberInfoTableViewController.h; path = Class/MemberInfoTableViewController.h; sourceTree = "<group>"; };
+		25C735E519C8337B00E596A9 /* MemberInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MemberInfoTableViewController.m; path = Class/MemberInfoTableViewController.m; sourceTree = "<group>"; };
 		25C7F335198B7A3500AB8B2F /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Activity.h; path = Class/Activity.h; sourceTree = "<group>"; };
 		25C7F336198B7A3500AB8B2F /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Activity.m; path = Class/Activity.m; sourceTree = "<group>"; };
 		25C8830619C1909700F727AF /* CreateActivityDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateActivityDetailTableViewController.h; path = Class/CreateActivityDetailTableViewController.h; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				25BAA3D119ACAFC500E87856 /* CreateActivityTableViewController.m */,
 				25C8830619C1909700F727AF /* CreateActivityDetailTableViewController.h */,
 				25C8830719C1909700F727AF /* CreateActivityDetailTableViewController.m */,
+				25C735E419C8337B00E596A9 /* MemberInfoTableViewController.h */,
+				25C735E519C8337B00E596A9 /* MemberInfoTableViewController.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -896,6 +901,7 @@
 				28DC152C19BD5E8000DE97F0 /* ASICloudFilesContainerRequest.m in Sources */,
 				28DC152719BD5E8000DE97F0 /* ASIInputStream.m in Sources */,
 				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
+				25C735E619C8337B00E596A9 /* MemberInfoTableViewController.m in Sources */,
 				EE9B1DAF19BC2C76001E2C7C /* SchoolManager.mm in Sources */,
 				28DC152619BD5E8000DE97F0 /* ASIHTTPRequest.m in Sources */,
 				257CD60A19A36EF1001FF078 /* ActivityCommetImageDetailViewController.m in Sources */,

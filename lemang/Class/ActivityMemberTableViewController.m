@@ -10,6 +10,7 @@
 #import "ActivityMemberTableViewController.h"
 #import "UITableGridViewCell.h"
 #import "UIImageButton.h"
+#import "MemberInfoTableViewController.h"
 #define kImageWidth  50 //UITableViewCell里面图片的宽度
 #define kImageHeight  50 //UITableViewCell里面图片的高度
 @interface ActivityMemberTableViewController()
@@ -295,14 +296,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+// click the specify member
 -(void)imageItemClick:(UIImageButton *)button{
-    NSString *msg = [NSString stringWithFormat:@"第%i行 第%i列",button.row + 1, button.column + 1];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                    message:msg
-                                                   delegate:nil
-                                          cancelButtonTitle:@"好的，知道了"
-                                          otherButtonTitles:nil, nil];
-    [alert show];
+    
+    
+    MemberInfoTableViewController *memberInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
+    [self.navigationController pushViewController:memberInfoTVC animated:YES];
 }
 
 /*
