@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IconImageViewLoader.h"
 
 @interface MemberInfoTableViewController : UITableViewController
 
@@ -18,7 +19,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *schoolName;
 @property (strong, nonatomic) IBOutlet UILabel *schoolNumber;
 @property (strong, nonatomic) IBOutlet UILabel *userSign;
-@property (strong, nonatomic) IBOutlet UIImageView *userIcon;
 @property (strong, nonatomic) IBOutlet UILabel *userName;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *userIcon;
+
+- (void) SetMemberId:(NSNumber*)userId;
 
 @end

@@ -297,13 +297,31 @@
 }
 
 // click the specify member
--(void)imageItemClick:(UIImageButton *)button{
+-(void)imageItemClick:(IconImageButtonLoader *)button{
     
     
     MemberInfoTableViewController *memberInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
-    [self.navigationController pushViewController:memberInfoTVC animated:YES];
     
-    NSLog(@"%@", [button backgroundImageForState:UIControlStateNormal]);
+    int section = [button Sector];
+    
+    if (section == 1)
+    {
+        // admin
+    }
+    else if (section == 2)
+    {
+        // user
+        int row = [button Row];
+        int index = [button Index];
+        
+        int offset = row * 4 + index;
+        
+        NSDictionary* data = memberList[offset];
+        
+        [memberInfoTVC SetMemberId:data[@"id"]];
+    }
+    
+    [self.navigationController pushViewController:memberInfoTVC animated:YES];
 }
 
 

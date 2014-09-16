@@ -39,6 +39,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void) SetMemberId:(NSNumber*)userId
+{
+    //
+    NSLog(@"%@", userId);
+}
 /*
 #pragma mark - Table view data source
 
