@@ -1,15 +1,15 @@
 //
-//  IconImageViewLoader.h
+//  IconImageButtonLoader.h
 //  LeMang
 //
-//  Created by LZ on 8/28/14.
+//  Created by LZ on 9/16/14.
 //  Copyright (c) 2014 university media. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UIImageButton.h"
 #import "ASIHTTPRequest.h"
 
-@interface IconImageViewLoader : UIImageView
+@interface IconImageButtonLoader : UIImageButton
 {
     NSData* imgData;
 }

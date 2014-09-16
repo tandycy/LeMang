@@ -183,7 +183,7 @@ NSString *navTitle;
     // activitySearchBar.delegate = self;
     // [self.navigationController.navigationBar addSubview:activitySearchBar];
     
-   
+    
     // initialize activity list
     
     bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
@@ -192,7 +192,7 @@ NSString *navTitle;
     privateIcon = [UIImage imageNamed:@"private_icon.png"];
     
     
-   // [self refreshActivityData];
+    // [self refreshActivityData];
     
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];

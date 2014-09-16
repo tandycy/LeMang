@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Activity.h"
 #import "Constants.h"
+#import "UserManager.h"
 #import "IconImageViewLoader.h"
+#import "IconImageButtonLoader.h"
 
 @interface ActivityMemberTableViewController : UITableViewController
 {
     Activity* linkedActivity;
+    NSMutableArray* adminList;
+    NSMutableArray* memberList;
 }
 
 @property IBOutlet UIView *containerView;

@@ -1,14 +1,14 @@
 //
-//  IconImageViewLoader.m
+//  IconImageButtonLoader.m
 //  LeMang
 //
-//  Created by LZ on 8/28/14.
+//  Created by LZ on 9/16/14.
 //  Copyright (c) 2014 university media. All rights reserved.
 //
 
-#import "IconImageViewLoader.h"
+#import "IconImageButtonLoader.h"
 
-@implementation IconImageViewLoader
+@implementation IconImageButtonLoader
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,8 +27,6 @@
     // Drawing code
 }
 */
-
-
 - (void)LoadFromUrl : (NSURL*)URL
 {
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
@@ -36,7 +34,6 @@
     [request setPassword:@"admin"];
     [request setDelegate:self];
     
-    //[self setImage:[UIImage imageNamed:@"loading.gif"]];
     imgData = [[NSMutableData alloc] init];
     
     [request startAsynchronous];
@@ -44,7 +41,7 @@
 
 - (void)LoadFromUrl:(NSURL *)URL : (UIImage*) defaultImg
 {
-    [self setImage:defaultImg];
+    [self setBackgroundImage:defaultImg forState:UIControlStateNormal];
     [self LoadFromUrl:URL];
 }
 
@@ -53,7 +50,7 @@
     imgData = [request responseData];
     
     UIImage *img=[UIImage imageWithData:imgData];
-    [self setImage:img];
+    [self setBackgroundImage:img forState:UIControlStateNormal];
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
@@ -65,5 +62,4 @@
     
     NSLog(@"Download image fail: %d",error.code);
 }
-
 @end

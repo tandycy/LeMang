@@ -52,7 +52,37 @@
 {
     linkedActivity = activity;
     
+    adminList = [[NSMutableArray alloc]init];
+    memberList = [[NSMutableArray alloc]init];
     
+    NSArray* members = [activity GetMemberList];
+    
+    if (!members)
+        return;
+    
+    for (int i = 0; i < members.count; i++)
+    {
+        NSDictionary* member = members[i];
+
+        // TODO: approve check
+        
+        NSString* rule = member[@"role"];
+        
+        if ([rule isEqualToString:@"Guest"] || [rule isEqualToString:@"User"])
+        {
+            NSDictionary* userData = member[@"user"];
+            [memberList addObject:userData];
+        }
+        else if ([rule isEqualToString:@"Administrator"])
+        {
+            NSDictionary* userData = member[@"user"];
+            [adminList addObject:userData];
+        }
+        else
+        {
+            NSLog(@"User not guest: %@", rule);
+        }
+    }
 }
 
 #pragma mark UITable datasource and delegate
@@ -61,10 +91,32 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0 || section == 1) {
+    if (section == 0 ) {
         return 1;
     }
-    else return 12;
+    else if (section == 1)
+    {
+        if (adminList != nil && adminList.count > 0)
+            return 1;
+        else
+            return 0;
+    }
+    else if (section == 2)
+    {
+        if (memberList == nil)
+            return 0;
+        
+        int members = memberList.count;
+        
+        if (members == 0)
+            return 0;
+        
+        int rows = members / 4;
+        
+        return rows + 1;
+    };
+    
+    return 0;
 }
 
 
@@ -78,22 +130,39 @@
     NSUInteger section = [indexPath section];
     
     if (section == 0) {
-            cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        NSDictionary* creator = [linkedActivity GetActivityData][@"createdBy"];
+        NSDictionary* profile = creator[@"profile"];
+        NSDictionary* creatorSchoolData = creator[@"university"];
+        NSDictionary* creatorDepartData = creator[@"department"];
         
         UIImageView *cbg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"member_back.png"]];
         cell.backgroundView = cbg;
-      //  cell.selectedBackgroundView = [[UIView alloc]init];
+        //  cell.selectedBackgroundView = [[UIView alloc]init];
         
-        IconImageViewLoader *creatorImg = [[IconImageViewLoader alloc] initWithImage:[UIImage imageNamed:@"user_icon_de.png"]];
-
+        IconImageViewLoader *creatorImg = [[IconImageViewLoader alloc]init];
+        
+        [creatorImg setImage:[UserManager DefaultIcon]];
+        if ([profile isKindOfClass:[NSDictionary class]])
+        {
+            NSString* iconStr = profile[@"iconUrl"];
+            if ([iconStr isKindOfClass:[NSString class]])
+            {
+                NSString* iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
+                
+                NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
+                [creatorImg LoadFromUrl:creatorIconUrl :[UserManager DefaultIcon]];
+            }
+        }
+        
         UILabel *creatorHead = [[UILabel alloc]initWithFrame:CGRectMake(15, 10, 50, 50)];
         UILabel *creatorName = [[UILabel alloc]initWithFrame:CGRectMake(100, 10, 200, 13)];
         UILabel *creatorSchool = [[UILabel alloc]initWithFrame:CGRectMake(100, 28, 200, 13)];
         UILabel *creatorColleage = [[UILabel alloc]initWithFrame:CGRectMake(100, 47, 200, 13)];
         
-        creatorName.text = @"其实我很丑";
-        creatorSchool.text = @"上海交大";
-        creatorColleage.text = @"电信学院";
+        creatorName.text = creator[@"name"];
+        creatorSchool.text = creatorSchoolData[@"name"];
+        creatorColleage.text = creatorDepartData[@"name"];
         
         creatorName.font = [UIFont fontWithName:defaultBoldFont size:13];
         creatorName.textColor = defaultMainColor;
@@ -107,24 +176,62 @@
         [cell addSubview:creatorColleage];
         
     }
+    else if (section == 1)
+    {
+        // TODO: admin list
+        cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        
+        int iconNumber = 4;
+        if (iconNumber > adminList.count)
+            iconNumber = adminList.count;
+        
+        for (int i = 0; i < iconNumber; i++)
+        {
+            //
+        }
+    }
     else
     {
-    //if (cell == nil) {
         cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         UIImageView *cbg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"member_list_back.png"]];
         cell.selectedBackgroundView = [[UIView alloc] init];
         cell.backgroundView = cbg;
+        
+        int rowIndex = [indexPath row];
+        int maxRow = memberList.count / 4;
+        int iconNumber = 4;
+        if (rowIndex == maxRow)
+            iconNumber = memberList.count - 4 * maxRow;
+        
         NSMutableArray *array = [NSMutableArray array];
-        for (int i=0; i<4; i++) {
+        
+        for (int i=0; i<iconNumber; i++) {
             
-            UIImageButton *button = [UIImageButton buttonWithType:UIButtonTypeCustom];
+            int memberIndex = i + rowIndex*4;
+            NSDictionary* member = memberList[memberIndex];
+            
+            IconImageButtonLoader *button = [IconImageButtonLoader buttonWithType:UIButtonTypeCustom];
             
             UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, 50, 20)];
-            name.text = @"doge!";
+            name.text = member[@"name"];
             name.font = [UIFont fontWithName:defaultFont size:11];
             name.textAlignment = UITextAlignmentCenter;
             name.textColor = defaultMainColor;
-
+            
+            
+            NSDictionary* profile = member[@"profile"];
+            [button setBackgroundImage:self.image forState:UIControlStateNormal];
+            if ([profile isKindOfClass:[NSDictionary class]])
+            {
+                NSString* iconStr = profile[@"iconUrl"];
+                if ([iconStr isKindOfClass:[NSString class]])
+                {
+                    NSString* iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
+                    NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
+                    [button LoadFromUrl:creatorIconUrl :[UserManager DefaultIcon]];
+                }
+            }
+            
             button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
             if (i==0) {
                 button.center = CGPointMake((1 + i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
@@ -133,13 +240,12 @@
             //button.column = i;
             [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
             [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
-            [button setBackgroundImage:self.image forState:UIControlStateNormal];
+            //[button setBackgroundImage:self.image forState:UIControlStateNormal];
             [button addSubview:name];
             [cell addSubview:button];
             [array addObject:button];
         }
         [cell setValue:array forKey:@"buttons"];
-  //  }
     }
     
     //获取到里面的cell里面的3个图片按钮引用
