@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Activity.h"
 #import "Constants.h"
+#import "IconImageViewLoader.h"
 
 @interface ActivityMemberTableViewController : UITableViewController
 {

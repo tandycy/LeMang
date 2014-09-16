@@ -83,9 +83,19 @@
         
         _detailContent.text = detailInfo;
         
-        NSArray* memberArray = activity.memberList;
-        NSUInteger memberNumber = memberArray.count;
+         NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
+         memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", activity.activityId];
+         ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
+         [memberRequest startSynchronous];
+         
+         NSArray* memberArray = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
         
+        if (![memberArray isKindOfClass:[NSArray class]])
+            memberArray = [NSArray alloc];
+        
+        [activity SetActivityMember:memberArray];
+        
+        NSUInteger memberNumber = memberArray.count;
         _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
         
         NSArray* memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
@@ -98,6 +108,8 @@
             }
             
             [memberIconList[i] setHidden:false];
+            
+            NSData* ddd = memberArray[i];
             
             NSDictionary* memberInfo = memberArray[i][@"user"][@"profile"];
             NSString* memberIconUrl = @"";

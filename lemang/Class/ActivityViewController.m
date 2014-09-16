@@ -110,22 +110,14 @@ NSString *navTitle;
             NSString* type = temp[@"activityType"];
             
             NSString* createDate = temp[@"createdDate"];
-            NSArray* members = temp[@"activityMember"];
             
-            NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
-            memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", temp[@"id"]];
-            ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
-            [memberRequest startSynchronous];
             
-            members = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
-            
+            NSDictionary* members = temp[@"users"];
             int memberNum = 0;
-            if ([members isKindOfClass:[NSArray class]])
+            if ([members isKindOfClass:[NSDictionary class]])
             {
                 memberNum = members.count;
             }
-            else
-                members = [[NSArray alloc]init];
             
             //NSString* tittle = temp[@"title"];
             NSString* peopleLimit = temp[@"peopleLimit"];
@@ -155,21 +147,21 @@ NSString *navTitle;
                 imgUrlString = @"";
             NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
             
-            [activityArray addObject:[Activity
-                                      activityOfCategory:@"All"
-                                      imgUrlStr:imgUrl
-                                      title:temp[@"title"]
-                                      date:createDate
-                                      limit:regionLimit
-                                      icon:schoolIcon
-                                      member:[NSString stringWithFormat:@"%d",memberNum]
-                                      memberUpper:peopleLimit
-                                      fav:@"325"
-                                      state:0
-                                      activitiId:temp[@"id"]
-                                      memberDataList:members
-                                      ]
-             ];
+            Activity* newAct = [Activity
+                                activityOfCategory:@"All"
+                                imgUrlStr:imgUrl
+                                title:temp[@"title"]
+                                date:createDate
+                                limit:regionLimit
+                                icon:schoolIcon
+                                member:[NSString stringWithFormat:@"%d",memberNum]
+                                memberUpper:peopleLimit
+                                fav:@"325"
+                                state:0
+                                activitiId:temp[@"id"]
+                                ];
+            [newAct SetActivityData:temp];
+            [activityArray addObject: newAct];
         }
         self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
         [activityList reloadData];

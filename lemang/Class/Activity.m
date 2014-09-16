@@ -20,10 +20,9 @@
 @synthesize member;
 @synthesize fav;
 @synthesize memberUpper;
-@synthesize memberList;
 
 + (id)activityOfCategory:(NSString*)category imgUrlStr:(NSURL*)imgUrlStr title:(NSString*)title date:(NSString*)date
-                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(NSNumber*)activitiId memberDataList:(NSArray*)memberDataList
+                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(NSNumber*)activitiId
 {
     Activity *newActivity = [[self alloc] init];
     newActivity.category = category;
@@ -37,8 +36,27 @@
     newActivity.fav = fav;
     newActivity.state = state;
     newActivity.activityId = activitiId;
-    newActivity.memberList = memberDataList;
     return newActivity;
+}
+
+- (void) SetActivityData:(NSDictionary *)dataItem
+{
+    activityData = dataItem;
+}
+
+- (void) SetActivityMember:(NSArray *)memberDataList
+{
+    memberList = memberDataList;
+}
+
+- (NSArray*)GetMemberList
+{
+    return memberList;
+}
+
+- (NSDictionary*) GetActivityData
+{
+    return activityData;
 }
 
 @end

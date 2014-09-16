@@ -84,8 +84,8 @@
         cell.backgroundView = cbg;
       //  cell.selectedBackgroundView = [[UIView alloc]init];
         
-        UIImageView *creatorImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user_icon_de.png"]];
-                                   
+        IconImageViewLoader *creatorImg = [[IconImageViewLoader alloc] initWithImage:[UIImage imageNamed:@"user_icon_de.png"]];
+
         UILabel *creatorHead = [[UILabel alloc]initWithFrame:CGRectMake(15, 10, 50, 50)];
         UILabel *creatorName = [[UILabel alloc]initWithFrame:CGRectMake(100, 10, 200, 13)];
         UILabel *creatorSchool = [[UILabel alloc]initWithFrame:CGRectMake(100, 28, 200, 13)];
