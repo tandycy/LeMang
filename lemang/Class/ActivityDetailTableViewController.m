@@ -83,7 +83,7 @@
         
         _detailContent.text = detailInfo;
         
-        NSArray* memberArray = activityData[@"activityMember"];
+        NSArray* memberArray = activity.memberList;
         NSUInteger memberNumber = memberArray.count;
         
         _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
@@ -99,12 +99,17 @@
             
             [memberIconList[i] setHidden:false];
             
-            NSDictionary* memberInfo = memberArray[i];
-            NSString* memberIconUrl = memberInfo[@""];
-            NSURL* iconUrl = [NSURL URLWithString:memberIconUrl];
+            NSDictionary* memberInfo = memberArray[i][@"user"][@"profile"];
+            NSString* memberIconUrl = @"";
+            if ([memberInfo isKindOfClass:[NSDictionary class]])
+            {
+                memberIconUrl = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@",memberInfo[@"iconUrl"]];
+                NSURL* iconUrl = [NSURL URLWithString:memberIconUrl];
+                [memberIconList[i] LoadFromUrl:iconUrl: [UserManager DefaultIcon]];
+            }
+            else
+                [memberIconList[i] setImage:[UserManager DefaultIcon]];
             
-            // [UIImage imageNamed:@"user_icon_de.png"];
-            [memberIconList[i] LoadFromUrl:iconUrl: [UserManager DefaultIcon]];
         }
         
         localCommentData = activityData[@"activityComment"];

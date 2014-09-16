@@ -112,10 +112,20 @@ NSString *navTitle;
             NSString* createDate = temp[@"createdDate"];
             NSArray* members = temp[@"activityMember"];
             
+            NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
+            memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", temp[@"id"]];
+            ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
+            [memberRequest startSynchronous];
+            
+            members = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+            
             int memberNum = 0;
-            if (members != Nil) {
+            if ([members isKindOfClass:[NSArray class]])
+            {
                 memberNum = members.count;
             }
+            else
+                members = [[NSArray alloc]init];
             
             //NSString* tittle = temp[@"title"];
             NSString* peopleLimit = temp[@"peopleLimit"];
@@ -140,22 +150,26 @@ NSString *navTitle;
             }
             
             NSString* imgUrlString = temp[@"iconUrl"];
-            imgUrlString = @"http://pic13.nipic.com/20110405/4572067_232048222000_2.jpg"; // TSET URL HERE
             
+            if (![imgUrlString isKindOfClass:[NSString class]])
+                imgUrlString = @"";
             NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
             
             [activityArray addObject:[Activity
-                                         activityOfCategory:@"All"
-                                         img:imgUrl
-                                         title:temp[@"title"]
-                                         date:createDate
-                                         limit:regionLimit
-                                         icon:schoolIcon
-                                         member:[NSString stringWithFormat:@"%d",memberNum]
-                                         memberUpper:peopleLimit
-                                         fav:@"325"
-                                         state:0
-                                         activitiId:temp[@"id"]]];
+                                      activityOfCategory:@"All"
+                                      imgUrlStr:imgUrl
+                                      title:temp[@"title"]
+                                      date:createDate
+                                      limit:regionLimit
+                                      icon:schoolIcon
+                                      member:[NSString stringWithFormat:@"%d",memberNum]
+                                      memberUpper:peopleLimit
+                                      fav:@"325"
+                                      state:0
+                                      activitiId:temp[@"id"]
+                                      memberDataList:members
+                                      ]
+             ];
         }
         self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
         [activityList reloadData];
@@ -316,14 +330,7 @@ NSString *navTitle;
     
     cell.linkedActivity = activity;
     
-    UIImageView *activityImg = (UIImageView *)[cell viewWithTag:ActivityImg];
-    if (activity.img == nil)
-    {
-        activityImg.image = [UIImage imageNamed:@"group1.png"];
-        activity.cachedImg = [UIImage imageNamed:@"group1.png"];
-    }
-    else
-        [cell SetIconImgUrl:activity.img];
+    [cell SetIconImgUrl:activity.imgUrlStr];
     
     UILabel *titleLable = (UILabel *)[cell viewWithTag:ActivityTitle];
     titleLable.text = activity.title;

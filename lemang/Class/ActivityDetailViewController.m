@@ -130,6 +130,7 @@
     {
         // TODO
         int resCode = [request responseStatusCode];
+        NSLog(@"regist %d",resCode);
     }
 }
 

@@ -10,7 +10,7 @@
 
 @interface Activity : NSObject{
     NSNumber* activityId;
-    NSURL *img;
+    NSURL *imgUrlStr;
     UIImage* cachedImg;
     NSString *title;
     NSString *date;
@@ -20,9 +20,10 @@
     NSString *memberUpper;
     NSString *fav;
     BOOL *state;
+    NSArray* memberList;
 }
 @property (nonatomic, copy) NSString *category;
-@property (nonatomic, copy) NSURL *img;
+@property (nonatomic, copy) NSURL *imgUrlStr;
 @property (nonatomic, copy) UIImage* cachedImg;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *date;
@@ -33,8 +34,9 @@
 @property (nonatomic, copy) NSString *fav;
 @property (nonatomic) BOOL *state;
 @property (nonatomic, copy) NSNumber* activityId;
+@property (nonatomic, copy) NSArray* memberList;
 
-+ (id)activityOfCategory:(NSString*)category img:(NSURL*)img title:(NSString*)title date:(NSString*)date
-                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(NSNumber*)activitiId;
++ (id)activityOfCategory:(NSString*)category imgUrlStr:(NSURL*)imgUrlStr title:(NSString*)title date:(NSString*)date
+                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(NSNumber*)activitiId memberDataList:(NSArray*)memberDataList;
 
 @end

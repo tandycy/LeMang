@@ -35,7 +35,8 @@
     [request setPassword:@"admin"];
     [request setDelegate:self];
     
-    [activityIconImg setImage:[UIImage imageNamed:@"loading.gif"]];
+    [activityIconImg setImage:[UIImage imageNamed:@"main_activity_off.png"]];
+    linkedActivity.cachedImg = activityIconImg.image;
     imgData = [[NSMutableData alloc] init];
     
     [request startAsynchronous];
