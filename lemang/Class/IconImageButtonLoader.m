@@ -27,6 +27,29 @@
     // Drawing code
 }
 */
+
+- (void)SetLocation:(int)_sector :(int)_row :(int)_index
+{
+    sector = _sector;
+    row = _row;
+    index = _index;
+}
+
+- (int)Sector
+{
+    return sector;
+}
+
+- (int)Row
+{
+    return row;
+}
+
+- (int)Index
+{
+    return index;
+}
+
 - (void)LoadFromUrl : (NSURL*)URL
 {
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
@@ -48,7 +71,7 @@
 - (void)requestFinished:(ASIHTTPRequest*)request
 {
     imgData = [request responseData];
-    
+   
     UIImage *img=[UIImage imageWithData:imgData];
     [self setBackgroundImage:img forState:UIControlStateNormal];
 }

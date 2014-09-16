@@ -34,7 +34,9 @@
     
     _titleArray = [[NSMutableArray alloc] initWithObjects:@"拥有者", @"管理员", @"成员", nil];
     
-    self.image = [UIImage imageNamed:@"user_icon_de.png"];
+    self.image = [UserManager DefaultIcon];
+    
+//    [self cutCenterImage:self.image size:];
     
     CGSize mSize = [[UIScreen mainScreen] bounds].size;
     CGFloat screenWidth = mSize.width;
@@ -141,19 +143,16 @@
         cell.backgroundView = cbg;
         //  cell.selectedBackgroundView = [[UIView alloc]init];
         
-        IconImageViewLoader *creatorImg = [[IconImageViewLoader alloc]init];
+        IconImageViewLoader *creatorImg = [[IconImageViewLoader alloc]initWithImage:self.image];
         
-        [creatorImg setImage:[UserManager DefaultIcon]];
         if ([profile isKindOfClass:[NSDictionary class]])
         {
             NSString* iconStr = profile[@"iconUrl"];
-            if ([iconStr isKindOfClass:[NSString class]])
-            {
-                NSString* iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
-                
-                NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
-                [creatorImg LoadFromUrl:creatorIconUrl :[UserManager DefaultIcon]];
-            }
+            iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
+            
+            NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
+            [creatorImg LoadFromUrl:creatorIconUrl :[UserManager DefaultIcon]];
+            
         }
         
         UILabel *creatorHead = [[UILabel alloc]initWithFrame:CGRectMake(15, 10, 50, 50)];
@@ -220,17 +219,14 @@
             name.textColor = defaultMainColor;
             
             
-            NSDictionary* profile = member[@"profile"];
+            NSDictionary* profileData = member[@"profile"];
             [button setBackgroundImage:self.image forState:UIControlStateNormal];
-            if ([profile isKindOfClass:[NSDictionary class]])
+            if ([profileData isKindOfClass:[NSDictionary class]])
             {
-                NSString* iconStr = profile[@"iconUrl"];
-                if ([iconStr isKindOfClass:[NSString class]])
-                {
-                    NSString* iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
-                    NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
-                    [button LoadFromUrl:creatorIconUrl :[UserManager DefaultIcon]];
-                }
+                NSString* iconStr = [profileData valueForKey:@"iconUrl"];
+                iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
+                NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
+                [button LoadFromUrl:creatorIconUrl :self.image];
             }
             
             button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
@@ -238,6 +234,7 @@
                 button.center = CGPointMake((1 + i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
             }
             else button.center = CGPointMake((1 + 2*i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
+            [button SetLocation:section : rowIndex: i];
             //button.column = i;
             [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
             [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -245,8 +242,11 @@
             [button addSubview:name];
             [cell addSubview:button];
             [array addObject:button];
+            
+            
         }
         [cell setValue:array forKey:@"buttons"];
+
     }
     
     //获取到里面的cell里面的3个图片按钮引用
@@ -302,9 +302,11 @@
     
     MemberInfoTableViewController *memberInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
     [self.navigationController pushViewController:memberInfoTVC animated:YES];
+    
+    NSLog(@"%@", [button backgroundImageForState:UIControlStateNormal]);
 }
 
-/*
+
 #pragma mark 根据size截取图片中间矩形区域的图片 这里的size是正方形
 -(UIImage *)cutCenterImage:(UIImage *)image size:(CGSize)size{
     CGSize imageSize = image.size;
@@ -336,6 +338,5 @@
     
     return tmp;
 }
- */
                                    
 @end
