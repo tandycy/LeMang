@@ -43,7 +43,12 @@
 - (void) SetMemberId:(NSNumber*)userId
 {
     //
-    NSLog(@"%@", userId);
+    NSString* userUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", userId];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:userUrlStr]];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
 }
 /*
 #pragma mark - Table view data source
