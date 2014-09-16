@@ -112,6 +112,7 @@
 		EE9B1DB219BC34F8001E2C7C /* HttpGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */; };
 		EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */; };
 		EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC7756719B0702B0035B400 /* OrganizationViewCell.m */; };
+		EEEE40AE19C845C900001B37 /* IconImageButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -310,6 +311,8 @@
 		EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewCell.m; path = Class/ActivityViewCell.m; sourceTree = "<group>"; };
 		EEC7756619B0702B0035B400 /* OrganizationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationViewCell.h; path = Class/OrganizationViewCell.h; sourceTree = "<group>"; };
 		EEC7756719B0702B0035B400 /* OrganizationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganizationViewCell.m; path = Class/OrganizationViewCell.m; sourceTree = "<group>"; };
+		EEEE40AC19C845C900001B37 /* IconImageButtonLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageButtonLoader.h; path = Class/IconImageButtonLoader.h; sourceTree = "<group>"; };
+		EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageButtonLoader.m; path = Class/IconImageButtonLoader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -705,6 +708,8 @@
 				28DC153A19BE1E5200DE97F0 /* Base64.m */,
 				28DC153C19BE8F8500DE97F0 /* SchoolItem.h */,
 				28DC153D19BE8F8500DE97F0 /* SchoolItem.m */,
+				EEEE40AC19C845C900001B37 /* IconImageButtonLoader.h */,
+				EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -772,7 +777,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -886,6 +891,7 @@
 				25C3A0FD19ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m in Sources */,
 				28DC152219BD5E8000DE97F0 /* ASIDataCompressor.m in Sources */,
 				25C3A0F919ADC4EC00BB48B3 /* MJRefreshConst.m in Sources */,
+				EEEE40AE19C845C900001B37 /* IconImageButtonLoader.m in Sources */,
 				2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */,
 				28DC152C19BD5E8000DE97F0 /* ASICloudFilesContainerRequest.m in Sources */,
 				28DC152719BD5E8000DE97F0 /* ASIInputStream.m in Sources */,
@@ -1120,7 +1126,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,
