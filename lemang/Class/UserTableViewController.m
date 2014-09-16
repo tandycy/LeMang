@@ -174,7 +174,7 @@
         
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
-        [_userIconImageLoader LoadFromUrl:[NSURL URLWithString:urlStr]];
+        [_userIconImageLoader LoadFromUrl:[NSURL URLWithString:urlStr]:[UserManager DefaultIcon]];
     }
     else
     {
