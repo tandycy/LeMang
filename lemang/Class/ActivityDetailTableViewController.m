@@ -113,7 +113,7 @@
             
             NSString* rule = memberArray[i][@"role"];
             
-            NSDictionary* memberInfo = memberArray[i][@"profile"];
+            NSDictionary* memberInfo = memberArray[i][@"user"][@"profile"];
             NSString* memberIconUrl = @"";
             if ([memberInfo isKindOfClass:[NSDictionary class]])
             {
@@ -126,6 +126,7 @@
             
         }
         
+        address.text = activityData[@"address"];
         localCommentData = activityData[@"activityComment"];
         NSUInteger commentNumber = localCommentData.count;
         

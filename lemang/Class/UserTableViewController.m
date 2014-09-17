@@ -161,16 +161,20 @@
     userData = [UserManager LocalUserData];
     //[NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
     
-    _userNameText.text = [self filtStr:userData[@"name"]];
+    _userNameText.text = [UserManager filtStr:userData[@"name"]];
     _userGenderText.text = @"";
     _userDescText.text = @"";
-    _userSchoolText.text = [self filtStr:userData[@"university"][@"name"]];
+    _userSchoolText.text = [UserManager filtStr:userData[@"university"][@"name"]];
     NSDictionary* profileData = userData[@"profile"];
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
-        _userGenderText.text = [self filtStr:profileData[@"gender"]];
-        _userDescText.text = [self filtStr:profileData[@"signature"]];
+        _userGenderText.text = [UserManager filtStr:profileData[@"gender"] : @""];
+        _userDescText.text = [UserManager filtStr:profileData[@"signature"] : @""];
+        
+        NSString* nick = [UserManager filtStr:profileData[@"nickName"] : @""];
+        if (nick.length > 0)
+            _userDescText.text = nick;
         
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
@@ -182,14 +186,6 @@
     }
 }
 
-- (NSString*) filtStr:(NSString*)inputStr
-{
-    NSString* result = @"";
-    
-    result = [result stringByAppendingFormat:@"%@", inputStr];
-    
-    return result;
-}
 
 #pragma mark - Table view data source
 /*

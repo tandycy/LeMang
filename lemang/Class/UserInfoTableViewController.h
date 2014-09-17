@@ -16,8 +16,10 @@
 {
     UIImagePickerController *imagePicker;
     UIImage* image;
+    NSNumber* userId;
 }
 - (IBAction)OnChangeIcon:(id)sender;
+- (void)UpdateContentDisplay;
 
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *userIcon;
 @property (strong, nonatomic) IBOutlet UILabel *userName;

@@ -81,7 +81,7 @@ typedef enum {
     _orgnizationTittle.text = linkedCell.organizationNameTxt.text;
 
     NSDictionary* orgData = [linkedCell getLocalData];
-    NSString* detailStr = [linkedCell filtStr:orgData[@"description"]];
+    NSString* detailStr = [UserManager filtStr:orgData[@"description"]];
     _organizationDetail.text = detailStr;
     _organizationIcon.image = [linkedCell getLocalIconImage];
     

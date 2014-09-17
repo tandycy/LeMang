@@ -36,12 +36,17 @@
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
 + (UserManager*) Instance;
 + (NSString*) UserName;
-+ (NSString*) UserPW;+ (NSDictionary*) LocalUserData;
++ (NSString*) UserPW;
++ (NSDictionary*) LocalUserData;
 + (UIImage*) DefaultIcon;
++ (NSString*) filtStr:(NSString*)inputStr;
++ (NSString*) filtStr:(NSString*)inputStr :(NSString*)defaultStr;
++ (void) RefreshUserData;
 
 + (bool)IsUserNameExists:(NSString*)nameData;
-
 + (bool) IsInitSuccess;
+
+- (void) RefreshData;
 - (int) GetLocalUserId;
 - (void) DoLogIn : (NSString*)name :(NSString*)pw;
 - (void) ClearLocalUserData;

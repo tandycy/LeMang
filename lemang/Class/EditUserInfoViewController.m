@@ -32,6 +32,27 @@
     [self initView];
 }
 
+- (void) SetEditProfile : (NSString*)itemKey  userId:(NSNumber*)userId  defaultValue:(NSString*)defaultValue
+{
+    userKey = itemKey;
+    uid = userId;
+    defaultV = defaultValue;
+    itemType = 0;
+}
+
+- (void) SetEditContact : (NSString*)itemKey  userId:(NSNumber*)userId  defaultValue:(NSString*)defaultValue
+{
+    userKey = itemKey;
+    uid = userId;
+    defaultV = defaultValue;
+    itemType = 1;
+}
+
+- (void) SetOwner:(UserInfoTableViewController *)_owner
+{
+    owner = _owner;
+}
+
 -(void)initView
 {
     // init view with white bg
@@ -52,10 +73,24 @@
     //init right barbutton item
     UIBarButtonItem *finish = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(finishEdit:)];
     self.navigationItem.rightBarButtonItem = finish;
+    
+    [self.editText setText:defaultV];
 }
 
 -(IBAction)finishEdit:(id)sender{
+    
+    NSString* userUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", uid];
+
+    if (itemType == 0)
+        userUrlStr = [userUrlStr stringByAppendingString:@"/profile"];
+    else if (itemType == 1)
+        userUrlStr = [userUrlStr stringByAppendingString:@"/contact"];
+    
+    NSString* postString = [NSString stringWithFormat:@"{\"%@\":\"%@\"}", userKey, _editText.text];
+    
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning

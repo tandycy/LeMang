@@ -46,6 +46,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) UpdateContentDisplay
+{
+    [UserManager RefreshUserData];
+    [self UpdateUserDetail];
+}
+
 - (void) UpdateUserDetail
 {
     [self clearUserData];
@@ -58,17 +64,17 @@
         return;
     
     _userName.text = @"未认证用户";
-    _schoolName.text = [self filtStr:userData[@"university"][@"name"]];
-    _departName.text =[self filtStr:userData[@"department"][@"name"]];
+    _schoolName.text = [UserManager filtStr:userData[@"university"][@"name"]];
+    _departName.text =[UserManager filtStr:userData[@"department"][@"name"]];
     
     NSDictionary* profileData = userData[@"profile"];
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
-        _userName.text = [self filtStr:profileData[@"fullName"]];
-        _userNickName.text = [self filtStr:profileData[@"nickName"]];
-        _userSign.text = [self filtStr:profileData[@"signature"]];
-        _schoolNumber.text = [self filtStr:profileData[@"code"]];
+        _userName.text = [UserManager filtStr:profileData[@"fullName"] : @"未认证用户"];
+        _userNickName.text = [UserManager filtStr:profileData[@"nickName"] : @""];
+        _userSign.text = [UserManager filtStr:profileData[@"signature"] : @""];
+        _schoolNumber.text = [UserManager filtStr:profileData[@"code"] : @"未认证用户"];
         
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
@@ -79,9 +85,9 @@
     
     if ([contactData isKindOfClass:[NSDictionary class]])
     {
-        _phoneNumber.text = [self filtStr:contactData[@"CELL"]];
-        _qqNumber.text = [self filtStr:contactData[@"QQ"]];
-        _wechatId.text = [self filtStr:contactData[@"WECHAT"]];
+        _phoneNumber.text = [UserManager filtStr:contactData[@"CELL"] : @"未绑定手机"];
+        _qqNumber.text = [UserManager filtStr:contactData[@"QQ"] : @""];
+        _wechatId.text = [UserManager filtStr:contactData[@"WECHAT"] : @""];
     }
 }
 
@@ -100,15 +106,6 @@
     _userIcon.image = [UIImage imageNamed:@"user_icon_de.png"];
 }
 
-
-- (NSString*) filtStr:(NSString*)inputStr
-{
-    NSString* result = @"";
-    
-    result = [result stringByAppendingFormat:@"%@", inputStr];
-    
-    return result;
-}
 
 - (IBAction)OnChangeIcon:(id)sender
 {
@@ -321,15 +318,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     EditUserInfoViewController *EditUserInfoVC = [[EditUserInfoViewController alloc]init];
+    [EditUserInfoVC SetOwner:self];
     if (indexPath.section==0) {
+        NSDictionary* profileData = [UserManager LocalUserData][@"profile"];
+        [EditUserInfoVC SetOriginData:profileData];
         switch (indexPath.row) {
             case 1:
                 EditUserInfoVC.navigationItem.title = @"修改昵称";
+                [EditUserInfoVC SetEditProfile:@"nickName" userId:userId defaultValue:_userNickName.text];
                 [self.navigationController pushViewController:EditUserInfoVC animated:YES];
                 break;
             case 2:
                 EditUserInfoVC.navigationItem.title = @"修改签名";
+                [EditUserInfoVC SetEditProfile:@"signature" userId:userId defaultValue:_userSign.text];
                 [self.navigationController pushViewController:EditUserInfoVC animated:YES];
                 break;
             default:
@@ -338,13 +341,17 @@
     }
     else if(indexPath.section==1)
     {
+        NSDictionary* contactData = [UserManager LocalUserData][@"contacts"];
+        [EditUserInfoVC SetOriginData:contactData];
         switch (indexPath.row) {
             case 1:
                 EditUserInfoVC.navigationItem.title = @"修改QQ号";
+                [EditUserInfoVC SetEditProfile:@"QQ" userId:userId defaultValue:_qqNumber.text];
                 [self.navigationController pushViewController:EditUserInfoVC animated:YES];
                 break;
             case 2:
                 EditUserInfoVC.navigationItem.title = @"修改微信号";
+                [EditUserInfoVC SetEditProfile:@"WECHAT" userId:userId defaultValue:_wechatId.text];
                 [self.navigationController pushViewController:EditUserInfoVC animated:YES];
                 break;
             default:

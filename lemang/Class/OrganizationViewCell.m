@@ -34,15 +34,6 @@
     [self updateDisplay];
 }
 
-- (NSString*) filtStr:(NSString*)inputStr
-{
-    NSString* result = @"";
-    
-    result = [result stringByAppendingFormat:@"%@", inputStr];
-    
-    return result;
-}
-
 - (NSDictionary*) getLocalData
 {
     return localData;
@@ -58,17 +49,17 @@
     if (localData == Nil)
         return;
     
-    NSString* orgName = [self filtStr:localData[@"name"]];
+    NSString* orgName = [UserManager filtStr:localData[@"name"]];
     _organizationNameTxt.text = orgName;
-    _memberLimitTxt.text = [self filtStr:localData[@"peopleLimit"]];
-    _areaLimitTxt.text = [self filtStr:localData[@"regionLimit"]];
+    _memberLimitTxt.text = [UserManager filtStr:localData[@"peopleLimit"]];
+    _areaLimitTxt.text = [UserManager filtStr:localData[@"regionLimit"]];
     
     NSArray* memberArray = localData[@"associationMember"];
     _memberNumberTxt.text = [NSString stringWithFormat:@"%d", memberArray.count];
     
     // Download icon
     
-    NSString* urlStr = [self filtStr:localData[@"iconUrl"]];
+    NSString* urlStr = [UserManager filtStr:localData[@"iconUrl"]];
     if (urlStr.length == 0)
     {
         _organizationIcon.image = [[UIImage alloc] initWithContentsOfFile:@"appicon152.png"];
