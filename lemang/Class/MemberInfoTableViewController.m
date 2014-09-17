@@ -32,6 +32,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self ClearDisplay];
+    [self RefreshDisplay];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,14 +45,40 @@
 
 - (void) ClearDisplay
 {
-    //
+    _departName.text = @"";
+    _userNickName.text = @"";
+    _phoneNumber.text = @"";
+    _qqNumber.text = @"";
+    _wechatId.text = @"";
+    _schoolName.text = @"";
+    _schoolNumber.text = @"";
+    _userSign.text = @"";
+    _userName.text = @"";
+    
+    [_userIcon setImage:[UserManager DefaultIcon]];
 }
+
+- (NSString*) filtStr:(NSString*)inputStr
+{
+    NSString* result = @"";
+    
+    result = [result stringByAppendingFormat:@"%@", inputStr];
+    
+    return result;
+}
+
 - (void) SetMemberId:(NSNumber*)userId
 {
-    [self ClearDisplay];
+    memberId = userId;
+}
+
+- (void) RefreshDisplay
+{
+    if (memberId == nil)
+        return;
     
     NSString* userUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", userId];
+    userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", memberId];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:userUrlStr]];
     [request setUsername:@"admin"];    
@@ -67,11 +96,34 @@
     
     int rcode = [request responseStatusCode];
     //NSLog(@"code %d",rcode);
-    NSDictionary* userdata = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+    NSDictionary* userData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
     
-    NSDictionary* department = userdata[@"department"];
-    NSDictionary* school = userdata[@"university"];
-    NSDictionary* profile = userdata[@"profile"];
+    _userName.text = @"未认证用户";
+    _schoolName.text = [self filtStr:userData[@"university"][@"name"]];
+    _departName.text =[self filtStr:userData[@"department"][@"name"]];
+    
+    NSDictionary* profileData = userData[@"profile"];
+    
+    if ([profileData isKindOfClass:[NSDictionary class]])
+    {
+        _userName.text = [self filtStr:profileData[@"fullName"]];
+        _userNickName.text = [self filtStr:profileData[@"nickName"]];
+        _userSign.text = [self filtStr:profileData[@"signature"]];
+        _schoolNumber.text = [self filtStr:profileData[@"code"]];
+        
+        NSString* urlStr = profileData[@"iconUrl"];
+        urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
+        [_userIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UserManager DefaultIcon]];
+    }
+    
+    NSDictionary* contactData = userData[@"contacts"];
+    
+    if ([contactData isKindOfClass:[NSDictionary class]])
+    {
+        _phoneNumber.text = [self filtStr:contactData[@"CELL"]];
+        _qqNumber.text = [self filtStr:contactData[@"QQ"]];
+        _wechatId.text = [self filtStr:contactData[@"WECHAT"]];
+    }
 }
 /*
 #pragma mark - Table view data source
