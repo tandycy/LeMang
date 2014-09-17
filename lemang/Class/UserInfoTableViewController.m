@@ -325,9 +325,11 @@
     if (indexPath.section==0) {
         switch (indexPath.row) {
             case 1:
+                EditUserInfoVC.navigationItem.title = @"修改昵称";
                 [self.navigationController pushViewController:EditUserInfoVC animated:YES];
                 break;
             case 2:
+                EditUserInfoVC.navigationItem.title = @"修改签名";
                 [self.navigationController pushViewController:EditUserInfoVC animated:YES];
                 break;
             default:
@@ -336,7 +338,18 @@
     }
     else if(indexPath.section==1)
     {
-        [self.navigationController pushViewController:EditUserInfoVC animated:YES];
+        switch (indexPath.row) {
+            case 1:
+                EditUserInfoVC.navigationItem.title = @"修改QQ号";
+                [self.navigationController pushViewController:EditUserInfoVC animated:YES];
+                break;
+            case 2:
+                EditUserInfoVC.navigationItem.title = @"修改微信号";
+                [self.navigationController pushViewController:EditUserInfoVC animated:YES];
+                break;
+            default:
+                break;
+        }
     }
 }
 
