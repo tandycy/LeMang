@@ -53,6 +53,13 @@
     imgData = [request responseData];
     
     UIImage *img=[UIImage imageWithData:imgData];
+    
+    if (img == nil)
+    {
+        NSLog(@"invalid image data from: %@", request.url);
+        NSLog(@"with response: %d\n\n", [request responseStatusCode]);
+        return;
+    }
     [self setImage:img];
 }
 

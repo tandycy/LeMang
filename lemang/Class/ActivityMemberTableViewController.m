@@ -57,11 +57,25 @@
     
     adminList = [[NSMutableArray alloc]init];
     memberList = [[NSMutableArray alloc]init];
+    guestList = [[NSMutableArray alloc]init];
     
-    NSArray* members = [activity GetMemberList];
+    NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
+    memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", activity.activityId];
+    ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
+    [memberRequest startSynchronous];
     
-    if (!members)
+    NSError* error = [memberRequest error];
+    
+    if (error)
+    {
+        NSLog(@"Get activity member error: %d", error.code);
         return;
+    }
+    
+    NSArray* members = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+    
+    if (![members isKindOfClass:[NSArray class]])
+        members = [NSArray alloc];
     
     for (int i = 0; i < members.count; i++)
     {
@@ -71,7 +85,12 @@
         
         NSString* rule = member[@"role"];
         
-        if ([rule isEqualToString:@"Guest"] || [rule isEqualToString:@"User"])
+        if ([rule isEqualToString:@"Guest"])
+        {
+            NSDictionary* userData = member[@"user"];
+            [guestList addObject:userData];
+        }
+        else if ([rule isEqualToString:@"User"])
         {
             NSDictionary* userData = member[@"user"];
             [memberList addObject:userData];
@@ -81,9 +100,13 @@
             NSDictionary* userData = member[@"user"];
             [adminList addObject:userData];
         }
+        else if ([rule isEqualToString:@"Creator"])
+        {
+            // ??
+        }
         else
         {
-            NSLog(@"User not guest: %@", rule);
+            NSLog(@"Unknow user role: %@", rule);
         }
     }
 }

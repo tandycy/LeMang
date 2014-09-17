@@ -40,15 +40,38 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) SetMemberId:(NSNumber*)userId
+- (void) ClearDisplay
 {
     //
+}
+- (void) SetMemberId:(NSNumber*)userId
+{
+    [self ClearDisplay];
+    
     NSString* userUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
     userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", userId];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:userUrlStr]];
-    [request setUsername:@"admin"];
+    [request setUsername:@"admin"];    
     [request setPassword:@"admin"];
+    
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    
+    if (error)
+    {
+        NSLog(@"user error: %@",error);
+        return;
+    }
+    
+    int rcode = [request responseStatusCode];
+    //NSLog(@"code %d",rcode);
+    NSDictionary* userdata = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+    
+    NSDictionary* department = userdata[@"department"];
+    NSDictionary* school = userdata[@"university"];
+    NSDictionary* profile = userdata[@"profile"];
 }
 /*
 #pragma mark - Table view data source

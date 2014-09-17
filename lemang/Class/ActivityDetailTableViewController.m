@@ -83,17 +83,19 @@
         
         _detailContent.text = detailInfo;
         
-         NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
-         memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", activity.activityId];
-         ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
-         [memberRequest startSynchronous];
-         
-         NSArray* memberArray = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        NSMutableArray* memberArray = [[NSMutableArray alloc]init];
         
-        if (![memberArray isKindOfClass:[NSArray class]])
-            memberArray = [NSArray alloc];
+        NSDictionary* memberDataAll = activityData[@"users"];
+
+        if ([memberDataAll isKindOfClass:[NSDictionary class]])
+        {
+            NSEnumerator* memberEnum = [memberDataAll objectEnumerator];
+            for (NSDictionary* obj in memberEnum)
+            {
+                [memberArray addObject:obj];
+            }
+        }
         
-        [activity SetActivityMember:memberArray];
         
         NSUInteger memberNumber = memberArray.count;
         _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
@@ -109,9 +111,9 @@
             
             [memberIconList[i] setHidden:false];
             
-            NSData* ddd = memberArray[i];
+            NSString* rule = memberArray[i][@"role"];
             
-            NSDictionary* memberInfo = memberArray[i][@"user"][@"profile"];
+            NSDictionary* memberInfo = memberArray[i][@"profile"];
             NSString* memberIconUrl = @"";
             if ([memberInfo isKindOfClass:[NSDictionary class]])
             {

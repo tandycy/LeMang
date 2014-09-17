@@ -18,6 +18,7 @@
     Activity* linkedActivity;
     NSMutableArray* adminList;
     NSMutableArray* memberList;
+    NSMutableArray* guestList;
 }
 
 @property IBOutlet UIView *containerView;
