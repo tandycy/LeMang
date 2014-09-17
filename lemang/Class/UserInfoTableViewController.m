@@ -7,6 +7,7 @@
 //
 
 #import "UserInfoTableViewController.h"
+#import "EditUserInfoViewController.h"
 
 @interface UserInfoTableViewController ()
 
@@ -315,6 +316,28 @@
     NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
     // and then we write it out
     [imageData writeToFile:fullPathToFile atomically:NO];
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    EditUserInfoViewController *EditUserInfoVC = [[EditUserInfoViewController alloc]init];
+    if (indexPath.section==0) {
+        switch (indexPath.row) {
+            case 1:
+                [self.navigationController pushViewController:EditUserInfoVC animated:YES];
+                break;
+            case 2:
+                [self.navigationController pushViewController:EditUserInfoVC animated:YES];
+                break;
+            default:
+                break;
+        }
+    }
+    else if(indexPath.section==1)
+    {
+        [self.navigationController pushViewController:EditUserInfoVC animated:YES];
+    }
 }
 
 
