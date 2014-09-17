@@ -88,7 +88,7 @@
         if ([rule isEqualToString:@"Guest"])
         {
             NSDictionary* userData = member[@"user"];
-            [guestList addObject:userData];
+            [memberList addObject:userData];
         }
         else if ([rule isEqualToString:@"User"])
         {

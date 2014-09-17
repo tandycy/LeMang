@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "IconImageViewLoader.h"
+#include "UserManager.h"
 
 @interface MemberInfoTableViewController : UITableViewController
+{
+    NSNumber* memberId;
+}
 
 @property (strong, nonatomic) IBOutlet UILabel *departName;
 @property (strong, nonatomic) IBOutlet UILabel *userNickName;
