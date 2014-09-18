@@ -122,6 +122,8 @@
         _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
         
         NSArray* memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
+        NSArray* rateIconList = [[NSArray alloc] initWithObjects:_rateIcon1, _rateIcon2, _rateIcon3, _rateIcon4, _rateIcon5, nil];
+        NSArray* rateAllList = [[NSArray alloc] initWithObjects:_rateScore1, _rateScore2, _rateScore3, _rateScore4, _rateScore5, nil];
         for (int i = 0; i < memberIconList.count; i++)
         {
             if (i >= memberNumber)
@@ -161,6 +163,25 @@
             
             // images
             //int rating
+            
+            NSNumber* rate = commentItem[@"rating"];
+            for (int i = 0; i < rateIconList.count; i++)
+            {
+                if ( i+1 > rate.integerValue)
+                    [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
+                else
+                    [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
+            }
+        }
+
+        NSDictionary* board = activityData[@"board"];
+        NSNumber* rate = activityData[@"rating"];
+        for (int i = 0; i < rateAllList.count; i++)
+        {
+            if ( i+1 > rate.integerValue)
+                [rateAllList[i]  setImage: [UIImage imageNamed:@"rate_star_off"]];
+            else
+                [rateAllList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
         }
     }
     

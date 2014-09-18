@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -2273,6 +2273,16 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="memberIcon3" destination="xge-A3-db6" id="Rif-Kt-fmk"/>
                         <outlet property="memberIcon4" destination="bRF-AU-Yiu" id="lQB-ZL-8Uu"/>
                         <outlet property="people" destination="cbd-vj-arx" id="e7m-ee-LU5"/>
+                        <outlet property="rateIcon1" destination="hAp-lc-jbL" id="Odj-V4-MaU"/>
+                        <outlet property="rateIcon2" destination="bOz-0W-CAx" id="qLP-Nm-Ffs"/>
+                        <outlet property="rateIcon3" destination="L6y-BO-rCP" id="XYS-Zh-pdi"/>
+                        <outlet property="rateIcon4" destination="OTQ-7W-c1T" id="bdG-Yo-1sQ"/>
+                        <outlet property="rateIcon5" destination="SPi-gM-m60" id="W3z-uJ-kKC"/>
+                        <outlet property="rateScore1" destination="25i-ak-2eH" id="i2X-xz-oh5"/>
+                        <outlet property="rateScore2" destination="sof-15-7nn" id="P0a-4c-kia"/>
+                        <outlet property="rateScore3" destination="E2E-hM-xOf" id="gdo-jl-kMJ"/>
+                        <outlet property="rateScore4" destination="usP-Dr-UDW" id="blh-UA-XYb"/>
+                        <outlet property="rateScore5" destination="7wY-Uj-ceI" id="bhX-HZ-S5k"/>
                         <outlet property="time" destination="c0y-rC-eY5" id="9mc-XY-rUq"/>
                         <outlet property="titleImgView" destination="oVs-ZV-wMi" id="IZL-8y-RxE"/>
                         <outlet property="titleLabel" destination="Gx4-bT-eqx" id="5Y6-cl-lC1"/>

@@ -47,6 +47,16 @@
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon2;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon3;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *memberIcon4;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon1;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon2;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon3;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon4;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon5;
+@property (strong, nonatomic) IBOutlet UIImageView *rateScore1;
+@property (strong, nonatomic) IBOutlet UIImageView *rateScore2;
+@property (strong, nonatomic) IBOutlet UIImageView *rateScore3;
+@property (strong, nonatomic) IBOutlet UIImageView *rateScore4;
+@property (strong, nonatomic) IBOutlet UIImageView *rateScore5;
 @property (weak, nonatomic) IBOutlet UILabel *commentTittle;
 @property (weak, nonatomic) IBOutlet UILabel *commentContent;
 

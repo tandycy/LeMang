@@ -202,7 +202,7 @@
     postContent = [postContent stringByAppendingFormat:@"%@\",\"content\":\"", @"tittle"];
     postContent = [postContent stringByAppendingFormat:@"%@\",\"createdBy\":{\"id\":", commentDetail.text];
     postContent = [postContent stringByAppendingFormat:@"%d},\"createdDate\":\"", userId];
-    postContent = [postContent stringByAppendingFormat:@"%@\"}", t2];
+    postContent = [postContent stringByAppendingFormat:@"%@\",\"rating\":%@}", t2, rate];
     
     NSLog(@"comment post: %@",postContent);
     
@@ -233,11 +233,22 @@
         
         if (returncode == 201)
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论提交成功" message:@"您成功提交了一条评论。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论提交成功" message:@"您成功提交了一条评论。" delegate:self
+                                                      cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
             [alertView show];
-            [self dismissModalViewControllerAnimated:YES];
+            //[self dismissModalViewControllerAnimated:YES];
         }
     }
+}
+
+-(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self ClosePage];
+}
+
+- (void)ClosePage
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 /*
