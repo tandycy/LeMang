@@ -29,4 +29,10 @@
 - (NSNumber*)GetCommentId;
 - (void)SetActivityCreator : (NSNumber*)creator;
 
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon1;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon2;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon3;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon4;
+@property (strong, nonatomic) IBOutlet UIImageView *rateIcon5;
+
 @end

@@ -1822,8 +1822,24 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <rect key="frame" x="62" y="5" width="8" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="lhL-sl-jLU">
-                                            <rect key="frame" x="230" y="10" width="79" height="14"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_star_whole" id="lhL-sl-jLU">
+                                            <rect key="frame" x="293" y="10" width="14" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_star_whole" id="05k-Kr-TfC">
+                                            <rect key="frame" x="278" y="10" width="14" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_star_whole" id="LH9-6I-teJ">
+                                            <rect key="frame" x="263" y="10" width="14" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_star_whole" id="ZV9-yf-18E">
+                                            <rect key="frame" x="248" y="10" width="14" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_star_whole" id="eJw-c3-DXO">
+                                            <rect key="frame" x="233" y="10" width="14" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123123123123123123123123123" lineBreakMode="wordWrap" baselineAdjustment="none" adjustsFontSizeToFit="NO" id="mqM-Lz-9Mf">
@@ -1838,6 +1854,11 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <outlet property="commentContent" destination="mqM-Lz-9Mf" id="XSn-RH-7iO"/>
                                     <outlet property="commentTittle" destination="IKL-sN-Iou" id="yon-A2-YeF"/>
                                     <outlet property="creatorIcon" destination="SC8-pH-0Qp" id="dQ1-sw-Ych"/>
+                                    <outlet property="rateIcon1" destination="eJw-c3-DXO" id="Wqg-dU-TUb"/>
+                                    <outlet property="rateIcon2" destination="ZV9-yf-18E" id="U0G-Jc-0yK"/>
+                                    <outlet property="rateIcon3" destination="LH9-6I-teJ" id="GTg-q8-jDz"/>
+                                    <outlet property="rateIcon4" destination="05k-Kr-TfC" id="jjT-HY-KJD"/>
+                                    <outlet property="rateIcon5" destination="lhL-sl-jLU" id="yx7-dg-7HW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

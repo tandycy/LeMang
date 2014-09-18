@@ -83,6 +83,18 @@
     else
         isEnableRemove = false;
     
+    NSArray* rateIconList = [[NSArray alloc] initWithObjects:_rateIcon1, _rateIcon2, _rateIcon3, _rateIcon4, _rateIcon5, nil];
+    NSNumber*rate = localData[@"rating"];
+    
+    for (int i = 0; i < rateIconList.count; i++)
+    {
+        if ( i+1 > rate.integerValue)
+            [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
+        else
+            [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
+    }
+    
+    
     NSString* creatorUrlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/user/%@", creatorId];
     NSURL* url = [NSURL URLWithString:creatorUrlStr];
     

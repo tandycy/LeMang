@@ -23,5 +23,6 @@
 - (IBAction)signUp:(id)sender;
 - (IBAction)bookMark:(id)sender;
 - (IBAction)doShare:(id)sender;
+- (void)OnCommentSuccess;
 
 @end

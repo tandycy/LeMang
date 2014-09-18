@@ -54,6 +54,11 @@
     [self refreshActivityDetail];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshActivityDetail];
+}
+
 - (void)didReceiveMemoryWarning
 {    [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

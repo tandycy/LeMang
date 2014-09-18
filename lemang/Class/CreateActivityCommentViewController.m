@@ -7,13 +7,14 @@
 //
 
 #import "CreateActivityCommentViewController.h"
+#import "ActivityDetailViewController.h"
 #import "Constants.h"
 
 @interface CreateActivityCommentViewController ()
 {
     UILabel *commentHolder;
     NSString *commentString;
-    NSString *rate;
+    int rate;
     UIImage *rateStarOn;
     UIImage *rateStarOff;
 }
@@ -96,6 +97,7 @@
 
 -(void)initRate
 {
+    rate = 0;
     [rate1 addTarget:self action:@selector(rate1Clcik:) forControlEvents:UIControlEventTouchUpInside];
     [rate2 addTarget:self action:@selector(rate2Clcik:) forControlEvents:UIControlEventTouchUpInside];
     [rate3 addTarget:self action:@selector(rate3Clcik:) forControlEvents:UIControlEventTouchUpInside];
@@ -105,7 +107,7 @@
 
 -(IBAction)rate1Clcik:(id)sender
 {
-    rate = @"1";
+    rate = 1;
     [rate1 setImage:rateStarOn forState:UIControlStateNormal];
     [rate2 setImage:rateStarOff forState:UIControlStateNormal];
     [rate3 setImage:rateStarOff forState:UIControlStateNormal];
@@ -114,7 +116,7 @@
 }
 -(IBAction)rate2Clcik:(id)sender
 {
-    rate = @"2";
+    rate = 2;
     [rate1 setImage:rateStarOn forState:UIControlStateNormal];
     [rate2 setImage:rateStarOn forState:UIControlStateNormal];
     [rate3 setImage:rateStarOff forState:UIControlStateNormal];
@@ -123,7 +125,7 @@
 }
 -(IBAction)rate3Clcik:(id)sender
 {
-    rate = @"3";
+    rate = 3;
     [rate1 setImage:rateStarOn forState:UIControlStateNormal];
     [rate2 setImage:rateStarOn forState:UIControlStateNormal];
     [rate3 setImage:rateStarOn forState:UIControlStateNormal];
@@ -132,7 +134,7 @@
 }
 -(IBAction)rate4Clcik:(id)sender
 {
-    rate = @"4";
+    rate = 4;
     [rate1 setImage:rateStarOn forState:UIControlStateNormal];
     [rate2 setImage:rateStarOn forState:UIControlStateNormal];
     [rate3 setImage:rateStarOn forState:UIControlStateNormal];
@@ -141,7 +143,7 @@
 }
 -(IBAction)rate5Clcik:(id)sender
 {
-    rate = @"5";
+    rate = 5;
     [rate1 setImage:rateStarOn forState:UIControlStateNormal];
     [rate2 setImage:rateStarOn forState:UIControlStateNormal];
     [rate3 setImage:rateStarOn forState:UIControlStateNormal];
@@ -179,6 +181,13 @@
         return;
     }
     
+    if (rate == 0)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"未评分" message:@"请输入评分星级" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    
     if (commentDetail.text.length < 1)
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论内容为空" message:@"评论内容不能为空" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
@@ -199,10 +208,10 @@
     
     NSString* postContent = @"{\"activity\":{\"id\":";
     postContent = [postContent stringByAppendingFormat:@"%@},\"title\":\"", actId];
-    postContent = [postContent stringByAppendingFormat:@"%@\",\"content\":\"", @"tittle"];
+    postContent = [postContent stringByAppendingFormat:@"%@\",\"content\":\"", [UserManager UserName]];
     postContent = [postContent stringByAppendingFormat:@"%@\",\"createdBy\":{\"id\":", commentDetail.text];
     postContent = [postContent stringByAppendingFormat:@"%d},\"createdDate\":\"", userId];
-    postContent = [postContent stringByAppendingFormat:@"%@\",\"rating\":%@}", t2, rate];
+    postContent = [postContent stringByAppendingFormat:@"%@\",\"rating\":%d}", t2, rate];
     
     NSLog(@"comment post: %@",postContent);
     
@@ -232,24 +241,15 @@
         //NSString* response = [request responseString];
         
         if (returncode == 201)
-        {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论提交成功" message:@"您成功提交了一条评论。" delegate:self
-                                                      cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
-            [alertView show];
-            //[self dismissModalViewControllerAnimated:YES];
+        {            
+            [self.navigationController popViewControllerAnimated:true];
+            
+            if ([owner isKindOfClass:[ActivityDetailViewController class]])
+               [(ActivityDetailViewController*)owner OnCommentSuccess];
         }
     }
 }
 
--(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    [self ClosePage];
-}
-
-- (void)ClosePage
-{
-    [self dismissModalViewControllerAnimated:YES];
-}
 
 /*
 #pragma mark - Navigation

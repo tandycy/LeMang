@@ -85,6 +85,13 @@
     [self.navigationController pushViewController:createActivityCommentVC animated:YES];
 }
 
+- (void) OnCommentSuccess
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论提交成功" message:@"您成功提交了一条评论。" delegate:self
+                                              cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    [alertView show];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
