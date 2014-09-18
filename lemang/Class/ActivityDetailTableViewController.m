@@ -40,7 +40,7 @@
     address.text = activity.title;
     time.text = activity.date;
     _people.text = activity.limit;
-    activityDescription.text = @"中国工商银行（全称：中国工商银行股份有限公司）成立于1984年，是中国五大银行之首，世界五百强企业之一，拥有中国最大的客户群，是中国最大的商业银行。 中国工商银行是中国最大的国有独资商业银行，基本任务是依据国家的法律和法规，通过国内外开展融资活动筹集社会资金，加强信贷资金管理，支持企业生产和技术改造，为我国经济建设服务。";
+    activityDescription.text = @"";
     
     _commentContent.text = @"";
     _commentTittle.text = @"";
@@ -59,10 +59,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)RefreshCommentList
+{
+    NSString* URLString = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", activity.activityId];
+    URLString = [URLString stringByAppendingString:@"/comment"];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    
+    if (!error)
+    {
+        NSData* commentData = [request responseData];
+        localCommentData = [NSJSONSerialization JSONObjectWithData:commentData options:NSJSONReadingAllowFragments error:nil][@"content"];
+    }
+}
+
 - (void) refreshActivityDetail
 {
     if (activity == nil)
         return;
+    
+   // [self RefreshCommentList];
     
     NSString* URLString = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", activity.activityId];
     NSURL *URL = [NSURL URLWithString:URLString];
@@ -151,6 +172,7 @@
      //   NSLog(@"%@",indexPath.section);
         ActivityCommentTableViewController *ACTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommentTableViewController"];
         [ACTVC SetCommentList:localCommentData];
+        [ACTVC SetActivityOwner:self];
         [self.navigationController pushViewController:ACTVC animated:YES];
     }
     else if (indexPath.section == 1){
