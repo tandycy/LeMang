@@ -133,12 +133,8 @@
     [request setUsername:[UserManager UserName]];
     [request setPassword:[UserManager UserPW]];
     
-    //    [request setValue:@"application/json;charset=UTF-8" forKey: @"Content-Type"];
     [request addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
-    //[request addRequestHeader:@"Content-Length" value:dataLength];
-    
     [request setRequestMethod:@"POST"];
-    //[request appendPostData:postData];
     
     [request startSynchronous];
     
@@ -148,6 +144,12 @@
         // TODO
         int resCode = [request responseStatusCode];
         NSLog(@"regist %d",resCode);
+        
+        if (resCode == 200)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名成功" message:@"成功提交报名申请。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            [alertView show];
+        }
     }
 }
 
@@ -158,6 +160,35 @@
         [alertView show];
         
         return;
+    }
+    
+    
+    NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    urlstr = [urlstr stringByAppendingFormat:@"%d/activity/%@", [[UserManager Instance]GetLocalUserId], activity.activityId];
+    NSURL* url = [NSURL URLWithString:urlstr];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request setUsername:[UserManager UserName]];
+    [request setPassword:[UserManager UserPW]];
+    
+    [request addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [request setRequestMethod:@"POST"];
+    
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (!error)
+    {
+        // TODO
+        int resCode = [request responseStatusCode];
+        NSLog(@"regist %d",resCode);
+        
+        if (resCode == 200)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:@"成功收藏至我的活动。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            [alertView show];
+        }
     }
 }
 

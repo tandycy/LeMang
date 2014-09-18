@@ -56,7 +56,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self refreshActivityDetail];
+    [self RefreshCommentList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,6 +80,39 @@
     {
         NSData* commentData = [request responseData];
         localCommentData = [NSJSONSerialization JSONObjectWithData:commentData options:NSJSONReadingAllowFragments error:nil][@"content"];
+        NSArray* rateIconList = [[NSArray alloc] initWithObjects:_rateIcon1, _rateIcon2, _rateIcon3, _rateIcon4, _rateIcon5, nil];
+       
+        NSUInteger commentNumber = localCommentData.count;
+        
+        _totalCommentNumber.text = [NSString stringWithFormat:@"(%d)",commentNumber];
+        if (commentNumber > 0)
+        {
+            NSDictionary* commentItem = localCommentData[0];
+            
+            _commentTittle.text = commentItem[@"title"];
+            _commentContent.text = commentItem[@"content"];
+            
+            // images
+            //int rating
+            
+            NSNumber* rate = commentItem[@"rating"];
+            for (int i = 0; i < rateIconList.count; i++)
+            {
+                if ( i+1 > rate.integerValue)
+                    [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
+                else
+                    [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
+            }
+        }
+        else
+        {
+            _commentTittle.text = @"";
+            _commentContent.text = @"";
+            for (int i = 0; i < rateIconList.count; i++)
+            {
+                [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
+            }
+        }
     }
 }
 
@@ -154,6 +187,7 @@
             
         }
         
+        
         address.text = activityData[@"address"];
         localCommentData = activityData[@"activityComment"];
         NSUInteger commentNumber = localCommentData.count;
@@ -176,6 +210,15 @@
                     [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
                 else
                     [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
+            }
+        }
+        else
+        {
+            _commentTittle.text = @"";
+            _commentContent.text = @"";
+            for (int i = 0; i < rateIconList.count; i++)
+            {
+                [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
             }
         }
 
