@@ -142,7 +142,7 @@
 		2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityMemberTableViewController.m; path = Class/ActivityMemberTableViewController.m; sourceTree = "<group>"; };
 		25382411199A2CBA00180DB9 /* doge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge.jpg; sourceTree = "<group>"; };
 		25392FE3198FA35B0094CE6B /* appicon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon152.png; sourceTree = "<group>"; };
-		25392FE5198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.strings"; sourceTree = "<group>"; };
+		25392FE5198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; explicitFileType = text.plist.scriptTerminology; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.strings"; sourceTree = "<group>"; };
 		25392FE6198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
 		25392FE7198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		25392FE8198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
