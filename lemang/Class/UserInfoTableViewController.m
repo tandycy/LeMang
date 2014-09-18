@@ -59,6 +59,8 @@
     if (![UserManager IsInitSuccess])
         return;
     
+    userId = [NSNumber numberWithInt:[[UserManager Instance] GetLocalUserId]];
+
     NSDictionary* userData = [UserManager LocalUserData];
     if (userData == nil)
         return;
@@ -86,6 +88,8 @@
     if ([contactData isKindOfClass:[NSDictionary class]])
     {
         _phoneNumber.text = [UserManager filtStr:contactData[@"CELL"] : @"未绑定手机"];
+        if (_phoneNumber.text.length == 0)
+            _phoneNumber.text = @"未绑定手机";
         _qqNumber.text = [UserManager filtStr:contactData[@"QQ"] : @""];
         _wechatId.text = [UserManager filtStr:contactData[@"WECHAT"] : @""];
     }
@@ -251,6 +255,7 @@
     if (error)
     {
         // TODO
+        NSLog(@"upload user icon fail: %d", error.code);
     }
     if (aaa == 200)
     {
@@ -259,6 +264,7 @@
     else
     {
         // TODO
+        NSLog(@"upload user icon return: %d", aaa);
     }
    
 }
@@ -321,6 +327,7 @@
     
     EditUserInfoViewController *EditUserInfoVC = [[EditUserInfoViewController alloc]init];
     [EditUserInfoVC SetOwner:self];
+    
     if (indexPath.section==0) {
         NSDictionary* profileData = [UserManager LocalUserData][@"profile"];
         [EditUserInfoVC SetOriginData:profileData];
@@ -346,12 +353,12 @@
         switch (indexPath.row) {
             case 1:
                 EditUserInfoVC.navigationItem.title = @"修改QQ号";
-                [EditUserInfoVC SetEditProfile:@"QQ" userId:userId defaultValue:_qqNumber.text];
+                [EditUserInfoVC SetEditContact:@"QQ" userId:userId defaultValue:_qqNumber.text];
                 [self.navigationController pushViewController:EditUserInfoVC animated:YES];
                 break;
             case 2:
                 EditUserInfoVC.navigationItem.title = @"修改微信号";
-                [EditUserInfoVC SetEditProfile:@"WECHAT" userId:userId defaultValue:_wechatId.text];
+                [EditUserInfoVC SetEditContact:@"WECHAT" userId:userId defaultValue:_wechatId.text];
                 [self.navigationController pushViewController:EditUserInfoVC animated:YES];
                 break;
             default:

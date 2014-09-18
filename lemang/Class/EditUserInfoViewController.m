@@ -53,6 +53,11 @@
     owner = _owner;
 }
 
+- (void) SetOriginData:(NSDictionary *)data
+{
+    originData = data;
+}
+
 -(void)initView
 {
     // init view with white bg
@@ -83,13 +88,66 @@
     userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", uid];
 
     if (itemType == 0)
+    {
         userUrlStr = [userUrlStr stringByAppendingString:@"/profile"];
+        
+        if (![originData isKindOfClass:[NSDictionary class]])
+        {
+            originData = [[NSMutableDictionary alloc]init];
+        }
+    }
     else if (itemType == 1)
+    {
         userUrlStr = [userUrlStr stringByAppendingString:@"/contact"];
+        
+        if (![originData isKindOfClass:[NSDictionary class]] || originData.count == 0)
+        {
+            originData = [[NSMutableDictionary alloc]init];
+            [originData setValue:@"" forKey:@"CELL"];
+            [originData setValue:@"" forKey:@"QQ"];
+            [originData setValue:@"" forKey:@"WECHAT"];
+        }
+    }
     
-    NSString* postString = [NSString stringWithFormat:@"{\"%@\":\"%@\"}", userKey, _editText.text];
+    NSMutableDictionary* editData = [NSMutableDictionary dictionaryWithDictionary:originData];
+    ASIHTTPRequest *updateRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:userUrlStr]];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    NSString* valueString = _editText.text;
+    [editData setValue:valueString forKey:userKey];
+    
+    NSData* postData = [NSJSONSerialization dataWithJSONObject:editData options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    postData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [updateRequest addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [updateRequest appendPostData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    [updateRequest setRequestMethod:@"PUT"];
+    
+    [updateRequest startSynchronous];
+    
+    NSError *error = [updateRequest error];
+    
+    if (!error)
+    {
+        int returnCode = [updateRequest responseStatusCode];
+        
+        if (returnCode == 200)
+        {
+            [owner UpdateContentDisplay];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            NSLog(@"edit info: %d - %@", [updateRequest responseStatusCode], [updateRequest responseString]);
+            // TODO
+        }
+    }
+    else
+    {
+        // TODO
+    }
     
 }
 
