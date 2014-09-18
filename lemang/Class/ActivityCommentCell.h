@@ -15,7 +15,9 @@
     NSDictionary* localData;
     NSNumber* localId;
     NSNumber* creatorId;
+    NSNumber* activityCreator;
     id owner;
+    bool isEnableRemove;
 }
 @property (weak, nonatomic) IBOutlet UILabel *commentTittle;
 @property (weak, nonatomic) IBOutlet UILabel *commentContent;
@@ -25,5 +27,6 @@
 - (void)SetOwner : (id) _owner;
 - (void)UpdateCommentDisplay;
 - (NSNumber*)GetCommentId;
+- (void)SetActivityCreator : (NSNumber*)creator;
 
 @end

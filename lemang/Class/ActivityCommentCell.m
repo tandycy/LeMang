@@ -68,6 +68,21 @@
     
     creatorId = creator[@"id"];
     
+    if (creatorId == activityCreator)
+    {
+        isEnableRemove = true;
+    }
+    else if ([UserManager IsInitSuccess])
+    {
+        int uid = [[UserManager Instance] GetLocalUserId];
+        if (uid == creatorId.integerValue)
+        {
+            isEnableRemove = true;
+        }
+    }
+    else
+        isEnableRemove = false;
+    
     NSString* creatorUrlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/user/%@", creatorId];
     NSURL* url = [NSURL URLWithString:creatorUrlStr];
     
@@ -127,6 +142,8 @@
     deleteComment.tag = 209;
     [self addSubview:deleteComment];
     
+    [deleteComment setHidden:isEnableRemove];
+    
     UILabel *cd = [self viewWithTag:208];
     if (cd) {
         [cd removeFromSuperview];
@@ -155,6 +172,11 @@
     
     if ([owner isKindOfClass:[ActivityCommentTableViewController class]])
         [owner DoDeleteComment:self];
+}
+
+-(void)SetActivityCreator: (NSNumber*)creator
+{
+    activityCreator = creator;
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request

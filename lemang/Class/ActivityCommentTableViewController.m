@@ -109,6 +109,7 @@
     
     cell.selectedBackgroundView = [[UIView alloc] init];
     
+    [cell SetActivityCreator:owner.activity.creatorId];
     [cell SetComment:tableData[indexPath.row]];
     [cell SetOwner:self];
     

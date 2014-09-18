@@ -106,6 +106,7 @@ NSString *navTitle;
             NSDictionary* temp = activityData[i];
             
             NSDictionary* creator = temp[@"createdBy"];
+            NSNumber* creatorId = creator[@"id"];
             NSString* group = temp[@"activityGroup"];
             NSString* type = temp[@"activityType"];
             
@@ -159,6 +160,7 @@ NSString *navTitle;
                                 fav:@"325"
                                 state:0
                                 activitiId:temp[@"id"]
+                                creatorId:creatorId
                                 ];
             [newAct SetActivityData:temp];
             [activityArray addObject: newAct];
