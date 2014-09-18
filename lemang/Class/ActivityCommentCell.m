@@ -7,6 +7,7 @@
 //
 
 #import "ActivityCommentCell.h"
+#import "ActivityCommentTableViewController.h"
 
 @implementation ActivityCommentCell
 
@@ -36,6 +37,16 @@
     localData = commentData;
     
     [self UpdateCommentDisplay];
+}
+
+- (NSNumber*) GetCommentId
+{
+    return localId;
+}
+
+- (void) SetOwner:(id)_owner
+{
+    owner = _owner;    
 }
 
 - (void)UpdateCommentDisplay
@@ -141,10 +152,10 @@
 }
 
 -(IBAction)deleteButtonClicked:(id)sender{
-    //TO DO
     
+    if ([owner isKindOfClass:[ActivityCommentTableViewController class]])
+        [owner DoDeleteComment:self];
 }
-
 
 - (void)requestFinished:(ASIHTTPRequest*)request
 {

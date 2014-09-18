@@ -15,12 +15,15 @@
     NSDictionary* localData;
     NSNumber* localId;
     NSNumber* creatorId;
+    id owner;
 }
 @property (weak, nonatomic) IBOutlet UILabel *commentTittle;
 @property (weak, nonatomic) IBOutlet UILabel *commentContent;
 @property (weak, nonatomic) IBOutlet IconImageViewLoader *creatorIcon;
 
-- (void)SetComment:(NSDictionary*)commentData;
+- (void)SetComment :(NSDictionary*)commentData ;
+- (void)SetOwner : (id) _owner;
 - (void)UpdateCommentDisplay;
+- (NSNumber*)GetCommentId;
 
 @end

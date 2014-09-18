@@ -58,15 +58,6 @@
     [_userIcon setImage:[UserManager DefaultIcon]];
 }
 
-- (NSString*) filtStr:(NSString*)inputStr
-{
-    NSString* result = @"";
-    
-    result = [result stringByAppendingFormat:@"%@", inputStr];
-    
-    return result;
-}
-
 - (void) SetMemberId:(NSNumber*)userId
 {
     memberId = userId;
@@ -99,17 +90,17 @@
     NSDictionary* userData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
     
     _userName.text = @"未认证用户";
-    _schoolName.text = [self filtStr:userData[@"university"][@"name"]];
-    _departName.text =[self filtStr:userData[@"department"][@"name"]];
+    _schoolName.text = [UserManager filtStr:userData[@"university"][@"name"]];
+    _departName.text =[UserManager filtStr:userData[@"department"][@"name"]];
     
     NSDictionary* profileData = userData[@"profile"];
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
-        _userName.text = [self filtStr:profileData[@"fullName"]];
-        _userNickName.text = [self filtStr:profileData[@"nickName"]];
-        _userSign.text = [self filtStr:profileData[@"signature"]];
-        _schoolNumber.text = [self filtStr:profileData[@"code"]];
+        _userName.text = [UserManager filtStr:profileData[@"fullName"]];
+        _userNickName.text = [UserManager filtStr:profileData[@"nickName"]];
+        _userSign.text = [UserManager filtStr:profileData[@"signature"]];
+        _schoolNumber.text = [UserManager filtStr:profileData[@"code"]];
         
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
@@ -120,9 +111,9 @@
     
     if ([contactData isKindOfClass:[NSDictionary class]])
     {
-        _phoneNumber.text = [self filtStr:contactData[@"CELL"]];
-        _qqNumber.text = [self filtStr:contactData[@"QQ"]];
-        _wechatId.text = [self filtStr:contactData[@"WECHAT"]];
+        _phoneNumber.text = [UserManager filtStr:contactData[@"CELL"]];
+        _qqNumber.text = [UserManager filtStr:contactData[@"QQ"]];
+        _wechatId.text = [UserManager filtStr:contactData[@"WECHAT"]];
     }
 }
 /*

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface OrganizationViewCell : UITableViewCell
 {
@@ -31,6 +32,5 @@
 - (void) updateDisplay;
 - (NSDictionary*) getLocalData;
 - (UIImage*) getLocalIconImage;
-- (NSString*) filtStr:(NSString*)inputStr;
 
 @end

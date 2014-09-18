@@ -124,6 +124,38 @@ static UserManager* managerInstance;
     }
 }
 
++ (void) RefreshUserData
+{
+    if ([UserManager IsInitSuccess])
+        [[UserManager Instance] RefreshData];
+}
+
+- (void) RefreshData
+{
+    if (!initedLocalData)
+        return;
+    
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    urlString = [urlString stringByAppendingFormat:@"%d", localUserId];
+    NSURL* URL = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    if (!error) {
+        NSDictionary* userData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+        
+        if (userData == nil)
+            return;
+        
+        if (![userData isKindOfClass:NSDictionary.class])
+            return;
+        
+        localUserData = userData;
+    }
+}
+
 - (void)LogInCheck
 {
     //localUserName = @"user";
@@ -232,6 +264,23 @@ static UserManager* managerInstance;
     }
     
     return managerInstance;
+}
+
++ (NSString*) filtStr:(NSString*)inputStr
+{
+    NSString* result = @"";
+    
+    result = [result stringByAppendingFormat:@"%@", inputStr];
+    
+    return result;
+}
+
++ (NSString*) filtStr:(NSString *)inputStr :(NSString *)defaultStr
+{
+    if ([inputStr isKindOfClass:NSNull.class] || inputStr == nil)
+        return defaultStr;
+    
+    return [self filtStr:inputStr];
 }
 
 + (id) allocWithZone:(struct _NSZone *)zone

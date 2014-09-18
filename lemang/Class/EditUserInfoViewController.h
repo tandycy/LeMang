@@ -7,9 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfoTableViewController.h"
 
 @interface EditUserInfoViewController : UIViewController
+{
+    NSString* userKey;
+    NSNumber* uid;
+    NSString* defaultV;
+    
+    int itemType;
+    
+    NSDictionary* originData;
+    
+    UserInfoTableViewController* owner;
+}
 
 @property (strong,nonatomic) UITextView *editText;
+
+- (void) SetEditProfile : (NSString*)itemKey  userId:(NSNumber*)userId  defaultValue:(NSString*)defaultValue;
+- (void) SetEditContact : (NSString*)itemKey  userId:(NSNumber*)userId  defaultValue:(NSString*)defaultValue;
+- (void) SetOriginData : (NSDictionary*)data;
+- (void) SetOwner : (UserInfoTableViewController*)_owner;
 
 @end

@@ -53,5 +53,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *totalCommentNumber;
 
 - (void) refreshActivityDetail;
+- (void) RefreshCommentList;
 
 @end
