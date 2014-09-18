@@ -38,6 +38,8 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 
+- (IBAction)ToCreatePage:(id)sender;
 -(IBAction)pageTurn:(UIPageControl *)sender;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *ToCreatePage;
 
 @end

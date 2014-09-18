@@ -94,6 +94,17 @@
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
     
+    [self InitActivityData];
+    
+}
+
+- (void) InitActivityData
+{
+    activityData = [[NSMutableDictionary alloc]init];
+    
+    actNameString = @"";
+    actDescriptionString = @"";
+
 }
 
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
@@ -167,12 +178,31 @@
     CreateActivityDetailTableViewController *CreateActDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityDetailTableViewController"];
     CreateActDetailVC.navigationItem.title = @"详细页面";
     
-    CreateActDetailVC.actTitle = actNameString;
-    CreateActDetailVC.actDescription = actDescriptionString;
-    CreateActDetailVC.actStartDate = startDate.text;
-    CreateActDetailVC.actEndDate = endDate.text;
-    CreateActDetailVC.isAllDay = allDayTrigger.isOn;
+    NSNumber* uid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
     
+
+    [activityData setValue:actNameString forKey:@"title"];
+    [activityData setValue:actDescriptionString forKey:@"description"];
+    
+    if (allDayTrigger.isOn)
+        [activityData setValue:@"true" forKey:@"isAllDay"];
+    else
+        [activityData setValue:@"false" forKey:@"isAllDay"];
+    
+    [activityData setValue:uid forKey:@"createdBy"];
+    [activityData setValue:startDate.text forKey:@"beginTime"];
+    [activityData setValue:endDate.text forKey:@"endTime"];
+
+    
+    
+    [activityData setValue:@"" forKey:@"activityType"];
+    [activityData setValue:@"" forKey:@"activityGroup"];
+    [activityData setValue:@"" forKey:@"tags"];
+    [activityData setValue:@"" forKey:@"university"];
+    [activityData setValue:@"" forKey:@"createdByAssociation"];
+    [activityData setValue:@"" forKey:@"createdDate"];
+    
+    [CreateActDetailVC SetActivityData:activityData];
     [self.navigationController pushViewController:CreateActDetailVC animated:YES];
     
 }

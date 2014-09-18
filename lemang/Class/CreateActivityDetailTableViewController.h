@@ -12,14 +12,8 @@
 
 @interface CreateActivityDetailTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
 {
+    NSMutableDictionary* activityData;
 }
-
-@property (strong,nonatomic) NSString *actTitle;
-@property (strong,nonatomic) NSString *actDescription;
-@property (strong,nonatomic) NSString *actStartDate;
-@property (strong,nonatomic) NSString *actEndDate;
-@property BOOL isAllDay;
-@property (strong,nonatomic) UIImage *actIcon;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *actHostType;
 @property (strong, nonatomic) IBOutlet UITextField *actHost;
@@ -36,5 +30,7 @@
 
 @property (strong, nonatomic) IBOutlet UIPickerView *dataPicker;
 @property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
+
+- (void) SetActivityData:(NSMutableDictionary*)data;
 
 @end

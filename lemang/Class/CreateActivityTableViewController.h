@@ -10,6 +10,9 @@
 #import "SchoolManager.h"
 
 @interface CreateActivityTableViewController : UITableViewController
+{
+    NSMutableDictionary* activityData;
+}
 
 @property (strong, nonatomic) IBOutlet UITextView *actName;
 @property (strong, nonatomic) IBOutlet UITextView *actDescription;

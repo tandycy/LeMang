@@ -10,6 +10,7 @@
 #import "ActivityDetailViewController.h"
 #import "ActivityViewCell.h"
 #import "MJRefresh.h"
+#import "CreateActivityTableViewController.h"
 
 #define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
 
@@ -286,6 +287,19 @@ NSString *navTitle;
     [self.pageControl setCurrentPage:offset.x/bounds.size.width];
 }
 
+- (IBAction)ToCreatePage:(id)sender
+{
+    if (![UserManager IsInitSuccess])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    
+    CreateActivityTableViewController *createActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityTableViewController"];
+    [self.navigationController pushViewController:createActivityVC animated:YES];
+}
+
 - (IBAction)pageTurn:(UIPageControl *)sender {
     CGSize viewsize=self.scrollView.frame.size;
     CGRect rect=CGRectMake(sender.currentPage*viewsize.width, 0, viewsize.width, viewsize.height);
@@ -444,8 +458,6 @@ NSString *navTitle;
     //  [activitySearchBar setHidden:YES];
     [self.activityList reloadData];
     [self.activityList headerEndRefreshing];
-    [self.tabBarController.tabBar setHidden:YES];
-    
 }
 
 

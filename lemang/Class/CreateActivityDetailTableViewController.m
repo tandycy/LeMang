@@ -22,7 +22,6 @@
 
 @synthesize actUniversity,actCollege,actArea;
 @synthesize dataPicker,doneToolbar;
-@synthesize actTitle,actDescription,actStartDate,actEndDate,isAllDay,actIcon;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,7 +39,6 @@
     [self universityListInit];
     [self detailViewInit];
     
-    NSLog(@"%@ - %@ - %@ - %@ - %hhd",actTitle,actDescription,actStartDate,actEndDate,isAllDay);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -49,7 +47,15 @@
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
+    UIBarButtonItem *ttt = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"top_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(ToFirstPage:)];
     
+    self.navigationItem.leftBarButtonItem = ttt;
+    
+}
+
+- (void)SetActivityData:(NSMutableDictionary *)data
+{
+    activityData = data;
 }
 
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
@@ -159,6 +165,18 @@
     
     areaArray = [item GetAreaList];
     collegeArray = [item GetDepartList];
+}
+
+- (IBAction)ToFirstPage:(id)sender
+{
+    [self UpdateDataContent];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) UpdateDataContent
+{
+    //
+    NSLog(@"aaaa");
 }
 
 
