@@ -142,7 +142,7 @@
     deleteComment.tag = 209;
     [self addSubview:deleteComment];
     
-    [deleteComment setHidden:isEnableRemove];
+    [deleteComment setHidden:!isEnableRemove];
     
     UILabel *cd = [self viewWithTag:208];
     if (cd) {

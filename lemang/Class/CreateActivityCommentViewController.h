@@ -16,6 +16,7 @@
     UIImagePickerController *imagePicker;
     UIImage *image;
     Activity* linkedActivity;
+    id owner;
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewBig;
@@ -28,5 +29,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *rate5;
 
 - (void) SetActivity:(Activity*)activity;
+- (void) SetOwner:(id)_owner;
 
 @end

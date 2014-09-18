@@ -36,6 +36,11 @@
     return self;
 }
 
+- (void)SetOwner:(id)_owner
+{
+    owner = _owner;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -169,13 +174,15 @@
     
     if (![UserManager IsInitSuccess])
     {
-        // TODO
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
         return;
     }
     
     if (commentDetail.text.length < 1)
     {
-        // TODO
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论内容为空" message:@"评论内容不能为空" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
         return;
     }
     
@@ -222,11 +229,13 @@
     if (!error)
     {
         int returncode = [request responseStatusCode];
-        NSString* response = [request responseString];
+        //NSString* response = [request responseString];
         
         if (returncode == 201)
         {
-            // TODO return last page, update comments
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论提交成功" message:@"您成功提交了一条评论。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            [alertView show];
+            [self dismissModalViewControllerAnimated:YES];
         }
     }
 }
