@@ -321,7 +321,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Zcd-yw-UfQ">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="play" id="WaS-ub-m3c">
+                        <barButtonItem key="rightBarButtonItem" image="detail" style="plain" id="WaS-ub-m3c">
+                            <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="nextButton:" destination="kXK-B7-6FX" id="B7d-R6-pGy"/>
                             </connections>
@@ -1196,12 +1197,31 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Gzj-xs-gmq">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="40" id="Gzj-xs-gmq">
+                                <rect key="frame" x="0.0" y="86" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gzj-xs-gmq" id="FI2-6J-Qaj">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_bar" id="ACd-x4-M1c">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="loO-sA-FLJ">
+                                            <rect key="frame" x="22" y="10" width="36" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hld-di-cLy">
+                                            <rect key="frame" x="70" y="9" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -2862,7 +2882,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <image name="bottom_share_on" width="54" height="20"/>
         <image name="bottom_sign_on" width="52" height="22"/>
         <image name="buisness_icon" width="21" height="21"/>
-        <image name="detail" width="30" height="62"/>
+        <image name="detail" width="15" height="31"/>
         <image name="doge.jpg" width="197" height="171"/>
         <image name="doge2.jpg" width="80" height="80"/>
         <image name="doge3.jpg" width="80" height="80"/>
