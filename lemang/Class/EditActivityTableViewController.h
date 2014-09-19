@@ -24,5 +24,6 @@
 @property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
 
 - (IBAction)selectButton:(id)sender;
+- (void)SetActivityData:(NSDictionary*)data;
 
 @end

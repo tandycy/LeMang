@@ -98,9 +98,19 @@
     
 }
 
+- (void) SetActivityData:(NSDictionary *)data
+{
+    activityData = [NSMutableDictionary dictionaryWithDictionary:data];
+}
+
 - (void) InitActivityData
 {
-    activityData = [[NSMutableDictionary alloc]init];
+    if (activityData == nil)
+        activityData = [[NSMutableDictionary alloc]init];
+    else
+    {
+        // TODO: restore data
+    }
     
     actNameString = @"";
     actDescriptionString = @"";
