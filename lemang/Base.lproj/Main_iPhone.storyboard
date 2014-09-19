@@ -161,10 +161,10 @@
             </objects>
             <point key="canvasLocation" x="359" y="-1939"/>
         </scene>
-        <!--Create Activity Table View Controller-->
+        <!--Edit Activity Table View Controller-->
         <scene sceneID="jlP-U2-cau">
             <objects>
-                <tableViewController restorationIdentifier="CreateActivityTableViewController" storyboardIdentifier="CreateActivityTableViewController" id="kXK-B7-6FX" customClass="CreateActivityTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditActivityTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kXK-B7-6FX" userLabel="Edit Activity Table View Controller" customClass="EditActivityTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lwW-ms-lCk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -381,10 +381,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="828" y="-2817"/>
         </scene>
-        <!--Create Activity Detail Table View Controller-->
+        <!--Edit Activity Detail Table View Controller-->
         <scene sceneID="Cj1-Rh-1Bj">
             <objects>
-                <tableViewController storyboardIdentifier="CreateActivityDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KLa-Yy-sIL" customClass="CreateActivityDetailTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EditActivityDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KLa-Yy-sIL" customClass="EditActivityDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xhk-1S-uJ3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

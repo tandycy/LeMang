@@ -6,11 +6,11 @@
 //  Copyright (c) 2014年 university media. All rights reserved.
 //
 
-#import "CreateActivityTableViewController.h"
+#import "EditActivityTableViewController.h"
 #import "Constants.h"
-#import "CreateActivityDetailTableViewController.h"
+#import "EditActivityDetailTableViewController.h"
 
-@interface CreateActivityTableViewController ()
+@interface EditActivityTableViewController ()
 {
     UIDatePicker *datePicker;
     UILabel *lab;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation CreateActivityTableViewController
+@implementation EditActivityTableViewController
 
 @synthesize startDate,endDate;
 @synthesize datePicker,allDayTrigger;
@@ -175,8 +175,8 @@
 }
 
 - (IBAction)nextButton:(id)sender {
-    CreateActivityDetailTableViewController *CreateActDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityDetailTableViewController"];
-    CreateActDetailVC.navigationItem.title = @"详细页面";
+    EditActivityDetailTableViewController *EditActDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditActivityDetailTableViewController"];
+    EditActDetailVC.navigationItem.title = @"详细页面";
     
     NSNumber* uid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
     
@@ -193,8 +193,8 @@
     [activityData setValue:startDate.text forKey:@"beginTime"];
     [activityData setValue:endDate.text forKey:@"endTime"];
     
-    [CreateActDetailVC SetActivityData:activityData];
-    [self.navigationController pushViewController:CreateActDetailVC animated:YES];
+    [EditActDetailVC SetActivityData:activityData];
+    [self.navigationController pushViewController:EditActDetailVC animated:YES];
     
 }
 

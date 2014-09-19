@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 university media. All rights reserved.
 //
 
-#import "CreateActivityDetailTableViewController.h"
+#import "EditActivityDetailTableViewController.h"
 
-@interface CreateActivityDetailTableViewController ()
+@interface EditActivityDetailTableViewController ()
 {
     NSArray *pickerArray;
     NSArray *schoolArray;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation CreateActivityDetailTableViewController
+@implementation EditActivityDetailTableViewController
 
 @synthesize actUniversity,actCollege,actArea;
 @synthesize dataPicker,doneToolbar;

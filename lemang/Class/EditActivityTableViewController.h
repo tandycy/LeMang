@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SchoolManager.h"
 
-@interface CreateActivityTableViewController : UITableViewController
+@interface EditActivityTableViewController : UITableViewController
 {
     NSMutableDictionary* activityData;
 }

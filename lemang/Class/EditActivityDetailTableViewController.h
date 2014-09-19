@@ -10,7 +10,7 @@
 #import "SchoolManager.h"
 #import "UserManager.h"
 
-@interface CreateActivityDetailTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
+@interface EditActivityDetailTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
 {
     NSMutableDictionary* activityData;
 }

@@ -10,7 +10,7 @@
 #import "ActivityDetailViewController.h"
 #import "ActivityViewCell.h"
 #import "MJRefresh.h"
-#import "CreateActivityTableViewController.h"
+#import "EditActivityTableViewController.h"
 
 #define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
 
@@ -306,8 +306,8 @@ NSString *navTitle;
         return;
     }
     
-    CreateActivityTableViewController *createActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityTableViewController"];
-    [self.navigationController pushViewController:createActivityVC animated:YES];
+    EditActivityTableViewController *editActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditActivityTableViewController"];
+    [self.navigationController pushViewController:editActivityVC animated:YES];
 }
 
 - (IBAction)pageTurn:(UIPageControl *)sender {
