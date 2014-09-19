@@ -35,7 +35,7 @@
     [super viewDidLoad];
     titleLabel.text = activity.title;
     amount.text = [NSString stringWithFormat:@"%@/%@",activity.member,activity.memberUpper];
-    hot.text = activity.fav;
+    hot.text = activity.fav.stringValue;
     titleImgView.image = activity.cachedImg;
     address.text = activity.title;
     time.text = activity.date;

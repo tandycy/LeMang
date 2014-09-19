@@ -192,15 +192,6 @@
     [activityData setValue:uid forKey:@"createdBy"];
     [activityData setValue:startDate.text forKey:@"beginTime"];
     [activityData setValue:endDate.text forKey:@"endTime"];
-
-    
-    
-    [activityData setValue:@"" forKey:@"activityType"];
-    [activityData setValue:@"" forKey:@"activityGroup"];
-    [activityData setValue:@"" forKey:@"tags"];
-    [activityData setValue:@"" forKey:@"university"];
-    [activityData setValue:@"" forKey:@"createdByAssociation"];
-    [activityData setValue:@"" forKey:@"createdDate"];
     
     [CreateActDetailVC SetActivityData:activityData];
     [self.navigationController pushViewController:CreateActDetailVC animated:YES];

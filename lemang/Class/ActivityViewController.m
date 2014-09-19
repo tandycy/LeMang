@@ -149,6 +149,16 @@ NSString *navTitle;
                 imgUrlString = @"";
             NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
             
+            NSDictionary* board = temp[@"board"];
+            NSNumber* favNum = [NSNumber numberWithInt:0];
+            if ([board isKindOfClass:[NSDictionary class]])
+            {
+                NSNumber* fav = board[@"bookmarkCount"];
+                
+                if ([fav isKindOfClass:[NSDictionary class]])
+                    favNum = fav;
+            }
+            
             Activity* newAct = [Activity
                                 activityOfCategory:@"All"
                                 imgUrlStr:imgUrl
@@ -158,7 +168,7 @@ NSString *navTitle;
                                 icon:schoolIcon
                                 member:[NSString stringWithFormat:@"%d",memberNum]
                                 memberUpper:peopleLimit
-                                fav:@"325"
+                                fav:favNum
                                 state:0
                                 activitiId:temp[@"id"]
                                 creatorId:creatorId
@@ -358,7 +368,7 @@ NSString *navTitle;
    // memberLable.text = [memberLable.text stringByAppendingFormat:@"%@/%@",activity.member, activity.memberUpper];
     
     UILabel *favLable = (UILabel *)[cell viewWithTag:ActivityFav];
-    favLable.text = activity.fav;
+    favLable.text = [UserManager filtStr: activity.fav.stringValue: @"0"];
     
     return cell;
 }

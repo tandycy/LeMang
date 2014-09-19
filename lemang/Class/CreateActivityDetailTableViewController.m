@@ -51,6 +51,7 @@
     
     self.navigationItem.leftBarButtonItem = ttt;
     
+    [self RecoverDataContent];
 }
 
 - (void)SetActivityData:(NSMutableDictionary *)data
@@ -173,10 +174,109 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void) RecoverDataContent
+{
+    //
+}
+
 - (void) UpdateDataContent
 {
     //
-    NSLog(@"aaaa");
+    
+    switch (_actHostType.selectedSegmentIndex) {
+        case 0:// 0 - 学校
+            [activityData setValue:@"University" forKey:@"activityGroup"];
+            break;
+        case 1:// 1 - 院系
+            [activityData setValue:@"University" forKey:@"activityGroup"];
+            break;
+        case 2:// 2 - 商家
+            [activityData setValue:@"University" forKey:@"activityGroup"];
+            break;
+        case 3:// 3 - 社团
+            [activityData setValue:@"University" forKey:@"activityGroup"];
+            break;
+        case 4:// 4 - 个人
+            [activityData setValue:@"University" forKey:@"activityGroup"];
+            break;
+        default:
+            break;
+    }
+    
+    NSString* areaLimitTxt = [_actAreaLimit titleForSegmentAtIndex:[_actAreaLimit selectedSegmentIndex]];
+    [activityData setValue:areaLimitTxt forKey:@"regionLimit"];
+    
+    int type = [_actType selectedSegmentIndex];
+    NSString* nam = [_actType titleForSegmentAtIndex:type];
+    NSLog(@"%d - %@", type, nam);
+    
+    switch ([_actType selectedSegmentIndex]) {
+        case 0:// 0 - 通知
+            [activityData setValue:@"Notice" forKey:@"activityType"];
+            break;
+        case 1:// 1 - 活动
+            [activityData setValue:@"Activity" forKey:@"activityType"];
+            break;
+        default:
+            break;
+    }
+    
+    NSString* schoolName = actUniversity.text;
+    SchoolItem* school = [SchoolManager GetSchoolItem:schoolName];
+    if (school != Nil)
+    {
+        NSNumber* sid = [school GetId];
+        NSString* schoolData = [NSString stringWithFormat:@"{\"id\":%@}",sid];
+        [activityData setObject:schoolData forKey:@"university"];
+        
+        NSNumber* areaId = [school GetAreaId:actArea.text];
+        if (!areaId)
+            [activityData removeObjectForKey:@"area"];
+        else
+        {
+            NSString* areaData = [NSString stringWithFormat:@"{\"id\":%@}",areaId];
+            [activityData setObject:areaData forKey:@"area"];
+        }
+        
+        NSNumber* departId = [school GetDepartId:actCollege.text];
+        if (!departId)
+            [activityData removeObjectForKey:@"department"];
+        else
+        {
+            NSString* departData = [NSString stringWithFormat:@"{\"id\":%@}",departId];
+            [activityData setObject:departData forKey:@"department"];
+        }
+    }
+    else
+    {
+        [activityData setValue:@"" forKey:@"university"];
+        [activityData removeObjectForKey:@"department"];
+        [activityData removeObjectForKey:@"area"];
+    }
+    
+    NSString* memberUp = @"0";
+    if (_actPeopleLimit.text.length > 0)
+        memberUp = _actPeopleLimit.text;
+    [activityData setValue:memberUp forKey:@"peopleLimit"];
+    
+    // UITextField *actHost;
+    // IBOutlet UISegmentedControl *actTags;
+    // IBOutlet UITextField *otherTag;
+    
+    [activityData setValue:_actLocation.text forKey:@"address"];
+    [activityData setValue:_actOtherLimit.text forKey:@"otherLimit"];
+    [activityData setValue:_actContact.text forKey:@"contact"];
+    
+    NSDateFormatter *nsdf2=[[NSDateFormatter alloc] init];
+    [nsdf2 setDateStyle:NSDateFormatterShortStyle];
+    [nsdf2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *t2=[nsdf2 stringFromDate:[NSDate date]];
+    [activityData setValue:t2 forKey:@"createdDate"];
+
+    
+    //[activityData setValue:@"" forKey:@"tags"];
+    //[activityData setValue:@"" forKey:@"createdByAssociation"];
+    
 }
 
 

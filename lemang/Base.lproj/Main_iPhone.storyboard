@@ -596,7 +596,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -724,6 +724,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="actOtherLimit" destination="Nqc-jA-YAe" id="ZS9-cR-vuY"/>
                         <outlet property="actPeopleLimit" destination="QK8-MR-b5e" id="3Ht-J9-2mA"/>
                         <outlet property="actTags" destination="7C9-f2-Fu3" id="v8X-3n-cP3"/>
+                        <outlet property="actType" destination="IyS-3d-OBO" id="h38-WE-3xC"/>
                         <outlet property="actUniversity" destination="n2o-Wc-PZq" id="1FC-kS-udr"/>
                         <outlet property="dataPicker" destination="Rsp-6X-Pow" id="dMZ-bC-EnW"/>
                         <outlet property="doneToolbar" destination="Pz9-6l-vXO" id="RwM-hk-SEv"/>

@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *actOtherLimit;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *actTags;
 @property (strong, nonatomic) IBOutlet UITextField *otherTag;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *actType;
 
 @property (strong, nonatomic) IBOutlet UIPickerView *dataPicker;
 @property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;

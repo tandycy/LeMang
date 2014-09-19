@@ -19,7 +19,7 @@
     UIImage *icon;
     NSString *member;
     NSString *memberUpper;
-    NSString *fav;
+    NSNumber *fav;
     BOOL *state;
     NSArray* memberList;
     NSDictionary* activityData;
@@ -33,13 +33,13 @@
 @property (nonatomic, copy) UIImage *icon;
 @property (nonatomic, copy) NSString *member;
 @property (nonatomic, copy) NSString *memberUpper;
-@property (nonatomic, copy) NSString *fav;
+@property (nonatomic, copy) NSNumber *fav;
 @property (nonatomic) BOOL *state;
 @property (nonatomic, copy) NSNumber* activityId;
 @property (nonatomic, copy) NSNumber* creatorId;
 
 + (id)activityOfCategory:(NSString*)category imgUrlStr:(NSURL*)imgUrlStr title:(NSString*)title date:(NSString*)date
-                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSString*)fav state:(BOOL*)state activitiId:(NSNumber*)activitiId creatorId:(NSNumber*)creatorId;
+                   limit:(NSString*)limit icon:(UIImage*)icon member:(NSString*)member memberUpper:(NSString*)memberUpper fav:(NSNumber*)fav state:(BOOL*)state activitiId:(NSNumber*)activitiId creatorId:(NSNumber*)creatorId;
 
 - (void) SetActivityData : (NSDictionary*)dataItem;
 - (void) SetActivityMember: (NSArray*)memberDataList;
