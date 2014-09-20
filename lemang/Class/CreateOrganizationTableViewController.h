@@ -13,6 +13,7 @@
     NSArray *pickerArray;
     NSArray *schoolPickerArray;
     NSArray *collegePickerArray;
+    NSArray *areaPickerArray;
     UIImagePickerController *imagePicker;
     UIImage *image;
 }
@@ -31,5 +32,6 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *selectPicker;
 @property (strong, nonatomic) IBOutlet UITextField *schoolTextField;
 @property (strong, nonatomic) IBOutlet UITextField *collegeTextField;
+@property (strong, nonatomic) IBOutlet UITextField *areaTextField;
 
 @end

@@ -1686,7 +1686,8 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     </tableView>
                     <navigationItem key="navigationItem" id="IDw-O5-RTW"/>
                     <connections>
-                        <outlet property="collegeTextField" destination="qUg-5W-yq1" id="meX-uy-3AD"/>
+                        <outlet property="areaTextField" destination="qUg-5W-yq1" id="eMf-iW-mTd"/>
+                        <outlet property="collegeTextField" destination="fmk-Y6-y96" id="DvF-41-TEG"/>
                         <outlet property="doneToolbar" destination="wgD-e2-Vy4" id="1zy-jv-tj5"/>
                         <outlet property="orgDescription" destination="e2W-7o-4BB" id="hNO-rx-cYo"/>
                         <outlet property="orgName" destination="hUE-Fn-Hqb" id="NZd-eI-wQA"/>
