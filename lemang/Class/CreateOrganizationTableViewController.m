@@ -16,7 +16,7 @@
 @implementation CreateOrganizationTableViewController
 
 @synthesize selectPicker;
-@synthesize schoolTextField,collegeTextField;
+@synthesize schoolTextField,collegeTextField,areaTextField;
 @synthesize doneToolbar;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -42,6 +42,12 @@
     collegeTextField.inputAccessoryView = doneToolbar;
     collegeTextField.delegate = self;
     [collegeTextField addTarget:self action:@selector(collegeOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    areaTextField.inputAccessoryView = doneToolbar;
+    areaTextField.inputView = selectPicker;
+    areaTextField.delegate = self;
+    [areaTextField addTarget:self action:@selector(areaOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    
     selectPicker.delegate = self;
     selectPicker.dataSource = self;
     selectPicker.frame = CGRectMake(0, 480, 320, 216);
@@ -117,6 +123,11 @@
     [selectPicker reloadAllComponents];
 }
 
+- (IBAction)areaOnEditing:(id)sender {
+    pickerArray = areaPickerArray;
+    [selectPicker reloadAllComponents];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -130,6 +141,10 @@
     else if(collegeTextField.isEditing)
     {
         [collegeTextField endEditing:YES];
+    }
+    else if(areaTextField.isEditing)
+    {
+        [areaTextField endEditing:YES];
     }
 }
 
@@ -151,6 +166,10 @@
     else if(collegeTextField.isEditing)
     {
         textField = collegeTextField;
+    }
+    else if(areaTextField.isEditing)
+    {
+        textField = areaTextField;
     }
     textField.text = [pickerArray objectAtIndex:row];
 }
