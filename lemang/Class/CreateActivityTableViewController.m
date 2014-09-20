@@ -286,6 +286,8 @@
 
     NSNumber* memberUp = [NSNumber numberWithLong:_actPeopleLimit.text.integerValue];
     [activityData setValue:memberUp forKey:@"peopleLimit"];
+    [activityData setValue:@"本校" forKey:@"regionLimit"];
+    
     
     NSData* postData = [NSJSONSerialization dataWithJSONObject:activityData options:NSJSONWritingPrettyPrinted error:nil];
     

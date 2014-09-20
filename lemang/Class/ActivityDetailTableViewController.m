@@ -137,6 +137,8 @@
         receivedData = [request responseData];
         activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
         
+        //NSLog(@"%@", activityData);
+        
         NSString* detailInfo = @"";//activityData[@"description"];
         detailInfo = [detailInfo stringByAppendingFormat:@"%@", activityData[@"description"]];
         
