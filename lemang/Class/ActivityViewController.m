@@ -307,6 +307,7 @@ NSString *navTitle;
     }
     
     CreateActivityTableViewController *createActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityTableViewController"];
+    [createActivityVC SetOwner:self];
     [self.navigationController pushViewController:createActivityVC animated:YES];
 }
 
