@@ -39,6 +39,7 @@
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 
 - (IBAction)ToCreatePage:(id)sender;
+- (void)CreateActivityDone;
 -(IBAction)pageTurn:(UIPageControl *)sender;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *ToCreatePage;
 

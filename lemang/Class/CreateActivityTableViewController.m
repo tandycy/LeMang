@@ -8,6 +8,7 @@
 
 #import "CreateActivityTableViewController.h"
 #import "Constants.h"
+#import "ActivityViewController.h"
 
 @interface CreateActivityTableViewController ()
 {
@@ -65,6 +66,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(DoCommitCreate:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
+
 }
 
 -(void)initView
@@ -111,6 +116,10 @@
     endDate.text = [nowDate stringFromDate:[NSDate date]];
     tempDate = tempDate2 = [NSDate date];
     
+    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    startDataText = [nowDate stringFromDate:[NSDate date]];
+    endDataText = [nowDate stringFromDate:[NSDate date]];
+    
     //init actUniversity|area|college dataPicker
     actUniversity.inputView = dataPicker;
     actUniversity.inputAccessoryView = doneToolbar;
@@ -134,6 +143,195 @@
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
+}
+
+- (void)DoAlert : (NSString*)caption: (NSString*)content
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    [alertView show];
+}
+
+- (BOOL) CheckActivityData
+{
+    if (actNameString.length == 0)
+    {
+        [self DoAlert:@"标题不能为空":@""];
+        return false;
+    }
+    if (actDescriptionString.length == 0)
+    {
+        [self DoAlert:@"描述不能为空":@""];
+        return false;
+    }
+    if (actUniversity.text.length == 0)
+    {
+        [self DoAlert:@"学校不能为空":@""];
+        return false;
+    }
+    if (actArea.text.length == 0)
+    {
+        [self DoAlert:@"校区不能为空":@""];
+        return false;
+    }
+    if (actCollege.text.length == 0)
+    {
+        [self DoAlert:@"院系不能为空":@""];
+        return false;
+    }
+
+    
+    if (actLocation.text.length == 0)
+    {
+        [self DoAlert:@"地址不能为空":@""];
+        return false;
+    }
+    if (_actPeopleLimit.text.length == 0)
+    {
+        [self DoAlert:@"未指定人数限制":@""];
+        return false;
+    }
+    
+    // TODO: 活动发起？ act host
+    return true;
+}
+
+- (IBAction)DoCommitCreate:(id)sender
+{
+    if (![self CheckActivityData])  // failed pass info check
+        return;
+    
+    activityData = [[NSMutableDictionary alloc]init];
+    NSNumber* uid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
+    NSMutableDictionary* uidDic = [[NSMutableDictionary alloc]init];
+    [uidDic setValue:uid forKey:@"id"];
+    [activityData setValue:uidDic forKey:@"createdBy"];
+
+    [activityData setValue:actNameString forKey:@"title"];
+    [activityData setValue:actDescriptionString forKey:@"description"];
+    
+    if (allDayTrigger.isOn)
+        [activityData setValue:@"true" forKey:@"isAllDay"];
+    else
+        [activityData setValue:@"false" forKey:@"isAllDay"];
+    
+    [activityData setValue:startDataText forKey:@"beginTime"];
+    [activityData setValue:endDataText forKey:@"endTime"];
+    
+    nowDate = [[NSDateFormatter alloc]init];
+    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString* createDataText = [nowDate stringFromDate:[NSDate date]];
+    [activityData setValue:endDataText forKey:@"createdDate"];
+    
+    switch (actHostType.selectedSegmentIndex) {
+        case 0:// 0 - 学校
+            [activityData setValue:@"University" forKey:@"activityGroup"];
+            break;
+        case 1:// 1 - 院系
+            [activityData setValue:@"Department" forKey:@"activityGroup"];
+            break;
+        case 2:// 2 - 商家
+            [activityData setValue:@"Company" forKey:@"activityGroup"];
+            break;
+        case 3:// 3 - 社团
+            [activityData setValue:@"Association" forKey:@"activityGroup"];
+            break;
+        case 4:// 4 - 个人
+            [activityData setValue:@"Person" forKey:@"activityGroup"];
+            break;
+        default:
+            break;
+    }
+
+    [activityData setValue:@"Activity" forKey:@"activityType"];
+
+    
+    NSString* schoolName = actUniversity.text;
+    SchoolItem* school = [SchoolManager GetSchoolItem:schoolName];
+    if (school != Nil)
+    {
+        NSNumber* sid = [school GetId];
+        //NSString* schoolData = [NSString stringWithFormat:@"{\"id\":%@}",sid];
+        NSMutableDictionary* schoolDic = [[NSMutableDictionary alloc]init];
+        [schoolDic setValue:sid forKey:@"id"];
+        [activityData setObject:schoolDic forKey:@"university"];
+        
+        NSNumber* areaId = [school GetAreaId:actArea.text];
+        if (!areaId)
+            [activityData removeObjectForKey:@"area"];
+        else
+        {
+            //NSString* areaData = [NSString stringWithFormat:@"{\"id\":%@}",areaId];
+            NSMutableDictionary* areaDic = [[NSMutableDictionary alloc]init];
+            [areaDic setValue:areaId forKey:@"id"];
+            [activityData setObject:areaDic forKey:@"area"];
+        }
+        
+        NSNumber* departId = [school GetDepartId:actCollege.text];
+        if (!departId)
+            [activityData removeObjectForKey:@"department"];
+        else
+        {
+            //NSString* departData = [NSString stringWithFormat:@"{\"id\":%@}",departId];
+            NSMutableDictionary* depDic = [[NSMutableDictionary alloc]init];
+            [depDic setValue:departId forKey:@"id"];
+            [activityData setObject:depDic forKey:@"department"];
+        }
+    }
+    else
+    {
+        [activityData setValue:@"" forKey:@"university"];
+        [activityData removeObjectForKey:@"department"];
+        [activityData removeObjectForKey:@"area"];
+    }
+
+    NSNumber* memberUp = [NSNumber numberWithLong:_actPeopleLimit.text.integerValue];
+    [activityData setValue:memberUp forKey:@"peopleLimit"];
+    
+    NSData* postData = [NSJSONSerialization dataWithJSONObject:activityData options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\""];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\"true\"" withString:@"true"];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\"false\"" withString:@"false"];
+    
+    //NSLog(@"%@", jsonString);
+    
+    NSString* actUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
+    ASIHTTPRequest* createRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:actUrlStr]];
+
+    [createRequest addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [createRequest appendPostData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    [createRequest setRequestMethod:@"POST"];
+    
+    [createRequest startSynchronous];
+    
+    NSError* error = [createRequest error];
+    
+    if (error)
+    {
+        NSString* errorStr = @"网络连接错误:";
+        errorStr = [errorStr stringByAppendingFormat:@"%d - %@",error.code, error.localizedDescription];
+        [self DoAlert:@"创建失败" :errorStr];
+        return;
+    }
+    
+    int returnCode = [createRequest responseStatusCode];
+    
+    if (returnCode == 201)
+    {
+        // TODO create success operation
+        if (owner != nil && [owner isKindOfClass:[ActivityViewController class]])
+        {
+            [(ActivityViewController*)owner CreateActivityDone];
+            [self.navigationController popViewControllerAnimated:true];
+        }
+    }
+}
+
+- (void)SetOwner:(id)_owner
+{
+    owner = _owner;
 }
 
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
@@ -191,6 +389,10 @@
     NSString *dateAndTime2 = [dateFormatter stringFromDate:tempDate2];
     startDate.text = dateAndTime;
     endDate.text = dateAndTime2;
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    startDataText = [dateFormatter stringFromDate:tempDate];
+    endDataText = [dateFormatter stringFromDate:tempDate2];
 }
 
 - (IBAction)selectButton:(id)sender {
@@ -227,12 +429,19 @@
     if (startDate.isEditing) {
         startDate.text = dateAndTime;
         tempDate = selected;
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        startDataText = [dateFormatter stringFromDate:tempDate];
     }
     else if (endDate.isEditing)
     {
         endDate.text =dateAndTime;
         tempDate2 = selected;
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        endDataText = [dateFormatter stringFromDate:tempDate2];
     }
+    
     
     // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时间提示" message:dateAndTime delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     // [alert show];
