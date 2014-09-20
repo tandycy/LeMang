@@ -38,7 +38,7 @@
 @synthesize actUniversity,actArea,actCollege;
 @synthesize dataPicker,doneToolbar;
 @synthesize actHost,actHostType;
-@synthesize actLocation,actTags,otherTag;
+@synthesize actLocation,actPeopleLimit,actTags,otherTag;
 @synthesize startDate,endDate,datePicker,allDayTrigger;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -140,6 +140,9 @@
 {
     [self.actName resignFirstResponder];
     [self.actDescription resignFirstResponder];
+    [self.actLocation resignFirstResponder];
+    [self.actPeopleLimit resignFirstResponder];
+    [self.otherTag resignFirstResponder];
 }
 
 -(void)textViewDidChange:(UITextView *)textView

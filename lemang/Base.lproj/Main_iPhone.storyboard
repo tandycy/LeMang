@@ -3216,6 +3216,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="actHostType" destination="klI-hM-vrh" id="Dlq-17-Nik"/>
                         <outlet property="actLocation" destination="vs1-rN-1T7" id="le7-6g-2Cy"/>
                         <outlet property="actName" destination="PG8-aB-NiY" id="r3b-tI-ths"/>
+                        <outlet property="actPeopleLimit" destination="Yam-Cp-ogn" id="1al-RB-F9T"/>
                         <outlet property="actTags" destination="YNW-bq-c1e" id="bDA-xg-hOr"/>
                         <outlet property="actUniversity" destination="JfA-hJ-gyL" id="FST-Ri-Rjc"/>
                         <outlet property="allDayTrigger" destination="BFu-CP-O9u" id="N2n-mK-39S"/>
