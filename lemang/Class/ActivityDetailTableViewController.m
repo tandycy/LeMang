@@ -56,11 +56,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self RefreshCommentList];
+    //[self RefreshCommentList];
 }
 
 - (void)didReceiveMemoryWarning
-{    [super didReceiveMemoryWarning];
+{
+    [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
@@ -121,8 +122,6 @@
     if (activity == nil)
         return;
     
-   // [self RefreshCommentList];
-    
     NSString* URLString = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", activity.activityId];
     NSURL *URL = [NSURL URLWithString:URLString];
     
@@ -136,6 +135,8 @@
     {
         receivedData = [request responseData];
         activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
+        
+        //NSLog(@"%@", activityData);
         
         NSString* detailInfo = @"";//activityData[@"description"];
         detailInfo = [detailInfo stringByAppendingFormat:@"%@", activityData[@"description"]];
@@ -188,7 +189,7 @@
         }
         
         
-        address.text = activityData[@"address"];
+        address.text = [UserManager filtStr:activityData[@"address"]: @""];
         localCommentData = activityData[@"activityComment"];
         NSUInteger commentNumber = localCommentData.count;
         

@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 #import "SchoolManager.h"
 
 @interface CreateActivityTableViewController : UITableViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     NSMutableDictionary* activityData;
+    NSString* startDataText;
+    NSString* endDataText;
+    id owner;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *actName;
@@ -32,7 +36,9 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *actTags;
 @property (strong, nonatomic) IBOutlet UITextField *otherTag;
 @property (strong, nonatomic) IBOutlet UIPickerView *dataPicker;
+//@property (strong, nonatomic) IBOutlet UITextField *actPeopleLimit;
 
 - (IBAction)selectButton:(id)sender;
+- (void)SetOwner:(id)_owner;
 
 @end

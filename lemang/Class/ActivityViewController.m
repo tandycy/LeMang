@@ -10,7 +10,7 @@
 #import "ActivityDetailViewController.h"
 #import "ActivityViewCell.h"
 #import "MJRefresh.h"
-#import "EditActivityTableViewController.h"
+#import "CreateActivityTableViewController.h"
 
 #define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
 
@@ -111,7 +111,10 @@ NSString *navTitle;
             NSString* group = temp[@"activityGroup"];
             NSString* type = temp[@"activityType"];
             
-            NSString* createDate = temp[@"createdDate"];
+            
+            NSString* beginTime = [UserManager filtStr:temp[@"beginTime"] : @""];
+            NSString* endTime = [UserManager filtStr:temp[@"endTime"] : @""];
+            NSString* dateData = [beginTime stringByAppendingFormat:@" ~ %@", endTime];
             
             
             NSDictionary* members = temp[@"users"];
@@ -122,8 +125,8 @@ NSString *navTitle;
             }
             
             //NSString* tittle = temp[@"title"];
-            NSString* peopleLimit = temp[@"peopleLimit"];
-            NSString* regionLimit = temp[@"regionLimit"];
+            NSString* peopleLimit = [UserManager filtStr:temp[@"peopleLimit"] : @"0"];
+            NSString* regionLimit = [UserManager filtStr:temp[@"regionLimit"] : @""];
             UIImage* iconImg;
             
             if ([group isEqualToString:@"Association"])
@@ -163,7 +166,7 @@ NSString *navTitle;
                                 activityOfCategory:@"All"
                                 imgUrlStr:imgUrl
                                 title:temp[@"title"]
-                                date:createDate
+                                date:dateData
                                 limit:regionLimit
                                 icon:schoolIcon
                                 member:[NSString stringWithFormat:@"%d",memberNum]
@@ -306,8 +309,9 @@ NSString *navTitle;
         return;
     }
     
-    EditActivityTableViewController *editActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditActivityTableViewController"];
-    [self.navigationController pushViewController:editActivityVC animated:YES];
+    CreateActivityTableViewController *createActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityTableViewController"];
+    [createActivityVC SetOwner:self];
+    [self.navigationController pushViewController:createActivityVC animated:YES];
 }
 
 - (IBAction)pageTurn:(UIPageControl *)sender {
@@ -315,6 +319,12 @@ NSString *navTitle;
     CGRect rect=CGRectMake(sender.currentPage*viewsize.width, 0, viewsize.width, viewsize.height);
     [self.scrollView scrollRectToVisible:rect animated:YES];
     
+}
+
+- (void) CreateActivityDone
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"创建活动成功" message:@"在-我的活动-中可以编辑活动详细信息" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    [alertView show];
 }
 
 
