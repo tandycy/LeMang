@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface MyMessageTableViewController : UITableViewController
+{
+    NSMutableArray* messageList;
+}
 
 
 @end

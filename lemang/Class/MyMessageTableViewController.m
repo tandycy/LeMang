@@ -32,6 +32,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self RefreshMessageList];
+}
+
+- (void) RefreshMessageList
+{
+    if (![UserManager IsInitSuccess])
+        return;
+    
 }
 
 - (void)didReceiveMemoryWarning
