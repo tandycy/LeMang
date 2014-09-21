@@ -7,6 +7,7 @@
 //
 
 #import "UserTableViewController.h"
+#import "MyMessageTableViewController.h"
 
 @interface UserTableViewController ()
 {
@@ -40,6 +41,8 @@
     // loginButton.backgroundColor = [UIColor blueColor];
     //loginButton.titleLabel.text = @"login!";
     
+    [self.messageButton addTarget:self action:@selector(msgBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.loginButton addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self clearUserDataDisplay];
@@ -54,6 +57,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)msgBtnClick:(id)sender
+{
+    MyMessageTableViewController *MyMsgTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyMessageTableViewController"];
+    [self.navigationController pushViewController:MyMsgTVC animated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated

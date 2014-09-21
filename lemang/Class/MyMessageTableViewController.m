@@ -40,32 +40,54 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 5;
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"msgCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    if (cell==nil) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"msgCell" forIndexPath:indexPath];
+    }
+    UILabel *msgTitle = (UILabel*)[cell viewWithTag:100];
+    msgTitle.text = @"这个冬天不太冷邀请你加入组织";
+    
+    UIButton *deleteButton = (UIButton*)[cell viewWithTag:101];
+    [deleteButton addTarget:self action:@selector(delMsg:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
-*/
+
+-(IBAction)delMsg:(id)sender
+{
+
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

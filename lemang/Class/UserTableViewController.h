@@ -37,6 +37,7 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *myActCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *myFriendsCell;
 
+@property (strong, nonatomic) IBOutlet UIButton *messageButton;
 
 - (IBAction)DoLogOut:(id)sender;
 - (void) refreshUserData;

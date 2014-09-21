@@ -1020,9 +1020,6 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <state key="normal" title="消息">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
-                                    <connections>
-                                        <segue destination="cVm-qa-oIh" kind="push" id="S8p-jr-zxy"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xF8-bd-YwS">
                                     <rect key="frame" x="264" y="91" width="30" height="30"/>
@@ -1173,6 +1170,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     <connections>
                         <outlet property="accCell" destination="Ueq-B5-4Oq" id="Jgv-18-6mL"/>
                         <outlet property="loginButton" destination="xF8-bd-YwS" id="HWF-cx-sZF"/>
+                        <outlet property="messageButton" destination="WlI-73-K2v" id="Twl-Ph-UYi"/>
                         <outlet property="mobilePhoneButton" destination="Pcs-Wz-Y6v" id="Cjx-0B-22t"/>
                         <outlet property="myActCell" destination="VgX-NM-JzT" id="X2h-wH-pPP"/>
                         <outlet property="myFriendsCell" destination="Yor-En-u4b" id="Cc6-nw-v7W"/>
@@ -1479,18 +1477,43 @@ COaPkOS+m+mHkeiejeacjeWKoQ
         <!--My Message Table View Controller-->
         <scene sceneID="Elg-gJ-rNg">
             <objects>
-                <tableViewController id="cVm-qa-oIh" customClass="MyMessageTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MyMessageTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cVm-qa-oIh" customClass="MyMessageTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x4o-XP-b9n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="MkB-La-2cV">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="msgCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="msgCell" rowHeight="40" id="MkB-La-2cV">
+                                <rect key="frame" x="0.0" y="22" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MkB-La-2cV" id="aqi-B6-QsN">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mess_1" id="Xgk-as-DZb">
+                                            <rect key="frame" x="5" y="12" width="20" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="split_line" id="BvD-SE-fLd">
+                                            <rect key="frame" x="32" y="6" width="1" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这个冬天不太冷邀请你加入社团" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FhG-fE-BOX">
+                                            <rect key="frame" x="42" y="9" width="251" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vkj-NU-oVy">
+                                            <rect key="frame" x="292" y="5" width="28" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="delete">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -3287,6 +3310,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="bottom_share_on" width="54" height="20"/>
         <image name="bottom_sign_on" width="52" height="22"/>
         <image name="buisness_icon" width="21" height="21"/>
+        <image name="delete" width="28" height="30"/>
         <image name="detail" width="15" height="31"/>
         <image name="doge.jpg" width="197" height="171"/>
         <image name="doge2.jpg" width="80" height="80"/>
@@ -3301,9 +3325,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="main_top_select" width="23" height="33"/>
         <image name="main_user_off" width="25" height="25"/>
         <image name="member_number" width="12" height="13"/>
+        <image name="mess_1" width="21" height="17"/>
         <image name="more_button" width="47" height="17"/>
         <image name="rate_star_off" width="39" height="39"/>
         <image name="rate_star_whole" width="14" height="14"/>
+        <image name="split_line" width="1" height="1"/>
         <image name="user_icon_de" width="70" height="70"/>
         <image name="user_icon_de.png" width="27" height="26"/>
     </resources>
