@@ -24,7 +24,7 @@
     UILabel *address;
     UILabel *time;
     
-    NSMutableData* receivedData;
+    NSData* receivedData;
     NSDictionary* activityData;
         
     NSArray* localCommentData;

@@ -122,8 +122,8 @@ NSString *navTitle;
             }
             
             //NSString* tittle = temp[@"title"];
-            NSString* peopleLimit = temp[@"peopleLimit"];
-            NSString* regionLimit = temp[@"regionLimit"];
+            NSString* peopleLimit = [UserManager filtStr:temp[@"peopleLimit"] : @"0"];
+            NSString* regionLimit = [UserManager filtStr:temp[@"regionLimit"] : @""];
             UIImage* iconImg;
             
             if ([group isEqualToString:@"Association"])

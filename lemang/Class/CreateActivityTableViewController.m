@@ -185,7 +185,7 @@
         [self DoAlert:@"地址不能为空":@""];
         return false;
     }
-    if (_actPeopleLimit.text.length == 0)
+    if (actPeopleLimit.text.length == 0)
     {
         [self DoAlert:@"未指定人数限制":@""];
         return false;
@@ -284,7 +284,7 @@
         [activityData removeObjectForKey:@"area"];
     }
 
-    NSNumber* memberUp = [NSNumber numberWithLong:_actPeopleLimit.text.integerValue];
+    NSNumber* memberUp = [NSNumber numberWithLong:actPeopleLimit.text.integerValue];
     [activityData setValue:memberUp forKey:@"peopleLimit"];
     [activityData setValue:@"本校" forKey:@"regionLimit"];
     
