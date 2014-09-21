@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *rate3;
 @property (strong, nonatomic) IBOutlet UIButton *rate4;
 @property (strong, nonatomic) IBOutlet UIButton *rate5;
+@property (strong, nonatomic) IBOutlet UIImageView *photo;
 
 - (void) SetActivity:(Activity*)activity;
 - (void) SetOwner:(id)_owner;

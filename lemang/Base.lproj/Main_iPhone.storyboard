@@ -1939,6 +1939,10 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pCR-vY-SWF">
+                                <rect key="frame" x="122" y="319" width="77" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1946,6 +1950,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     <connections>
                         <outlet property="addPhoto" destination="5xG-f7-fUV" id="dkC-m7-fOH"/>
                         <outlet property="commentDetail" destination="gXq-Zp-jvs" id="dGA-Qf-qQA"/>
+                        <outlet property="photo" destination="pCR-vY-SWF" id="qFi-Sk-nW6"/>
                         <outlet property="rate1" destination="LjN-TW-yGZ" id="vFu-QO-HEF"/>
                         <outlet property="rate2" destination="yc6-P7-Wtk" id="P3V-en-89a"/>
                         <outlet property="rate3" destination="tmS-Dn-nCW" id="Iil-UR-1DK"/>
