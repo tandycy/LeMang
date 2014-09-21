@@ -93,6 +93,22 @@
     okButton.action = @selector(commentOk:);
     
     [addPhoto addTarget:self action:@selector(addPhotoClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.photo.image = [UIImage imageNamed:@"doge2.jpg"];
+    
+    UIButton *delPhoto = [[UIButton alloc]initWithFrame:CGRectMake(67, 0, 10, 10)];
+    [delPhoto setBackgroundColor:[UIColor blueColor]];
+    [delPhoto addTarget:self action:@selector(delPhotoClick:)
+       forControlEvents:UIControlEventTouchUpInside];
+    [self.photo setUserInteractionEnabled:YES];
+    [self.photo addSubview:delPhoto];
+    
+}
+
+-(IBAction)delPhotoClick:(id)sender
+{
+    NSLog(@"del Doge!!!!");
+    [self.photo removeFromSuperview];
 }
 
 -(void)initRate
