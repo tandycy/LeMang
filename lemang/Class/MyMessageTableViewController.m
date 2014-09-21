@@ -19,6 +19,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        messageList = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -41,6 +42,18 @@
     if (![UserManager IsInitSuccess])
         return;
     
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/message/q?search_EQ_to.id=";
+    urlString = [urlString stringByAppendingFormat:@"%d", [[UserManager Instance]GetLocalUserId]];
+    NSURL* URL = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (!error)
+    {
+        messageList = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,7 +76,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 5;
+    return messageList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,12 +87,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"msgCell" forIndexPath:indexPath];
+    MyMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"msgCell" forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell==nil) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"msgCell" forIndexPath:indexPath];
     }
+    
+    NSDictionary* messageData = messageList[indexPath.row];
+    
     UILabel *msgTitle = (UILabel*)[cell viewWithTag:100];
     msgTitle.text = @"这个冬天不太冷邀请你加入组织";
     
@@ -89,9 +105,9 @@
     return cell;
 }
 
--(IBAction)delMsg:(id)sender
+- (void)OnMessageDelete:(MyMessageCell *)cell
 {
-
+    //
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

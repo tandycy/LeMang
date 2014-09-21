@@ -107,6 +107,7 @@
 		28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153A19BE1E5200DE97F0 /* Base64.m */; };
 		28DC153E19BE8F8500DE97F0 /* SchoolItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153D19BE8F8500DE97F0 /* SchoolItem.m */; };
 		28DC154219C5C98E00DE97F0 /* ActivityCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */; };
+		EE18D80519CEC3AF00B1DCA2 /* MyMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */; };
 		EE28E93E19C152D000E0E8A6 /* profile.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE28E93D19C152D000E0E8A6 /* profile.plist */; };
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
@@ -305,6 +306,8 @@
 		28DC153D19BE8F8500DE97F0 /* SchoolItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolItem.m; path = Class/SchoolItem.m; sourceTree = "<group>"; };
 		28DC154019C5C98E00DE97F0 /* ActivityCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommentCell.h; path = Class/ActivityCommentCell.h; sourceTree = "<group>"; };
 		28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommentCell.m; path = Class/ActivityCommentCell.m; sourceTree = "<group>"; };
+		EE18D80319CEC3AF00B1DCA2 /* MyMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMessageCell.h; path = Class/MyMessageCell.h; sourceTree = "<group>"; };
+		EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMessageCell.m; path = Class/MyMessageCell.m; sourceTree = "<group>"; };
 		EE28E93D19C152D000E0E8A6 /* profile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = profile.plist; path = lemang/Class/profile.plist; sourceTree = "<group>"; };
 		EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoader.h; path = Class/IconImageViewLoader.h; sourceTree = "<group>"; };
 		EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoader.m; path = Class/IconImageViewLoader.m; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 				258087B519A71D0E005E308D /* MyFriendsTableViewController.m */,
 				258087B919A71D59005E308D /* MyMessageTableViewController.h */,
 				258087BA19A71D59005E308D /* MyMessageTableViewController.m */,
+				EE18D80319CEC3AF00B1DCA2 /* MyMessageCell.h */,
+				EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */,
 				258087BC19A71D7C005E308D /* UserLoginViewController.h */,
 				258087BD19A71D7C005E308D /* UserLoginViewController.m */,
 				258087BF19A71DB9005E308D /* UserRegisterViewController.h */,
@@ -792,7 +797,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -914,6 +919,7 @@
 				28DC152719BD5E8000DE97F0 /* ASIInputStream.m in Sources */,
 				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
 				25C735E619C8337B00E596A9 /* MemberInfoTableViewController.m in Sources */,
+				EE18D80519CEC3AF00B1DCA2 /* MyMessageCell.m in Sources */,
 				EE9B1DAF19BC2C76001E2C7C /* SchoolManager.mm in Sources */,
 				28DC152619BD5E8000DE97F0 /* ASIHTTPRequest.m in Sources */,
 				257CD60A19A36EF1001FF078 /* ActivityCommetImageDetailViewController.m in Sources */,
@@ -1144,7 +1150,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

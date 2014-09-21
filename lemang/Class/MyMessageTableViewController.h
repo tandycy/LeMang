@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UserManager.h"
+#import "MyMessageCell.h"
 
 @interface MyMessageTableViewController : UITableViewController
 {
     NSMutableArray* messageList;
 }
 
-
+- (void)OnMessageDelete : (MyMessageCell*)cell;
 @end
