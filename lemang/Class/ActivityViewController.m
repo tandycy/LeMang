@@ -111,7 +111,10 @@ NSString *navTitle;
             NSString* group = temp[@"activityGroup"];
             NSString* type = temp[@"activityType"];
             
-            NSString* createDate = temp[@"createdDate"];
+            
+            NSString* beginTime = [UserManager filtStr:temp[@"beginTime"] : @""];
+            NSString* endTime = [UserManager filtStr:temp[@"endTime"] : @""];
+            NSString* dateData = [beginTime stringByAppendingFormat:@" ~ %@", endTime];
             
             
             NSDictionary* members = temp[@"users"];
@@ -163,7 +166,7 @@ NSString *navTitle;
                                 activityOfCategory:@"All"
                                 imgUrlStr:imgUrl
                                 title:temp[@"title"]
-                                date:createDate
+                                date:dateData
                                 limit:regionLimit
                                 icon:schoolIcon
                                 member:[NSString stringWithFormat:@"%d",memberNum]
