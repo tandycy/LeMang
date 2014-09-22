@@ -52,7 +52,14 @@
     NSError* error = [request error];
     if (!error)
     {
-        messageList = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        NSArray* data = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        messageList = [[NSMutableArray alloc]init];
+        
+        for (int i = 0; i < data.count; i++)
+        {
+            NSDictionary* item = data[i];
+            [messageList addObject:item];
+        }
     }
 }
 
@@ -74,7 +81,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+//#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return messageList.count;
 }
@@ -91,27 +98,67 @@
     
     // Configure the cell...
     if (cell==nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"msgCell" forIndexPath:indexPath];
+        cell =  [[MyMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"msgCell"];
     }
     
     NSDictionary* messageData = messageList[indexPath.row];
     
-    UILabel *msgTitle = (UILabel*)[cell viewWithTag:100];
-    msgTitle.text = @"这个冬天不太冷邀请你加入组织";
-    
-    UIButton *deleteButton = (UIButton*)[cell viewWithTag:101];
-    [deleteButton addTarget:self action:@selector(delMsg:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [cell SetMessageData:messageData owner:self];
+
     return cell;
 }
 
 - (void)OnMessageDelete:(MyMessageCell *)cell
 {
-    //
+    if (![UserManager IsInitSuccess])
+        return; // should not happen
+    
+    // TODO: put delete request
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/message/";
+    urlString = [urlString stringByAppendingFormat:@"%@", [cell GetMessageId]];
+    
+    ASIHTTPRequest* readRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [readRequest setRequestMethod:@"DELETE"];
+    [readRequest startSynchronous];
+    
+    NSError* error = [readRequest error];
+    int returncode = [readRequest responseStatusCode];
+    if (error)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法删除评论" message:@"网络连接错误" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    else if (returncode != 200)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法删除评论" message:@"服务器内部错误" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    else
+    {
+        // refresh list
+        NSIndexPath* index = [self.tableView indexPathForCell:cell];
+        
+        [messageList removeObjectAtIndex:index.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView reloadData];
+    }
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MyMessageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if (!cell)
+    {
+        // should not happen
+        return;
+    }
+    
+    [cell OnRead];
 }
 
 /*
