@@ -114,13 +114,37 @@
         return; // should not happen
     
     // TODO: put delete request
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/message/";
+    urlString = [urlString stringByAppendingFormat:@"%@", [cell GetMessageId]];
     
-    // refresh list
-    NSIndexPath* index = [self.tableView indexPathForCell:cell];
+    ASIHTTPRequest* readRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [readRequest setRequestMethod:@"DELETE"];
+    [readRequest startSynchronous];
     
-    [messageList removeObjectAtIndex:index.row];
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView reloadData];
+    NSError* error = [readRequest error];
+    int returncode = [readRequest responseStatusCode];
+    if (error)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法删除评论" message:@"网络连接错误" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    else if (returncode != 200)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法删除评论" message:@"服务器内部错误" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    else
+    {
+        // refresh list
+        NSIndexPath* index = [self.tableView indexPathForCell:cell];
+        
+        [messageList removeObjectAtIndex:index.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView reloadData];
+    }
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
