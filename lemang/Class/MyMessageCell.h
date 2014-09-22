@@ -13,13 +13,23 @@
     //
     NSDictionary* localData;
     id messageTable;
+    
+    NSNumber* messId;
+    
+    NSString* messCategory;
+    NSString* messType;
+    int messState;  // 0-unread, 1-read, 2-done
+    
+    NSString* messContent;
 }
 
-@property (strong, nonatomic) IBOutlet UILabel *messageTitle;
 - (IBAction)OnClickDel:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UILabel *messageTitle;
 @property (strong, nonatomic) IBOutlet UIImageView *messageIcon;
 
 - (void)OnRead;
 - (void)SetMessageData:(NSDictionary*)data owner:(id)owner;
+- (NSNumber*)GetMessageId;
 
 @end
