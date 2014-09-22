@@ -51,6 +51,8 @@
 		258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C819A71EED005E308D /* UITableGridViewCell.m */; };
 		25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */; };
 		25BAA3D219ACAFC500E87856 /* EditActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */; };
+		25C2392A19D0207E00F31AFE /* MyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392919D0207E00F31AFE /* MyFriendCell.m */; };
+		25C2392D19D0272D00F31AFE /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392C19D0272D00F31AFE /* Friend.m */; };
 		25C3A0F719ADC4EC00BB48B3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25C3A0E719ADC4EC00BB48B3 /* MJRefresh.bundle */; };
 		25C3A0F819ADC4EC00BB48B3 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0EA19ADC4EC00BB48B3 /* MJRefreshBaseView.m */; };
 		25C3A0F919ADC4EC00BB48B3 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C3A0EC19ADC4EC00BB48B3 /* MJRefreshConst.m */; };
@@ -206,6 +208,10 @@
 		25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateOrganizationTableViewController.m; path = Class/CreateOrganizationTableViewController.m; sourceTree = "<group>"; };
 		25BAA3D019ACAFC500E87856 /* EditActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditActivityTableViewController.h; path = Class/EditActivityTableViewController.h; sourceTree = "<group>"; };
 		25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditActivityTableViewController.m; path = Class/EditActivityTableViewController.m; sourceTree = "<group>"; };
+		25C2392819D0207E00F31AFE /* MyFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFriendCell.h; path = Class/MyFriendCell.h; sourceTree = "<group>"; };
+		25C2392919D0207E00F31AFE /* MyFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFriendCell.m; path = Class/MyFriendCell.m; sourceTree = "<group>"; };
+		25C2392B19D0272D00F31AFE /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friend.h; path = Class/Friend.h; sourceTree = "<group>"; };
+		25C2392C19D0272D00F31AFE /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Friend.m; path = Class/Friend.m; sourceTree = "<group>"; };
 		25C3A0E719ADC4EC00BB48B3 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		25C3A0E819ADC4EC00BB48B3 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		25C3A0E919ADC4EC00BB48B3 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -491,6 +497,10 @@
 				258087BA19A71D59005E308D /* MyMessageTableViewController.m */,
 				EE18D80319CEC3AF00B1DCA2 /* MyMessageCell.h */,
 				EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */,
+				25C2392819D0207E00F31AFE /* MyFriendCell.h */,
+				25C2392919D0207E00F31AFE /* MyFriendCell.m */,
+				25C2392B19D0272D00F31AFE /* Friend.h */,
+				25C2392C19D0272D00F31AFE /* Friend.m */,
 				258087BC19A71D7C005E308D /* UserLoginViewController.h */,
 				258087BD19A71D7C005E308D /* UserLoginViewController.m */,
 				258087BF19A71DB9005E308D /* UserRegisterViewController.h */,
@@ -797,7 +807,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -877,6 +887,7 @@
 				28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */,
 				25C3A0FB19ADC4EC00BB48B3 /* MJRefreshHeaderView.m in Sources */,
 				28DC152E19BD5E8100DE97F0 /* ASICloudFilesObject.m in Sources */,
+				25C2392D19D0272D00F31AFE /* Friend.m in Sources */,
 				28DC152819BD5E8000DE97F0 /* ASINetworkQueue.m in Sources */,
 				EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */,
 				28DC153619BD5E8100DE97F0 /* ASIS3ServiceRequest.m in Sources */,
@@ -906,6 +917,7 @@
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
 				258087C919A71EED005E308D /* UIImageButton.m in Sources */,
 				25C3A0FE19ADC4EC00BB48B3 /* UIView+Extension.m in Sources */,
+				25C2392A19D0207E00F31AFE /* MyFriendCell.m in Sources */,
 				EE9B1DB219BC34F8001E2C7C /* HttpGetter.m in Sources */,
 				258087B719A71D0E005E308D /* MyFriendsTableViewController.m in Sources */,
 				28DC152F19BD5E8100DE97F0 /* ASICloudFilesObjectRequest.m in Sources */,
@@ -1150,7 +1162,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,
