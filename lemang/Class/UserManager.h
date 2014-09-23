@@ -32,6 +32,8 @@
     id <UserLoginDelegate> loginDelegate;
     
     UIImage* defaultIcon;
+    
+    bool isdirty;
 }
 
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
@@ -55,5 +57,9 @@
 //- (void) InitLocalData;
 - (void) LogInCheck;
 - (void) UpdateLocalData;
+
++ (void) SetDirty;
++ (void) SetClear;
++ (bool) IsDirty;
 
 @end

@@ -144,6 +144,21 @@ static UserManager* managerInstance;
         [[UserManager Instance] RefreshData];
 }
 
++ (void) SetDirty
+{
+    [UserManager Instance]->isdirty = true;
+}
+
++ (void) SetClear
+{
+    [UserManager Instance]->isdirty = false;
+}
+
++ (bool) IsDirty
+{
+    return [UserManager Instance]->isdirty;
+}
+
 - (void) RefreshData
 {
     if (!initedLocalData)
@@ -169,6 +184,8 @@ static UserManager* managerInstance;
         localUserData = userData;
         
         [self UpdateNickName];
+        
+        [UserManager SetDirty];
     }
 }
 
@@ -256,6 +273,7 @@ static UserManager* managerInstance;
     localNickName = @"";
     initedLocalData = false;
     [self UpdateLocalData];
+    [UserManager SetClear];
 }
 
 - (void) UpdateLocalData
@@ -319,6 +337,7 @@ static UserManager* managerInstance;
         {
             managerInstance = [super allocWithZone:zone];
             managerInstance->initedLocalData = false;
+            managerInstance->isdirty = false;
             [managerInstance InitLocalData];
             return managerInstance;
         }

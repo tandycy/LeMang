@@ -39,7 +39,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 
-- (IBAction)DoLogOut:(id)sender;
 - (void) refreshUserData;
 
 @end

@@ -81,6 +81,7 @@
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
         [_userIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UserManager DefaultIcon]];
+        
     }
     
     NSDictionary* contactData = userData[@"contacts"];
@@ -257,6 +258,7 @@
     if (aaa == 200)
     {
         // TODO: success
+        [self UpdateContentDisplay];
     }
     else
     {

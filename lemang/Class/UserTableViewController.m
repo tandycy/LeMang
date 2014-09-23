@@ -69,6 +69,11 @@
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self userLoginState:[UserManager IsInitSuccess]];
+    
+    if ([UserManager IsInitSuccess] && [UserManager IsDirty])
+    {
+        [self refreshUserData];
+    }
 }
 
 
@@ -164,6 +169,8 @@
         [self clearUserDataDisplay];
         return;
     }
+    
+    [UserManager SetClear];
     
     [self userLoginState:true];
     
