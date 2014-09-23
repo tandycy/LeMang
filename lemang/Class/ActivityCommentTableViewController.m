@@ -8,7 +8,6 @@
 
 #import "ActivityCommentTableViewController.h"
 #import "ActivityDetailTableViewController.h"
-#import "ActivityComment.h"
 #import "ActivityCommetImageDetailViewController.h"
 #import "Constants.h"
 

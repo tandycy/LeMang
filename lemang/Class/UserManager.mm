@@ -36,6 +36,18 @@ static UserManager* managerInstance;
     }
 }
 
++ (NSString*) UserNick
+{
+    if ([UserManager IsInitSuccess])
+    {
+        return [UserManager Instance]->localNickName;
+    }
+    else
+    {
+        return @"";
+    }
+}
+
 + (NSString*) UserPW
 {
     if ([UserManager IsInitSuccess])
@@ -54,6 +66,7 @@ static UserManager* managerInstance;
     NSLog(@"load path: %@", plistPath);
     NSMutableDictionary* dict =  [ [ NSMutableDictionary alloc ] initWithContentsOfFile:plistPath];
     localUserName = [ dict objectForKey:@"userName" ];
+    localNickName = localUserName;
     
     NSData* userPw = [dict objectForKey:@"userKey"];
     localPassword = [NSData AES256Decode:userPw];
@@ -62,6 +75,7 @@ static UserManager* managerInstance;
 - (void)DoLogIn:(NSString *)name :(NSString *)pw
 {
     localUserName = name;
+    localNickName = name;
     localPassword = pw;
     
     [self LogInCheck];
@@ -153,12 +167,13 @@ static UserManager* managerInstance;
             return;
         
         localUserData = userData;
+        
+        [self UpdateNickName];
     }
 }
 
 - (void)LogInCheck
 {
-    //localUserName = @"user";
     
     initedLocalData = FALSE;
     
@@ -167,8 +182,6 @@ static UserManager* managerInstance;
         [loginDelegate UserLoginContact];
         return;
     }
-    
-    //localPassword = @"user";
     
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/q?search_LIKE_loginName=";
     urlString = [urlString stringByAppendingString:localUserName];
@@ -207,6 +220,9 @@ static UserManager* managerInstance;
                 NSNumber* idNum = data[@"id"];
                 localUserId = [idNum integerValue];
                 localUserData = data;
+                
+                [self UpdateNickName];
+                
                 initedLocalData = true;
                 [self UpdateLocalData];
                 break;
@@ -215,6 +231,17 @@ static UserManager* managerInstance;
     }
     
     [loginDelegate UserLoginContact];
+}
+
+- (void) UpdateNickName
+{
+    NSDictionary* profileData = localUserData[@"profile"];
+    if ([profileData isKindOfClass:[NSDictionary class]])
+    {
+        NSString* nickname = [UserManager filtStr:profileData[@"nickName"] : @""];
+        if (nickname.length > 0)
+            localNickName = nickname;
+    }
 }
 
 - (int) GetLocalUserId
@@ -226,6 +253,7 @@ static UserManager* managerInstance;
 {
     localUserName = @"";
     localPassword = @"";
+    localNickName = @"";
     initedLocalData = false;
     [self UpdateLocalData];
 }

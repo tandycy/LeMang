@@ -158,6 +158,7 @@
     if (section == 0) {
         cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         NSDictionary* creator = [linkedActivity GetActivityData][@"createdBy"];
+        
         NSDictionary* profile = creator[@"profile"];
         NSDictionary* creatorSchoolData = creator[@"university"];
         NSDictionary* creatorDepartData = creator[@"department"];
@@ -167,6 +168,7 @@
         //  cell.selectedBackgroundView = [[UIView alloc]init];
         
         IconImageViewLoader *creatorImg = [[IconImageViewLoader alloc]initWithImage:self.image];
+        NSString* creatorNameStr = creator[@"name"];
         
         if ([profile isKindOfClass:[NSDictionary class]])
         {
@@ -175,7 +177,10 @@
             
             NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
             [creatorImg LoadFromUrl:creatorIconUrl :[UserManager DefaultIcon]];
-            
+
+                NSString* nickname = [UserManager filtStr:profile[@"nickName"] : @""];
+                if (nickname.length > 0)
+                    creatorNameStr = nickname;
         }
         
         UILabel *creatorHead = [[UILabel alloc]initWithFrame:CGRectMake(15, 10, 50, 50)];
@@ -183,7 +188,7 @@
         UILabel *creatorSchool = [[UILabel alloc]initWithFrame:CGRectMake(100, 28, 200, 13)];
         UILabel *creatorColleage = [[UILabel alloc]initWithFrame:CGRectMake(100, 47, 200, 13)];
         
-        creatorName.text = creator[@"name"];
+        creatorName.text = creatorNameStr;
         creatorSchool.text = creatorSchoolData[@"name"];
         creatorColleage.text = creatorDepartData[@"name"];
         

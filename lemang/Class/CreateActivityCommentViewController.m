@@ -224,7 +224,7 @@
     
     NSString* postContent = @"{\"activity\":{\"id\":";
     postContent = [postContent stringByAppendingFormat:@"%@},\"title\":\"", actId];
-    postContent = [postContent stringByAppendingFormat:@"%@\",\"content\":\"", [UserManager UserName]];
+    postContent = [postContent stringByAppendingFormat:@"%@\",\"content\":\"", [UserManager UserNick]];
     postContent = [postContent stringByAppendingFormat:@"%@\",\"createdBy\":{\"id\":", commentDetail.text];
     postContent = [postContent stringByAppendingFormat:@"%d},\"createdDate\":\"", userId];
     postContent = [postContent stringByAppendingFormat:@"%@\",\"rating\":%d}", t2, rate];

@@ -118,7 +118,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MemberInfoTableViewController *MemberInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
     
-    MemberInfoTVC.navigationItem.title = @"XX的账户";
+    Friend* fitem = friendArray[indexPath.row];
+    
+    MemberInfoTVC.navigationItem.title = [NSString stringWithFormat:@"%@的账户",fitem.userName];
+    [MemberInfoTVC SetMemberId:fitem.userId];
     [self.navigationController pushViewController:MemberInfoTVC animated:YES];
 }
 

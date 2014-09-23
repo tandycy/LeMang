@@ -228,10 +228,7 @@
  
     //[ASIHTTPRequest clearSession];
     ASIFormDataRequest *uploadRequest = [ASIFormDataRequest requestWithURL:uploadUrl];
-    
-//    [uploadRequest setUsername:[UserManager UserName]];
-//    [uploadRequest setPassword:[UserManager UserPW]];
-    
+   
     [uploadRequest setRequestMethod:@"POST"];
     [uploadRequest setTimeOutSeconds:15];
     

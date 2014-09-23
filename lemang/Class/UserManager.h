@@ -21,6 +21,7 @@
 {
     NSString* localUserName;
     NSString* localPassword;
+    NSString* localNickName;
     int localUserId;
     bool initedLocalData;
     
@@ -35,6 +36,7 @@
 
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
 + (UserManager*) Instance;
++ (NSString*) UserNick;
 + (NSString*) UserName;
 + (NSString*) UserPW;
 + (NSDictionary*) LocalUserData;

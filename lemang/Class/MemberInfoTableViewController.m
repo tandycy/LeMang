@@ -97,10 +97,10 @@
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
-        _userName.text = [UserManager filtStr:profileData[@"fullName"]];
-        _userNickName.text = [UserManager filtStr:profileData[@"nickName"]];
-        _userSign.text = [UserManager filtStr:profileData[@"signature"]];
-        _schoolNumber.text = [UserManager filtStr:profileData[@"code"]];
+        _userName.text = [UserManager filtStr:profileData[@"fullName"] : @"未认证用户"];
+        _userNickName.text = [UserManager filtStr:profileData[@"nickName"] : @""];
+        _userSign.text = [UserManager filtStr:profileData[@"signature"] : @""];
+        _schoolNumber.text = [UserManager filtStr:profileData[@"code"] : @"未认证用户"];
         
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
@@ -111,10 +111,13 @@
     
     if ([contactData isKindOfClass:[NSDictionary class]])
     {
-        _phoneNumber.text = [UserManager filtStr:contactData[@"CELL"]];
-        _qqNumber.text = [UserManager filtStr:contactData[@"QQ"]];
-        _wechatId.text = [UserManager filtStr:contactData[@"WECHAT"]];
+        _phoneNumber.text = [UserManager filtStr:contactData[@"CELL"] : @"未绑定手机"];
+        if (_phoneNumber.text.length == 0)
+            _phoneNumber.text = @"未绑定手机";
+        _qqNumber.text = [UserManager filtStr:contactData[@"QQ"] : @""];
+        _wechatId.text = [UserManager filtStr:contactData[@"WECHAT"] : @""];
     }
+
 }
 /*
 #pragma mark - Table view data source

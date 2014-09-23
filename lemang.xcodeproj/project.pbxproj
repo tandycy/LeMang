@@ -19,7 +19,6 @@
 		253AB34E19A206DF008A93A3 /* doge2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34B19A206DF008A93A3 /* doge2.jpg */; };
 		253AB34F19A206DF008A93A3 /* doge3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34C19A206DF008A93A3 /* doge3.jpg */; };
 		253AB35019A206DF008A93A3 /* doge4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34D19A206DF008A93A3 /* doge4.jpg */; };
-		2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2545E01D199CB67000F99CC7 /* ActivityComment.m */; };
 		2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */; };
 		256E04291987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
 		256E042B1987A106009845A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042A1987A106009845A5 /* CoreGraphics.framework */; };
@@ -153,8 +152,6 @@
 		253AB34B19A206DF008A93A3 /* doge2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge2.jpg; sourceTree = "<group>"; };
 		253AB34C19A206DF008A93A3 /* doge3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge3.jpg; sourceTree = "<group>"; };
 		253AB34D19A206DF008A93A3 /* doge4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge4.jpg; sourceTree = "<group>"; };
-		2545E01C199CB67000F99CC7 /* ActivityComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityComment.h; path = Class/ActivityComment.h; sourceTree = "<group>"; };
-		2545E01D199CB67000F99CC7 /* ActivityComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityComment.m; path = Class/ActivityComment.m; sourceTree = "<group>"; };
 		2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommentTableViewController.h; path = Class/ActivityCommentTableViewController.h; sourceTree = "<group>"; };
 		2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommentTableViewController.m; path = Class/ActivityCommentTableViewController.m; sourceTree = "<group>"; };
 		256E04251987A106009845A5 /* lemang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lemang.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -715,8 +712,6 @@
 				25C5213919C469A00067CB01 /* CreateActivityCommentViewController.m */,
 				28DC154019C5C98E00DE97F0 /* ActivityCommentCell.h */,
 				28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */,
-				2545E01C199CB67000F99CC7 /* ActivityComment.h */,
-				2545E01D199CB67000F99CC7 /* ActivityComment.m */,
 			);
 			name = ActivityComment;
 			sourceTree = "<group>";
@@ -807,7 +802,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -926,7 +921,6 @@
 				28DC152219BD5E8000DE97F0 /* ASIDataCompressor.m in Sources */,
 				25C3A0F919ADC4EC00BB48B3 /* MJRefreshConst.m in Sources */,
 				EEEE40AE19C845C900001B37 /* IconImageButtonLoader.m in Sources */,
-				2545E01E199CB67000F99CC7 /* ActivityComment.m in Sources */,
 				28DC152C19BD5E8000DE97F0 /* ASICloudFilesContainerRequest.m in Sources */,
 				28DC152719BD5E8000DE97F0 /* ASIInputStream.m in Sources */,
 				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
@@ -1162,7 +1156,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,
