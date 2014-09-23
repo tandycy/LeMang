@@ -183,7 +183,7 @@
         
         NSString* nick = [UserManager filtStr:profileData[@"nickName"] : @""];
         if (nick.length > 0)
-            _userDescText.text = nick;
+            _userNameText.text = nick;
         
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];

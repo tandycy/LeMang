@@ -9,19 +9,60 @@
 #import "Friend.h"
 
 @implementation Friend
-
-@synthesize category,userId,userName,userSchool,userCollege;
-
-+ (id)friendOfCategory:(NSString *)category userId:(NSNumber *)userId userName:(NSString *)userName userSchool:(NSString *)userSchool userCollege:(NSString *)userCollege
 {
-    Friend *newFriend = [[self alloc]init];
-    newFriend.category = category;
-    newFriend.userId = userId;
-    newFriend.userName = userName;
-    newFriend.userSchool = userSchool;
-    newFriend.userCollege = userCollege;
-    
-    return newFriend;
+    NSString* _category;
+    NSNumber* _userId;
+    NSString* _userName;
+    NSString* _userSchool;
+    NSString* _userCollege;
+    NSString* _iconUrl;
 }
+
+@synthesize category = _category;
+@synthesize userId = _userId;
+@synthesize userName = _userName;
+@synthesize userSchool = _userSchool;
+@synthesize userCollege = _userCollege;
+@synthesize userIconUrl = _iconUrl;
+
+- (void)SetData:(NSDictionary *)data
+{
+    NSDictionary* ul = data[@"ul"];
+    NSDictionary* ur = data[@"ur"];
+    
+    NSNumber* ulNumber = ul[@"id"];
+    NSNumber* urNumber = ur[@"id"];
+    
+    int uid = [[UserManager Instance]GetLocalUserId];
+    
+    if (uid == ulNumber.integerValue)
+        localData = ur;
+    else if (uid == urNumber.integerValue)
+        localData = ul;
+    else
+    {
+        NSLog(@"User friend data erro.");
+        return;
+    }
+    
+    _userId = localData[@"id"];
+    _userName = localData[@"name"];
+    
+    _userSchool = localData[@"university"][@"name"];
+    _userCollege = localData[@"department"][@"name"];
+    _iconUrl = @"";
+    
+    NSDictionary* profileData = localData[@"profile"];
+    if ([profileData isKindOfClass:[NSDictionary class]])
+    {
+        NSString* nickname = [UserManager filtStr:profileData[@"nickName"] : @""];
+        if (nickname.length > 0)
+            _userName = nickname;
+        
+        NSString* urlStr = profileData[@"iconUrl"];
+        _iconUrl = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
+    }
+}
+
 
 @end

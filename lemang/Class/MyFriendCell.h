@@ -7,13 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IconImageViewLoader.h"
+#import "Friend.h"
 
 @interface MyFriendCell : UITableViewCell
+{
+    Friend* localItem;
+}
 
-@property (strong, nonatomic) IBOutlet UIImageView *userIcon;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *userIcon;
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet UILabel *userSchool;
 @property (strong, nonatomic) IBOutlet UILabel *userCollege;
 
+- (void) SetItem:(Friend*)friendItem;
 
 @end

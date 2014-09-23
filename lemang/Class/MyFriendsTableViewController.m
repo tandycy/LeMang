@@ -55,13 +55,36 @@
     filteredFriendArray = [NSMutableArray arrayWithCapacity:[friendArray count]];
     
     friendArray = [[NSMutableArray alloc]init];
-    Friend *aaa1 = [Friend friendOfCategory:@"best" userId:[NSNumber numberWithInt:1] userName:@"aaa1" userSchool:@"上海交大" userCollege:@"软件工程"];
-    Friend *bbb2 = [Friend friendOfCategory:@"next" userId:[NSNumber numberWithInt:2] userName:@"bbb2" userSchool:@"上海同济" userCollege:@"机械工程"];
-    Friend *ccc3 = [Friend friendOfCategory:@"lower" userId:[NSNumber numberWithInt:3] userName:@"ccc3" userSchool:@"上海复旦" userCollege:@"土木工程"];
     
-    friendArray[0] = aaa1;
-    friendArray[1] = bbb2;
-    friendArray[2] = ccc3;
+    if (![UserManager IsInitSuccess])
+        return;
+    
+    int uid = [[UserManager Instance]GetLocalUserId];
+    
+    NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    friendStr = [friendStr stringByAppendingFormat:@"%d/friend", uid];
+    
+    ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
+    [friendRequest startSynchronous];
+    
+    NSError* error = [friendRequest error];
+    
+    if (error)
+    {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"获取好友列表失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+    
+    NSArray* respData = [NSJSONSerialization JSONObjectWithData:[friendRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+    
+    for (int i = 0; i < respData.count; i++)
+    {
+        NSDictionary* item = respData[i];
+        Friend* fitem = [[Friend alloc]init];
+        [fitem SetData:item];
+        [friendArray addObject:fitem];
+    }
     
 }
 
@@ -69,14 +92,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
@@ -122,10 +143,8 @@
         friend = [friendArray objectAtIndex:indexPath.row];
     }
     
-    cell.userName.text = friend.userName;
-    cell.userCollege.text = friend.userCollege;
-    cell.userSchool.text = friend.userSchool;
-    
+    [cell SetItem:friend];
+   
     return cell;
 }
 

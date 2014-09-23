@@ -9,7 +9,6 @@
 #import "MyFriendCell.h"
 
 @implementation MyFriendCell
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -29,6 +28,17 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)SetItem:(id)friendItem
+{
+    localItem = friendItem;
+    
+    _userName.text = localItem.userName;
+    _userCollege.text = localItem.userCollege;
+    _userSchool.text = localItem.userSchool;
+    
+    [_userIcon LoadFromUrl:[NSURL URLWithString:localItem.userIconUrl] :[UserManager DefaultIcon]];
 }
 
 @end

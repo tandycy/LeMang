@@ -7,21 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserManager.h"
 
 @interface Friend : NSObject{
-    
-    NSString* category;
-    NSNumber* userId;
-    NSString *userName;
-    NSString *userSchool;
-    NSString *userCollege;
+    NSDictionary* localData;
 }
+
 @property (nonatomic, copy) NSString* category;
 @property (nonatomic, copy) NSNumber* userId;
-@property (nonatomic, copy) NSString *userName;
-@property (nonatomic, copy) NSString *userSchool;
-@property (nonatomic, copy) NSString *userCollege;
+@property (nonatomic, copy) NSString* userName;
+@property (nonatomic, copy) NSString* userSchool;
+@property (nonatomic, copy) NSString* userCollege;
+@property (nonatomic, copy) NSString* userIconUrl;
 
-+ (id)friendOfCategory:(NSString*)category userId:(NSNumber*)userId userName:(NSString*)userName userSchool:(NSString*)userSchool userCollege:(NSString*)userCollege;
+- (void) SetData : (NSDictionary*)data;
 
 @end
