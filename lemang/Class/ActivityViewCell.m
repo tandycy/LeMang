@@ -35,7 +35,7 @@
     [request setPassword:@"admin"];
     [request setDelegate:self];
     
-    [activityIconImg setImage:[UIImage imageNamed:@"main_activity_off.png"]];
+    [activityIconImg setImage:[UIImage imageNamed:@"default_Icon"]];
     linkedActivity.cachedImg = activityIconImg.image;
     imgData = [[NSMutableData alloc] init];
     

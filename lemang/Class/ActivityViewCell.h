@@ -13,7 +13,7 @@
 @interface ActivityViewCell : UITableViewCell
 {
     NSURLConnection* connection;
-    NSMutableData* imgData;
+    NSData* imgData;
     NSURLResponse* _response;
     Activity* linkedActivity;
 }
