@@ -65,13 +65,13 @@
     //init username and password input field
     userName = [[UITextField alloc]initWithFrame:CGRectMake(50, 140, 220, 30)];
     userName.backgroundColor = [UIColor lightGrayColor];
-    userName.placeholder = @"Please input your username";
+    userName.placeholder = @"请输入您的用户名...";
     userName.autocapitalizationType = UITextAutocapitalizationTypeNone;
     [self.view addSubview:userName];
     
     userPass = [[UITextField alloc]initWithFrame:CGRectMake(50, 180, 220, 30)];
     userPass.backgroundColor = [UIColor lightGrayColor];
-    userPass.placeholder = @"Please input your password";
+    userPass.placeholder = @"请输入您的密码...";
     userPass.keyboardType = UIKeyboardTypeAlphabet;
     userPass.secureTextEntry = true;
     [self.view addSubview:userPass];
@@ -79,11 +79,11 @@
     //init ok and cancel button
     UIButton *ok = [[UIButton alloc]initWithFrame:CGRectMake(60, 220, 80, 30)];
     [ok setBackgroundColor:[UIColor blueColor]];
-    [ok setTitle:@"ok" forState:UIControlStateNormal];
+    [ok setTitle:@"登录" forState:UIControlStateNormal];
     [ok addTarget:self action:@selector(okClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(180, 220, 80, 30)];
-    [cancel setTitle:@"cancel" forState:UIControlStateNormal];
+    [cancel setTitle:@"取消" forState:UIControlStateNormal];
     [cancel setBackgroundColor:[UIColor blueColor]];
     [cancel addTarget:self action:@selector(okClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -93,11 +93,11 @@
     //init forget password and regist button
     UIButton *forgetPass = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.frame.size.height-30, 100, 20)];
     [forgetPass setBackgroundColor:[UIColor blueColor]];
-    [forgetPass setTitle:@"forgetPass" forState:UIControlStateNormal];
+    [forgetPass setTitle:@"忘记密码" forState:UIControlStateNormal];
     [forgetPass addTarget:self action:@selector(forgetPassClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *regist = [[UIButton alloc]initWithFrame:CGRectMake(190, self.view.frame.size.height-30, 100, 20)];
-    [regist setTitle:@"regist" forState:UIControlStateNormal];
+    [regist setTitle:@"注册账号" forState:UIControlStateNormal];
     [regist setBackgroundColor:[UIColor blueColor]];
     [regist addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
     
