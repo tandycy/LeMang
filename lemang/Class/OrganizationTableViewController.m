@@ -192,13 +192,14 @@
     
     static NSString *cellIdentifier = @"OrganizationTableCell";
     OrganizationViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    [cell updateData:organizationData[indexPath.row]];
+    
     // Configure the cell...s
     if (cell == nil)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     }
     
+    [cell updateData:organizationData[indexPath.row]];
     viewController.linkedCell = cell;
     //NSLog(@"%@",cell);
     

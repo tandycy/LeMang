@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserManager.h"
+#import "IconImageViewLoader.h"
 
 @interface OrganizationViewCell : UITableViewCell
 {
@@ -22,7 +23,7 @@
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *organizationNameTxt;
-@property (strong, nonatomic) IBOutlet UIImageView *organizationIcon;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *organizationIcon;
 @property (strong, nonatomic) IBOutlet UIImageView *typeIcon;
 @property (strong, nonatomic) IBOutlet UILabel *memberNumberTxt;
 @property (strong, nonatomic) IBOutlet UILabel *memberLimitTxt;
