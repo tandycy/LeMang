@@ -10,11 +10,14 @@
 #import "ASIHTTPRequest.h"
 #import "OrganizationViewCell.h"
 #import "OrganizationDetailTableViewController.h"
+#import "CreateOrganizationTableViewController.h"
 
 @interface OrganizationTableViewController : UITableViewController
 {
     NSMutableArray* organizationData;
 }
 @property (strong, nonatomic) IBOutlet UITableView *localTabelView;
+- (IBAction)OnCreateOrganization:(id)sender;
+- (void)OnCreateDone;
 
 @end

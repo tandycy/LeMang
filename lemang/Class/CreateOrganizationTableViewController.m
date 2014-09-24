@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 university media. All rights reserved.
 //
 
+#import "OrganizationTableViewController.h"
 #import "CreateOrganizationTableViewController.h"
 #import "Constants.h"
 
@@ -28,12 +29,20 @@
     return self;
 }
 
+- (void)SetOwner:(id)_owner
+{
+    owner = _owner;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [SchoolManager InitSchoolList];
     
-    schoolPickerArray = [NSArray arrayWithObjects:@"交通大学",@"上海大学",@"同济大学",@"复旦大学", nil];
-    collegePickerArray = [NSArray arrayWithObjects:@"软件工程",@"计算机信息与技术",@"工程技术",@"文法",@"广播电视传媒",nil];
+    schoolPickerArray = [SchoolManager GetSchoolNameList];
+    collegePickerArray = [[NSArray alloc]init];
+    areaPickerArray = [[NSArray alloc]init];
+    
     schoolTextField.inputView = selectPicker;
     schoolTextField.inputAccessoryView = doneToolbar;
     schoolTextField.delegate = self;
@@ -63,6 +72,151 @@
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
+    
+    UIBarButtonItem *okButton = [[UIBarButtonItem alloc]init];
+    okButton.title = @"提交";
+    self.navigationItem.rightBarButtonItem = okButton;
+    okButton.target = self;
+    okButton.action = @selector(commitOk:);
+
+}
+
+- (void)DoAlert : (NSString*)caption: (NSString*)content
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alertView show];
+}
+
+-(BOOL)CheckOrgData
+{
+    if (_orgName.text.length == 0)
+    {
+        [self DoAlert:@"组织名不能为空":@""];
+        return false;
+    }
+    if (_orgDescription.text.length == 0)
+    {
+        [self DoAlert:@"描述不能为空":@""];
+        return false;
+    }
+    if (schoolTextField.text.length == 0)
+    {
+        [self DoAlert:@"学校不能为空":@""];
+        return false;
+    }
+    if (areaTextField.text.length == 0)
+    {
+        [self DoAlert:@"校区不能为空":@""];
+        return false;
+    }
+    if (collegeTextField.text.length == 0)
+    {
+        [self DoAlert:@"院系不能为空":@""];
+        return false;
+    }
+    return true;
+}
+
+-(IBAction)commitOk:(id)sender
+{
+    if (![self CheckOrgData])
+        return;
+    
+    NSMutableDictionary* orgData = [[NSMutableDictionary alloc]init];
+    
+    NSNumber* uid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
+    NSMutableDictionary* uidDic = [[NSMutableDictionary alloc]init];
+    [uidDic setValue:uid forKey:@"id"];
+    [orgData setValue:uidDic forKey:@"createdBy"];
+    
+    [orgData setValue:_orgName.text forKey:@"name"];
+    [orgData setValue:_orgDescription.text forKey:@"description"];
+
+    NSString* schoolName = schoolTextField.text;
+    SchoolItem* school = [SchoolManager GetSchoolItem:schoolName];
+    if (school != Nil)
+    {
+        NSNumber* sid = [school GetId];
+        //NSString* schoolData = [NSString stringWithFormat:@"{\"id\":%@}",sid];
+        NSMutableDictionary* schoolDic = [[NSMutableDictionary alloc]init];
+        [schoolDic setValue:sid forKey:@"id"];
+        [orgData setObject:schoolDic forKey:@"university"];
+        
+        NSNumber* areaId = [school GetAreaId:areaTextField.text];
+        if (!areaId)
+            [orgData removeObjectForKey:@"area"];
+        else
+        {
+            //NSString* areaData = [NSString stringWithFormat:@"{\"id\":%@}",areaId];
+            NSMutableDictionary* areaDic = [[NSMutableDictionary alloc]init];
+            [areaDic setValue:areaId forKey:@"id"];
+            [orgData setObject:areaDic forKey:@"area"];
+        }
+        
+        NSNumber* departId = [school GetDepartId:collegeTextField.text];
+        if (!departId)
+            [orgData removeObjectForKey:@"department"];
+        else
+        {
+            //NSString* departData = [NSString stringWithFormat:@"{\"id\":%@}",departId];
+            NSMutableDictionary* depDic = [[NSMutableDictionary alloc]init];
+            [depDic setValue:departId forKey:@"id"];
+            [orgData setObject:depDic forKey:@"department"];
+        }
+    }
+    else
+    {
+        [orgData setValue:@"" forKey:@"university"];
+        [orgData removeObjectForKey:@"department"];
+        [orgData removeObjectForKey:@"area"];
+    }
+    
+    NSDateFormatter* nowDate = [[NSDateFormatter alloc]init];
+    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString* createDataText = [nowDate stringFromDate:[NSDate date]];
+    [orgData setValue:createDataText forKey:@"createdDate"];
+
+    
+    NSData* postData = [NSJSONSerialization dataWithJSONObject:orgData options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\""];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\"true\"" withString:@"true"];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\"false\"" withString:@"false"];
+    
+    //NSLog(@"%@", jsonString);
+    
+    NSString* orgUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/association";
+    ASIHTTPRequest* createRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:orgUrlStr]];
+    
+    [createRequest addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [createRequest appendPostData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    [createRequest setRequestMethod:@"POST"];
+    
+    [createRequest startSynchronous];
+    
+    NSError* error = [createRequest error];
+    
+    if (error)
+    {
+        NSString* errorStr = @"网络连接错误:";
+        errorStr = [errorStr stringByAppendingFormat:@"%d - %@",error.code, error.localizedDescription];
+        [self DoAlert:@"创建失败" :errorStr];
+        return;
+    }
+    
+    int returnCode = [createRequest responseStatusCode];
+    
+    if (returnCode == 201)
+    {
+        // TODO create success operation
+        if (owner != nil && [owner isKindOfClass:[OrganizationTableViewController class]])
+        {
+            [(OrganizationTableViewController*)owner OnCreateDone];
+            [self.navigationController popViewControllerAnimated:true];
+        }
+    }
 
 }
 
@@ -137,6 +291,7 @@
 - (IBAction)selectButton:(id)sender {
     if (schoolTextField.isEditing) {
         [schoolTextField endEditing:YES];
+        [self OnSchoolChange];
     }
     else if(collegeTextField.isEditing)
     {
@@ -146,6 +301,18 @@
     {
         [areaTextField endEditing:YES];
     }
+}
+
+- (void)OnSchoolChange
+{
+    areaTextField.text = @"";
+    collegeTextField.text = @"";
+    
+    SchoolItem* item = [SchoolManager GetSchoolItem:schoolTextField.text];
+    
+    areaPickerArray = [item GetAreaList];
+    collegePickerArray = [item GetDepartList];
+    
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -266,41 +433,11 @@
 */
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    //image= [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     image= [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
-    {
-        //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    }
-    UIImage *theImage = [CreateOrganizationTableViewController imageWithImageSimple:image scaledToSize:CGSizeMake(120.0, 120.0)];
-    UIImage *midImage = [CreateOrganizationTableViewController imageWithImageSimple:image scaledToSize:CGSizeMake(210.0, 210.0)];
-    UIImage *bigImage = [CreateOrganizationTableViewController imageWithImageSimple:image scaledToSize:CGSizeMake(440.0, 440.0)];
-    //[theImage retain];
-    [self saveImage:theImage WithName:@"salesImageSmall.jpg"];
-    [self saveImage:midImage WithName:@"salesImageMid.jpg"];
-    [self saveImage:bigImage WithName:@"salesImageBig.jpg"];
     
     self.imgViewBig.image = image;
-    UIImageView *buttonView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 77, 77)];
-    buttonView.image = image;
-    [self.pickImgButton addSubview:buttonView];
     
     [self dismissModalViewControllerAnimated:YES];
-    //[self refreshData];
-    //[picker release];
-}
-
-- (void)upLoadSalesBigImage:(NSString *)bigImage MidImage:(NSString *)midImage SmallImage:(NSString *)smallImage
-{
-    /* NSURL *url = [NSURL URLWithString:UPLOAD_SERVER_URL];
-     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-     [request setPostValue:@"photo" forKey:@"type"];
-     [request setFile:bigImage forKey:@"file_pic_big"];
-     [request buildPostBody];
-     [request setDelegate:self];
-     [request setTimeOutSeconds:TIME_OUT_SECONDS];
-     [request startAsynchronous];
-     */
 }
 
 - (NSString *)documentFolderPath
@@ -338,16 +475,5 @@
     // and then we write it out
     [imageData writeToFile:fullPathToFile atomically:NO];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

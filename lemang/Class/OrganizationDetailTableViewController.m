@@ -24,6 +24,10 @@ typedef enum {
 @end
 
 @implementation OrganizationDetailTableViewController
+{
+    UILabel *orgLocation;
+    UILabel *orgInfo;
+}
 
 @synthesize linkedCell;
 @synthesize activityArray;
@@ -53,10 +57,10 @@ typedef enum {
     
     UIImageView *orgLocationBg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"oranization_add_bar.png"]];
     UIImageView *orgTempBg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"oranization_add_bar.png"]];
-    UILabel *orgLocation = [[UILabel alloc]initWithFrame:CGRectMake(0, 137, 320, 33)];
-    UILabel *orgtemp = [[UILabel alloc]initWithFrame:CGRectMake(0, 169, 320, 33)];
+    orgLocation = [[UILabel alloc]initWithFrame:CGRectMake(0, 137, 320, 33)];
+    orgInfo = [[UILabel alloc]initWithFrame:CGRectMake(0, 169, 320, 33)];
     [orgLocation addSubview:orgLocationBg];
-    [orgtemp addSubview:orgTempBg];
+    [orgInfo addSubview:orgTempBg];
     
     UILabel *orgLocationTitle = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, 65, 13)];
     orgLocationTitle.text = @"商家地点：";
@@ -66,10 +70,10 @@ typedef enum {
     UILabel *orgTempTitle = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, 65, 13)];
     orgTempTitle.text = @"商户信息：";
     orgTempTitle.font = [UIFont fontWithName:defaultBoldFont size:13];
-    [orgtemp addSubview:orgTempTitle];
+    [orgInfo addSubview:orgTempTitle];
     
     [orgDetailTitleView addSubview:orgLocation];
-    [orgDetailTitleView addSubview:orgtemp];
+    [orgDetailTitleView addSubview:orgInfo];
     
     [self updateDisplay];
 }
@@ -78,81 +82,23 @@ typedef enum {
 {
     if (linkedCell == NULL)
         return;
+    
     _orgnizationTittle.text = linkedCell.organizationNameTxt.text;
 
     NSDictionary* orgData = [linkedCell getLocalData];
-    NSString* detailStr = [UserManager filtStr:orgData[@"description"]];
+    NSString* detailStr = [UserManager filtStr:orgData[@"description"] : @""];
     _organizationDetail.text = detailStr;
     _organizationIcon.image = linkedCell.organizationIcon.image;
     
+    //   - id - contact - department - peopleLimit - tags - description - iconUrl - address - regionLimit - otherLimit - users - linkUrl - name - area - shortName - createdBy - createdDate - university
+
+    orgLocation.text = [UserManager filtStr:orgData[@"address"] : @""];
+    orgInfo.text = [UserManager filtStr:orgData[@"contact"] : @""];
 }
 
 - (void)createActivityData
 {
-    /*
-    UIImage *businessIcon = [UIImage imageNamed:@"buisness_icon.png"];
-    UIImage *schoolIcon = [UIImage imageNamed:@"school_icon.png"];
-    UIImage *groupIcon = [UIImage imageNamed:@"group_icon.png"];
-    UIImage *privateIcon = [UIImage imageNamed:@"private_icon.png"];
-    
-    activityArray = [NSArray arrayWithObjects:
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上大一日游"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"限上海大学学生"
-                                             icon:schoolIcon
-                                           member:@"47"
-                                      memberUpper:@"50"
-                                              fav:@"325"
-                                            state:0],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"南翔垂钓活动"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"限上海交大垂钓社"
-                                             icon:groupIcon
-                                           member:@"40"
-                                      memberUpper:@"120"
-                                              fav:@"500"
-                                            state:1],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"南京骑行三日游"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"不限人员"
-                                             icon:privateIcon
-                                           member:@"77"
-                                      memberUpper:@"250"
-                                              fav:@"1000"
-                                            state:0],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海电信充值100送100"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"所有在校大一新生"
-                                             icon:businessIcon
-                                           member:@"100"
-                                      memberUpper:@"100"
-                                              fav:@"100"
-                                            state:1],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"同济十大歌手预选赛"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"限上海同济大学学生"
-                                             icon:schoolIcon
-                                           member:@"77"
-                                      memberUpper:@"250"
-                                              fav:@"1000"
-                                            state:0],
-                     [Activity activityOfCategory:@"All" img:[UIImage imageNamed:@"group1.png"]
-                                            title:@"上海大学活动1"
-                                             date:@"7月25日 周五 10:00--8月10日 周日 18:00"
-                                            limit:@"限上海交大垂钓社"
-                                             icon:businessIcon
-                                           member:@"47"
-                                      memberUpper:@"100"
-                                              fav:@"20"
-                                            state:1],
-                     nil];
-     */
-
+    // TODO
 }
 
 - (void)didReceiveMemoryWarning

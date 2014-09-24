@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
+#import "SchoolManager.h"
 
 @interface CreateOrganizationTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
 {
@@ -16,6 +18,8 @@
     NSArray *areaPickerArray;
     UIImagePickerController *imagePicker;
     UIImage *image;
+    
+    id owner;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewBig;
 @property (strong, nonatomic) IBOutlet UIButton *pickImgButton;
@@ -33,5 +37,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *schoolTextField;
 @property (strong, nonatomic) IBOutlet UITextField *collegeTextField;
 @property (strong, nonatomic) IBOutlet UITextField *areaTextField;
+
+- (void)SetOwner:(id)_owner;
 
 @end

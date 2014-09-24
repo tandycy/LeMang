@@ -220,7 +220,7 @@
     nowDate = [[NSDateFormatter alloc]init];
     [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString* createDataText = [nowDate stringFromDate:[NSDate date]];
-    [activityData setValue:endDataText forKey:@"createdDate"];
+    [activityData setValue:createDataText forKey:@"createdDate"];
     
     switch (actHostType.selectedSegmentIndex) {
         case 0:// 0 - 学校

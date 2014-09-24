@@ -189,4 +189,22 @@
 }
 */
 
+- (void) OnCreateDone
+{
+    [self refreshOrganizationData];
+}
+
+- (IBAction)OnCreateOrganization:(id)sender {
+    
+    if (![UserManager IsInitSuccess])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    
+    CreateOrganizationTableViewController *createOrgVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateOrganizationTableViewController"];
+    [createOrgVC SetOwner:self];
+    [self.navigationController pushViewController:createOrgVC animated:YES];
+}
 @end
