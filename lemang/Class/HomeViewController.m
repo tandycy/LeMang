@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "Constants.h"
 
 @interface HomeViewController ()
 
@@ -27,7 +28,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setBackgroundColor:defaultMainColor];
     [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
     [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1]];
 }

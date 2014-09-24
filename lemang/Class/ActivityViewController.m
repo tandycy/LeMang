@@ -11,6 +11,7 @@
 #import "ActivityViewCell.h"
 #import "MJRefresh.h"
 #import "CreateActivityTableViewController.h"
+#import "SelectTableViewController.h"
 
 #define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
 
@@ -480,6 +481,35 @@ NSString *navTitle;
     [self.activityList headerEndRefreshing];
 }
 
+-(void)popover:(id)sender
+{
+    //the controller we want to present as a popover
+    SelectTableViewController *controller = [[SelectTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    controller.title = @"请选择您需要筛选的关键字";
+    
+    FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
+    
+    //popover.arrowDirection = FPPopoverArrowDirectionAny;
+    popover.tint = FPPopoverYellowTinit;
+    popover.contentSize = CGSizeMake(200, 400);
+    popover.arrowDirection = FPPopoverArrowDirectionAny;
+    
+    //sender is the UIButton view
+    [popover presentPopoverFromView:sender];
+}
+
+
+- (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController
+          shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController
+{
+    [visiblePopoverController dismissPopoverAnimated:YES];
+}
+
+-(IBAction)topLeft:(id)sender
+{
+    [self popover:sender];
+    NSLog(@"popover");
+}
 
 /*
  #pragma mark - Navigation

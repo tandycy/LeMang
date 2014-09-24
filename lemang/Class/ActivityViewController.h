@@ -10,8 +10,9 @@
 #import "Activity.h"
 #import "UserManager.h"
 #import "ASIHTTPRequest.h"
+#import "FPPopoverController.h"
 
-@interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIScrollViewDelegate>
+@interface ActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIScrollViewDelegate,FPPopoverControllerDelegate>
 {
 //    IBOutlet ActivityTableViewController *ActivityList;
    // NSMutableData *receivedData;
