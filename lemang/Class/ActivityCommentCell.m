@@ -181,6 +181,15 @@
 -(IBAction)imageItemClick:(id)sender
 {
     IconImageButtonLoader* senderButton = (IconImageButtonLoader*)sender;
+    
+    // ActivityCommetImageDetailViewController
+    
+    UIImage* img = [senderButton LocalImageData];
+    
+    if ([owner isKindOfClass:[ActivityCommentTableViewController class]])
+    {
+        [(ActivityCommentTableViewController*)owner imageItemClick:img];
+    }
 }
 
 -(IBAction)deleteButtonClicked:(id)sender{

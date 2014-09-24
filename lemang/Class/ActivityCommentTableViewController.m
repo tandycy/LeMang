@@ -115,15 +115,17 @@
     return cell;
 }
 
--(void)imageItemClick:(UIButton *)button{
+-(void)imageItemClick:(UIImage *)image{
     
-    NSLog(@"superview: %@",button.superview);
-    NSLog(@"superview.superview: %@",button.superview.superview);
+    ActivityCommetImageDetailViewController *imgViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommetImageDetailViewController"];
     
+    [self.navigationController pushViewController:imgViewController animated:YES];
+    
+    [imgViewController SetImageData:image];
     //  [self.navigationController modalViewController:viewController];
-    viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:viewController animated:YES];
+    //viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    //viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //[self presentModalViewController:viewController animated:YES];
     //  [self.navigationController pushViewController:viewController animated:YES];
 }
 

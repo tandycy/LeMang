@@ -11,5 +11,6 @@
 @interface ActivityCommetImageDetailViewController : UIViewController
 
 @property (nonatomic,retain) UIImage *img;
+- (void)SetImageData:(UIImage*) imgData;
 
 @end

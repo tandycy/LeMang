@@ -15,7 +15,11 @@
     int sector;
     int row;
     int index;
+    
+    UIImage* localImg;
 }
+
+- (UIImage*) LocalImageData;
 
 - (int)Sector;
 - (int)Row;

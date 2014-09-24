@@ -13,6 +13,9 @@
 @end
 
 @implementation ActivityCommetImageDetailViewController
+{
+    UIImageView* imgView;
+}
 
 @synthesize img;
 
@@ -28,16 +31,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIButton *ImgButton  = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    UIImageView *Img = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    Img.image = img;
-    Img.contentMode =UIViewContentModeScaleAspectFit;
-    [ImgButton addTarget:self action:@selector(Imgclick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [ImgButton addSubview:Img];
-    [self.view addSubview:ImgButton];
     
     // Do any additional setup after loading the view.
+}
+
+- (void)SetImageData:(UIImage*) imgData
+{
+    if (imgView == nil)
+    {
+        UIButton *ImgButton  = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        imgView.contentMode =UIViewContentModeScaleAspectFit;
+        [ImgButton addTarget:self action:@selector(Imgclick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [ImgButton addSubview:imgView];
+        [self.view addSubview:ImgButton];
+    }
+    
+    [imgView setImage:imgData];
 }
 
 -(void)Imgclick:(UIButton*)button

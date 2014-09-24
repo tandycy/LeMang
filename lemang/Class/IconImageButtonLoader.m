@@ -50,6 +50,11 @@
     return index;
 }
 
+- (UIImage*) LocalImageData
+{
+    return localImg;
+}
+
 - (void)LoadFromUrl : (NSURL*)URL
 {
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
@@ -65,6 +70,7 @@
 - (void)LoadFromUrl:(NSURL *)URL : (UIImage*) defaultImg
 {
     [self setBackgroundImage:defaultImg forState:UIControlStateNormal];
+    localImg = defaultImg;
     [self LoadFromUrl:URL];
 }
 
@@ -80,6 +86,7 @@
         return;
     }
     [self setBackgroundImage:img forState:UIControlStateNormal];
+    localImg = img;
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request

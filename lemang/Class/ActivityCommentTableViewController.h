@@ -20,5 +20,6 @@
 - (void) SetActivityOwner : (ActivityDetailTableViewController*) _owner;
 - (void) SetCommentList:(NSArray*)commentList;
 - (void) DoDeleteComment : (ActivityCommentCell*) cell;
+- (void)imageItemClick:(UIImage *)image;
 
 @end
