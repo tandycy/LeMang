@@ -115,28 +115,7 @@
     _commentContent.frame = CGRectMake(_commentContent.frame.origin.x, _commentContent.frame.origin.y, _commentContent.frame.size.width, labelSize.height);
     [_commentContent sizeToFit];
     
-    /*
-    for (int i=0; i<3; i++) {
-        UIButton *cimg = [self viewWithTag:(210+i)];
-        if (cimg) {
-            [cimg removeFromSuperview];
-        }
-        if (commentImgData.count > 0){
-            UIImageView *commentImg = [[UIImageView alloc]initWithFrame:CGRectMake( 0, 0, 50, 50)];
-            commentImg.image = comment.commentImg[i];
-            UIButton *commentImgButton = [[UIButton alloc]initWithFrame:CGRectMake( 70+60*i, _commentContent.frame.origin.y + _commentContent.frame.size.height+10, 50, 50)];
-            //  commentImg.backgroundColor = [[UIColor alloc]initWithPatternImage:comment.commentImg[i]];
-            [commentImgButton addSubview:commentImg];
-            commentImgButton.tag = (210+i);
-            [commentImgButton addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
-            
-            UIImage *temp = comment.commentImg[i];
-            viewController.img = temp;
-            
-            [cell addSubview:commentImgButton];
-        }
-    }
-     */
+
     
     UIButton *dc = [self viewWithTag:209];
     if (dc) {
@@ -174,10 +153,34 @@
     [_creatorIcon setImage:[UIImage imageNamed:@"user_icon_de.png"]];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
-    [request setUsername:@"admin"];
-    [request setPassword:@"admin"];
     [request setDelegate:self];
     [request startAsynchronous];
+    
+    NSArray* commentImgs = localData[@"images"];
+    
+    for (int i = 0; i < commentImgs.count; i++)
+    {
+        NSDictionary* item = commentImgs[i];
+        
+        NSString* fileUrl = @"http://e.taoware.com:8080/quickstart/resources";
+        fileUrl = [fileUrl stringByAppendingFormat:@"%@", item[@"imageUrl"]];
+        
+        //IconImageButtonLoader *commentImg = [[IconImageViewLoader alloc]initWithFrame:CGRectMake( 0, 0, 50, 50)];
+        //[commentImg LoadFromUrl:[NSURL URLWithString:fileUrl] :[UIImage imageNamed:@"default_Icon"]];
+        IconImageButtonLoader *commentImgButton = [[IconImageButtonLoader alloc]initWithFrame:CGRectMake( 70+60*i, _commentContent.frame.origin.y + _commentContent.frame.size.height+10, 50, 50)];
+        //  commentImg.backgroundColor = [[UIColor alloc]initWithPatternImage:comment.commentImg[i]];
+        //[commentImgButton addSubview:commentImg];
+        commentImgButton.tag = (210+i);
+        [commentImgButton LoadFromUrl:[NSURL URLWithString:fileUrl] :[UIImage imageNamed:@"default_Icon"]];
+        [commentImgButton addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:commentImgButton];
+    }
+}
+
+-(IBAction)imageItemClick:(id)sender
+{
+    IconImageButtonLoader* senderButton = (IconImageButtonLoader*)sender;
 }
 
 -(IBAction)deleteButtonClicked:(id)sender{
