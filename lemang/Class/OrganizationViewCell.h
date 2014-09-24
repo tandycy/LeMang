@@ -12,26 +12,29 @@
 
 @interface OrganizationViewCell : UITableViewCell
 {
+    enum OrgType
+    {
+        Shop,
+    }orgeType;
+    
     NSDictionary* localData;
-    NSString* organizationId;
+    NSNumber* organizationId;
     
-    NSURLConnection* connection;
-    NSMutableData* imgData;
-    NSURLResponse* _response;
-    
-    UIImage* localIconImg;
+    int memberNum;
+    NSNumber* maxMemberNum;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *organizationNameTxt;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *organizationIcon;
 @property (strong, nonatomic) IBOutlet UIImageView *typeIcon;
-@property (strong, nonatomic) IBOutlet UILabel *memberNumberTxt;
-@property (strong, nonatomic) IBOutlet UILabel *memberLimitTxt;
+@property (strong, nonatomic) IBOutlet UILabel *favNumberTxt;    // member/fav number
+@property (strong, nonatomic) IBOutlet UILabel *memberLimitTxt; // age limit?
 @property (strong, nonatomic) IBOutlet UILabel *areaLimitTxt;
+
+@property (strong, nonatomic) IBOutlet UIImageView *favIcon;
 
 - (void) updateData:(NSDictionary*)newData;
 - (void) updateDisplay;
 - (NSDictionary*) getLocalData;
-- (UIImage*) getLocalIconImage;
 
 @end

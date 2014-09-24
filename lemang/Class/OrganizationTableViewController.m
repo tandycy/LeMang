@@ -52,80 +52,26 @@
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association/q";
     NSURL *URL = [NSURL URLWithString:URLString];
     
-    // NSString *authInfo = @"Basic user:user";
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
     
-    NSMutableURLRequest *URLRequest = [NSMutableURLRequest requestWithURL:URL];
+    [request startSynchronous];
     
-    [URLRequest setHTTPMethod:@"GET"];
-    [URLRequest setValue:@"application/json;charset=UTF-8" forHTTPHeaderField: @"Content-Type"];
-    // [URLRequest setValue:authInfo forHTTPHeaderField:@"Authorization"];
+    NSError *error = [request error];
     
-    NSError * error;
-    NSURLResponse * response;
-    NSData * returnData = [NSURLConnection sendSynchronousRequest:URLRequest returningResponse:&response error:&error];
-    
-    if (error) {
-        NSLog(@"a connection could not be created or request fails.");
-        NSLog(@"Error: %@", [error localizedDescription]);
-    }
-    //[req addValue:0 forHTTPHeaderField:@"Content-Length"];
-    
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:URLRequest delegate:self];
-    
-    receivedData=[[NSMutableData alloc] initWithData:nil];
-    
-    if (connection) {
-        receivedData = [NSMutableData new];
-        NSLog(@"rdm%@",receivedData);
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-    if ([challenge previousFailureCount] == 0) {
-        NSURLCredential *newCredential;
-        newCredential=[NSURLCredential credentialWithUser:@"user" password:@"user"                                              persistence:NSURLCredentialPersistenceNone];
-        [[challenge sender] useCredential:newCredential
-               forAuthenticationChallenge:challenge];
-    } else {
-        [[challenge sender] cancelAuthenticationChallenge:challenge];
-    }
-}
-
-#pragma mark- NSURLConnection 回调方法
-- (void)connection:(NSURLConnection *)aConn didReceiveResponse:(NSURLResponse *)response
-
-{
-    // 注意这里将NSURLResponse对象转换成NSHTTPURLResponse对象才能去
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    if ([response respondsToSelector:@selector(allHeaderFields)]) {
-        NSDictionary *dictionary = [httpResponse allHeaderFields];
-        //NSLog(@"[email=dictionary=%@]dictionary=%@",[dictionary[/email] description]);        
-    }
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [receivedData appendData:data];
-}
--(void) connection:(NSURLConnection *)connection didFailWithError: (NSError *)error {
-    NSLog(@"%@",[error localizedDescription]);
-}
-- (void) connectionDidFinishLoading: (NSURLConnection*) connection {
-    NSLog(@"请求完成…");
-    organizationData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil][@"content"];
-    
-    [_localTabelView reloadData];
-    NSLog(@"@reloadData");
-    
-    for (int i = 0; i < organizationData.count; i++)
+    if (!error)
     {
-        NSDictionary* data = organizationData[i];
-        NSLog(@"%@",data);
+        organizationData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        [_localTabelView reloadData];
     }
-    
+    else
+    {
+        //
+    }
 }
+
 
 #pragma mark - Table view data source
 
@@ -155,27 +101,6 @@
     {
         cell = [_localTabelView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     }
-    
-    cell.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"org_back.png"]];
-    cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"org_back_down.png"]];
-    
-    
-    UILabel *memberNumberBack = [[UILabel alloc]initWithFrame:CGRectMake(11, 62, 70, 15)];
-    UIImageView *memberNumberBackImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"like_number_back.png"]];
-    [memberNumberBack addSubview:memberNumberBackImg];
-    [cell addSubview:memberNumberBack];
-    
-    UILabel *memberNumber = [[UILabel alloc]initWithFrame:CGRectMake(36, 63, 45, 14)];
-    memberNumber.text = @"100";
-    memberNumber.font = [UIFont fontWithName:defaultFont size:13];
-    memberNumber.textColor = [UIColor whiteColor];
-    [cell addSubview:memberNumber];
-    
-    UILabel *memberIcon = [[UILabel alloc]initWithFrame:CGRectMake(18, 63, 10, 10)];
-    UIImageView *memberIconImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"member_number.png"]];
-    [memberIcon addSubview:memberIconImg];
-    [cell addSubview:memberIcon];
-    
     
     NSDictionary* orgData = organizationData[indexPath.row];
     

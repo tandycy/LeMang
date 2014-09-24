@@ -862,8 +862,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="areaLimitTxt" destination="Gxg-d8-Rdk" id="n1w-0r-5Ze"/>
+                                    <outlet property="favIcon" destination="ZRa-8a-cM7" id="7q1-Id-b5w"/>
+                                    <outlet property="favNumberTxt" destination="2ZA-EP-U75" id="JOi-kQ-L6E"/>
                                     <outlet property="memberLimitTxt" destination="UHD-HE-gep" id="QDB-Rg-dFc"/>
-                                    <outlet property="memberNumberTxt" destination="2ZA-EP-U75" id="KAI-jS-q83"/>
                                     <outlet property="organizationIcon" destination="Erh-r1-DAg" id="6Lv-jw-izK"/>
                                     <outlet property="organizationNameTxt" destination="Iov-nA-xpg" id="hyR-Vj-kjp"/>
                                     <outlet property="typeIcon" destination="dag-Hy-mMh" id="ogd-vz-N2Z"/>

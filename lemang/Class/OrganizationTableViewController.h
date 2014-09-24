@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIHTTPRequest.h"
 #import "OrganizationViewCell.h"
 #import "OrganizationDetailTableViewController.h"
 
 @interface OrganizationTableViewController : UITableViewController
-{    
-    NSMutableData* receivedData;
-    NSArray* organizationData;
+{
+    NSMutableArray* organizationData;
 }
 @property (strong, nonatomic) IBOutlet UITableView *localTabelView;
 
