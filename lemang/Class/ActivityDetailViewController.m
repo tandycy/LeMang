@@ -10,6 +10,7 @@
 #import "ActivityDetailTableViewController.h"
 #import "CreateActivityCommentViewController.h"
 #import "Constants.h"
+#import "UMSocial.h"
 
 @interface ActivityDetailViewController ()
 
@@ -27,8 +28,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        
         /*
          UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
          backButton.frame = CGRectMake(0.0, 0.0, 40.0, 27.0);
@@ -91,6 +90,7 @@
                                               cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
     [alertView show];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -193,5 +193,33 @@
 }
 
 - (IBAction)doShare:(id)sender {
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"5422c5acfd98c5ccad0135fc"
+                                      shareText:@"你要分享的文字"
+                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,nil]
+                                       delegate:nil];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
 }
 @end
