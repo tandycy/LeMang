@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
+#import "MyActivityCell.h"
 
 @interface MyAcitivityTableViewController : UITableViewController
+{
+    NSMutableArray* adminActivity;
+    NSMutableArray* joinedActivity;
+    NSMutableArray* bookmarkActivity;
+}
 
 @end

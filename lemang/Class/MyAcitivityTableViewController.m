@@ -36,6 +36,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self RefreshActivityList];
+}
+
+- (void)RefreshActivityList
+{
+    NSDictionary* userData = [UserManager LocalUserData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,15 +63,32 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
+    if (section == 0)
+        return adminActivity.count;
+    if (section == 1)
+        return joinedActivity.count;
+    if (section == 2)
+        return bookmarkActivity.count;
     return 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyActivityCell" forIndexPath:indexPath];
+    MyActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyActivityCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    int section = indexPath.section;
+    NSDictionary* actData = nil;
+    
+    if (section == 0)
+        actData = adminActivity[indexPath.row];
+    else if (section == 1)
+        actData = joinedActivity[indexPath.row];
+    else if (section == 2)
+        actData = bookmarkActivity[indexPath.row];
+    
+    [cell SetData:actData];
     
     return cell;
 }

@@ -128,6 +128,7 @@
 		28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153A19BE1E5200DE97F0 /* Base64.m */; };
 		28DC153E19BE8F8500DE97F0 /* SchoolItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC153D19BE8F8500DE97F0 /* SchoolItem.m */; };
 		28DC154219C5C98E00DE97F0 /* ActivityCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */; };
+		28DC154619D35ADE00DE97F0 /* MyActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC154519D35ADE00DE97F0 /* MyActivityCell.m */; };
 		EE18D80519CEC3AF00B1DCA2 /* MyMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */; };
 		EE28E93E19C152D000E0E8A6 /* profile.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE28E93D19C152D000E0E8A6 /* profile.plist */; };
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
@@ -371,6 +372,8 @@
 		28DC153D19BE8F8500DE97F0 /* SchoolItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolItem.m; path = Class/SchoolItem.m; sourceTree = "<group>"; };
 		28DC154019C5C98E00DE97F0 /* ActivityCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommentCell.h; path = Class/ActivityCommentCell.h; sourceTree = "<group>"; };
 		28DC154119C5C98E00DE97F0 /* ActivityCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommentCell.m; path = Class/ActivityCommentCell.m; sourceTree = "<group>"; };
+		28DC154419D35ADE00DE97F0 /* MyActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyActivityCell.h; path = Class/MyActivityCell.h; sourceTree = "<group>"; };
+		28DC154519D35ADE00DE97F0 /* MyActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyActivityCell.m; path = Class/MyActivityCell.m; sourceTree = "<group>"; };
 		EE18D80319CEC3AF00B1DCA2 /* MyMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMessageCell.h; path = Class/MyMessageCell.h; sourceTree = "<group>"; };
 		EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMessageCell.m; path = Class/MyMessageCell.m; sourceTree = "<group>"; };
 		EE28E93D19C152D000E0E8A6 /* profile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = profile.plist; path = lemang/Class/profile.plist; sourceTree = "<group>"; };
@@ -567,6 +570,7 @@
 		256E04741987B1D6009845A5 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				28DC154319D35AB800DE97F0 /* Cells */,
 				258087A519A71C37005E308D /* UserTableViewController.h */,
 				258087A619A71C37005E308D /* UserTableViewController.m */,
 				258087A819A71C4C005E308D /* UserInfoTableViewController.h */,
@@ -579,10 +583,6 @@
 				258087B519A71D0E005E308D /* MyFriendsTableViewController.m */,
 				258087B919A71D59005E308D /* MyMessageTableViewController.h */,
 				258087BA19A71D59005E308D /* MyMessageTableViewController.m */,
-				EE18D80319CEC3AF00B1DCA2 /* MyMessageCell.h */,
-				EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */,
-				25C2392819D0207E00F31AFE /* MyFriendCell.h */,
-				25C2392919D0207E00F31AFE /* MyFriendCell.m */,
 				25C2392B19D0272D00F31AFE /* Friend.h */,
 				25C2392C19D0272D00F31AFE /* Friend.m */,
 				258087BC19A71D7C005E308D /* UserLoginViewController.h */,
@@ -898,6 +898,19 @@
 			name = ActivityComment;
 			sourceTree = "<group>";
 		};
+		28DC154319D35AB800DE97F0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EE18D80319CEC3AF00B1DCA2 /* MyMessageCell.h */,
+				EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */,
+				25C2392819D0207E00F31AFE /* MyFriendCell.h */,
+				25C2392919D0207E00F31AFE /* MyFriendCell.m */,
+				28DC154419D35ADE00DE97F0 /* MyActivityCell.h */,
+				28DC154519D35ADE00DE97F0 /* MyActivityCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		EE44A53619AF1CA7004B0E5B /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -1077,6 +1090,7 @@
 				253B26E819D355F600027C74 /* SelectTableViewController.m in Sources */,
 				28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */,
 				25C3A0FB19ADC4EC00BB48B3 /* MJRefreshHeaderView.m in Sources */,
+				28DC154619D35ADE00DE97F0 /* MyActivityCell.m in Sources */,
 				28DC152E19BD5E8100DE97F0 /* ASICloudFilesObject.m in Sources */,
 				25C2392D19D0272D00F31AFE /* Friend.m in Sources */,
 				28DC152819BD5E8000DE97F0 /* ASINetworkQueue.m in Sources */,

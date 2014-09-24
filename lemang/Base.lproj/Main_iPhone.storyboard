@@ -1205,7 +1205,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="MyActivityCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyActivityCell" rowHeight="40" id="Gzj-xs-gmq">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="MyActivityCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyActivityCell" rowHeight="40" id="Gzj-xs-gmq" customClass="MyActivityCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gzj-xs-gmq" id="FI2-6J-Qaj">
@@ -1244,9 +1244,17 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                 <color key="titleColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="DoActEdit:" destination="Gzj-xs-gmq" eventType="touchUpInside" id="1bz-G0-dc1"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="DoActInvite" destination="Vgz-lo-PuE" id="AoX-Qr-kBm"/>
+                                    <outlet property="actMember" destination="loO-sA-FLJ" id="3mr-Fe-TBu"/>
+                                    <outlet property="actTitle" destination="hld-di-cLy" id="T1f-vX-mS0"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
