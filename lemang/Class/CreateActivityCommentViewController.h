@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "UserManager.h"
 #import "Activity.h"
+#import "IconImageViewLoaderWithButton.h"
 
 @interface CreateActivityCommentViewController : UIViewController<UITextViewDelegate>
 {
@@ -27,7 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *rate3;
 @property (strong, nonatomic) IBOutlet UIButton *rate4;
 @property (strong, nonatomic) IBOutlet UIButton *rate5;
-@property (strong, nonatomic) IBOutlet UIImageView *photo;
+@property (strong, nonatomic) IBOutlet IconImageViewLoaderWithButton *photo;
 
 - (void) SetActivity:(Activity*)activity;
 - (void) SetOwner:(id)_owner;

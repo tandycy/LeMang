@@ -36,7 +36,6 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *actTags;
 @property (strong, nonatomic) IBOutlet UITextField *otherTag;
 @property (strong, nonatomic) IBOutlet UIPickerView *dataPicker;
-//@property (strong, nonatomic) IBOutlet UITextField *actPeopleLimit;
 
 - (IBAction)selectButton:(id)sender;
 - (void)SetOwner:(id)_owner;

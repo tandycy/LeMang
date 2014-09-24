@@ -17,6 +17,8 @@
     int rate;
     UIImage *rateStarOn;
     UIImage *rateStarOff;
+    
+    NSMutableArray* photoList;
 }
 
 @end
@@ -33,6 +35,7 @@
     if (self) {
         // Custom initialization
         linkedActivity = nil;
+        photoList = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -86,6 +89,8 @@
     commentHolder.backgroundColor = [UIColor clearColor];
     [commentDetail addSubview:commentHolder];
     
+    photoList = [[NSMutableArray alloc]init];
+    
     UIBarButtonItem *okButton = [[UIBarButtonItem alloc]init];
     okButton.title = @"ok";
     self.navigationItem.rightBarButtonItem = okButton;
@@ -94,21 +99,62 @@
     
     [addPhoto addTarget:self action:@selector(addPhotoClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.photo.image = [UIImage imageNamed:@"doge2.jpg"];
+    //self.photo.image = [UIImage imageNamed:@"doge2.jpg"];
+    //[self.photo SetButtonImage:[UIImage imageNamed:@"no"]];
+    //[self.photo SetButtonSelector:@selector(delPhotoClick:) target:self];
     
-    UIButton *delPhoto = [[UIButton alloc]initWithFrame:CGRectMake(67, 0, 10, 10)];
-    [delPhoto setBackgroundColor:[UIColor blueColor]];
-    [delPhoto addTarget:self action:@selector(delPhotoClick:)
-       forControlEvents:UIControlEventTouchUpInside];
-    [self.photo setUserInteractionEnabled:YES];
-    [self.photo addSubview:delPhoto];
-    
+    [self.photo setHidden:true];
+
 }
 
--(IBAction)delPhotoClick:(id)sender
+-(void)delPhotoClick:(id)sender
 {
-    NSLog(@"del Doge!!!!");
-    [self.photo removeFromSuperview];
+    if (![sender isKindOfClass:[IconImageViewLoaderWithButton class]])
+        return;
+    
+    //IconImageViewLoaderWithButton* iconItem = (IconImageViewLoaderWithButton*)sender;
+    [photoList removeObject:sender];
+    [sender removeFromSuperview];
+    [self ReAlignPhoto];
+}
+
+- (void) AddPhotoIcon : (UIImage*)imgData
+{
+    CGRect baseOrigin = addPhoto.frame;
+    
+    IconImageViewLoaderWithButton* newPhoto = [[IconImageViewLoaderWithButton alloc]initWithFrame:baseOrigin];
+    [newPhoto setImage:imgData];
+    
+    [newPhoto SetButtonImage:[UIImage imageNamed:@"no"]];
+    [newPhoto SetButtonSelector:@selector(delPhotoClick:) target:self];
+    
+    [photoList addObject:newPhoto];
+    [self.view addSubview:newPhoto];
+
+    [self ReAlignPhoto];
+}
+
+- (void)ReAlignPhoto
+{
+    CGRect baseOrigin = addPhoto.frame;
+    int width = baseOrigin.size.width + 20;
+    int height = baseOrigin.size.height + 20;
+    
+    for (int i = 0; i < photoList.count; i++)
+    {
+        IconImageViewLoaderWithButton* item = photoList[i];
+        
+        int index = i+1;
+        
+        int index_x = index%3;
+        int index_y = index/3;
+        
+        CGRect newOrigin = baseOrigin;
+        newOrigin.origin.x += index_x * width;
+        newOrigin.origin.x += index_y * height;
+        
+        item.frame = newOrigin;
+    }
 }
 
 -(void)initRate
@@ -257,7 +303,15 @@
         //NSString* response = [request responseString];
         
         if (returncode == 201)
-        {            
+        {
+            NSDictionary* resHeader = [request responseHeaders];
+            NSString* location = resHeader[@"Location"];
+            
+            for( int i = 0; i < photoList.count; i++)
+            {
+                //
+            }
+            
             [self.navigationController popViewControllerAnimated:true];
             
             if ([owner isKindOfClass:[ActivityDetailViewController class]])
@@ -309,28 +363,11 @@
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    //image= [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     image= [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
-    {
-        //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    }
-    UIImage *theImage = [CreateActivityCommentViewController imageWithImageSimple:image scaledToSize:CGSizeMake(120.0, 120.0)];
-    UIImage *midImage = [CreateActivityCommentViewController imageWithImageSimple:image scaledToSize:CGSizeMake(210.0, 210.0)];
-    UIImage *bigImage = [CreateActivityCommentViewController imageWithImageSimple:image scaledToSize:CGSizeMake(440.0, 440.0)];
-    //[theImage retain];
-    [self saveImage:theImage WithName:@"salesImageSmall.jpg"];
-    [self saveImage:midImage WithName:@"salesImageMid.jpg"];
-    [self saveImage:bigImage WithName:@"salesImageBig.jpg"];
-    
-    self.imgViewBig.image = image;
-    UIImageView *buttonView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 77, 77)];
-    buttonView.image = image;
-    [self.addPhoto addSubview:buttonView];
     
     [self dismissModalViewControllerAnimated:YES];
-    //[self refreshData];
-    //[picker release];
+
+    [self AddPhotoIcon:image];
 }
 
 - (void)upLoadSalesBigImage:(NSString *)bigImage MidImage:(NSString *)midImage SmallImage:(NSString *)smallImage
