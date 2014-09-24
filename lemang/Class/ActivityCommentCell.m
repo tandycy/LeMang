@@ -160,21 +160,24 @@
     
     for (int i = 0; i < commentImgs.count; i++)
     {
+        IconImageButtonLoader *cib = [self viewWithTag:(210+i)];
+        if (cib) {
+            [cib removeFromSuperview];
+        }
+        if (commentImgData.count > 0){
         NSDictionary* item = commentImgs[i];
         
         NSString* fileUrl = @"http://e.taoware.com:8080/quickstart/resources";
         fileUrl = [fileUrl stringByAppendingFormat:@"%@", item[@"imageUrl"]];
         
-        //IconImageButtonLoader *commentImg = [[IconImageViewLoader alloc]initWithFrame:CGRectMake( 0, 0, 50, 50)];
-        //[commentImg LoadFromUrl:[NSURL URLWithString:fileUrl] :[UIImage imageNamed:@"default_Icon"]];
         IconImageButtonLoader *commentImgButton = [[IconImageButtonLoader alloc]initWithFrame:CGRectMake( 70+60*i, _commentContent.frame.origin.y + _commentContent.frame.size.height+10, 50, 50)];
-        //  commentImg.backgroundColor = [[UIColor alloc]initWithPatternImage:comment.commentImg[i]];
-        //[commentImgButton addSubview:commentImg];
+            
         commentImgButton.tag = (210+i);
         [commentImgButton LoadFromUrl:[NSURL URLWithString:fileUrl] :[UIImage imageNamed:@"default_Icon"]];
         [commentImgButton addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
         
         [self addSubview:commentImgButton];
+        }
     }
 }
 
