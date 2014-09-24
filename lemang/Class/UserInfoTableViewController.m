@@ -182,17 +182,17 @@
 {
     if (![UserManager IsInitSuccess])
         return;
-    int userId = [[UserManager Instance] GetLocalUserId];
+    int uid = [[UserManager Instance] GetLocalUserId];
     
     NSData* imageData = UIImageJPEGRepresentation(image, 1.0);
     if (!imageData)
         return;
-    NSString* dataLength = [NSString stringWithFormat:@"%d",imageData.length];
+//    NSString* dataLength = [NSString stringWithFormat:@"%d",imageData.length];
     
-    NSString* fileName = [NSString stringWithFormat:@"userIcon_%d", userId];
+    NSString* fileName = [NSString stringWithFormat:@"userIcon_%d", uid];
     NSString* fileFullName = [fileName stringByAppendingString:@".jpg"];
     NSString* firstPath = @"http://e.taoware.com:8080/quickstart/api/v1/images/profile/";
-    firstPath = [firstPath stringByAppendingFormat:@"%d?imageName=%@.jpg", userId, fileName];
+    firstPath = [firstPath stringByAppendingFormat:@"%d?imageName=%@.jpg", uid, fileName];
     
     NSURL* URL = [NSURL URLWithString:firstPath];
     ASIHTTPRequest *putRequest = [ASIHTTPRequest requestWithURL:URL];
@@ -215,9 +215,9 @@
         return;
     }
     
-    NSString* secondPath = @"http://e.taoware.com:8080/quickstart/resources";
-    secondPath = [secondPath stringByAppendingString:pathResp];
-    NSLog(@"path %@", secondPath);
+    //NSString* secondPath = @"http://e.taoware.com:8080/quickstart/resources";
+    //secondPath = [secondPath stringByAppendingString:pathResp];
+    //NSLog(@"path %@", secondPath);
     
     NSURL* uploadUrl = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/images/upload"];
     

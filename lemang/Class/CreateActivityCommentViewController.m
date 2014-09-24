@@ -19,6 +19,8 @@
     UIImage *rateStarOff;
     
     NSMutableArray* photoList;
+    
+    int maxImage;
 }
 
 @end
@@ -59,6 +61,8 @@
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
+    
+    maxImage = 4;
     
 }
 
@@ -225,6 +229,13 @@
 
 -(IBAction)addPhotoClick:(id)sender
 {
+    if (photoList.count >= maxImage)
+    {
+        NSString* alertStr = [NSString stringWithFormat:@"评论图片数量不能超过%d张",maxImage];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法增加图片" message:alertStr delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
     //add photo
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"请选择您上传照片的方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照上传" otherButtonTitles:@"从相册中选择", nil];
     [actionSheet showInView:self.view];
@@ -306,10 +317,85 @@
         {
             NSDictionary* resHeader = [request responseHeaders];
             NSString* location = resHeader[@"Location"];
+            NSArray *arry=[location componentsSeparatedByString:@"/"];
+            
+            NSString* commentId = arry[arry.count - 1];
+            
+            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
             
             for( int i = 0; i < photoList.count; i++)
             {
-                //
+                IconImageViewLoaderWithButton* item = photoList[i];
+                
+                NSString* currentTime = [dateFormatter stringFromDate:[NSDate date]];
+                NSString* fileName = [NSString stringWithFormat:@"comment_%@_%@", linkedActivity.activityId, currentTime];
+                NSString* fileFullName = [fileName stringByAppendingString:@".jpg"];
+                
+                [self saveImage:item.image WithName:@"commentImageBig.jpg"];
+                
+                NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+                //获取完整路径
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:@"iconImageBig.jpg"];
+                
+                
+                NSString* firstPathStr = [location stringByAppendingString:@"/image"];;
+                NSURL* firstURL = [NSURL URLWithString:firstPathStr];
+                
+                ASIHTTPRequest *putRequest = [ASIHTTPRequest requestWithURL:firstURL];
+                [putRequest setUsername:[UserManager UserName]];
+                [putRequest setPassword:[UserManager UserPW]];
+                
+                NSString* postStr = @"{\"imageType\":\"jpg\",\"imageName\":";
+                postStr = [postStr stringByAppendingFormat:@"\"%@\"}", fileFullName];
+                NSData* imgPostData = [postStr dataUsingEncoding:NSUTF8StringEncoding];
+                dataLength = [NSString stringWithFormat:@"%d", postStr.length];
+                [putRequest appendPostData:imgPostData];
+                [putRequest addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+                [putRequest addRequestHeader:@"Content-Length" value:dataLength];
+
+                
+                [putRequest setRequestMethod:@"POST"];
+                [putRequest startSynchronous];
+                
+                NSError *error = [putRequest error];
+                int codeResp = [putRequest responseStatusCode];
+                NSString* pathResp;
+                
+                if (!error)
+                {
+                    pathResp = [putRequest responseString];
+                }
+                else
+                {
+                    // TODO
+                    return;
+                }
+                
+                NSURL* uploadUrl = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/images/upload"];
+                ASIFormDataRequest* uploadRequest = [ASIFormDataRequest requestWithURL:uploadUrl];
+                
+                [uploadRequest setRequestMethod:@"POST"];
+                [uploadRequest setTimeOutSeconds:15];
+                
+                [uploadRequest setPostValue:pathResp forKey:@"name"];
+                [uploadRequest setFile:iconPath withFileName:fileFullName andContentType:@"image/jpeg" forKey:@"file"];
+                [uploadRequest buildRequestHeaders];
+                [uploadRequest buildPostBody];
+                
+                NSDictionary* hdata = [uploadRequest requestHeaders];
+                NSLog(@"header: %@", hdata);
+
+                [uploadRequest startSynchronous];
+                
+                error = [uploadRequest error];
+                int aaa = [uploadRequest responseStatusCode];
+                NSString* bbb = [uploadRequest responseString];
+                
+                if (!error)
+                {
+                }
             }
             
             [self.navigationController popViewControllerAnimated:true];
@@ -317,6 +403,10 @@
             if ([owner isKindOfClass:[ActivityDetailViewController class]])
                [(ActivityDetailViewController*)owner OnCommentSuccess];
         }
+    }
+    else
+    {
+        // create comment fail
     }
 }
 

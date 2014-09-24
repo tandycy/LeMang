@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 #import "UserManager.h"
 #import "Activity.h"
 #import "IconImageViewLoaderWithButton.h"

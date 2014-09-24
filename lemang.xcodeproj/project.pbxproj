@@ -113,6 +113,7 @@
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
 		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
+		EE77B02A19D26D330018EAF7 /* IconImageViewLoaderWithButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE77B02919D26D330018EAF7 /* IconImageViewLoaderWithButton.m */; };
 		EE9B1DAF19BC2C76001E2C7C /* SchoolManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE9B1DAE19BC2C76001E2C7C /* SchoolManager.mm */; };
 		EE9B1DB219BC34F8001E2C7C /* HttpGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */; };
 		EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */; };
@@ -318,6 +319,8 @@
 		EE54DB1819B563EF0000845F /* UserManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UserManager.mm; path = Class/UserManager.mm; sourceTree = "<group>"; };
 		EE54DB1A19B56A270000845F /* StringEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringEncoder.h; path = Class/StringEncoder.h; sourceTree = "<group>"; };
 		EE54DB1B19B56A270000845F /* StringEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringEncoder.m; path = Class/StringEncoder.m; sourceTree = "<group>"; };
+		EE77B02819D26D330018EAF7 /* IconImageViewLoaderWithButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoaderWithButton.h; path = Class/IconImageViewLoaderWithButton.h; sourceTree = "<group>"; };
+		EE77B02919D26D330018EAF7 /* IconImageViewLoaderWithButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoaderWithButton.m; path = Class/IconImageViewLoaderWithButton.m; sourceTree = "<group>"; };
 		EE9B1DAD19BC2C76001E2C7C /* SchoolManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolManager.h; path = Class/SchoolManager.h; sourceTree = "<group>"; };
 		EE9B1DAE19BC2C76001E2C7C /* SchoolManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SchoolManager.mm; path = Class/SchoolManager.mm; sourceTree = "<group>"; };
 		EE9B1DB019BC34F8001E2C7C /* HttpGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpGetter.h; path = Class/HttpGetter.h; sourceTree = "<group>"; };
@@ -735,6 +738,8 @@
 				28DC153D19BE8F8500DE97F0 /* SchoolItem.m */,
 				EEEE40AC19C845C900001B37 /* IconImageButtonLoader.h */,
 				EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */,
+				EE77B02819D26D330018EAF7 /* IconImageViewLoaderWithButton.h */,
+				EE77B02919D26D330018EAF7 /* IconImageViewLoaderWithButton.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -877,6 +882,7 @@
 				25C3A0FC19ADC4EC00BB48B3 /* UIScrollView+Extension.m in Sources */,
 				25E0A1D619CCAF3100B32E2A /* CreateActivityTableViewController.m in Sources */,
 				28DC152319BD5E8000DE97F0 /* ASIDataDecompressor.m in Sources */,
+				EE77B02A19D26D330018EAF7 /* IconImageViewLoaderWithButton.m in Sources */,
 				2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */,
 				258087BE19A71D7C005E308D /* UserLoginViewController.m in Sources */,
 				28DC153B19BE1E5200DE97F0 /* Base64.m in Sources */,
