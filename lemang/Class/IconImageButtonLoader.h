@@ -11,12 +11,14 @@
 
 @interface IconImageButtonLoader : UIImageButton
 {
+    NSString* localUrl;
     NSData* imgData;
     int sector;
     int row;
     int index;
     
     UIImage* localImg;
+    NSMutableDictionary* buffer;
 }
 
 - (UIImage*) LocalImageData;
@@ -27,5 +29,6 @@
 
 - (void)LoadFromUrl : (NSURL*)URL;
 - (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg;
+- (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg : (NSMutableDictionary*)outputBuffer;
 - (void)SetLocation: (int)_sector: (int)_row: (int)_index;
 @end

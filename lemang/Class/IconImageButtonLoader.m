@@ -62,6 +62,8 @@
     [request setPassword:@"admin"];
     [request setDelegate:self];
     
+    localUrl = [NSString stringWithFormat:@"%@", URL];
+    
     imgData = [[NSMutableData alloc] init];
     
     [request startAsynchronous];
@@ -72,6 +74,26 @@
     [self setBackgroundImage:defaultImg forState:UIControlStateNormal];
     localImg = defaultImg;
     [self LoadFromUrl:URL];
+}
+
+- (void)LoadFromUrl:(NSURL *)URL :(UIImage *)defaultImg :(NSMutableDictionary *)outputBuffer
+{
+    buffer = outputBuffer;
+    
+    localUrl = [NSString stringWithFormat:@"%@", URL];
+    
+    if (outputBuffer != Nil)
+    {
+        UIImage* buffImg = outputBuffer[localUrl];
+        if (buffImg != nil)
+        {
+            [self setBackgroundImage:buffImg forState:UIControlStateNormal];
+            localImg = buffImg;
+            return;
+        }
+    }
+    
+    [self LoadFromUrl:URL :defaultImg];
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request
@@ -87,6 +109,11 @@
     }
     [self setBackgroundImage:img forState:UIControlStateNormal];
     localImg = img;
+    
+    if (buffer)
+    {
+        [buffer setObject:localImg forKey:localUrl];
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request

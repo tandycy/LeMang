@@ -37,6 +37,8 @@
     
     viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommetImageDetailViewController"];
     
+    commentImageBuffer = [[NSMutableDictionary alloc]init];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -74,6 +76,12 @@
 -(void)SetCommentList:(NSArray *)commentList
 {
     localComments = commentList;
+    [commentImageBuffer removeAllObjects];
+}
+
+-(NSMutableDictionary*)GetCommentImageBuffer
+{
+    return commentImageBuffer;
 }
 
 -(void)createUserData{
