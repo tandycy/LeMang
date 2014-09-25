@@ -98,4 +98,7 @@
     [EditActVC SetActivityDataFromId:aid];
     [parView.navigationController pushViewController:EditActVC animated:YES];
 }
+
+- (IBAction)DoActInvite:(id)sender{
+}
 @end
