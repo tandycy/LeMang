@@ -7,6 +7,7 @@
 //
 
 #import "MyActivityCell.h"
+#import "InviteMyFriendsTableViewController.h"
 
 @implementation MyActivityCell
 
@@ -83,5 +84,8 @@
 }
 
 - (IBAction)DoActEdit:(id)sender {
+}
+
+- (IBAction)DoActInvite:(id)sender{
 }
 @end

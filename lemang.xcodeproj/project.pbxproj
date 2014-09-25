@@ -53,6 +53,7 @@
 		258087C919A71EED005E308D /* UIImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C619A71EED005E308D /* UIImageButton.m */; };
 		258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C819A71EED005E308D /* UITableGridViewCell.m */; };
 		25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */; };
+		259F017E19D3FF8D0073492F /* InviteMyFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259F017D19D3FF8D0073492F /* InviteMyFriendsTableViewController.m */; };
 		25BAA3D219ACAFC500E87856 /* EditActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */; };
 		25C2392A19D0207E00F31AFE /* MyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392919D0207E00F31AFE /* MyFriendCell.m */; };
 		25C2392D19D0272D00F31AFE /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392C19D0272D00F31AFE /* Friend.m */; };
@@ -233,6 +234,8 @@
 		258087C819A71EED005E308D /* UITableGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableGridViewCell.m; path = Class/UITableGridViewCell.m; sourceTree = "<group>"; };
 		25874DA919A5FFE000264B4D /* CreateOrganizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateOrganizationTableViewController.h; path = Class/CreateOrganizationTableViewController.h; sourceTree = "<group>"; };
 		25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateOrganizationTableViewController.m; path = Class/CreateOrganizationTableViewController.m; sourceTree = "<group>"; };
+		259F017C19D3FF8D0073492F /* InviteMyFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteMyFriendsTableViewController.h; path = Class/InviteMyFriendsTableViewController.h; sourceTree = "<group>"; };
+		259F017D19D3FF8D0073492F /* InviteMyFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InviteMyFriendsTableViewController.m; path = Class/InviteMyFriendsTableViewController.m; sourceTree = "<group>"; };
 		25BAA3D019ACAFC500E87856 /* EditActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditActivityTableViewController.h; path = Class/EditActivityTableViewController.h; sourceTree = "<group>"; };
 		25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditActivityTableViewController.m; path = Class/EditActivityTableViewController.m; sourceTree = "<group>"; };
 		25C2392819D0207E00F31AFE /* MyFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFriendCell.h; path = Class/MyFriendCell.h; sourceTree = "<group>"; };
@@ -593,6 +596,8 @@
 				258087C319A71DCB005E308D /* UserVerifyViewController.m */,
 				25D3F0B619C95C2D00E6C29F /* EditUserInfoViewController.h */,
 				25D3F0B719C95C2D00E6C29F /* EditUserInfoViewController.m */,
+				259F017C19D3FF8D0073492F /* InviteMyFriendsTableViewController.h */,
+				259F017D19D3FF8D0073492F /* InviteMyFriendsTableViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1148,6 +1153,7 @@
 				28DC153519BD5E8100DE97F0 /* ASIS3Request.m in Sources */,
 				28DC152A19BD5E8000DE97F0 /* ASICloudFilesCDNRequest.m in Sources */,
 				25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */,
+				259F017E19D3FF8D0073492F /* InviteMyFriendsTableViewController.m in Sources */,
 				25C8830819C1909700F727AF /* EditActivityDetailTableViewController.m in Sources */,
 				28DC152519BD5E8000DE97F0 /* ASIFormDataRequest.m in Sources */,
 				251CEBBE19A33D5B00C80BAF /* OrganizationDetailTableViewController.m in Sources */,

@@ -16,8 +16,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *actMember;
 @property (strong, nonatomic) IBOutlet UIButton *buttonEdit;
 @property (strong, nonatomic) IBOutlet UIButton *buttonInvite;
-- (IBAction)DoActEdit:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *DoActInvite;
+-(IBAction)DoActEdit:(id)sender;
+-(IBAction)DoActInvite:(id)sender;
 
 - (void)SetData:(NSDictionary*)data;
 - (void)SetAdmin;
