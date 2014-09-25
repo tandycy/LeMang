@@ -167,7 +167,7 @@
         [cell SetBookmark];
     }
     
-    [cell SetData:actData];
+    [cell SetData:actData :self];
     
     return cell;
 }

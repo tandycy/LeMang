@@ -11,6 +11,7 @@
 @interface MyActivityCell : UITableViewCell
 {
     NSDictionary* localData;
+    id owner;
 }
 @property (strong, nonatomic) IBOutlet UILabel *actTitle;
 @property (strong, nonatomic) IBOutlet UILabel *actMember;
@@ -19,7 +20,7 @@
 - (IBAction)DoActEdit:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *DoActInvite;
 
-- (void)SetData:(NSDictionary*)data;
+- (void)SetData:(NSDictionary*)data : (id)_owner;
 - (void)SetAdmin;
 - (void)SetJoin;
 - (void)SetBookmark;

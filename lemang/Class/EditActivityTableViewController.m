@@ -103,6 +103,35 @@
     activityData = [NSMutableDictionary dictionaryWithDictionary:data];
 }
 
+-(void)SetActivityDataFromId:(NSNumber *)actId
+{
+    NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
+    urlStr = [urlStr stringByAppendingFormat:@"/%@", actId];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    
+    if (!error)
+    {
+        activityData = [[NSMutableDictionary alloc]init];
+        
+        NSDictionary* fullData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+        
+        NSString* startTime = fullData[@"beginTime"];
+        [activityData setValue:startTime forKey:@"beginTime"];
+        NSString* endTIme = fullData[@"endTime"];
+        [activityData setValue:endTIme forKey:@"endTime"];
+        NSString* isallday = fullData[@"isAllDay"];
+        
+        int i = 0;
+    }
+}
+
 - (void) InitActivityData
 {
     if (activityData == nil)

@@ -7,6 +7,8 @@
 //
 
 #import "MyActivityCell.h"
+#import "EditActivityTableViewController.h"
+#import "MyAcitivityTableViewController.h"
 
 @implementation MyActivityCell
 
@@ -28,7 +30,7 @@
     
 }
 
-- (void)SetData:(NSDictionary *)data
+- (void)SetData:(NSDictionary *)data : (id)_owner;
 {
     [self ClearData];
     
@@ -39,6 +41,7 @@
         return;
     }
     
+    owner = _owner;
     localData = data;
     
     _actTitle.text = localData[@"title"];
@@ -82,6 +85,17 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)DoActEdit:(id)sender {
+- (IBAction)DoActEdit:(id)sender
+{
+    if (![owner isKindOfClass:[MyAcitivityTableViewController class]])
+        return;
+    
+    MyAcitivityTableViewController* parView = (MyAcitivityTableViewController*)owner;
+    
+    EditActivityTableViewController *EditActVC = [parView.storyboard instantiateViewControllerWithIdentifier:@"EditActivityTableViewController"];
+    EditActVC.navigationItem.title = @"编辑活动";
+    NSNumber* aid = localData[@"id"];
+    [EditActVC SetActivityDataFromId:aid];
+    [parView.navigationController pushViewController:EditActVC animated:YES];
 }
 @end

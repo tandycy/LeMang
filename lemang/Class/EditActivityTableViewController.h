@@ -12,6 +12,7 @@
 @interface EditActivityTableViewController : UITableViewController
 {
     NSMutableDictionary* activityData;
+    UIImage* localNewIcon;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *actName;
@@ -25,5 +26,6 @@
 
 - (IBAction)selectButton:(id)sender;
 - (void)SetActivityData:(NSDictionary*)data;
+- (void)SetActivityDataFromId:(NSNumber*)actId;
 
 @end
