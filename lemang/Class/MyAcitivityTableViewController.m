@@ -31,6 +31,8 @@
     [super viewDidLoad];
     titleArray = [[NSMutableArray alloc] initWithObjects:@"管理的活动", @"参加的活动", @"收藏的活动", nil];
     
+    [self ClearDataArray];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -39,9 +41,77 @@
     [self RefreshActivityList];
 }
 
+- (void)ClearDataArray
+{
+    adminActivity = [[NSMutableArray alloc]init];
+    joinedActivity = [[NSMutableArray alloc]init];
+    bookmarkActivity = [[NSMutableArray alloc]init];
+}
+
 - (void)RefreshActivityList
 {
-    NSDictionary* userData = [UserManager LocalUserData];
+    int uid = [[UserManager Instance]GetLocalUserId];
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    URLString = [URLString stringByAppendingFormat:@"%d/activities", uid];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest setUsername:@"admin"];
+    [URLRequest setPassword:@"admin"];
+    
+    [URLRequest startSynchronous];
+    
+    NSError *error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* item = returnData[i];
+            NSDictionary* creator = item[@"createdBy"];
+            NSNumber* cid = creator[@"id"];
+            
+            if (uid == cid.integerValue)
+            {
+                [adminActivity addObject:item];
+            }
+            else
+            {
+                [joinedActivity addObject:item];
+            }
+        }
+    }
+    else
+    {
+        // TODO
+    }
+    
+    NSString* bookmarkStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    bookmarkStr = [bookmarkStr stringByAppendingFormat:@"%d/bookmark/activity", uid];
+    NSURL *bookmarkUrl = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *bookmarkRequest = [ASIHTTPRequest requestWithURL:bookmarkUrl];
+    [bookmarkRequest setUsername:@"admin"];
+    [bookmarkRequest setPassword:@"admin"];
+    
+    [URLRequest startSynchronous];
+    
+    error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* item = returnData[i];
+            [bookmarkActivity addObject:item];
+        }
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,11 +152,20 @@
     NSDictionary* actData = nil;
     
     if (section == 0)
+    {
         actData = adminActivity[indexPath.row];
+        [cell SetAdmin];
+    }
     else if (section == 1)
+    {
         actData = joinedActivity[indexPath.row];
+        [cell SetJoin];
+    }
     else if (section == 2)
+    {
         actData = bookmarkActivity[indexPath.row];
+        [cell SetBookmark];
+    }
     
     [cell SetData:actData];
     

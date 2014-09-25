@@ -25,6 +25,7 @@
     
     _actMember.text = @"";
     _actTitle.text = @"";
+    
 }
 
 - (void)SetData:(NSDictionary *)data
@@ -32,7 +33,11 @@
     [self ClearData];
     
     if (data == nil || data == NULL)
+    {
+        [_buttonEdit setHidden:true];
+        [_buttonInvite setHidden:true];
         return;
+    }
     
     localData = data;
     
@@ -45,6 +50,24 @@
         memberNum = members.count;
     }
     _actMember.text = [NSString stringWithFormat:@"%d", memberNum];
+}
+
+- (void)SetAdmin
+{
+    [_buttonEdit setHidden:FALSE];
+    [_buttonInvite setHidden:FALSE];
+}
+
+- (void)SetJoin
+{
+    [_buttonEdit setHidden:true];
+    [_buttonInvite setHidden:FALSE];
+}
+
+- (void)SetBookmark
+{
+    [_buttonEdit setHidden:true];
+    [_buttonInvite setHidden:true];
 }
 
 - (void)awakeFromNib

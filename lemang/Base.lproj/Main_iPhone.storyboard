@@ -1254,6 +1254,8 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <outlet property="DoActInvite" destination="Vgz-lo-PuE" id="AoX-Qr-kBm"/>
                                     <outlet property="actMember" destination="loO-sA-FLJ" id="3mr-Fe-TBu"/>
                                     <outlet property="actTitle" destination="hld-di-cLy" id="T1f-vX-mS0"/>
+                                    <outlet property="buttonEdit" destination="3uS-w3-zxC" id="6Ds-Yz-S2Q"/>
+                                    <outlet property="buttonInvite" destination="Vgz-lo-PuE" id="kxx-62-CVV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
