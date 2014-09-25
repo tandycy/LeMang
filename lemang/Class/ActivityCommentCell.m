@@ -112,7 +112,7 @@
                                    lineBreakMode:UILineBreakModeWordWrap];
     _commentContent.numberOfLines = 0;
     _commentContent.lineBreakMode = UILineBreakModeWordWrap;
-    _commentContent.frame = CGRectMake(_commentContent.frame.origin.x, _commentContent.frame.origin.y, _commentContent.frame.size.width, labelSize.height);
+    _commentContent.frame = CGRectMake(_commentContent.frame.origin.x, _commentContent.frame.origin.y, labelSize.width, labelSize.height);
     [_commentContent sizeToFit];
     
 
