@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -3405,48 +3405,91 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="150" id="37p-qa-PpT">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="150" id="eXt-rG-mZz">
                                         <rect key="frame" x="0.0" y="819" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="37p-qa-PpT" id="7ET-NT-jXY">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eXt-rG-mZz" id="FUd-H0-WLx">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动标签（最多选择4项）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D7K-Sn-udp">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动标签（最多选择4项）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UFV-kD-dX1">
                                                     <rect key="frame" x="20" y="6" width="174" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="YNW-bq-c1e">
-                                                    <rect key="frame" x="40" y="35" width="240" height="29"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="标签请以分号隔开" minimumFontSize="17" id="9yf-Gq-fMn">
+                                                    <rect key="frame" x="40" y="108" width="240" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <segments>
-                                                        <segment title="First"/>
-                                                        <segment title="Second"/>
-                                                        <segment title=""/>
-                                                        <segment title=""/>
-                                                    </segments>
-                                                    <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
-                                                </segmentedControl>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="51F-pl-Bkm">
-                                                    <rect key="frame" x="40" y="70" width="240" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <segments>
-                                                        <segment title="First"/>
-                                                        <segment title="Second"/>
-                                                        <segment title=""/>
-                                                        <segment title=""/>
-                                                    </segments>
-                                                    <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
-                                                </segmentedControl>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="0PB-i8-8A0">
-                                                    <rect key="frame" x="40" y="106" width="240" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HYP-2N-tPJ">
+                                                    <rect key="frame" x="40" y="32" width="60" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" backgroundImage="tags">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K79-K4-Zah">
+                                                    <rect key="frame" x="99" y="32" width="60" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <state key="normal" backgroundImage="tags">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m3k-zl-bNr">
+                                                    <rect key="frame" x="158" y="32" width="60" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <state key="normal" backgroundImage="tags">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1KQ-V6-noP">
+                                                    <rect key="frame" x="217" y="32" width="60" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <state key="normal" backgroundImage="tags">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2ik-GM-z0a">
+                                                    <rect key="frame" x="40" y="69" width="60" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <state key="normal" backgroundImage="tags">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4TI-CD-Aov">
+                                                    <rect key="frame" x="99" y="69" width="60" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <state key="normal" backgroundImage="tags">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hGR-31-pSe">
+                                                    <rect key="frame" x="158" y="69" width="60" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <state key="normal" backgroundImage="tags">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bTM-rv-0MB">
+                                                    <rect key="frame" x="217" y="69" width="60" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <state key="normal" backgroundImage="tags">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -3473,15 +3516,22 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="actLocation" destination="vs1-rN-1T7" id="le7-6g-2Cy"/>
                         <outlet property="actName" destination="PG8-aB-NiY" id="r3b-tI-ths"/>
                         <outlet property="actPeopleLimit" destination="Yam-Cp-ogn" id="Giy-na-5Ld"/>
-                        <outlet property="actTags" destination="YNW-bq-c1e" id="bDA-xg-hOr"/>
                         <outlet property="actUniversity" destination="JfA-hJ-gyL" id="FST-Ri-Rjc"/>
                         <outlet property="allDayTrigger" destination="BFu-CP-O9u" id="N2n-mK-39S"/>
                         <outlet property="dataPicker" destination="UvL-hG-2oV" id="1Ak-KQ-UYB"/>
                         <outlet property="datePicker" destination="Mgf-VL-wDD" id="oGL-42-IB7"/>
                         <outlet property="doneToolbar" destination="ugF-gn-lx4" id="1be-It-jm0"/>
                         <outlet property="endDate" destination="u9j-mK-SzS" id="jBD-0J-0nY"/>
-                        <outlet property="otherTag" destination="0PB-i8-8A0" id="vSY-rs-Ahe"/>
+                        <outlet property="otherTag" destination="9yf-Gq-fMn" id="w48-zq-pUq"/>
                         <outlet property="startDate" destination="Evw-9F-TuV" id="fY2-wv-QUc"/>
+                        <outlet property="tag1" destination="HYP-2N-tPJ" id="Y3P-Ge-F7R"/>
+                        <outlet property="tag2" destination="K79-K4-Zah" id="FTH-7W-wed"/>
+                        <outlet property="tag3" destination="m3k-zl-bNr" id="4rI-mY-T9H"/>
+                        <outlet property="tag4" destination="1KQ-V6-noP" id="piJ-lc-73Y"/>
+                        <outlet property="tag5" destination="2ik-GM-z0a" id="fQT-cx-YYt"/>
+                        <outlet property="tag6" destination="4TI-CD-Aov" id="w7y-l0-Vmm"/>
+                        <outlet property="tag7" destination="hGR-31-pSe" id="YEx-rJ-QJ0"/>
+                        <outlet property="tag8" destination="bTM-rv-0MB" id="z2X-JU-bmS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyM-wW-ecr" userLabel="First Responder" sceneMemberID="firstResponder"/>
