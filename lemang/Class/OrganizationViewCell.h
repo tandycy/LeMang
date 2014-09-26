@@ -14,14 +14,19 @@
 {
     enum OrgType
     {
-        Shop,
-    }orgeType;
+        University,
+        Department,
+        Company,
+        Association,
+        Person,
+    }orgType;
     
     NSDictionary* localData;
     NSNumber* organizationId;
     
     int memberNum;
     NSNumber* maxMemberNum;
+
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *organizationNameTxt;
