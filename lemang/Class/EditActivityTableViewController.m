@@ -94,6 +94,8 @@
     localNewIcon = nil;
     [_CancelPhotoButton setHidden:true];
     
+    [_AddPhotoButton setImage:[UIImage imageNamed:@"default_Icon"] forState:UIControlStateNormal];
+    
     [self InitActivityData];
     
 }
@@ -303,9 +305,21 @@
 }
 
 - (IBAction)OnChangePhoto:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"请选择您上传照片的方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照上传" otherButtonTitles:@"从相册中选择", nil];
+    [actionSheet showInView:self.view];
+    
 }
 
 - (IBAction)OnCancelPhoto:(id)sender {
+    
+    localNewIcon = nil;
+    
+    if (originIcon == nil)
+        [_AddPhotoButton setImage:[UIImage imageNamed:@"default_Icon"] forState:UIControlStateNormal];
+    else
+        [_AddPhotoButton setImage:originIcon forState:UIControlStateNormal];
+    
+    [_CancelPhotoButton setHidden:true];
 }
 
 - (void) AfterIconLoad : (UIImage*)loadImg
@@ -404,6 +418,61 @@
 }
 
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"%i", buttonIndex);
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    switch (buttonIndex) {
+        case 0: {
+            imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.delegate = self;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            imagePicker.allowsEditing = YES;
+            
+            [self presentModalViewController:imagePicker animated:YES];
+            break;
+        }
+        case 1: {
+            imagePicker = [[UIImagePickerController alloc] init];
+            imagePicker.delegate = self;
+            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            imagePicker.allowsEditing = YES;
+            
+            [self presentModalViewController:imagePicker animated:YES];
+            break;
+        }
+    }
+}
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    localNewIcon = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    [_AddPhotoButton setImage:localNewIcon forState:UIControlStateNormal];
+    [_CancelPhotoButton setHidden:false];
+    
+    [self dismissModalViewControllerAnimated:YES];
+
+}
+
+- (NSString *)documentFolderPath
+{
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+}
+
+#pragma mark 保存图片到document
+- (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName
+{
+    NSData* imageData = UIImagePNGRepresentation(tempImage);
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    // Now we get the full path to the file
+    NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
+    // and then we write it out
+    [imageData writeToFile:fullPathToFile atomically:NO];
+}
 
 
 /*

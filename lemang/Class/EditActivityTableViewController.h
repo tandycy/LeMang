@@ -15,6 +15,8 @@
     NSMutableDictionary* activityData;
     UIImage* localNewIcon;
     UIImage* originIcon;
+    UIImagePickerController *imagePicker;
+
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *actName;

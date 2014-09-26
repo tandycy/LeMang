@@ -195,6 +195,13 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击图标更换" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gey-5L-944">
+                                                    <rect key="frame" x="8" y="43" width="93" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eS1-0G-sMa" customClass="IconImageButtonLoader">
                                                     <rect key="frame" x="122" y="6" width="77" height="77"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
