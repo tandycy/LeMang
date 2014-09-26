@@ -85,7 +85,7 @@
     UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(180, 220, 80, 30)];
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
     [cancel setBackgroundColor:[UIColor blueColor]];
-    [cancel addTarget:self action:@selector(okClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cancel addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:ok];
     [self.view addSubview:cancel];

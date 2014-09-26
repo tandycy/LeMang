@@ -9,6 +9,7 @@
 #import "MyActivityCell.h"
 #import "EditActivityTableViewController.h"
 #import "MyAcitivityTableViewController.h"
+#import "InviteMyFriendsTableViewController.h"
 
 @implementation MyActivityCell
 
