@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SchoolManager.h"
 #import "UserManager.h"
+#import "ASIFormDataRequest.h"
 
 @interface EditActivityDetailTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
 {
     NSMutableDictionary* activityData;
+    UIImage* iconImage;
 }
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *actHostType;
@@ -33,5 +35,6 @@
 @property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
 
 - (void) SetActivityData:(NSMutableDictionary*)data;
+- (void) SetIconData : (UIImage*)img;
 
 @end

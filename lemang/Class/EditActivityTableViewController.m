@@ -378,6 +378,7 @@
     [activityData setValue:[nowDate stringFromDate:tempDate2] forKey:@"endTime"];
     
     [EditActDetailVC SetActivityData:activityData];
+    [EditActDetailVC SetIconData:localNewIcon];
     [self.navigationController pushViewController:EditActDetailVC animated:YES];
     
 }
@@ -456,24 +457,6 @@
     [self dismissModalViewControllerAnimated:YES];
 
 }
-
-- (NSString *)documentFolderPath
-{
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-}
-
-#pragma mark 保存图片到document
-- (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName
-{
-    NSData* imageData = UIImagePNGRepresentation(tempImage);
-    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* documentsDirectory = [paths objectAtIndex:0];
-    // Now we get the full path to the file
-    NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
-    // and then we write it out
-    [imageData writeToFile:fullPathToFile atomically:NO];
-}
-
 
 /*
 #pragma mark - Table view data source

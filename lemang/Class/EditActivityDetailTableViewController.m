@@ -129,6 +129,11 @@
     return [pickerArray objectAtIndex:row];
 }
 
+- (void)SetIconData:(UIImage *)img
+{
+    iconImage = img;
+}
+
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     NSInteger row = [dataPicker selectedRowInComponent:0];
     if (actUniversity.isEditing) {
@@ -445,6 +450,8 @@
     
     if (returnCode == 200)
     {
+        [self UploadImageFile: actId];
+        
         // TODO create success operation
         /*
         if (owner != nil && [owner isKindOfClass:[ActivityViewController class]])
@@ -459,6 +466,102 @@
         NSLog(@"%d - %@", returnCode, jsonString);
     }
 
+}
+
+- (void) UploadImageFile : (NSNumber*)aid
+{
+    if (iconImage == nil)
+        return;
+    
+    NSString* fileName = [NSString stringWithFormat: @"activity_icon_%@", aid];
+    NSString* fileFullName = [fileName stringByAppendingString:@".jpg"];
+    [self saveImage:iconImage WithName:fileFullName];
+    
+    NSString* firstPath = @"http://e.taoware.com:8080/quickstart/api/v1/images/activity/";
+    firstPath = [firstPath stringByAppendingFormat:@"%@?imageName=%@.jpg", aid, fileName];
+    
+    NSURL* URL = [NSURL URLWithString:firstPath];
+    ASIHTTPRequest *putRequest = [ASIHTTPRequest requestWithURL:URL];
+    [putRequest setUsername:[UserManager UserName]];
+    [putRequest setPassword:[UserManager UserPW]];
+    
+    [putRequest setRequestMethod:@"PUT"];
+    [putRequest startSynchronous];
+    
+    NSError *error = [putRequest error];
+    NSString* pathResp;
+    
+    if (!error)
+    {
+        pathResp = [putRequest responseString];
+    }
+    else
+    {
+        // TODO
+        return;
+    }
+    
+
+    NSURL* uploadUrl = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/images/upload"];
+    
+    NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    //获取完整路径
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:@"iconImageBig.jpg"];
+    
+    
+    //[ASIHTTPRequest clearSession];
+    ASIFormDataRequest *uploadRequest = [ASIFormDataRequest requestWithURL:uploadUrl];
+    
+    [uploadRequest setRequestMethod:@"POST"];
+    [uploadRequest setTimeOutSeconds:15];
+    
+    [uploadRequest setPostValue:pathResp forKey:@"name"];
+    [uploadRequest setFile:iconPath withFileName:fileFullName andContentType:@"image/jpeg" forKey:@"file"];
+    [uploadRequest buildRequestHeaders];
+    [uploadRequest buildPostBody];
+    
+    NSDictionary* hdata = [uploadRequest requestHeaders];
+    NSLog(@"header: %@", hdata);
+    
+    [uploadRequest startSynchronous];
+    
+    error = [uploadRequest error];
+    int aaa = [uploadRequest responseStatusCode];
+    NSString* bbb = [uploadRequest responseString];
+    
+    if (error)
+    {
+        // TODO
+        NSLog(@"upload user icon fail: %d", error.code);
+    }
+    if (aaa == 200)
+    {
+        // TODO: success
+    }
+    else
+    {
+        // TODO
+        NSLog(@"upload user icon return: %d", aaa);
+    }
+
+}
+
+#pragma mark 保存图片到document
+- (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName
+{
+    NSData* imageData = UIImagePNGRepresentation(tempImage);
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    // Now we get the full path to the file
+    NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
+    // and then we write it out
+    [imageData writeToFile:fullPathToFile atomically:NO];
+}
+
+- (NSString *)documentFolderPath
+{
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
 }
 
 #pragma mark - Table view data source
