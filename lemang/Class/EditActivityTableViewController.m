@@ -122,23 +122,110 @@
         
         NSDictionary* fullData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
         
-        NSString* startTime = fullData[@"beginTime"];
-        [activityData setValue:startTime forKey:@"beginTime"];
-        NSString* endTIme = fullData[@"endTime"];
-        [activityData setValue:endTIme forKey:@"endTime"];
-        NSString* isallday = fullData[@"isAllDay"];
+        // Reset id
+        [activityData setValue:actId forKey:@"id"];
         
-        int i = 0;
+        // Page1 part
+        NSString* title = [UserManager filtStr: fullData[@"title"] : @""];
+        [activityData setValue:title forKey:@"title"];
+        NSString* description = [UserManager filtStr:fullData[@"description"] :@""];
+        [activityData setValue:description forKey:@"description"];
+        
+        NSString* startTime = [UserManager filtStr: fullData[@"beginTime"] : @""];
+        [activityData setValue:startTime forKey:@"beginTime"];
+        NSString* endTIme = [UserManager filtStr: fullData[@"endTime"] : @""];
+        [activityData setValue:endTIme forKey:@"endTime"];
+        
+        NSNumber* isallday = fullData[@"isAllDay"];
+        if (isallday.integerValue == 1)
+            [activityData setValue:@"true" forKey:@"isAllDay"];
+        else
+            [activityData setValue:@"false" forKey:@"isAllDay"];
+
+        // Page2 part
+        NSString* groupType = fullData[@"activityGroup"];
+        [activityData setValue:groupType forKey:@"activityGroup"];
+        NSString* actType = fullData[@"activityType"];
+        [activityData setValue:actType forKey:@"activityType"];
+        
+        NSDictionary* school = fullData[@"university"];
+        if ([school isKindOfClass:[NSDictionary class]])
+        {
+            NSString* name = school[@"name"];
+            [activityData setValue:name forKey:@"university"];
+        }
+        NSDictionary* area = fullData[@"area"];
+        if ([area isKindOfClass:[NSDictionary class]])
+        {
+            NSString* name = area[@"name"];
+            [activityData setValue:name forKey:@"area"];
+        }
+        NSDictionary* department = fullData[@"department"];
+        if ([department isKindOfClass:[NSDictionary class]])
+        {
+            NSString* name = department[@"name"];
+            [activityData setValue:name forKey:@"department"];
+        }
+        
+        NSString* address = [UserManager filtStr:fullData[@"address"] :@""];
+        [activityData setValue:address forKey:@"address"];
+        NSString* contact = [UserManager filtStr:fullData[@"contact"] :@""];
+        [activityData setValue:contact forKey:@"contact"];
+        
+        NSNumber* peopleLimit = fullData[@"peopleLimit"];
+        [activityData setValue:peopleLimit forKey:@"peopleLimit"];
+        NSString* regionLimit = [UserManager filtStr:fullData[@"regionLimit"] :@""];
+        [activityData setValue:regionLimit forKey:@"regionLimit"];
+        
+        NSString* tags = [UserManager filtStr:fullData[@"tags"] :@""];
+        [activityData setValue:tags forKey:@"tags"];
     }
 }
 
 - (void) InitActivityData
 {
     if (activityData == nil)
+    {
         activityData = [[NSMutableDictionary alloc]init];
+    }
     else
     {
-        // TODO: restore data
+        actName.text = activityData[@"title"];
+        if (actName.text.length > 0)
+            nameHolder.text = @"";
+        
+        actDescription.text = activityData[@"description"];
+        if (actDescription.text.length > 0)
+            descriptionHolder.text = @"";
+        
+        NSString* isalday = activityData[@"isAllDay"];
+        if ([isalday isEqualToString:@"true"])
+            [allDayTrigger setOn:true];
+        else
+            [allDayTrigger setOn:false];
+        
+        NSDateFormatter* inputDate = [[NSDateFormatter alloc]init];
+        NSDateFormatter* outputDate = [[NSDateFormatter alloc]init];
+        [inputDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        if (allDayTrigger.isOn) {
+            [outputDate setDateFormat:@"yyyy年MM月dd日"];
+        }
+        else {
+            [outputDate setDateFormat:@"yyyy年MM月dd日 HH:mm:ss"];
+        }
+        NSString* startTime = activityData[@"beginTime"];
+        if (startTime.length > 0)
+        {
+            tempDate = [inputDate dateFromString:startTime];
+            startDate.text = [outputDate stringFromDate:tempDate];
+        }
+        NSString* endTime = activityData[@"endTime"];
+        if (endTime.length > 0)
+        {
+            tempDate2 = [inputDate dateFromString:endTime];
+            endDate.text = [outputDate stringFromDate:tempDate2];
+        }
+        
     }
     
     actNameString = @"";
@@ -229,8 +316,11 @@
         [activityData setValue:@"false" forKey:@"isAllDay"];
     
     [activityData setValue:uid forKey:@"createdBy"];
-    [activityData setValue:startDate.text forKey:@"beginTime"];
-    [activityData setValue:endDate.text forKey:@"endTime"];
+    
+    nowDate = [[NSDateFormatter alloc]init];
+    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [activityData setValue:[nowDate stringFromDate:tempDate] forKey:@"beginTime"];
+    [activityData setValue:[nowDate stringFromDate:tempDate2] forKey:@"endTime"];
     
     [EditActDetailVC SetActivityData:activityData];
     [self.navigationController pushViewController:EditActDetailVC animated:YES];
