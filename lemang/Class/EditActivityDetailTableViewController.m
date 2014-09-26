@@ -118,7 +118,7 @@
 -(IBAction)tag1Click:(id)sender{
     if (!_tag1.selected) {
         [_tag1 setSelected:YES];
-        [_tag1 setBackgroundColor:defaultMainColor];
+        [_tag1 setBackgroundColor:defaultTagColor];
         [_tag1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     }
     else
@@ -132,7 +132,7 @@
 -(IBAction)tag2Click:(id)sender{
     if (!_tag2.selected) {
         [_tag2 setSelected:YES];
-        [_tag2 setBackgroundColor:defaultMainColor];
+        [_tag2 setBackgroundColor:defaultTagColor];
         [_tag2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     }
     else
@@ -145,7 +145,7 @@
 -(IBAction)tag3Click:(id)sender{
     if (!_tag3.selected) {
         [_tag3 setSelected:YES];
-        [_tag3 setBackgroundColor:defaultMainColor];
+        [_tag3 setBackgroundColor:defaultTagColor];
         [_tag3 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     }
     else
@@ -158,7 +158,7 @@
 -(IBAction)tag4Click:(id)sender{
     if (!_tag4.selected) {
         [_tag4 setSelected:YES];
-        [_tag4 setBackgroundColor:defaultMainColor];
+        [_tag4 setBackgroundColor:defaultTagColor];
         [_tag4 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     }
     else
@@ -171,7 +171,7 @@
 -(IBAction)tag5Click:(id)sender{
     if (!_tag5.selected) {
         [_tag5 setSelected:YES];
-        [_tag5 setBackgroundColor:defaultMainColor];
+        [_tag5 setBackgroundColor:defaultTagColor];
         [_tag5 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     }
     else
