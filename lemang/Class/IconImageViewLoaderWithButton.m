@@ -63,4 +63,13 @@
 }
 */
 
+-(void) dealloc
+{
+    if (localRequest != nil)
+    {
+        [localRequest clearDelegatesAndCancel];
+        NSLog(@"Request canceled by dealloc.");
+    }
+}
+
 @end

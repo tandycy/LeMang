@@ -19,6 +19,8 @@
     
     UIImage* localImg;
     NSMutableDictionary* buffer;
+    
+    ASIHTTPRequest* localRequest;
 }
 
 - (UIImage*) LocalImageData;

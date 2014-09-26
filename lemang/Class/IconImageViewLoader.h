@@ -12,6 +12,7 @@
 @interface IconImageViewLoader : UIImageView
 {
     NSData* imgData;
+    ASIHTTPRequest* localRequest;
 }
 
 - (void)LoadFromUrl : (NSURL*)URL;

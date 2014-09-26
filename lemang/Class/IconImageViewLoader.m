@@ -40,6 +40,7 @@
     imgData = [[NSMutableData alloc] init];
     
     [request startAsynchronous];
+    localRequest = request;
 }
 
 - (void)LoadFromUrl:(NSURL *)URL : (UIImage*) defaultImg
@@ -61,16 +62,27 @@
         return;
     }
     [self setImage:img];
+    localRequest = nil;
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
 {
     NSError* error = [request error];
+    localRequest = nil;
     
     if (error.code == 6)
         return;
     
     NSLog(@"Download image fail: %d",error.code);
+}
+
+-(void) dealloc
+{
+    if (localRequest != nil)
+    {
+        [localRequest clearDelegatesAndCancel];
+        NSLog(@"Request canceled by dealloc.");
+    }
 }
 
 @end
