@@ -10,16 +10,18 @@
 #import "UserManager.h"
 #import "IconImageViewLoader.h"
 
+enum OrgnizationType
+{
+    University,
+    Department,
+    Company,
+    Association,
+    Person,
+};
+
 @interface OrganizationViewCell : UITableViewCell
 {
-    enum OrgType
-    {
-        University,
-        Department,
-        Company,
-        Association,
-        Person,
-    }orgType;
+    enum OrgnizationType orgType;
     
     NSDictionary* localData;
     NSNumber* organizationId;
@@ -41,5 +43,6 @@
 - (void) updateData:(NSDictionary*)newData;
 - (void) updateDisplay;
 - (NSDictionary*) getLocalData;
+- (NSNumber*) getOrgId;
 
 @end

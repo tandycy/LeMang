@@ -10,16 +10,25 @@
 #import "OrganizationViewCell.h"
 
 @interface OrganizationDetailTableViewController : UITableViewController
-
+{
+    enum OrgnizationType orgType;
+    NSNumber* orgId;
+    NSDictionary* localData;
+    UIImage* localIconData;
+    
+    NSArray* activityArray;
+}
 
 @property IBOutlet UIView *orgDetailTitleView;
-@property (strong,nonatomic) OrganizationViewCell *linkedCell;
-@property (strong,nonatomic) NSArray *activityArray;
 
 @property (strong, nonatomic) IBOutlet UILabel *orgnizationTittle;
-@property (strong, nonatomic) IBOutlet UIImageView *organizationIcon;
+@property (strong, nonatomic) IBOutlet IconImageViewLoader *organizationIcon;
 @property (strong, nonatomic) IBOutlet UILabel *organizationDetail;
+
 - (void) updateDisplay;
+- (void) SetOrgnizationId:(NSNumber*)oid;
+- (void) SetOrgnizationData:(NSDictionary*)data;
+- (void) SetOrgnizationIcon:(UIImage*)image;
 
 
 @end

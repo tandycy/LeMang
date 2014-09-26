@@ -49,6 +49,14 @@
     [self LoadFromUrl:URL];
 }
 
+- (void)LoadFromUrl:(NSURL *)URL :(UIImage *)defaultImg :(SEL)afterLoad :(id)_target
+{
+    afterSelector = afterLoad;
+    target = _target;
+    
+    [self LoadFromUrl:URL :defaultImg];
+}
+
 - (void)requestFinished:(ASIHTTPRequest*)request
 {
     imgData = [request responseData];
@@ -63,6 +71,11 @@
     }
     [self setImage:img];
     localRequest = nil;
+    
+    if (afterSelector != nil && target != Nil)
+    {
+        [target performSelector:afterSelector withObject:img];
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request

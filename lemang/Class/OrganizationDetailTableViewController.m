@@ -29,8 +29,6 @@ typedef enum {
     UILabel *orgInfo;
 }
 
-@synthesize linkedCell;
-@synthesize activityArray;
 @synthesize orgDetailTitleView;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -38,7 +36,6 @@ typedef enum {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        activityArray = [[NSArray alloc]init];
     }
     return self;
 }
@@ -75,25 +72,79 @@ typedef enum {
     [orgDetailTitleView addSubview:orgLocation];
     [orgDetailTitleView addSubview:orgInfo];
     
+    activityArray = [[NSArray alloc]init];
+    
     [self updateDisplay];
+}
+
+- (void) SetOrgnizationId:(NSNumber *)oid
+{
+    orgId = oid;
+}
+
+- (void) SetOrgnizationData:(NSDictionary *)data
+{
+    localData = data;
+}
+
+- (void) SetOrgnizationIcon:(UIImage *)image
+{
+    localIconData = image;
+}
+
+- (void) RefreshData
+{
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association/";
+    URLString = [URLString stringByAppendingFormat:@"%@", orgId];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    
+    if (!error)
+    {
+        localData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+    }
+
 }
 
 - (void) updateDisplay
 {
-    if (linkedCell == NULL)
+    if (orgId == NULL)
         return;
     
-    _orgnizationTittle.text = linkedCell.organizationNameTxt.text;
+    if (localData == nil)
+    {
+        [self RefreshData];
+    }
+    
+    _orgnizationTittle.text = [UserManager filtStr:localData[@"name"] : @""];
 
-    NSDictionary* orgData = [linkedCell getLocalData];
-    NSString* detailStr = [UserManager filtStr:orgData[@"description"] : @""];
+    NSString* detailStr = [UserManager filtStr:localData[@"description"] : @""];
     _organizationDetail.text = detailStr;
-    _organizationIcon.image = linkedCell.organizationIcon.image;
+    
+    if (localIconData != nil)
+        [_organizationIcon setImage:localIconData];
+    else
+    {
+        NSString* iconUrl = [UserManager filtStr:localData[@"iconUrl"]];
+        [_organizationIcon LoadFromUrl:[NSURL URLWithString:iconUrl] :[UIImage imageNamed:@""] :@selector(SetOrgnizationIcon:) :self];
+    }
     
     //   - id - contact - department - peopleLimit - tags - description - iconUrl - address - regionLimit - otherLimit - users - linkUrl - name - area - shortName - createdBy - createdDate - university
 
-    orgLocation.text = [UserManager filtStr:orgData[@"address"] : @""];
-    orgInfo.text = [UserManager filtStr:orgData[@"contact"] : @""];
+    orgLocation.text = [UserManager filtStr:localData[@"address"] : @""];
+    orgInfo.text = [UserManager filtStr:localData[@"contact"] : @""];
+    
+    NSString* groupType = localData[@"type"];
+    [self ParseOrgType:groupType];
+    
+    // Get group activity
 }
 
 - (void)createActivityData
@@ -123,6 +174,34 @@ typedef enum {
     return activityArray.count;
 }
 
+- (void)ParseOrgType:(NSString*)input
+{
+    if ([input isEqualToString:@"University"])
+    {
+        orgType = University;
+        //[_typeIcon setImage:[UIImage imageNamed:@"school_icon"]];
+    }
+    else if ([input isEqualToString:@"Department"])
+    {
+        orgType = Department;
+        //[_typeIcon setImage:[UIImage imageNamed:@"school_icon"]];
+    }
+    else if ([input isEqualToString:@"Person"])
+    {
+        orgType = Person;
+        //[_typeIcon setImage:[UIImage imageNamed:@"private_icon"]];
+    }
+    else if ([input isEqualToString:@"Association"])
+    {
+        orgType = Association;
+        //[_typeIcon setImage:[UIImage imageNamed:@"group_icon"]];
+    }
+    else if ([input isEqualToString:@"Company"])
+    {
+        orgType = Company;
+        //[_typeIcon setImage:[UIImage imageNamed:@"buisness_icon"]];
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -139,7 +218,7 @@ typedef enum {
     [cell addSubview:bg];
     
     Activity *activity = nil;
-    activity = [self.activityArray objectAtIndex:indexPath.row];
+    activity = [activityArray objectAtIndex:indexPath.row];
     
     UILabel *activityMember = (UILabel*)[cell viewWithTag:ActivityMember];
     activityMember.text = activity.member;
@@ -178,14 +257,12 @@ typedef enum {
 }
 
 
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
     viewController.navigationItem.title = @"活动详细页面";
     
-    viewController.activity = [self.activityArray objectAtIndex:indexPath.row];
+    viewController.activity = [activityArray objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

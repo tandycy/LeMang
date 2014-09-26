@@ -13,8 +13,13 @@
 {
     NSData* imgData;
     ASIHTTPRequest* localRequest;
+    
+    SEL afterSelector;
+    id target;
 }
 
 - (void)LoadFromUrl : (NSURL*)URL;
 - (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg;
+- (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg : (SEL)afterLoad : (id)_target;
+
 @end
