@@ -29,6 +29,10 @@
     NSArray *schoolArray;
     NSArray *areaArray;
     NSArray *collegeArray;
+    
+    NSMutableArray *tags;
+    
+    int keyboardHeight;
 }
 
 @end
@@ -39,7 +43,7 @@
 @synthesize actUniversity,actArea,actCollege;
 @synthesize dataPicker,doneToolbar;
 @synthesize actHost,actHostType;
-@synthesize actLocation,actPeopleLimit,actTags,otherTag;
+@synthesize actLocation,actPeopleLimit,otherTag;
 @synthesize startDate,endDate,datePicker,allDayTrigger;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -47,6 +51,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+        //[self.tableView setBackgroundColor:[UIColor whiteColor]];
         [SchoolManager InitSchoolList];
     }
     return self;
@@ -56,9 +62,20 @@
 {
     [super viewDidLoad];
     
-    
     [self universityListInit];
     [self initView];
+    [self initTag];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    //增加监听，当键退出时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -72,10 +89,27 @@
 
 }
 
+//当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    keyboardHeight = keyboardRect.size.height;
+}
+
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)aNotification
+{
+    
+}
+
 -(void)initView
 {
     actDescription.delegate = self;
     actName.delegate = self;
+    otherTag.delegate = self;
     
     nameHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
     nameHolder.font = [UIFont fontWithName:defaultFont  size:15];
@@ -144,6 +178,114 @@
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
 }
+
+
+-(void)initTag
+{
+    tags = [[NSMutableArray alloc]initWithObjects:@"体育",@"体育",@"体育",@"体育",@"体育",nil];
+    
+    //set all tag deselected
+    _tag1.selected = _tag2.selected = _tag3.selected = _tag4.selected = _tag5.selected = _tag6.selected = _tag7.selected = _tag8.selected = NO;
+    
+    //init Tag Buttons
+    [_tag1 setTitle:tags[0] forState:UIControlStateNormal];
+    [_tag1 setTintColor:[UIColor clearColor]];
+    [_tag1 setTitleColor:defaultMainColor forState:UIControlStateNormal];
+    [_tag1 addTarget:self action:@selector(tag1Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_tag2 setTitle:tags[1] forState:UIControlStateNormal];
+    [_tag2 setTintColor:[UIColor clearColor]];
+    [_tag2 setTitleColor:defaultMainColor forState:UIControlStateNormal];
+    [_tag2 addTarget:self action:@selector(tag2Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_tag3 setTitle:tags[2] forState:UIControlStateNormal];
+    [_tag3 setTintColor:[UIColor clearColor]];
+    [_tag3 setTitleColor:defaultMainColor forState:UIControlStateNormal];
+    [_tag3 addTarget:self action:@selector(tag3Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_tag4 setTitle:tags[3] forState:UIControlStateNormal];
+    [_tag4 setTintColor:[UIColor clearColor]];
+    [_tag4 setTitleColor:defaultMainColor forState:UIControlStateNormal];
+    [_tag4 addTarget:self action:@selector(tag4Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_tag5 setTitle:tags[4] forState:UIControlStateNormal];
+    [_tag5 setTintColor:[UIColor clearColor]];
+    [_tag5 setTitleColor:defaultMainColor forState:UIControlStateNormal];
+    [_tag5 addTarget:self action:@selector(tag5Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // [_tag6 setEnabled:NO];
+    // [_tag7 setEnabled:NO];
+    // [_tag8 setHidden:YES];
+}
+
+-(IBAction)tag1Click:(id)sender{
+    if (!_tag1.selected) {
+        [_tag1 setSelected:YES];
+        [_tag1 setBackgroundColor:defaultTagColor];
+        [_tag1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    }
+    else
+    {
+        [_tag1 setSelected:NO];
+        [_tag1 setBackgroundColor:[UIColor clearColor]];
+    }
+    NSLog(@"tag1 selected state = %hhd",_tag1.selected);
+}
+
+-(IBAction)tag2Click:(id)sender{
+    if (!_tag2.selected) {
+        [_tag2 setSelected:YES];
+        [_tag2 setBackgroundColor:defaultTagColor];
+        [_tag2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    }
+    else
+    {
+        [_tag2 setSelected:NO];
+        [_tag2 setBackgroundColor:[UIColor clearColor]];
+    }
+    NSLog(@"tag2 selected state = %hhd",_tag2.selected);
+}
+-(IBAction)tag3Click:(id)sender{
+    if (!_tag3.selected) {
+        [_tag3 setSelected:YES];
+        [_tag3 setBackgroundColor:defaultTagColor];
+        [_tag3 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    }
+    else
+    {
+        [_tag3 setSelected:NO];
+        [_tag3 setBackgroundColor:[UIColor clearColor]];
+    }
+    NSLog(@"tag3 selected state = %hhd",_tag3.selected);
+}
+-(IBAction)tag4Click:(id)sender{
+    if (!_tag4.selected) {
+        [_tag4 setSelected:YES];
+        [_tag4 setBackgroundColor:defaultTagColor];
+        [_tag4 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    }
+    else
+    {
+        [_tag4 setSelected:NO];
+        [_tag4 setBackgroundColor:[UIColor clearColor]];
+    }
+    NSLog(@"tag4 selected state = %hhd",_tag4.selected);
+}
+-(IBAction)tag5Click:(id)sender{
+    if (!_tag5.selected) {
+        [_tag5 setSelected:YES];
+        [_tag5 setBackgroundColor:defaultTagColor];
+        [_tag5 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    }
+    else
+    {
+        [_tag5 setSelected:NO];
+        [_tag5 setBackgroundColor:[UIColor clearColor]];
+    }
+    NSLog(@"tag5 selected state = %hhd",_tag5.selected);
+}
+
+
 
 - (void)DoAlert : (NSString*)caption: (NSString*)content
 {
@@ -343,7 +485,6 @@
     [self.actDescription resignFirstResponder];
     [self.actLocation resignFirstResponder];
     [self.actPeopleLimit resignFirstResponder];
-    [self.otherTag resignFirstResponder];
 }
 
 -(void)textViewDidChange:(UITextView *)textView
@@ -485,6 +626,10 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField==otherTag) {
+        textField.text = otherTag.text;
+    }
+    else{
     NSInteger row = [dataPicker selectedRowInComponent:0];
     if (actUniversity.isEditing) {
         textField = actUniversity;
@@ -498,6 +643,34 @@
         textField = actCollege;
     }
     textField.text = [pickerArray objectAtIndex:row];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{ //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder
+    NSTimeInterval animationDuration = 0.30f;
+    CGRect frame = self.view.frame;
+    frame.origin.y -= 216;
+    frame.size.height +=10;
+    [UIView beginAnimations:@"ResizeView" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{//当用户按下ruturn，把焦点从textField移开那么键盘就会消失了
+    NSTimeInterval animationDuration = 0.10f;
+    CGRect frame = self.view.frame;
+    frame.origin.y += 216;
+    frame.size.height -=10;
+    //self.view移回原位置
+    [UIView beginAnimations:@"ResizeView" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+    [textField resignFirstResponder];
+    return 0;
 }
 
 - (void) OnSchoolChange
