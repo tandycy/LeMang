@@ -147,10 +147,7 @@ NSString *navTitle;
                 iconImg = privateIcon;
             }
             
-            NSString* imgUrlString = temp[@"iconUrl"];
-            
-            if (![imgUrlString isKindOfClass:[NSString class]])
-                imgUrlString = @"";
+            NSString* imgUrlString = [UserManager filtStr:temp[@"iconUrl"] :@""];
             NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
             
             NSDictionary* board = temp[@"board"];

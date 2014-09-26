@@ -208,6 +208,7 @@
 
     [activityData setValue:actNameString forKey:@"title"];
     [activityData setValue:actDescriptionString forKey:@"description"];
+    [activityData setValue:actLocation forKey:@"address"];
     
     if (allDayTrigger.isOn)
         [activityData setValue:@"true" forKey:@"isAllDay"];

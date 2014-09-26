@@ -195,12 +195,24 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eS1-0G-sMa">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eS1-0G-sMa" customClass="IconImageButtonLoader">
                                                     <rect key="frame" x="122" y="6" width="77" height="77"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="add_photo">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="OnChangePhoto:" destination="kXK-B7-6FX" eventType="touchUpInside" id="U5l-Sw-QdL"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G7Y-va-lNI">
+                                                    <rect key="frame" x="176" y="59" width="23" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.88555112092391308" green="0.88555112092391308" blue="0.88555112092391308" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="no"/>
+                                                    <connections>
+                                                        <action selector="OnCancelPhoto:" destination="kXK-B7-6FX" eventType="touchUpInside" id="A9i-Xi-PnY"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -337,6 +349,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="AddPhotoButton" destination="eS1-0G-sMa" id="zLb-BS-BR4"/>
+                        <outlet property="CancelPhotoButton" destination="G7Y-va-lNI" id="wyj-He-Wur"/>
                         <outlet property="actDescription" destination="tY6-RX-KpY" id="MEq-Ge-H3b"/>
                         <outlet property="actName" destination="kQY-vH-uRp" id="tGB-PC-3rZ"/>
                         <outlet property="allDayTrigger" destination="Ksr-jZ-nPU" id="IR8-14-sye"/>
@@ -387,7 +401,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="828" y="-2817"/>
+            <point key="canvasLocation" x="789" y="-2838"/>
         </scene>
         <!--Edit Activity Detail Table View Controller-->
         <scene sceneID="Cj1-Rh-1Bj">
@@ -3535,6 +3549,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="mess_1" width="21" height="17"/>
         <image name="more_button" width="47" height="17"/>
         <image name="my_activity_bar" width="320" height="40"/>
+        <image name="no" width="23" height="25"/>
         <image name="rate_star_off" width="39" height="39"/>
         <image name="rate_star_whole" width="14" height="14"/>
         <image name="split_line" width="1" height="1"/>

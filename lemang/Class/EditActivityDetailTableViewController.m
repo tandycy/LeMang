@@ -51,6 +51,9 @@
     
     self.navigationItem.leftBarButtonItem = ttt;
     
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(DoCommitEdit:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
+    
     [self RecoverDataContent];
 }
 
@@ -176,7 +179,50 @@
 
 - (void) RecoverDataContent
 {
-    //
+    NSString* category = [UserManager filtStr:activityData[@"activityGroup"] :@""];
+    
+    if ([category isEqualToString:@"University"])
+        [_actHostType setSelectedSegmentIndex:0];
+    else if ([category isEqualToString:@"Department"])
+        [_actHostType setSelectedSegmentIndex:1];
+    else if ([category isEqualToString:@"Company"])
+        [_actHostType setSelectedSegmentIndex:2];
+    else if ([category isEqualToString:@"Association"])
+        [_actHostType setSelectedSegmentIndex:3];
+    else if ([category isEqualToString:@"Person"])
+        [_actHostType setSelectedSegmentIndex:4];
+    else
+        [_actHostType setSelectedSegmentIndex:0];
+    
+    NSString* region = [UserManager filtStr:activityData[@"regionLimit"] :@""];
+    [_actAreaLimit setSelectedSegmentIndex:0];
+    for (int i = 0; i < _actAreaLimit.numberOfSegments; i++)
+    {
+        if ([region isEqualToString:[_actAreaLimit titleForSegmentAtIndex:i]])
+        {
+            [_actAreaLimit setSelectedSegmentIndex:i];
+            break;
+        }
+    }
+    
+    NSString* type = [UserManager filtStr:activityData[@"activityType"] :@""];
+    if ([type isEqualToString:@"Notice"])
+        [_actType setSelectedSegmentIndex:0];
+    else if ([type isEqualToString:@"Activity"])
+        [_actType setSelectedSegmentIndex:1];
+    else
+        [_actType setSelectedSegmentIndex:1];
+
+    _actPeopleLimit.text = [UserManager filtStr:activityData[@"peopleLimit"] :@""];
+    _actLocation.text = [UserManager filtStr:activityData[@"address"] :@""];
+    _actOtherLimit.text = [UserManager filtStr:activityData[@"otherLimit"] :@""];
+    _actContact.text = [UserManager filtStr:activityData[@"contact"] :@""];
+    
+    
+    actUniversity.text = [UserManager filtStr:activityData[@"university"] :@""];
+    [self OnSchoolChange];
+    actArea.text = [UserManager filtStr:activityData[@"area"] :@""];
+    actCollege.text = [UserManager filtStr:activityData[@"department"] :@""];
 }
 
 - (void) UpdateDataContent
@@ -188,16 +234,16 @@
             [activityData setValue:@"University" forKey:@"activityGroup"];
             break;
         case 1:// 1 - 院系
-            [activityData setValue:@"University" forKey:@"activityGroup"];
+            [activityData setValue:@"Department" forKey:@"activityGroup"];
             break;
         case 2:// 2 - 商家
-            [activityData setValue:@"University" forKey:@"activityGroup"];
+            [activityData setValue:@"Company" forKey:@"activityGroup"];
             break;
         case 3:// 3 - 社团
-            [activityData setValue:@"University" forKey:@"activityGroup"];
+            [activityData setValue:@"Association" forKey:@"activityGroup"];
             break;
         case 4:// 4 - 个人
-            [activityData setValue:@"University" forKey:@"activityGroup"];
+            [activityData setValue:@"Person" forKey:@"activityGroup"];
             break;
         default:
             break;
@@ -220,22 +266,79 @@
         default:
             break;
     }
+
+    // temp data
+    [activityData setValue:actUniversity.text forKey:@"university"];
+    [activityData setValue:actArea.text forKey:@"area"];
+    [activityData setValue:actCollege.text forKey:@"department"];
+
+    
+    NSString* memberUp = @"0";
+    if (_actPeopleLimit.text.length > 0)
+        memberUp = _actPeopleLimit.text;
+    [activityData setValue:memberUp forKey:@"peopleLimit"];
+    
+    [activityData setValue:_actLocation.text forKey:@"address"];
+    
+    if (_actOtherLimit.text.length == 0)
+        [activityData removeObjectForKey:@"otherLimit"];
+    else
+        [activityData setValue:_actOtherLimit.text forKey:@"otherLimit"];
+    
+    if (_actContact.text.length == 0)
+        [activityData removeObjectForKey:@"contact"];
+    else
+        [activityData setValue:_actContact.text forKey:@"contact"];
+    
+    //if (_actTags.text.length == 0)
+    //    [activityData removeObjectForKey:@"tags"];
+    //else
+    //    [activityData setValue:_actOtherLimit.text forKey:@"tags"];
+    
+    [activityData removeObjectForKey:@"tags"];
+    
+
+    /*
+    NSDateFormatter *nsdf2=[[NSDateFormatter alloc] init];
+    [nsdf2 setDateStyle:NSDateFormatterShortStyle];
+    [nsdf2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *t2=[nsdf2 stringFromDate:[NSDate date]];
+    [activityData setValue:t2 forKey:@"createdDate"];
+     */
+
+    
+    //[activityData setValue:@"" forKey:@"tags"];
+    //[activityData setValue:@"" forKey:@"createdByAssociation"];
+    
+}
+
+
+- (void) UpdateIdData
+{
+    NSNumber* uid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
+    NSMutableDictionary* uidDic = [[NSMutableDictionary alloc]init];
+    [uidDic setValue:uid forKey:@"id"];
+    [activityData setValue:uidDic forKey:@"createdBy"];
     
     NSString* schoolName = actUniversity.text;
     SchoolItem* school = [SchoolManager GetSchoolItem:schoolName];
     if (school != Nil)
     {
         NSNumber* sid = [school GetId];
-        NSString* schoolData = [NSString stringWithFormat:@"{\"id\":%@}",sid];
-        [activityData setObject:schoolData forKey:@"university"];
+        //NSString* schoolData = [NSString stringWithFormat:@"{\"id\":%@}",sid];
+        NSMutableDictionary* schoolDic = [[NSMutableDictionary alloc]init];
+        [schoolDic setValue:sid forKey:@"id"];
+        [activityData setObject:schoolDic forKey:@"university"];
         
         NSNumber* areaId = [school GetAreaId:actArea.text];
         if (!areaId)
             [activityData removeObjectForKey:@"area"];
         else
         {
-            NSString* areaData = [NSString stringWithFormat:@"{\"id\":%@}",areaId];
-            [activityData setObject:areaData forKey:@"area"];
+            //NSString* areaData = [NSString stringWithFormat:@"{\"id\":%@}",areaId];
+            NSMutableDictionary* areaDic = [[NSMutableDictionary alloc]init];
+            [areaDic setValue:areaId forKey:@"id"];
+            [activityData setObject:areaDic forKey:@"area"];
         }
         
         NSNumber* departId = [school GetDepartId:actCollege.text];
@@ -243,8 +346,10 @@
             [activityData removeObjectForKey:@"department"];
         else
         {
-            NSString* departData = [NSString stringWithFormat:@"{\"id\":%@}",departId];
-            [activityData setObject:departData forKey:@"department"];
+            //NSString* departData = [NSString stringWithFormat:@"{\"id\":%@}",departId];
+            NSMutableDictionary* depDic = [[NSMutableDictionary alloc]init];
+            [depDic setValue:departId forKey:@"id"];
+            [activityData setObject:depDic forKey:@"department"];
         }
     }
     else
@@ -254,31 +359,107 @@
         [activityData removeObjectForKey:@"area"];
     }
     
-    NSString* memberUp = @"0";
-    if (_actPeopleLimit.text.length > 0)
-        memberUp = _actPeopleLimit.text;
+    NSNumber* memberUp = [NSNumber numberWithLong:_actPeopleLimit.text.integerValue];
     [activityData setValue:memberUp forKey:@"peopleLimit"];
-    
-    // UITextField *actHost;
-    // IBOutlet UISegmentedControl *actTags;
-    // IBOutlet UITextField *otherTag;
-    
-    [activityData setValue:_actLocation.text forKey:@"address"];
-    [activityData setValue:_actOtherLimit.text forKey:@"otherLimit"];
-    [activityData setValue:_actContact.text forKey:@"contact"];
-    
-    NSDateFormatter *nsdf2=[[NSDateFormatter alloc] init];
-    [nsdf2 setDateStyle:NSDateFormatterShortStyle];
-    [nsdf2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *t2=[nsdf2 stringFromDate:[NSDate date]];
-    [activityData setValue:t2 forKey:@"createdDate"];
-
-    
-    //[activityData setValue:@"" forKey:@"tags"];
-    //[activityData setValue:@"" forKey:@"createdByAssociation"];
-    
 }
 
+- (void)DoAlert : (NSString*)caption: (NSString*)content
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    [alertView show];
+}
+
+- (BOOL) CheckActivityData
+{
+    if (actUniversity.text.length == 0)
+    {
+        [self DoAlert:@"学校不能为空":@""];
+        return false;
+    }
+    if (actArea.text.length == 0)
+    {
+        [self DoAlert:@"校区不能为空":@""];
+        return false;
+    }
+    if (actCollege.text.length == 0)
+    {
+        [self DoAlert:@"院系不能为空":@""];
+        return false;
+    }
+    
+    
+    if (_actLocation.text.length == 0)
+    {
+        [self DoAlert:@"地址不能为空":@""];
+        return false;
+    }
+    if (_actPeopleLimit.text.length == 0)
+    {
+        [self DoAlert:@"未指定人数限制":@""];
+        return false;
+    }
+    
+    return true;
+}
+
+- (IBAction)DoCommitEdit:(id)sender
+{
+    if (![self CheckActivityData])  // failed pass info check
+        return;
+    
+    [self UpdateDataContent];
+    [self UpdateIdData];
+    
+    NSData* postData = [NSJSONSerialization dataWithJSONObject:activityData options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\""];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\"true\"" withString:@"true"];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\"false\"" withString:@"false"];
+    
+    //NSLog(@"%@", jsonString);
+    
+    NSString* actUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity";
+    NSNumber* actId = activityData[@"id"];
+    actUrlStr = [actUrlStr stringByAppendingFormat:@"/%@", actId];
+    ASIHTTPRequest* createRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:actUrlStr]];
+    
+    [createRequest addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [createRequest appendPostData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    [createRequest setRequestMethod:@"PUT"];
+    
+    [createRequest startSynchronous];
+    
+    NSError* error = [createRequest error];
+    
+    if (error)
+    {
+        NSString* errorStr = @"网络连接错误:";
+        errorStr = [errorStr stringByAppendingFormat:@"%d - %@",error.code, error.localizedDescription];
+        [self DoAlert:@"编辑失败" :errorStr];
+        return;
+    }
+    
+    int returnCode = [createRequest responseStatusCode];
+    
+    if (returnCode == 200)
+    {
+        // TODO create success operation
+        /*
+        if (owner != nil && [owner isKindOfClass:[ActivityViewController class]])
+        {
+            [(ActivityViewController*)owner CreateActivityDone];
+            [self.navigationController popViewControllerAnimated:true];
+        }
+         */
+    }
+    else
+    {
+        NSLog(@"%d - %@", returnCode, jsonString);
+    }
+
+}
 
 #pragma mark - Table view data source
 /*

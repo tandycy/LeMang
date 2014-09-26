@@ -19,9 +19,6 @@
     UILabel *descriptionHolder;
     UILabel *nameHolder;
     
-    NSString *actNameString;
-    NSString *actDescriptionString;
-
     NSDate *tempDate;
     NSDate *tempDate2;
 }
@@ -94,6 +91,9 @@
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
     
+    localNewIcon = nil;
+    [_CancelPhotoButton setHidden:true];
+    
     [self InitActivityData];
     
 }
@@ -121,6 +121,10 @@
         activityData = [[NSMutableDictionary alloc]init];
         
         NSDictionary* fullData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+        
+        NSString* iconStr = [UserManager filtStr:fullData[@"iconUrl"] :@""];
+        NSURL* iconUrl = [NSURL URLWithString:iconStr];
+        [_AddPhotoButton LoadFromUrl:iconUrl :[UIImage imageNamed:@"default_Icon"] AfterLoad:@selector(AfterIconLoad:) Target:self];
         
         // Reset id
         [activityData setValue:actId forKey:@"id"];
@@ -177,8 +181,11 @@
         NSString* regionLimit = [UserManager filtStr:fullData[@"regionLimit"] :@""];
         [activityData setValue:regionLimit forKey:@"regionLimit"];
         
-        NSString* tags = [UserManager filtStr:fullData[@"tags"] :@""];
-        [activityData setValue:tags forKey:@"tags"];
+        //NSString* tags = [UserManager filtStr:fullData[@"tags"] :@""];
+        //[activityData setValue:tags forKey:@"tags"];
+        
+        NSString* createTime = fullData[@"createdDate"];
+        [activityData setValue:createTime forKey:@"createdDate"];
     }
 }
 
@@ -227,9 +234,6 @@
         }
         
     }
-    
-    actNameString = @"";
-    actDescriptionString = @"";
 
 }
 
@@ -247,7 +251,6 @@
         }else{
             nameHolder.text = @"";
         }
-        actNameString =  textView.text;
     }
     else if (textView == actDescription)
     {
@@ -256,7 +259,6 @@
         }else{
             descriptionHolder.text = @"";
         }
-        actDescriptionString = textView.text;
     }
 }
 
@@ -300,22 +302,61 @@
     }
 }
 
+- (IBAction)OnChangePhoto:(id)sender {
+}
+
+- (IBAction)OnCancelPhoto:(id)sender {
+}
+
+- (void) AfterIconLoad : (UIImage*)loadImg
+{
+    originIcon = loadImg;
+    
+    if (localNewIcon != nil)
+        [_AddPhotoButton setImage:localNewIcon forState:UIControlStateNormal];
+}
+
+- (void)DoAlert : (NSString*)caption: (NSString*)content
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    [alertView show];
+}
+
+- (BOOL) CheckActivityData
+{
+    if (actName.text.length == 0)
+    {
+        [self DoAlert:@"标题不能为空":@""];
+        return false;
+    }
+    if (actDescription.text.length == 0)
+    {
+        [self DoAlert:@"描述不能为空":@""];
+        return false;
+    }
+    
+    return true;
+}
+
+
 - (IBAction)nextButton:(id)sender {
+    
+    if (![self CheckActivityData])
+        return;
+    
     EditActivityDetailTableViewController *EditActDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditActivityDetailTableViewController"];
     EditActDetailVC.navigationItem.title = @"详细页面";
     
     NSNumber* uid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
     
 
-    [activityData setValue:actNameString forKey:@"title"];
-    [activityData setValue:actDescriptionString forKey:@"description"];
+    [activityData setValue:actName.text forKey:@"title"];
+    [activityData setValue:actDescription.text forKey:@"description"];
     
     if (allDayTrigger.isOn)
         [activityData setValue:@"true" forKey:@"isAllDay"];
     else
         [activityData setValue:@"false" forKey:@"isAllDay"];
-    
-    [activityData setValue:uid forKey:@"createdBy"];
     
     nowDate = [[NSDateFormatter alloc]init];
     [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

@@ -21,6 +21,9 @@
     NSMutableDictionary* buffer;
     
     ASIHTTPRequest* localRequest;
+    
+    SEL afterSelector;
+    id target;
 }
 
 - (UIImage*) LocalImageData;
@@ -31,6 +34,7 @@
 
 - (void)LoadFromUrl : (NSURL*)URL;
 - (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg;
+- (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg AfterLoad:(SEL)afterLoad Target:(id)_target;
 - (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg : (NSMutableDictionary*)outputBuffer;
 - (void)SetLocation: (int)_sector: (int)_row: (int)_index;
 @end
