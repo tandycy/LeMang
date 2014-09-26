@@ -98,7 +98,7 @@
     [self LoadFromUrl:URL :defaultImg];
 }
 
-- (void)LoadFromUrl:(NSURL *)URL :(UIImage *)defaultImg AfterLoad:(SEL)afterLoad Target:(id)_target
+- (void)LoadFromUrl:(NSURL *)URL :(UIImage *)defaultImg :(SEL)afterLoad :(id)_target
 {
     afterSelector = afterLoad;
     target = _target;

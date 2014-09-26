@@ -21,6 +21,8 @@
     
     NSDate *tempDate;
     NSDate *tempDate2;
+    
+    NSString* iconStr;
 }
 
 @end
@@ -94,7 +96,8 @@
     localNewIcon = nil;
     [_CancelPhotoButton setHidden:true];
     
-    [_AddPhotoButton setImage:[UIImage imageNamed:@"default_Icon"] forState:UIControlStateNormal];
+    NSURL* iconUrl = [NSURL URLWithString:iconStr];
+    [_AddPhotoButton LoadFromUrl:iconUrl :[UIImage imageNamed:@"default_Icon"] :@selector(AfterIconLoad:) :self];
     
     [self InitActivityData];
     
@@ -124,9 +127,14 @@
         
         NSDictionary* fullData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
         
-        NSString* iconStr = [UserManager filtStr:fullData[@"iconUrl"] :@""];
-        NSURL* iconUrl = [NSURL URLWithString:iconStr];
-        [_AddPhotoButton LoadFromUrl:iconUrl :[UIImage imageNamed:@"default_Icon"] AfterLoad:@selector(AfterIconLoad:) Target:self];
+        iconStr = [UserManager filtStr:fullData[@"iconUrl"] :@""];
+        if (iconStr.length > 0)
+        {
+            NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/a/";
+            tempstr = [tempstr stringByAppendingFormat:@"%@/", actId];
+            tempstr = [tempstr stringByAppendingString:iconStr];
+            iconStr = tempstr;
+        }
         
         // Reset id
         [activityData setValue:actId forKey:@"id"];
