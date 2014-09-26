@@ -39,6 +39,7 @@
     linkedActivity.cachedImg = activityIconImg.image;
     imgData = [[NSMutableData alloc] init];
     
+    localRequest = request;
     [request startAsynchronous];
 }
 
@@ -49,12 +50,23 @@
     UIImage *img=[UIImage imageWithData:imgData];
     [activityIconImg setImage:img];
     linkedActivity.cachedImg = img;
+    localRequest = nil;
 }
 
 - (void)requestFailed:(ASIHTTPRequest*)request
 {
     NSError* error = [request error];
     NSLog(@"Download activity image fail: %d",error.code);
+    localRequest = nil;
+}
+
+-(void) dealloc
+{
+    if (localRequest != nil)
+    {
+        [localRequest clearDelegatesAndCancel];
+        NSLog(@"Request canceled by dealloc.");
+    }
 }
 
 @end

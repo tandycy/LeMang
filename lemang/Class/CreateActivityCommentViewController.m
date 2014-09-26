@@ -460,19 +460,6 @@
     [self AddPhotoIcon:image];
 }
 
-- (void)upLoadSalesBigImage:(NSString *)bigImage MidImage:(NSString *)midImage SmallImage:(NSString *)smallImage
-{
-    /* NSURL *url = [NSURL URLWithString:UPLOAD_SERVER_URL];
-     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-     [request setPostValue:@"photo" forKey:@"type"];
-     [request setFile:bigImage forKey:@"file_pic_big"];
-     [request buildPostBody];
-     [request setDelegate:self];
-     [request setTimeOutSeconds:TIME_OUT_SECONDS];
-     [request startAsynchronous];
-     */
-}
-
 - (NSString *)documentFolderPath
 {
     return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];

@@ -16,6 +16,8 @@
     NSData* imgData;
     NSURLResponse* _response;
     Activity* linkedActivity;
+    
+    ASIHTTPRequest* localRequest;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *activityIconImg;
 @property (nonatomic) Activity* linkedActivity;
