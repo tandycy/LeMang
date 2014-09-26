@@ -54,6 +54,7 @@
 		258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 258087C819A71EED005E308D /* UITableGridViewCell.m */; };
 		25874DAB19A5FFE000264B4D /* CreateOrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */; };
 		259F017E19D3FF8D0073492F /* InviteMyFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259F017D19D3FF8D0073492F /* InviteMyFriendsTableViewController.m */; };
+		25A411FA19D55BD500914599 /* MyOrgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A411F919D55BD500914599 /* MyOrgCell.m */; };
 		25BAA3D219ACAFC500E87856 /* EditActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */; };
 		25C2392A19D0207E00F31AFE /* MyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392919D0207E00F31AFE /* MyFriendCell.m */; };
 		25C2392D19D0272D00F31AFE /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392C19D0272D00F31AFE /* Friend.m */; };
@@ -236,6 +237,8 @@
 		25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateOrganizationTableViewController.m; path = Class/CreateOrganizationTableViewController.m; sourceTree = "<group>"; };
 		259F017C19D3FF8D0073492F /* InviteMyFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteMyFriendsTableViewController.h; path = Class/InviteMyFriendsTableViewController.h; sourceTree = "<group>"; };
 		259F017D19D3FF8D0073492F /* InviteMyFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InviteMyFriendsTableViewController.m; path = Class/InviteMyFriendsTableViewController.m; sourceTree = "<group>"; };
+		25A411F819D55BD500914599 /* MyOrgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyOrgCell.h; path = Class/MyOrgCell.h; sourceTree = "<group>"; };
+		25A411F919D55BD500914599 /* MyOrgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyOrgCell.m; path = Class/MyOrgCell.m; sourceTree = "<group>"; };
 		25BAA3D019ACAFC500E87856 /* EditActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditActivityTableViewController.h; path = Class/EditActivityTableViewController.h; sourceTree = "<group>"; };
 		25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditActivityTableViewController.m; path = Class/EditActivityTableViewController.m; sourceTree = "<group>"; };
 		25C2392819D0207E00F31AFE /* MyFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFriendCell.h; path = Class/MyFriendCell.h; sourceTree = "<group>"; };
@@ -912,6 +915,8 @@
 				25C2392919D0207E00F31AFE /* MyFriendCell.m */,
 				28DC154419D35ADE00DE97F0 /* MyActivityCell.h */,
 				28DC154519D35ADE00DE97F0 /* MyActivityCell.m */,
+				25A411F819D55BD500914599 /* MyOrgCell.h */,
+				25A411F919D55BD500914599 /* MyOrgCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1126,6 +1131,7 @@
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
 				EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
+				25A411FA19D55BD500914599 /* MyOrgCell.m in Sources */,
 				258087C919A71EED005E308D /* UIImageButton.m in Sources */,
 				25C3A0FE19ADC4EC00BB48B3 /* UIView+Extension.m in Sources */,
 				25C2392A19D0207E00F31AFE /* MyFriendCell.m in Sources */,
