@@ -43,6 +43,40 @@
     return localData;
 }
 
+- (NSNumber*) getOrgId
+{
+    return organizationId;
+}
+
+- (void)ParseOrgType:(NSString*)input
+{
+    if ([input isEqualToString:@"University"])
+    {
+        orgType = University;
+        [_typeIcon setImage:[UIImage imageNamed:@"school_icon"]];
+    }
+    else if ([input isEqualToString:@"Department"])
+    {
+        orgType = Department;
+        [_typeIcon setImage:[UIImage imageNamed:@"school_icon"]];
+    }
+    else if ([input isEqualToString:@"Person"])
+    {
+        orgType = Person;
+        [_typeIcon setImage:[UIImage imageNamed:@"private_icon"]];
+    }
+    else if ([input isEqualToString:@"Association"])
+    {
+        orgType = Association;
+        [_typeIcon setImage:[UIImage imageNamed:@"group_icon"]];
+    }
+    else if ([input isEqualToString:@"Company"])
+    {
+        orgType = Company;
+        [_typeIcon setImage:[UIImage imageNamed:@"buisness_icon"]];
+    }
+}
+
 - (void) updateDisplay
 {
     if (localData == Nil)
@@ -59,32 +93,8 @@
     
 
     NSString* orgnizaitonType = localData[@"type"];
-    
-    if ([orgnizaitonType isEqualToString:@"University"])
-    {
-        orgType = University;
-        [_typeIcon setImage:[UIImage imageNamed:@"school_icon"]];
-    }
-    else if ([orgnizaitonType isEqualToString:@"Department"])
-    {
-        orgType = Department;
-        [_typeIcon setImage:[UIImage imageNamed:@"school_icon"]];
-    }
-    else if ([orgnizaitonType isEqualToString:@"Person"])
-    {
-        orgType = Person;
-        [_typeIcon setImage:[UIImage imageNamed:@"private_icon"]];
-    }
-    else if ([orgnizaitonType isEqualToString:@"Association"])
-    {
-        orgType = Association;
-        [_typeIcon setImage:[UIImage imageNamed:@"group_icon"]];
-    }
-    else if ([orgnizaitonType isEqualToString:@"Company"])
-    {
-        orgType = Company;
-        [_typeIcon setImage:[UIImage imageNamed:@"buisness_icon"]];
-    }
+
+    [self ParseOrgType:orgnizaitonType];
     
     NSArray* memberArray = localData[@"associationMember"];
     memberNum = memberArray.count;

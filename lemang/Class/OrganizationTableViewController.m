@@ -125,7 +125,9 @@
     }
     
     [cell updateData:organizationData[indexPath.row]];
-    viewController.linkedCell = cell;
+    
+    //[viewController SetOrgnizationData:[cell getLocalData]];
+    [viewController SetOrgnizationId:[cell getOrgId]];
     //NSLog(@"%@",cell);
     
     [self.navigationController pushViewController:viewController animated:YES];
