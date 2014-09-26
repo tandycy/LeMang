@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "StringEncoder.h"
+#import "TagItem.h"
 #import "ASIHTTPRequest.h"
 
 @protocol UserLoginDelegate <NSObject>
@@ -34,6 +35,8 @@
     UIImage* defaultIcon;
     
     bool isdirty;
+    
+    NSArray* tagList;
 }
 
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
@@ -46,6 +49,8 @@
 + (NSString*) filtStr:(NSString*)inputStr;
 + (NSString*) filtStr:(NSString*)inputStr :(NSString*)defaultStr;
 + (void) RefreshUserData;
++ (void) RefreshTagData;
++ (NSArray*) GetTags;
 
 + (bool)IsUserNameExists:(NSString*)nameData;
 + (bool) IsInitSuccess;

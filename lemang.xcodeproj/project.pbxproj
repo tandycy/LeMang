@@ -141,6 +141,7 @@
 		EE9B1DB219BC34F8001E2C7C /* HttpGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */; };
 		EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */; };
 		EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC7756719B0702B0035B400 /* OrganizationViewCell.m */; };
+		EED245DF19D58535002D99D7 /* TagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EED245DE19D58535002D99D7 /* TagItem.m */; };
 		EEEE40AE19C845C900001B37 /* IconImageButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */; };
 /* End PBXBuildFile section */
 
@@ -399,6 +400,8 @@
 		EE9BCB3D19AB45E700710F90 /* ActivityViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityViewCell.m; path = Class/ActivityViewCell.m; sourceTree = "<group>"; };
 		EEC7756619B0702B0035B400 /* OrganizationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationViewCell.h; path = Class/OrganizationViewCell.h; sourceTree = "<group>"; };
 		EEC7756719B0702B0035B400 /* OrganizationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganizationViewCell.m; path = Class/OrganizationViewCell.m; sourceTree = "<group>"; };
+		EED245DD19D58535002D99D7 /* TagItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagItem.h; path = Class/TagItem.h; sourceTree = "<group>"; };
+		EED245DE19D58535002D99D7 /* TagItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagItem.m; path = Class/TagItem.m; sourceTree = "<group>"; };
 		EEEE40AC19C845C900001B37 /* IconImageButtonLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageButtonLoader.h; path = Class/IconImageButtonLoader.h; sourceTree = "<group>"; };
 		EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageButtonLoader.m; path = Class/IconImageButtonLoader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -942,6 +945,8 @@
 				EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */,
 				EE77B02819D26D330018EAF7 /* IconImageViewLoaderWithButton.h */,
 				EE77B02919D26D330018EAF7 /* IconImageViewLoaderWithButton.m */,
+				EED245DD19D58535002D99D7 /* TagItem.h */,
+				EED245DE19D58535002D99D7 /* TagItem.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -1009,7 +1014,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1129,6 +1134,7 @@
 				258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */,
 				251CEBBB19A31FBC00C80BAF /* OrganizationTableViewController.m in Sources */,
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
+				EED245DF19D58535002D99D7 /* TagItem.m in Sources */,
 				EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
 				25A411FA19D55BD500914599 /* MyOrgCell.m in Sources */,
@@ -1412,7 +1418,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

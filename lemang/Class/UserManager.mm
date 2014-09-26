@@ -346,6 +346,59 @@ static UserManager* managerInstance;
     return nil;
 }
 
++ (void)RefreshTagData
+{
+    NSMutableArray* newTagArray = [[NSMutableArray alloc]init];
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/tag";
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    
+    if (!error)
+    {
+        NSArray* tags = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+        
+        for (int i = 0; i < tags.count; i++) {
+            NSDictionary* item = tags[i];
+            TagItem* newTag = [[TagItem alloc]init];
+            
+            newTag.tagId = item[@"id"];
+            newTag.name = item[@"name"];
+            
+            NSString* clazz = item[@"clazz"];
+            if ([clazz isEqualToString:@"Organization"])
+                newTag.tagClass = TagOrganization;
+            else
+                newTag.tagClass = TagActivity;
+            
+            NSString* defined = item[@"definedBy"];
+            if ([defined isEqualToString:@"System"])
+                newTag.tagDefined = TagSystem;
+            else
+                newTag.tagDefined = TagUser;
+            
+            [newTagArray addObject:newTag];
+        }
+    }
+    
+    [UserManager Instance]->tagList = [NSArray arrayWithArray:newTagArray];
+}
+
++ (NSArray*)GetTags
+{
+    if ([UserManager Instance]->tagList == nil)
+        [UserManager RefreshTagData];
+    
+    return [UserManager Instance]->tagList;
+}
+
 - (id)copyWithZone:(struct _NSZone *)zone
 {
     return self;

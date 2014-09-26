@@ -100,6 +100,7 @@
     [_AddPhotoButton LoadFromUrl:iconUrl :[UIImage imageNamed:@"default_Icon"] :@selector(AfterIconLoad:) :self];
     
     [self InitActivityData];
+    [UserManager RefreshTagData];
     
 }
 
