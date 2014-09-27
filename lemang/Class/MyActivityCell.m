@@ -11,6 +11,7 @@
 #import "MyAcitivityTableViewController.h"
 #import "InviteMyFriendsTableViewController.h"
 
+
 @implementation MyActivityCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

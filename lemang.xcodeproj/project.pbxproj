@@ -10,6 +10,8 @@
 		2516A7D6199B5CC000768986 /* head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2516A7D5199B5CC000768986 /* head.jpg */; };
 		251CEBBB19A31FBC00C80BAF /* OrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251CEBBA19A31FBC00C80BAF /* OrganizationTableViewController.m */; };
 		251CEBBE19A33D5B00C80BAF /* OrganizationDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251CEBBD19A33D5B00C80BAF /* OrganizationDetailTableViewController.m */; };
+		25337BDE19D6E21E00542C84 /* EditOrganizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25337BDD19D6E21E00542C84 /* EditOrganizationTableViewController.m */; };
+		25337BE119D6E23600542C84 /* EditOrganizationDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25337BE019D6E23600542C84 /* EditOrganizationDetailTableViewController.m */; };
 		2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */; };
 		253823FF199A097E00180DB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253823FE199A097E00180DB9 /* Images.xcassets */; };
 		25382404199A1EE300180DB9 /* group1.png in Resources */ = {isa = PBXBuildFile; fileRef = 25382403199A1EE300180DB9 /* group1.png */; };
@@ -162,6 +164,10 @@
 		251CEBBC19A33D5B00C80BAF /* OrganizationDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationDetailTableViewController.h; path = Class/OrganizationDetailTableViewController.h; sourceTree = "<group>"; };
 		251CEBBD19A33D5B00C80BAF /* OrganizationDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganizationDetailTableViewController.m; path = Class/OrganizationDetailTableViewController.m; sourceTree = "<group>"; };
 		2532699C199DBE510054F989 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Class/Constants.h; sourceTree = "<group>"; };
+		25337BDC19D6E21E00542C84 /* EditOrganizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditOrganizationTableViewController.h; path = Class/EditOrganizationTableViewController.h; sourceTree = "<group>"; };
+		25337BDD19D6E21E00542C84 /* EditOrganizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditOrganizationTableViewController.m; path = Class/EditOrganizationTableViewController.m; sourceTree = "<group>"; };
+		25337BDF19D6E23600542C84 /* EditOrganizationDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditOrganizationDetailTableViewController.h; path = Class/EditOrganizationDetailTableViewController.h; sourceTree = "<group>"; };
+		25337BE019D6E23600542C84 /* EditOrganizationDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditOrganizationDetailTableViewController.m; path = Class/EditOrganizationDetailTableViewController.m; sourceTree = "<group>"; };
 		2537509519989B9A006974C9 /* ActivityDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityDetailTableViewController.h; path = Class/ActivityDetailTableViewController.h; sourceTree = "<group>"; };
 		2537509619989B9A006974C9 /* ActivityDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityDetailTableViewController.m; path = Class/ActivityDetailTableViewController.m; sourceTree = "<group>"; };
 		253823FE199A097E00180DB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -617,6 +623,10 @@
 				251CEBBD19A33D5B00C80BAF /* OrganizationDetailTableViewController.m */,
 				25874DA919A5FFE000264B4D /* CreateOrganizationTableViewController.h */,
 				25874DAA19A5FFE000264B4D /* CreateOrganizationTableViewController.m */,
+				25337BDC19D6E21E00542C84 /* EditOrganizationTableViewController.h */,
+				25337BDD19D6E21E00542C84 /* EditOrganizationTableViewController.m */,
+				25337BDF19D6E23600542C84 /* EditOrganizationDetailTableViewController.h */,
+				25337BE019D6E23600542C84 /* EditOrganizationDetailTableViewController.m */,
 				EEC7756619B0702B0035B400 /* OrganizationViewCell.h */,
 				EEC7756719B0702B0035B400 /* OrganizationViewCell.m */,
 			);
@@ -1014,7 +1024,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1148,6 +1158,7 @@
 				28DC153219BD5E8100DE97F0 /* ASIS3BucketObject.m in Sources */,
 				25C3A0FD19ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m in Sources */,
 				28DC152219BD5E8000DE97F0 /* ASIDataCompressor.m in Sources */,
+				25337BDE19D6E21E00542C84 /* EditOrganizationTableViewController.m in Sources */,
 				25C3A0F919ADC4EC00BB48B3 /* MJRefreshConst.m in Sources */,
 				EEEE40AE19C845C900001B37 /* IconImageButtonLoader.m in Sources */,
 				28DC152C19BD5E8000DE97F0 /* ASICloudFilesContainerRequest.m in Sources */,
@@ -1155,6 +1166,7 @@
 				25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */,
 				25C735E619C8337B00E596A9 /* MemberInfoTableViewController.m in Sources */,
 				EE18D80519CEC3AF00B1DCA2 /* MyMessageCell.m in Sources */,
+				25337BE119D6E23600542C84 /* EditOrganizationDetailTableViewController.m in Sources */,
 				EE9B1DAF19BC2C76001E2C7C /* SchoolManager.mm in Sources */,
 				28DC152619BD5E8000DE97F0 /* ASIHTTPRequest.m in Sources */,
 				257CD60A19A36EF1001FF078 /* ActivityCommetImageDetailViewController.m in Sources */,
@@ -1418,7 +1430,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,
