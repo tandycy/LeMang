@@ -13,6 +13,9 @@
 @end
 
 @implementation MyOrganizationTableViewController
+{
+    NSMutableArray* titleArray;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,11 +30,90 @@
 {
     [super viewDidLoad];
     
+    
+    titleArray = [[NSMutableArray alloc] initWithObjects:@"管理的组织", @"参加的组织", @"收藏的组织", nil];
+    
+    [self ClearDataArray];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self RefreshOrganizationList];
+}
+
+- (void)ClearDataArray
+{
+    orgAdminList = [[NSMutableArray alloc]init];
+    orgBookmarkList = [[NSMutableArray alloc]init];
+    orgJoinList = [[NSMutableArray alloc]init];
+}
+
+- (void)RefreshOrganizationList
+{
+    int uid = [[UserManager Instance]GetLocalUserId];
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    URLString = [URLString stringByAppendingFormat:@"%d/associations", uid];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest setUsername:@"admin"];
+    [URLRequest setPassword:@"admin"];
+    
+    [URLRequest startSynchronous];
+    
+    NSError *error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* item = returnData[i];
+            NSDictionary* creator = item[@"createdBy"];
+            NSNumber* cid = creator[@"id"];
+            
+            if (uid == cid.integerValue)
+            {
+                [orgAdminList addObject:item];
+            }
+            else
+            {
+                [orgJoinList addObject:item];
+            }
+        }
+    }
+    else
+    {
+        // TODO
+    }
+    
+    NSString* bookmarkStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    bookmarkStr = [bookmarkStr stringByAppendingFormat:@"%d/bookmark/group", uid];
+    NSURL *bookmarkUrl = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *bookmarkRequest = [ASIHTTPRequest requestWithURL:bookmarkUrl];
+    [bookmarkRequest setUsername:@"admin"];
+    [bookmarkRequest setPassword:@"admin"];
+    
+    [URLRequest startSynchronous];
+    
+    error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* item = returnData[i];
+            [orgBookmarkList addObject:item];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,32 +126,81 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    
+    if (section == 0)
+        return orgAdminList.count;
+    
+    if (section == 1)
+        return orgJoinList.count;
+    
+    if (section == 2)
+        return orgBookmarkList.count;
+    
+    return 0;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrgCell" forIndexPath:indexPath];
+    MyOrgCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrgCell" forIndexPath:indexPath];
     
     if (cell==nil) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrgCell" forIndexPath:indexPath];
     }
     
     // Configure the cell...
+    int section = indexPath.section;
+    NSDictionary* actData = nil;
+    
+    if (section == 0)
+    {
+        actData = orgAdminList[indexPath.row];
+        [cell SetAdmin];
+    }
+    else if (section == 1)
+    {
+        actData = orgJoinList[indexPath.row];
+        [cell SetJoin];
+    }
+    else if (section == 2)
+    {
+        actData = orgBookmarkList[indexPath.row];
+        [cell SetBookmark];
+    }
+    
+    [cell SetData:actData :self];
     
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+    
+    [view setBackgroundColor:[UIColor colorWithRed:0.95294117647059 green:0.95294117647059 blue:0.95294117647059 alpha:1]];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 100, 20)];
+    
+    label.textColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
+    
+    label.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
+    
+    label.backgroundColor = [UIColor clearColor];
+    
+    label.text = [titleArray objectAtIndex:section];
+    
+    [view addSubview:label];
+    
+    return view;
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

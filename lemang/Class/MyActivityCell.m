@@ -57,24 +57,6 @@
     _actMember.text = [NSString stringWithFormat:@"%d", memberNum];
 }
 
-- (void)SetAdmin
-{
-    [_buttonEdit setHidden:FALSE];
-    [_buttonInvite setHidden:FALSE];
-}
-
-- (void)SetJoin
-{
-    [_buttonEdit setHidden:true];
-    [_buttonInvite setHidden:FALSE];
-}
-
-- (void)SetBookmark
-{
-    [_buttonEdit setHidden:true];
-    [_buttonInvite setHidden:true];
-}
-
 - (void)awakeFromNib
 {
     // Initialization code

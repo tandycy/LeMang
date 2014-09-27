@@ -33,18 +33,73 @@
     // Configure the view for the selected state
 }
 
+- (void)ClearData
+{
+    localData = nil;
+    
+    _orgMember.text = @"";
+    _orgTitle.text = @"";
+    
+}
+
+- (void)SetData:(NSDictionary *)data : (id)_owner;
+{
+    [self ClearData];
+    
+    if (data == nil || data == NULL)
+    {
+        [_buttonEdit setHidden:true];
+        [_buttonInvite setHidden:true];
+        return;
+    }
+    
+    owner = _owner;
+    localData = data;
+    
+    _orgTitle.text = localData[@"name"];
+    
+    NSDictionary* members = localData[@"users"];
+    int memberNum = 0;
+    if ([members isKindOfClass:[NSDictionary class]])
+    {
+        memberNum = members.count;
+    }
+    _orgMember.text = [NSString stringWithFormat:@"%d", memberNum];
+}
+
+- (void)SetAdmin
+{
+    [_buttonEdit setHidden:FALSE];
+    [_buttonInvite setHidden:FALSE];
+}
+
+- (void)SetJoin
+{
+    [_buttonEdit setHidden:true];
+    [_buttonInvite setHidden:FALSE];
+}
+
+- (void)SetBookmark
+{
+    [_buttonEdit setHidden:true];
+    [_buttonInvite setHidden:true];
+}
+
 -(IBAction)DoOrgEdit:(id)sender
 {
-        if (![owner isKindOfClass:[MyOrganizationTableViewController class]])
-            return;
-        
-        MyOrganizationTableViewController* parView = (MyOrganizationTableViewController*)owner;
+    if (![owner isKindOfClass:[MyOrganizationTableViewController class]])
+        return;
     
-        EditOrganizationTableViewController *EditOrgVC = [parView.storyboard instantiateViewControllerWithIdentifier:@"EditOrganizationTableViewController"];
-        EditOrgVC.navigationItem.title = @"编辑组织";
-        //NSNumber* aid = localData[@"id"];
-        //[EditOrgVC SetActivityDataFromId:aid];
-        [parView.navigationController pushViewController:EditOrgVC animated:YES];
+    MyOrganizationTableViewController* parView = (MyOrganizationTableViewController*)owner;
+    
+    EditOrganizationTableViewController *EditOrgVC = [parView.storyboard instantiateViewControllerWithIdentifier:@"EditOrganizationTableViewController"];
+    EditOrgVC.navigationItem.title = @"编辑组织";
+    NSNumber* orgId = localData[@"id"];
+    [EditOrgVC SetOrganizationDataFromId:orgId];
+    [parView.navigationController pushViewController:EditOrgVC animated:YES];
+}
+
+- (IBAction)DoActInvite:(id)sender{
 }
 
 @end

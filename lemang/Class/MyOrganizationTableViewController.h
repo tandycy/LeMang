@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
+#import "MyOrgCell.h"
 
 @interface MyOrganizationTableViewController : UITableViewController
+{
+    NSMutableArray* orgAdminList;
+    NSMutableArray* orgJoinList;
+    NSMutableArray* orgBookmarkList;
+}
 
 @end

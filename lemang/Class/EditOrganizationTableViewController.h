@@ -19,5 +19,8 @@
 @property (strong, nonatomic) IBOutlet IconImageButtonLoader *orgIcon;
 @property (strong, nonatomic) IBOutlet UITextField *orgShortName;
 
+- (void)SetOrganizationData:(NSDictionary*)data;
+- (void)SetOrganizationDataFromId:(NSNumber*)actId;
+
 
 @end
