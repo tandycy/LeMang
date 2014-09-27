@@ -312,7 +312,11 @@
                 if ([tagPart2 isEqualToString:item.titleLabel.text])
                 {
                     setTag = true;
-                    [item setSelected:true];    // TODO: select tag display abnormal
+                    
+                    // set select
+                    [item setSelected:YES];
+                    [item setBackgroundColor:defaultTagColor];
+                    [item setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
                 }
             }
             
