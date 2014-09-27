@@ -110,6 +110,7 @@
     actDescription.delegate = self;
     actName.delegate = self;
     otherTag.delegate = self;
+    //actPeopleLimit.delegate = self;
     
     nameHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
     nameHolder.font = [UIFont fontWithName:defaultFont  size:15];
@@ -533,15 +534,31 @@
     else if (actUniversity.isEditing) {
         [actUniversity endEditing:YES];
         [self OnSchoolChange];
+        [self downAnim];
     }
     else if(actArea.isEditing)
     {
         [actArea endEditing:YES];
+        [self downAnim];
     }
     else if(actCollege.isEditing)
     {
         [actCollege endEditing:YES];
+        [self downAnim];
     }
+}
+
+-(void)downAnim
+{
+    NSTimeInterval animationDuration = 0.20f;
+    CGRect frame = self.view.frame;
+    frame.origin.y += 216;
+    frame.size.height -=10;
+    //self.view移回原位置
+    [UIView beginAnimations:@"ResizeView" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = frame;
+    [UIView commitAnimations];
 }
 
 - (IBAction)datePickerValueChanged:(id)sender {
