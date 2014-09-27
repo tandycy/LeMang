@@ -312,7 +312,7 @@
                 if ([tagPart2 isEqualToString:item.titleLabel.text])
                 {
                     setTag = true;
-                    [item setSelected:true];    // TODO
+                    [item setSelected:true];    // TODO: select tag display abnormal
                 }
             }
             
