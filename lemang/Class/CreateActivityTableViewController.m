@@ -30,7 +30,7 @@
     NSArray *areaArray;
     NSArray *collegeArray;
     
-    NSMutableArray *tags;
+    NSArray* tagButtonArray;
     
     int keyboardHeight;
 }
@@ -182,109 +182,60 @@
 
 -(void)initTag
 {
-    tags = [[NSMutableArray alloc]initWithObjects:@"体育",@"体育",@"体育",@"体育",@"体育",nil];
+    tagButtonArray = [[NSArray alloc]initWithObjects:_tag1,_tag2,_tag3,_tag4,_tag5,_tag6,_tag7,_tag8,nil];
     
-    //set all tag deselected
-    _tag1.selected = _tag2.selected = _tag3.selected = _tag4.selected = _tag5.selected = _tag6.selected = _tag7.selected = _tag8.selected = NO;
+    for (UIButton* item in tagButtonArray)
+    {
+        item.selected = false;
+        
+        //[_tag1 setTitle:tags[0] forState:UIControlStateNormal];
+        [item setTintColor:[UIColor clearColor]];
+        [item setTitleColor:defaultMainColor forState:UIControlStateNormal];
+        [item addTarget:self action:@selector(tagClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
-    //init Tag Buttons
-    [_tag1 setTitle:tags[0] forState:UIControlStateNormal];
-    [_tag1 setTintColor:[UIColor clearColor]];
-    [_tag1 setTitleColor:defaultMainColor forState:UIControlStateNormal];
-    [_tag1 addTarget:self action:@selector(tag1Click:) forControlEvents:UIControlEventTouchUpInside];
+    int currentTag = 0;
+    NSArray* tagList = [UserManager GetTags];
     
-    [_tag2 setTitle:tags[1] forState:UIControlStateNormal];
-    [_tag2 setTintColor:[UIColor clearColor]];
-    [_tag2 setTitleColor:defaultMainColor forState:UIControlStateNormal];
-    [_tag2 addTarget:self action:@selector(tag2Click:) forControlEvents:UIControlEventTouchUpInside];
+    for (TagItem *item in tagList)
+    {
+        if (currentTag >= tagButtonArray.count)
+            break;
+        
+        //if (item.tagClass == TagActivity)
+        {
+            UIButton* tagButton = tagButtonArray[currentTag];
+            [tagButton setTitle:item.name forState:UIControlStateNormal];
+            currentTag++;
+        }
+    }
     
-    [_tag3 setTitle:tags[2] forState:UIControlStateNormal];
-    [_tag3 setTintColor:[UIColor clearColor]];
-    [_tag3 setTitleColor:defaultMainColor forState:UIControlStateNormal];
-    [_tag3 addTarget:self action:@selector(tag3Click:) forControlEvents:UIControlEventTouchUpInside];
+    for (int i = currentTag; i < tagButtonArray.count; i++)
+    {
+        UIButton* item = tagButtonArray[i];
+        [item setEnabled:NO];
+    }
     
-    [_tag4 setTitle:tags[3] forState:UIControlStateNormal];
-    [_tag4 setTintColor:[UIColor clearColor]];
-    [_tag4 setTitleColor:defaultMainColor forState:UIControlStateNormal];
-    [_tag4 addTarget:self action:@selector(tag4Click:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_tag5 setTitle:tags[4] forState:UIControlStateNormal];
-    [_tag5 setTintColor:[UIColor clearColor]];
-    [_tag5 setTitleColor:defaultMainColor forState:UIControlStateNormal];
-    [_tag5 addTarget:self action:@selector(tag5Click:) forControlEvents:UIControlEventTouchUpInside];
-    
-    // [_tag6 setEnabled:NO];
-    // [_tag7 setEnabled:NO];
-    // [_tag8 setHidden:YES];
 }
 
--(IBAction)tag1Click:(id)sender{
-    if (!_tag1.selected) {
-        [_tag1 setSelected:YES];
-        [_tag1 setBackgroundColor:defaultTagColor];
-        [_tag1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+-(IBAction)tagClick:(id)sender
+{
+    if (![sender isKindOfClass:[UIButton class]])
+        return;
+    
+    UIButton* tagItem = (UIButton*)sender;
+    
+    if (!tagItem.selected) {
+        [tagItem setSelected:YES];
+        [tagItem setBackgroundColor:defaultTagColor];
+        [tagItem setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     }
     else
     {
-        [_tag1 setSelected:NO];
-        [_tag1 setBackgroundColor:[UIColor clearColor]];
+        [tagItem setSelected:NO];
+        [tagItem setBackgroundColor:[UIColor clearColor]];
     }
-    NSLog(@"tag1 selected state = %hhd",_tag1.selected);
 }
-
--(IBAction)tag2Click:(id)sender{
-    if (!_tag2.selected) {
-        [_tag2 setSelected:YES];
-        [_tag2 setBackgroundColor:defaultTagColor];
-        [_tag2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag2 setSelected:NO];
-        [_tag2 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag2 selected state = %hhd",_tag2.selected);
-}
--(IBAction)tag3Click:(id)sender{
-    if (!_tag3.selected) {
-        [_tag3 setSelected:YES];
-        [_tag3 setBackgroundColor:defaultTagColor];
-        [_tag3 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag3 setSelected:NO];
-        [_tag3 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag3 selected state = %hhd",_tag3.selected);
-}
--(IBAction)tag4Click:(id)sender{
-    if (!_tag4.selected) {
-        [_tag4 setSelected:YES];
-        [_tag4 setBackgroundColor:defaultTagColor];
-        [_tag4 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag4 setSelected:NO];
-        [_tag4 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag4 selected state = %hhd",_tag4.selected);
-}
--(IBAction)tag5Click:(id)sender{
-    if (!_tag5.selected) {
-        [_tag5 setSelected:YES];
-        [_tag5 setBackgroundColor:defaultTagColor];
-        [_tag5 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag5 setSelected:NO];
-        [_tag5 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag5 selected state = %hhd",_tag5.selected);
-}
-
 
 
 - (void)DoAlert : (NSString*)caption: (NSString*)content
@@ -430,6 +381,35 @@
     NSNumber* memberUp = [NSNumber numberWithLong:actPeopleLimit.text.integerValue];
     [activityData setValue:memberUp forKey:@"peopleLimit"];
     [activityData setValue:@"本校" forKey:@"regionLimit"];
+    
+    
+    
+    NSString* fullTagStr = @"";
+    
+    for (UIButton* tagItem in tagButtonArray)
+    {
+        if (tagItem.isSelected)
+        {
+            if (fullTagStr.length != 0)
+                fullTagStr = [fullTagStr stringByAppendingString:@";"];
+            
+            NSString* tagName = tagItem.titleLabel.text;
+            
+            fullTagStr = [fullTagStr stringByAppendingString:tagName];
+        }
+    }
+    
+    if (otherTag.text.length > 0)
+    {
+        if (fullTagStr.length != 0)
+            fullTagStr = [fullTagStr stringByAppendingString:@";"];
+        
+        fullTagStr = [fullTagStr stringByAppendingString:otherTag.text];
+    }
+    
+    [activityData setValue:fullTagStr forKey:@"tags"];
+    
+    
     
     
     NSData* postData = [NSJSONSerialization dataWithJSONObject:activityData options:NSJSONWritingPrettyPrinted error:nil];
