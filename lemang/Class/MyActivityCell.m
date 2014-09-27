@@ -62,6 +62,24 @@
     // Initialization code
 }
 
+- (void)SetAdmin
+{
+    [_buttonEdit setHidden:FALSE];
+    [_buttonInvite setHidden:FALSE];
+}
+
+- (void)SetJoin
+{
+    [_buttonEdit setHidden:true];
+    [_buttonInvite setHidden:FALSE];
+}
+
+- (void)SetBookmark
+{
+    [_buttonEdit setHidden:true];
+    [_buttonInvite setHidden:true];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
