@@ -192,8 +192,8 @@
         NSString* regionLimit = [UserManager filtStr:fullData[@"regionLimit"] :@""];
         [activityData setValue:regionLimit forKey:@"regionLimit"];
         
-        //NSString* tags = [UserManager filtStr:fullData[@"tags"] :@""];
-        //[activityData setValue:tags forKey:@"tags"];
+        NSString* tags = [UserManager filtStr:fullData[@"tags"] :@""];
+        [activityData setValue:tags forKey:@"tags"];
         
         NSString* createTime = fullData[@"createdDate"];
         [activityData setValue:createTime forKey:@"createdDate"];

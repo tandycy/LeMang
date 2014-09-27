@@ -114,9 +114,6 @@
         [item setEnabled:NO];
     }
 
-   // [_tag6 setEnabled:NO];
-   // [_tag7 setEnabled:NO];
-   // [_tag8 setHidden:YES];
 }
 
 -(IBAction)tagClick:(id)sender
@@ -136,73 +133,6 @@
         [tagItem setSelected:NO];
         [tagItem setBackgroundColor:[UIColor clearColor]];
     }
-}
-
--(IBAction)tag1Click:(id)sender{
-    if (!_tag1.selected) {
-        [_tag1 setSelected:YES];
-        [_tag1 setBackgroundColor:defaultTagColor];
-        [_tag1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag1 setSelected:NO];
-        [_tag1 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag1 selected state = %hhd",_tag1.selected);
-}
-
--(IBAction)tag2Click:(id)sender{
-    if (!_tag2.selected) {
-        [_tag2 setSelected:YES];
-        [_tag2 setBackgroundColor:defaultTagColor];
-        [_tag2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag2 setSelected:NO];
-        [_tag2 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag2 selected state = %hhd",_tag2.selected);
-}
--(IBAction)tag3Click:(id)sender{
-    if (!_tag3.selected) {
-        [_tag3 setSelected:YES];
-        [_tag3 setBackgroundColor:defaultTagColor];
-        [_tag3 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag3 setSelected:NO];
-        [_tag3 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag3 selected state = %hhd",_tag3.selected);
-}
--(IBAction)tag4Click:(id)sender{
-    if (!_tag4.selected) {
-        [_tag4 setSelected:YES];
-        [_tag4 setBackgroundColor:defaultTagColor];
-        [_tag4 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag4 setSelected:NO];
-        [_tag4 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag4 selected state = %hhd",_tag4.selected);
-}
--(IBAction)tag5Click:(id)sender{
-    if (!_tag5.selected) {
-        [_tag5 setSelected:YES];
-        [_tag5 setBackgroundColor:defaultTagColor];
-        [_tag5 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    }
-    else
-    {
-        [_tag5 setSelected:NO];
-        [_tag5 setBackgroundColor:[UIColor clearColor]];
-    }
-    NSLog(@"tag5 selected state = %hhd",_tag5.selected);
 }
 
 -(void)universityListInit
@@ -359,6 +289,44 @@
     [self OnSchoolChange];
     actArea.text = [UserManager filtStr:activityData[@"area"] :@""];
     actCollege.text = [UserManager filtStr:activityData[@"department"] :@""];
+    
+    // Recover Tags
+    NSString* fullTagStr = [UserManager filtStr:activityData[@"tags"] :@""];
+    NSString* otherTags = @"";
+    
+    NSArray *tagArray1 = [fullTagStr componentsSeparatedByString:@";"];
+    
+    for (NSString* tagPart1 in tagArray1)
+    {
+        NSArray *tagArray2 = [tagPart1 componentsSeparatedByString:@"；"];
+        
+        if (tagArray2.count > 1)
+            NSLog(@"Meet CN ; symble.");
+        
+        for (NSString* tagPart2 in tagArray2)
+        {
+            bool setTag = false;
+            
+            for (UIButton* item in tagButtonArray)
+            {
+                if ([tagPart2 isEqualToString:item.titleLabel.text])
+                {
+                    setTag = true;
+                    [item setSelected:true];    // TODO
+                }
+            }
+            
+            if (!setTag)
+            {
+                if (otherTags.length > 0)
+                    otherTags = [otherTags stringByAppendingString:@";"];
+                
+                otherTags = [otherTags stringByAppendingString:tagPart2];
+            }
+        }
+    }
+    _otherTag.text = otherTags;
+    
 }
 
 - (void) UpdateDataContent
@@ -426,25 +394,30 @@
     else
         [activityData setValue:_actContact.text forKey:@"contact"];
     
-    //if (_actTags.text.length == 0)
-    //    [activityData removeObjectForKey:@"tags"];
-    //else
-    //    [activityData setValue:_actOtherLimit.text forKey:@"tags"];
+    NSString* fullTagStr = @"";
     
-    [activityData removeObjectForKey:@"tags"];
+    for (UIButton* tagItem in tagButtonArray)
+    {
+        if (tagItem.isSelected)
+        {
+            if (fullTagStr.length != 0)
+                fullTagStr = [fullTagStr stringByAppendingString:@";"];
+            
+            NSString* tagName = tagItem.titleLabel.text;
+            
+            fullTagStr = [fullTagStr stringByAppendingString:tagName];
+        }
+    }
     
-
-    /*
-    NSDateFormatter *nsdf2=[[NSDateFormatter alloc] init];
-    [nsdf2 setDateStyle:NSDateFormatterShortStyle];
-    [nsdf2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *t2=[nsdf2 stringFromDate:[NSDate date]];
-    [activityData setValue:t2 forKey:@"createdDate"];
-     */
-
+    if (_otherTag.text.length > 0)
+    {
+        if (fullTagStr.length != 0)
+            fullTagStr = [fullTagStr stringByAppendingString:@";"];
+        
+        fullTagStr = [fullTagStr stringByAppendingString:_otherTag.text];
+    }
     
-    //[activityData setValue:@"" forKey:@"tags"];
-    //[activityData setValue:@"" forKey:@"createdByAssociation"];
+    [activityData setValue:fullTagStr forKey:@"tags"];
     
 }
 
