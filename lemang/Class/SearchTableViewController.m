@@ -18,6 +18,10 @@
 @end
 
 @implementation SearchTableViewController
+@synthesize searchDisplayController;
+@synthesize searchBar;
+@synthesize historyItems;
+@synthesize searchResults;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,18 +36,23 @@
 {
     [super viewDidLoad];
     
-    //[self.searchDisplayController.searchBar setFrame:CGRectMake(0, 20, 320, 44)];
-    // Uncomment the following line to preserve selection between presentations.
+    
+    // Uncomment the following lineto preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //[self.tableView setScrollsToTop:NO];
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
     //self.edgesForExtendedLayout = UIRectEdgeNone;
     //self.extendedLayoutIncludesOpaqueBars = NO;
+    
+    self.tableView.scrollEnabled = YES;
+    
+    NSArray *historyArray = [[NSArray alloc] initWithObjects:@"同济大学",@"复旦大学'",@"体育",@"休闲",@"娱乐",nil];
+    self.historyItems = historyArray;
+    [self.tableView reloadData];
 }
 
 
@@ -53,99 +62,156 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
         return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    NSInteger rows = 0;
+    if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]){
+        rows = [self.searchResults count];
     }
-    return 0;
+    else
+    {
+        rows = [historyItems count];
+    }
+    return rows;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ActivityTableCell";
-    ActivityViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    if ( cell == nil )
-    {
-        cell = [[ActivityViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    // UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_list_back.png"]];
-    // [cell setBackgroundView:cellBG];
-    
-    
-    Activity *activity = nil;
-    
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
+        static NSString *CellIdentifier = @"ActivityTableCell";
+        ActivityViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        if ( cell == nil )
+        {
+            cell = [[ActivityViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        // UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_list_back.png"]];
+        // [cell setBackgroundView:cellBG];
+        
+        Activity *activity = nil;
         activity = [filteredActivityArray objectAtIndex:indexPath.row];
+        
+        [cell SetActivity:activity];
+        return cell;
     }
-    
-    [cell SetActivity:activity];
-    
-    return cell;
-}
-
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    else
     {
-        return [filteredActivityArray count];
+        static NSString *CellIdentifier = @"Cell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        /* Configure the cell. */
+        cell.textLabel.text = [self.historyItems objectAtIndex:indexPath.row];
+        return cell;
     }
-    return 0;
 }
 
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",                                     searchText];
+    self.searchResults = [self.historyItems filteredArrayUsingPredicate:resultPredicate];
+}
+
+#pragma mark - UISearchDisplayController delegate methods
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller  shouldReloadTableForSearchString:(NSString *)searchString
+{
+    
+    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles]                                       objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    return YES;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller  shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    
+    [self filterContentForSearchText:[self.searchDisplayController.searchBar text]scope:[[self.searchDisplayController.searchBar scopeButtonTitles]objectAtIndex:searchOption]];
+    return YES;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
-    viewController.navigationItem.title = @"活动详细页面";
-    
-    Activity *activity = nil;
-    
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
+        ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
+        viewController.navigationItem.title = @"活动详细页面";
+        
+        Activity *activity = nil;
+        
+        
         activity = [filteredActivityArray objectAtIndex:indexPath.row];
+        
+        viewController.activity = activity;
+        [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+        
+        [self.navigationController pushViewController:viewController animated:YES];
     }
-    viewController.activity = activity;
-    [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    else
+    {
+        [self.searchDisplayController.searchBar becomeFirstResponder];
+        searchDisplayController.searchBar.text = historyItems[indexPath.row];
+        
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (tableView != self.searchDisplayController.searchResultsTableView) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        [view setBackgroundColor:[UIColor colorWithRed:0.95294117647059 green:0.95294117647059 blue:0.95294117647059 alpha:1]];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 100, 20)];
+        label.textColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
+        label.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
+        label.backgroundColor = [UIColor clearColor];
+        label.text = @"常用搜索";
+        [view addSubview:label];
+        return view;
+    }
+    else
+    {
+        return nil;
+    }
     
-    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (tableView != self.searchDisplayController.searchResultsTableView) {
+        return 30;
+    }
+    else return 0;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-   //self.tableView.frame = CGRectMake(0, 20, 320, 480);
-    
-    [self.searchDisplayController setActive:YES animated:YES];
-    [self.searchDisplayController.searchBar becomeFirstResponder];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
--(void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView{
-    self.tableView.rowHeight = 40.0f;
+-(void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    NSLog(@"load results");
 }
 
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    
+}
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    //do what search button clicked
+    
 }
 
 /*
