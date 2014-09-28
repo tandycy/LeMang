@@ -97,7 +97,7 @@
         [self.rankButton setHidden:false];
         [self.verifyButton setHidden:false];
         [self.mobilePhoneButton setHidden:false];
-        [self.loginButton setTitle:@"注销" forState:UIControlStateNormal];
+        [self.loginButton setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];
         [self.accCell setUserInteractionEnabled:true];
         [self.myActCell setUserInteractionEnabled:true];
         [self.myFriendsCell setUserInteractionEnabled:true];
@@ -110,7 +110,7 @@
         [self.rankButton setHidden:true];
         [self.verifyButton setHidden:true];
         [self.mobilePhoneButton setHidden:true];
-        [self.loginButton setTitle:@"登陆" forState:UIControlStateNormal];
+        [self.loginButton setImage:[UIImage imageNamed:@"login"]  forState:UIControlStateNormal];
         [self.accCell setUserInteractionEnabled:false];
         [self.myActCell setUserInteractionEnabled:false];
         [self.myFriendsCell setUserInteractionEnabled:false];
@@ -198,7 +198,6 @@
         //
     }
 }
-
 
 #pragma mark - Table view data source
 /*

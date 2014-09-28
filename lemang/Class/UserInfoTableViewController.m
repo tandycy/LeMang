@@ -38,6 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self UpdateUserDetail];
+    [self.tabBarController.tabBar setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning

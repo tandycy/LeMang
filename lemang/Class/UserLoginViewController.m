@@ -77,28 +77,28 @@
     [self.view addSubview:userPass];
     
     //init ok and cancel button
-    UIButton *ok = [[UIButton alloc]initWithFrame:CGRectMake(60, 220, 80, 30)];
-    [ok setBackgroundColor:[UIColor blueColor]];
-    [ok setTitle:@"登录" forState:UIControlStateNormal];
+    UIButton *ok = [[UIButton alloc]initWithFrame:CGRectMake(60, 220, 80, 35)];
+    //[ok setBackgroundColor:[UIColor blueColor]];
+    [ok setImage:[UIImage imageNamed:@"comfirm"] forState:UIControlStateNormal];
     [ok addTarget:self action:@selector(okClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(180, 220, 80, 30)];
-    [cancel setTitle:@"取消" forState:UIControlStateNormal];
-    [cancel setBackgroundColor:[UIColor blueColor]];
+    UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(180, 220, 80, 35)];
+    [cancel setImage:[UIImage imageNamed:@"canncel"]forState:UIControlStateNormal];
+    //[cancel setBackgroundColor:[UIColor blueColor]];
     [cancel addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:ok];
     [self.view addSubview:cancel];
     
     //init forget password and regist button
-    UIButton *forgetPass = [[UIButton alloc]initWithFrame:CGRectMake(30, self.view.frame.size.height-30, 100, 20)];
-    [forgetPass setBackgroundColor:[UIColor blueColor]];
-    [forgetPass setTitle:@"忘记密码" forState:UIControlStateNormal];
+    UIButton *forgetPass = [[UIButton alloc]initWithFrame:CGRectMake(38, self.view.frame.size.height-40, 82, 23)];
+    //[forgetPass setBackgroundColor:[UIColor blueColor]];
+    [forgetPass setImage:[UIImage imageNamed:@"fogetpass"] forState:UIControlStateNormal];
     [forgetPass addTarget:self action:@selector(forgetPassClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *regist = [[UIButton alloc]initWithFrame:CGRectMake(190, self.view.frame.size.height-30, 100, 20)];
-    [regist setTitle:@"注册账号" forState:UIControlStateNormal];
-    [regist setBackgroundColor:[UIColor blueColor]];
+    UIButton *regist = [[UIButton alloc]initWithFrame:CGRectMake(200, self.view.frame.size.height-40, 82, 23)];
+    [regist setImage:[UIImage imageNamed:@"register"] forState:UIControlStateNormal];
+    //[regist setBackgroundColor:[UIColor blueColor]];
     [regist addTarget:self action:@selector(registClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:forgetPass];
