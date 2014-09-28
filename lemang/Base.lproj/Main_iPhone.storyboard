@@ -1608,6 +1608,46 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     <view key="view" contentMode="scaleToFill" id="Akn-D1-1IS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" id="FfQ-cn-EkG" customClass="IconImageViewLoaderWithButton">
+                                <rect key="frame" x="90" y="81" width="140" height="140"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的真实姓名" minimumFontSize="17" id="st7-Qi-lUu">
+                                <rect key="frame" x="48" y="243" width="225" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的学号" minimumFontSize="17" id="ygj-y0-oV0">
+                                <rect key="frame" x="48" y="281" width="225" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="exA-xn-lJx">
+                                <rect key="frame" x="48" y="328" width="103" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="comfirm">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OnF-D0-AVZ">
+                                <rect key="frame" x="170" y="328" width="103" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="canncel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_photo" id="J1m-gP-Prm">
+                                <rect key="frame" x="90" y="81" width="140" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="D51-En-GtW"/>
@@ -4193,6 +4233,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="bottom_share_on" width="54" height="20"/>
         <image name="bottom_sign_on" width="52" height="22"/>
         <image name="buisness_icon" width="21" height="21"/>
+        <image name="canncel" width="103" height="45"/>
+        <image name="comfirm" width="103" height="45"/>
         <image name="delete" width="28" height="30"/>
         <image name="detail" width="15" height="31"/>
         <image name="doge.jpg" width="197" height="171"/>
@@ -4200,6 +4242,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="doge3.jpg" width="80" height="80"/>
         <image name="doge4.jpg" width="80" height="80"/>
         <image name="group1.png" width="130" height="170"/>
+        <image name="icon" width="27" height="26"/>
         <image name="like_number" width="12" height="11"/>
         <image name="main_activity_off" width="27" height="25"/>
         <image name="main_mainpage_off" width="27" height="26"/>
@@ -4216,6 +4259,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="rate_star_whole" width="14" height="14"/>
         <image name="split_line" width="1" height="1"/>
         <image name="tags" width="120" height="66"/>
+        <image name="upload_photo" width="141" height="141"/>
         <image name="user_icon_de" width="70" height="70"/>
         <image name="user_icon_de.png" width="27" height="26"/>
     </resources>
