@@ -7,6 +7,7 @@
 //
 
 #import "MyOrganizationTableViewController.h"
+#import "OrganizationDetailTableViewController.h"
 
 @interface MyOrganizationTableViewController ()
 
@@ -178,6 +179,32 @@
     [cell SetData:actData :self];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    OrganizationDetailTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OrganizationDetailView"];
+    viewController.navigationItem.title = @"组织详细页面";
+
+    
+    NSDictionary* actData = nil;
+    
+    if (indexPath.section == 0)
+    {
+        actData = orgAdminList[indexPath.row];
+    }
+    else if (indexPath.section == 1)
+    {
+        actData = orgJoinList[indexPath.row];
+    }
+    else if (indexPath.section == 2)
+    {
+        actData = orgBookmarkList[indexPath.row];
+    }
+    
+    [viewController SetOrgnizationData:actData];    
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
