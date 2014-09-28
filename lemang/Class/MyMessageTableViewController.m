@@ -33,8 +33,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    messageList = [[NSMutableArray alloc]init];
     [self RefreshMessageList];
+    [self RefreshActivityEnrollmentList];
+    [self RefreshOrgEnrollmentList];
 }
 
 - (void) RefreshMessageList
@@ -53,7 +55,61 @@
     if (!error)
     {
         NSArray* data = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
-        messageList = [[NSMutableArray alloc]init];
+        //messageList = [[NSMutableArray alloc]init];
+        
+        for (int i = 0; i < data.count; i++)
+        {
+            NSDictionary* item = data[i];
+            [messageList addObject:item];
+        }
+    }
+}
+
+- (void) RefreshActivityEnrollmentList
+{
+    if (![UserManager IsInitSuccess])
+        return;
+    
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    urlString = [urlString stringByAppendingFormat:@"%d", [[UserManager Instance]GetLocalUserId]];
+    urlString = [urlString stringByAppendingString:@"/message/activity"];
+    NSURL* URL = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (!error)
+    {
+        NSArray* data = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        //messageList = [[NSMutableArray alloc]init];
+        
+        for (int i = 0; i < data.count; i++)
+        {
+            NSDictionary* item = data[i];
+            [messageList addObject:item];
+        }
+    }
+}
+
+- (void) RefreshOrgEnrollmentList
+{
+    if (![UserManager IsInitSuccess])
+        return;
+    
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    urlString = [urlString stringByAppendingFormat:@"%d", [[UserManager Instance]GetLocalUserId]];
+    urlString = [urlString stringByAppendingString:@"/message/association"];
+    NSURL* URL = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (!error)
+    {
+        NSArray* data = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        //messageList = [[NSMutableArray alloc]init];
         
         for (int i = 0; i < data.count; i++)
         {

@@ -139,7 +139,8 @@
     }
     
     NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlstr = [urlstr stringByAppendingFormat:@"%@/request/activity/%d", activity.activityId, [[UserManager Instance]GetLocalUserId]];
+    urlstr = [urlstr stringByAppendingFormat:@"%d/request/activity/%@", [[UserManager Instance]GetLocalUserId], activity.activityId];
+    NSLog(@"%@",urlstr);
     NSURL* url = [NSURL URLWithString:urlstr];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
