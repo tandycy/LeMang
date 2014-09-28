@@ -58,6 +58,7 @@
 		259F017E19D3FF8D0073492F /* InviteMyFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259F017D19D3FF8D0073492F /* InviteMyFriendsTableViewController.m */; };
 		25A411FA19D55BD500914599 /* MyOrgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A411F919D55BD500914599 /* MyOrgCell.m */; };
 		25BAA3D219ACAFC500E87856 /* EditActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */; };
+		25BEE1CB19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BEE1CA19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m */; };
 		25C2392A19D0207E00F31AFE /* MyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392919D0207E00F31AFE /* MyFriendCell.m */; };
 		25C2392D19D0272D00F31AFE /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392C19D0272D00F31AFE /* Friend.m */; };
 		25C3A0F719ADC4EC00BB48B3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25C3A0E719ADC4EC00BB48B3 /* MJRefresh.bundle */; };
@@ -250,6 +251,8 @@
 		25A411F919D55BD500914599 /* MyOrgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyOrgCell.m; path = Class/MyOrgCell.m; sourceTree = "<group>"; };
 		25BAA3D019ACAFC500E87856 /* EditActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditActivityTableViewController.h; path = Class/EditActivityTableViewController.h; sourceTree = "<group>"; };
 		25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditActivityTableViewController.m; path = Class/EditActivityTableViewController.m; sourceTree = "<group>"; };
+		25BEE1C919D81ACE0020D0AA /* MobilePhoneVerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobilePhoneVerifyViewController.h; path = Class/MobilePhoneVerifyViewController.h; sourceTree = "<group>"; };
+		25BEE1CA19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobilePhoneVerifyViewController.m; path = Class/MobilePhoneVerifyViewController.m; sourceTree = "<group>"; };
 		25C2392819D0207E00F31AFE /* MyFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFriendCell.h; path = Class/MyFriendCell.h; sourceTree = "<group>"; };
 		25C2392919D0207E00F31AFE /* MyFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFriendCell.m; path = Class/MyFriendCell.m; sourceTree = "<group>"; };
 		25C2392B19D0272D00F31AFE /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friend.h; path = Class/Friend.h; sourceTree = "<group>"; };
@@ -616,6 +619,8 @@
 				25D3F0B719C95C2D00E6C29F /* EditUserInfoViewController.m */,
 				259F017C19D3FF8D0073492F /* InviteMyFriendsTableViewController.h */,
 				259F017D19D3FF8D0073492F /* InviteMyFriendsTableViewController.m */,
+				25BEE1C919D81ACE0020D0AA /* MobilePhoneVerifyViewController.h */,
+				25BEE1CA19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1156,6 +1161,7 @@
 				251CEBBB19A31FBC00C80BAF /* OrganizationTableViewController.m in Sources */,
 				EE73C3CD19D8023E00106D91 /* OrganizationActivityCell.m in Sources */,
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
+				25BEE1CB19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m in Sources */,
 				EED245DF19D58535002D99D7 /* TagItem.m in Sources */,
 				EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
