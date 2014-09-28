@@ -29,6 +29,7 @@
     NSArray *schoolArray;
     NSArray *areaArray;
     NSArray *collegeArray;
+    NSArray *hostArray;
     
     NSArray* tagButtonArray;
     
@@ -170,6 +171,11 @@
     actCollege.inputView = dataPicker;
     actCollege.delegate = self;
     [actCollege addTarget:self action:@selector(collegeOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    actHost.inputAccessoryView = doneToolbar;
+    actHost.inputView = dataPicker;
+    actHost.delegate = self;
+    [actHost addTarget:self action:@selector(actHostOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
     
     dataPicker.delegate = self;
     dataPicker.dataSource = self;
@@ -609,6 +615,11 @@
 
 - (IBAction)collegeOnEditing:(id)sender {
     pickerArray = collegeArray;
+    [dataPicker reloadAllComponents];
+}
+
+- (IBAction)actHostOnEditing:(id)sender {
+    pickerArray = hostArray;
     [dataPicker reloadAllComponents];
 }
 
