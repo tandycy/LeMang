@@ -1025,7 +1025,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="orgDetailCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="orgDetailCell" id="bul-tn-Gv4">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="OrganizationActivityCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="orgDetailCell" id="bul-tn-Gv4" customClass="OrganizationActivityCell">
                                 <rect key="frame" x="0.0" y="222" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bul-tn-Gv4" id="YAr-Rs-FzB">

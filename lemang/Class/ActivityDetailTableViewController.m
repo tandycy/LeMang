@@ -113,6 +113,7 @@
 - (void) SetActivityData:(NSDictionary *)data
 {
     activityData = data;
+    localId = data[@"id"];
 }
 
 - (void) SetActivityId:(NSNumber *)actid
@@ -174,6 +175,7 @@
         memberNum = members.count;
     }
     NSString* memberMax = [UserManager filtStr:activityData[@"peopleLimit"] : @""];
+    amount.text = [NSString stringWithFormat:@"%d/%@",memberNum,memberMax];
     
     
     NSString* imgUrlString = [UserManager filtStr:activityData[@"iconUrl"] :@""];
@@ -194,19 +196,15 @@
         NSNumber* fav = board[@"bookmarkCount"];
         if ([fav isKindOfClass:[NSDictionary class]])
             favNum = fav;
-    }
+    }    
+    hot.text = [NSString stringWithFormat:@"%@", favNum];
 
     
     titleLabel.text = [UserManager filtStr:activityData[@"title"] :@""];
-    amount.text = [NSString stringWithFormat:@"%d/%@",memberNum,memberMax];
-    hot.text = [NSString stringWithFormat:@"%@", favNum];
     address.text = [UserManager filtStr:activityData[@"address"] :@""];
     _people.text = [UserManager filtStr:activityData[@"regionLimit"] : @""];
     
-    NSString* detailInfo = @"";//activityData[@"description"];
-    detailInfo = [detailInfo stringByAppendingFormat:@"%@", activityData[@"description"]];
-    
-    _detailContent.text = detailInfo;
+    _detailContent.text = [UserManager filtStr:activityData[@"description"] :@""];
     
     NSMutableArray* memberArray = [[NSMutableArray alloc]init];
     

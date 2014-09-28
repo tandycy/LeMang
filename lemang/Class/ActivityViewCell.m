@@ -30,6 +30,66 @@
 {
     localData = data;
     actId = data[@"id"];
+    
+    _actTitle.text = [UserManager filtStr:localData[@"title"] :@""];
+    
+    NSString* beginTime = [UserManager filtStr:localData[@"beginTime"] : @""];
+    NSString* endTime = [UserManager filtStr:localData[@"endTime"] : @""];
+    _actTime.text = [beginTime stringByAppendingFormat:@" ~ %@", endTime];
+
+    _actLimit.text = [UserManager filtStr:localData[@"regionLimit"] : @""];
+    
+    
+    NSDictionary* members = localData[@"users"];
+    int memberNum = 0;
+    if ([members isKindOfClass:[NSDictionary class]])
+    {
+        memberNum = members.count;
+    }
+    NSString* memberMax = [UserManager filtStr:localData[@"peopleLimit"] : @""];
+    _actMember.text = [NSString stringWithFormat:@"%d/%@",memberNum,memberMax];
+    
+    NSDictionary* board = localData[@"board"];
+    NSNumber* favNum = [NSNumber numberWithInt:0];
+    if ([board isKindOfClass:[NSDictionary class]])
+    {
+        NSNumber* fav = board[@"bookmarkCount"];
+        if ([fav isKindOfClass:[NSDictionary class]])
+            favNum = fav;
+    }
+    _actBookmark.text = [NSString stringWithFormat:@"%@", favNum];
+    
+    NSString* imgUrlString = [UserManager filtStr:localData[@"iconUrl"] :@""];
+    if (imgUrlString.length > 0)
+    {
+        NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/a/";
+        tempstr = [tempstr stringByAppendingFormat:@"%@/", localData[@"id"]];
+        tempstr = [tempstr stringByAppendingString:imgUrlString];
+        imgUrlString = tempstr;
+    }
+    NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
+    [_actIcon LoadFromUrl:imgUrl :[UIImage imageNamed:@"default_Icon"]];
+    
+    
+    NSString* group = localData[@"activityGroup"];
+    UIImage* iconImg;
+    if ([group isEqualToString:@"Association"])
+    {
+        iconImg = [UIImage imageNamed:@"group_icon.png"];;
+    }
+    else if ([group isEqualToString:@"Company"])
+    {
+        iconImg = [UIImage imageNamed:@"buisness_icon.png"];;
+    }
+    else if ([group isEqualToString:@"University"])
+    {
+        iconImg = [UIImage imageNamed:@"school_icon.png"];
+    }
+    else if ([group isEqualToString:@"Department"])
+    {
+        iconImg = [UIImage imageNamed:@"private_icon.png"];;
+    }
+    _actIcon.image = iconImg;
 }
 
 - (void) SetActivity:(Activity *)_act
@@ -45,8 +105,7 @@
     favStr = [favStr stringByAppendingFormat:@"%@", _act.fav];
     _actBookmark.text = [UserManager filtStr:favStr :@""];
     
-    NSString* memberNum = @"";
-    memberNum = [memberNum stringByAppendingFormat:@"%@/%@", _act.member, _act.memberUpper];
+    _actMember.text = [NSString stringWithFormat:@"%@/%@", _act.member, _act.memberUpper];
 
     _actTypeIcon.image = _act.icon;
     
