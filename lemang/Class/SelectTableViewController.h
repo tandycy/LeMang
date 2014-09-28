@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
+#import "SchoolManager.h"
 
 @interface SelectTableViewController : UITableViewController
+{
+    NSMutableArray* hotArray;
+    NSArray* schoolArray;
+    NSMutableArray* bookmarkArray;
+}
 
 @end
