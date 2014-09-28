@@ -278,6 +278,11 @@
         [self DoAlert:@"院系不能为空":@""];
         return false;
     }
+    if (actHost.text.length == 0)
+    {
+        [self DoAlert:@"所属组织不能为空":@""];
+        return false;
+    }
 
     
     if (actLocation.text.length == 0)
@@ -552,6 +557,11 @@
         [actCollege endEditing:YES];
         [self downAnim];
     }
+    else if(actHost.isEditing)
+    {
+        [actHost endEditing:YES];
+        [self downAnim];
+    }
 }
 
 -(void)downAnim
@@ -649,6 +659,10 @@
     else if(actCollege.isEditing)
     {
         textField = actCollege;
+    }
+    else if (actHost.isEditing)
+    {
+        textField = actHost;
     }
     textField.text = [pickerArray objectAtIndex:row];
     }
