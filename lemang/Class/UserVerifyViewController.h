@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IconImageViewLoaderWithButton.h"
 
-@interface UserVerifyViewController : UIViewController
+@interface UserVerifyViewController : UIViewController<UITextFieldDelegate>
+
+@property (strong, nonatomic) IBOutlet IconImageViewLoaderWithButton *userVerifyPhoto;
+@property (strong, nonatomic) IBOutlet UITextField *userRealName;
+@property (strong, nonatomic) IBOutlet UITextField *userCode;
+
+@property (strong, nonatomic) IBOutlet UIButton *okButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 
 @end

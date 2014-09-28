@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -1662,6 +1662,12 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="D51-En-GtW"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="OnF-D0-AVZ" id="PND-Wi-M4I"/>
+                        <outlet property="okButton" destination="exA-xn-lJx" id="pDg-v7-FLb"/>
+                        <outlet property="userCode" destination="ygj-y0-oV0" id="pLU-nN-CfU"/>
+                        <outlet property="userRealName" destination="st7-Qi-lUu" id="8Hn-zE-m9e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uG-G6-jS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
