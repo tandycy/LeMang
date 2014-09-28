@@ -46,6 +46,26 @@ typedef enum {
         
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    UIBarButtonItem *like = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_like_on"] style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *sign = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_sign_on"] style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_share_on"] style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    NSArray *buttonArray = [NSArray arrayWithObjects:flexItem, like, flexItem, share, flexItem, sign, flexItem, nil];
+    
+    //[self.navigationController setToolbarHidden:NO animated:YES];
+    //[self.navigationController setToolbarItems:buttonArray animated:YES];
+    //[self.navigationController.toolbar setFrame:CGRectMake(0, self.view.frame.size.height-50, 320, 50)];
+   // [self.navigationController.toolbar setItems:buttonArray animated:YES];
+    
+    self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-40, self.view.frame.size.width, 40)];
+    NSLog(@"%f",self.view.frame.size.height);
+    [self.toolbar setTintColor:defaultMainColor];
+    [self.toolbar setBarStyle:UIBarStyleDefault];
+    self.toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [self.toolbar setItems:buttonArray];
+    [self.tableView addSubview:self.toolbar];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, -53.0f, 0.0f); //set tableview scroll range
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -73,6 +93,10 @@ typedef enum {
     activityArray = [[NSArray alloc]init];
     
     [self updateDisplay];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    self.toolbar.frame = CGRectMake(0,self.tableView.contentOffset.y+self.view.frame.size.height-40, 320, 40);
 }
 
 - (void) SetOrgnizationId:(NSNumber *)oid
@@ -228,6 +252,7 @@ typedef enum {
     UIImageView *bg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"activity_bar.png"]];
     [cell addSubview:bg];
     
+    /*
     Activity *activity = nil;
     activity = [activityArray objectAtIndex:indexPath.row];
     
@@ -244,7 +269,7 @@ typedef enum {
         activityState.image = on;
     }
     else activityState.image = off;
-    
+    */
     return cell;
 }
 
@@ -278,6 +303,10 @@ typedef enum {
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tabBarController.tabBar setHidden:YES];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

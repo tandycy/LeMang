@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *orgnizationTittle;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *organizationIcon;
 @property (strong, nonatomic) IBOutlet UILabel *organizationDetail;
+@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 
 - (void) updateDisplay;
 - (void) SetOrgnizationId:(NSNumber*)oid;
