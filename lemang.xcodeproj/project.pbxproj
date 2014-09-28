@@ -548,9 +548,9 @@
 			isa = PBXGroup;
 			children = (
 				EE44A53619AF1CA7004B0E5B /* Global */,
+				256E04741987B1D6009845A5 /* User */,
 				256E04761987B1E8009845A5 /* Home */,
 				256E04751987B1DE009845A5 /* Organization */,
-				256E04741987B1D6009845A5 /* User */,
 				256E04731987B1CE009845A5 /* Activity */,
 			);
 			name = Class;

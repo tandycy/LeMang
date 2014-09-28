@@ -3805,6 +3805,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="CancelPhotoButton" destination="EQo-6x-zB6" id="HCV-gI-pZI"/>
                         <outlet property="OrgName" destination="BdF-u2-NjX" id="5uj-IX-X5y"/>
                         <outlet property="orgDescription" destination="pjJ-vH-mqS" id="0xc-yD-D4u"/>
                         <outlet property="orgIcon" destination="OOD-Ek-mCs" id="slI-Gv-8H9"/>

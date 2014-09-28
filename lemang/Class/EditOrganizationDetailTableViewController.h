@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface EditOrganizationDetailTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
+{
+    NSMutableDictionary* orgData;
+}
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *orgType;
 @property (strong, nonatomic) IBOutlet UITextField *orgSchool;
@@ -31,5 +35,8 @@
 
 @property (strong, nonatomic) IBOutlet UIPickerView *dataPicker;
 @property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
+
+- (void) SetOrganizationData:(NSMutableDictionary*)data;
+- (void) SetIconData : (UIImage*)img;
 
 @end

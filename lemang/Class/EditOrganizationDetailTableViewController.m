@@ -8,6 +8,7 @@
 
 #import "EditOrganizationDetailTableViewController.h"
 #import "SchoolManager.h"
+#import "Constants.h"
 
 @interface EditOrganizationDetailTableViewController ()
 {
@@ -86,6 +87,63 @@
     
 }
 
+-(void)initTag
+{
+    tagButtonArray = [[NSArray alloc]initWithObjects:_tag1,_tag2,_tag3,_tag4,_tag5,_tag6,_tag7,_tag8,nil];
+    
+    for (UIButton* item in tagButtonArray)
+    {
+        item.selected = false;
+        
+        //[_tag1 setTitle:tags[0] forState:UIControlStateNormal];
+        [item setTintColor:[UIColor clearColor]];
+        [item setTitleColor:defaultMainColor forState:UIControlStateNormal];
+        [item addTarget:self action:@selector(tagClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    int currentTag = 0;
+    NSArray* tagList = [UserManager GetTags];
+    
+    for (TagItem *item in tagList)
+    {
+        if (currentTag >= tagButtonArray.count)
+            break;
+        
+        //if (item.tagClass == TagActivity)
+        {
+            UIButton* tagButton = tagButtonArray[currentTag];
+            [tagButton setTitle:item.name forState:UIControlStateNormal];
+            currentTag++;
+        }
+    }
+    
+    for (int i = currentTag; i < tagButtonArray.count; i++)
+    {
+        UIButton* item = tagButtonArray[i];
+        [item setEnabled:NO];
+    }
+    
+}
+
+-(IBAction)tagClick:(id)sender
+{
+    if (![sender isKindOfClass:[UIButton class]])
+        return;
+    
+    UIButton* tagItem = (UIButton*)sender;
+    
+    if (!tagItem.selected) {
+        [tagItem setSelected:YES];
+        [tagItem setBackgroundColor:defaultTagColor];
+        [tagItem setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    }
+    else
+    {
+        [tagItem setSelected:NO];
+        [tagItem setBackgroundColor:[UIColor clearColor]];
+    }
+}
+
 - (IBAction)schoolOnEditing:(id)sender {
     pickerArray = schoolArray;
     [dataPicker reloadAllComponents];
@@ -154,6 +212,230 @@
 }
 
 
+- (IBAction)ToFirstPage:(id)sender
+{
+    [self UpdateDataContent];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) RecoverDataContent
+{
+    NSString* category = [UserManager filtStr:orgData[@"activityGroup"] :@""];
+    
+    if ([category isEqualToString:@"University"])
+        [orgType setSelectedSegmentIndex:0];
+    else if ([category isEqualToString:@"Department"])
+        [orgType setSelectedSegmentIndex:1];
+    else if ([category isEqualToString:@"Company"])
+        [orgType setSelectedSegmentIndex:2];
+    else if ([category isEqualToString:@"Association"])
+        [orgType setSelectedSegmentIndex:3];
+    else if ([category isEqualToString:@"Person"])
+        [orgType setSelectedSegmentIndex:3];
+    else
+        [orgType setSelectedSegmentIndex:0];
+    
+    
+    orgAddress.text = [UserManager filtStr:orgData[@"address"] :@""];
+    _otherLimit.text = [UserManager filtStr:orgData[@"otherLimit"] :@""];
+    orgContact.text = [UserManager filtStr:orgData[@"contact"] :@""];
+    
+    
+    orgSchool.text = [UserManager filtStr:orgData[@"university"] :@""];
+    [self OnSchoolChange];
+    orgArea.text = [UserManager filtStr:orgData[@"area"] :@""];
+    orgCollege.text = [UserManager filtStr:orgData[@"department"] :@""];
+    
+    // Recover Tags
+    NSString* fullTagStr = [UserManager filtStr:orgData[@"tags"] :@""];
+    NSString* otherTags = @"";
+    
+    NSArray *tagArray1 = [fullTagStr componentsSeparatedByString:@";"];
+    
+    for (NSString* tagPart1 in tagArray1)
+    {
+        NSArray *tagArray2 = [tagPart1 componentsSeparatedByString:@"；"];
+        
+        if (tagArray2.count > 1)
+            NSLog(@"Meet CN ; symble.");
+        
+        for (NSString* tagPart2 in tagArray2)
+        {
+            bool setTag = false;
+            
+            for (UIButton* item in tagButtonArray)
+            {
+                if ([tagPart2 isEqualToString:item.titleLabel.text])
+                {
+                    setTag = true;
+                    
+                    // set select
+                    [item setSelected:YES];
+                    [item setBackgroundColor:defaultTagColor];
+                    [item setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+                }
+            }
+            
+            if (!setTag)
+            {
+                if (otherTags.length > 0)
+                    otherTags = [otherTags stringByAppendingString:@";"];
+                
+                otherTags = [otherTags stringByAppendingString:tagPart2];
+            }
+        }
+    }
+    _otherTag.text = otherTags;
+    
+}
+
+- (void) UpdateDataContent
+{
+    //
+    
+    switch (orgType.selectedSegmentIndex) {
+        case 0:// 0 - 学校
+            [orgData setValue:@"University" forKey:@"activityGroup"];
+            break;
+        case 1:// 1 - 院系
+            [orgData setValue:@"Department" forKey:@"activityGroup"];
+            break;
+        case 2:// 2 - 商家
+            [orgData setValue:@"Company" forKey:@"activityGroup"];
+            break;
+        case 3:// 3 - 社团
+            [orgData setValue:@"Association" forKey:@"activityGroup"];
+            break;
+        case 4:// 4 - 个人
+            [orgData setValue:@"Person" forKey:@"activityGroup"];
+            break;
+        default:
+            break;
+    }
+
+    
+    // temp data
+    [orgData setValue:orgSchool.text forKey:@"university"];
+    [orgData setValue:orgArea.text forKey:@"area"];
+    [orgData setValue:orgCollege.text forKey:@"department"];
+    
+    
+    [orgData setValue:orgAddress.text forKey:@"address"];
+    
+    if (_otherLimit.text.length == 0)
+        [orgData removeObjectForKey:@"otherLimit"];
+    else
+        [orgData setValue:_otherLimit.text forKey:@"otherLimit"];
+    
+    if (orgContact.text.length == 0)
+        [orgData removeObjectForKey:@"contact"];
+    else
+        [orgData setValue:orgContact.text forKey:@"contact"];
+    
+    NSString* fullTagStr = @"";
+    
+    for (UIButton* tagItem in tagButtonArray)
+    {
+        if (tagItem.isSelected)
+        {
+            if (fullTagStr.length != 0)
+                fullTagStr = [fullTagStr stringByAppendingString:@";"];
+            
+            NSString* tagName = tagItem.titleLabel.text;
+            
+            fullTagStr = [fullTagStr stringByAppendingString:tagName];
+        }
+    }
+    
+    if (_otherTag.text.length > 0)
+    {
+        if (fullTagStr.length != 0)
+            fullTagStr = [fullTagStr stringByAppendingString:@";"];
+        
+        fullTagStr = [fullTagStr stringByAppendingString:_otherTag.text];
+    }
+    
+    [orgData setValue:fullTagStr forKey:@"tags"];
+    
+}
+
+
+- (void) UpdateIdData
+{
+    NSString* schoolName = orgSchool.text;
+    SchoolItem* school = [SchoolManager GetSchoolItem:schoolName];
+    if (school != Nil)
+    {
+        NSNumber* sid = [school GetId];
+        //NSString* schoolData = [NSString stringWithFormat:@"{\"id\":%@}",sid];
+        NSMutableDictionary* schoolDic = [[NSMutableDictionary alloc]init];
+        [schoolDic setValue:sid forKey:@"id"];
+        [orgData setObject:schoolDic forKey:@"university"];
+        
+        NSNumber* areaId = [school GetAreaId:orgArea.text];
+        if (!areaId)
+            [orgData removeObjectForKey:@"area"];
+        else
+        {
+            //NSString* areaData = [NSString stringWithFormat:@"{\"id\":%@}",areaId];
+            NSMutableDictionary* areaDic = [[NSMutableDictionary alloc]init];
+            [areaDic setValue:areaId forKey:@"id"];
+            [orgData setObject:areaDic forKey:@"area"];
+        }
+        
+        NSNumber* departId = [school GetDepartId:orgCollege.text];
+        if (!departId)
+            [orgData removeObjectForKey:@"department"];
+        else
+        {
+            //NSString* departData = [NSString stringWithFormat:@"{\"id\":%@}",departId];
+            NSMutableDictionary* depDic = [[NSMutableDictionary alloc]init];
+            [depDic setValue:departId forKey:@"id"];
+            [orgData setObject:depDic forKey:@"department"];
+        }
+    }
+    else
+    {
+        [orgData setValue:@"" forKey:@"university"];
+        [orgData removeObjectForKey:@"department"];
+        [orgData removeObjectForKey:@"area"];
+    }
+    
+}
+
+- (void)DoAlert : (NSString*)caption: (NSString*)content
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    [alertView show];
+}
+
+- (BOOL) CheckActivityData
+{
+    if (orgSchool.text.length == 0)
+    {
+        [self DoAlert:@"学校不能为空":@""];
+        return false;
+    }
+    if (orgArea.text.length == 0)
+    {
+        [self DoAlert:@"校区不能为空":@""];
+        return false;
+    }
+    if (orgCollege.text.length == 0)
+    {
+        [self DoAlert:@"院系不能为空":@""];
+        return false;
+    }
+    
+    
+    if (orgAddress.text.length == 0)
+    {
+        [self DoAlert:@"地址不能为空":@""];
+        return false;
+    }
+    
+    return true;
+}
 
 /*
 #pragma mark - Table view data source

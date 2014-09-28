@@ -80,6 +80,146 @@
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
     
+    localNewIcon = nil;
+    [_CancelPhotoButton setHidden:true];
+    
+    NSURL* iconUrl = [NSURL URLWithString:iconStr];
+    [orgIcon LoadFromUrl:iconUrl :[UIImage imageNamed:@"default_Icon"] :@selector(AfterIconLoad:) :self];
+    
+    [self InitOrgData];
+    [UserManager RefreshTagData];
+}
+
+- (void) SetOrganizationData:(NSDictionary *)data
+{
+    orgData = [NSMutableDictionary dictionaryWithDictionary:data];
+}
+
+- (void)SetOrganizationDataFromId:(NSNumber *)actId
+{
+    NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/association";
+    urlStr = [urlStr stringByAppendingFormat:@"/%@", actId];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    
+    if (!error)
+    {
+        orgData = [[NSMutableDictionary alloc]init];
+        
+        NSDictionary* fullData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+        
+        iconStr = [UserManager filtStr:fullData[@"iconUrl"] :@""];
+        if (iconStr.length > 0)
+        {
+            NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/a/";
+            tempstr = [tempstr stringByAppendingFormat:@"%@/", actId];
+            tempstr = [tempstr stringByAppendingString:iconStr];
+            iconStr = tempstr;
+        }
+        
+        // Reset id
+        [orgData setValue:actId forKey:@"id"];
+        
+        // Page1 part
+        NSString* title = [UserManager filtStr: fullData[@"name"] : @""];
+        [orgData setValue:title forKey:@"name"];
+        NSString* description = [UserManager filtStr:fullData[@"description"] :@""];
+        [orgData setValue:description forKey:@"description"];
+        
+        // Page2 part
+        NSString* groupType = fullData[@"type"];
+        [orgData setValue:groupType forKey:@"type"];
+        
+        NSDictionary* school = fullData[@"university"];
+        if ([school isKindOfClass:[NSDictionary class]])
+        {
+            NSString* name = school[@"name"];
+            [orgData setValue:name forKey:@"university"];
+        }
+        NSDictionary* area = fullData[@"area"];
+        if ([area isKindOfClass:[NSDictionary class]])
+        {
+            NSString* name = area[@"name"];
+            [orgData setValue:name forKey:@"area"];
+        }
+        NSDictionary* department = fullData[@"department"];
+        if ([department isKindOfClass:[NSDictionary class]])
+        {
+            NSString* name = department[@"name"];
+            [orgData setValue:name forKey:@"department"];
+        }
+        
+        NSString* address = [UserManager filtStr:fullData[@"address"] :@""];
+        [orgData setValue:address forKey:@"address"];
+        NSString* contact = [UserManager filtStr:fullData[@"contact"] :@""];
+        [orgData setValue:contact forKey:@"contact"];
+        
+        //NSNumber* peopleLimit = fullData[@"peopleLimit"];
+        //[orgData setValue:peopleLimit forKey:@"peopleLimit"];
+        //NSString* regionLimit = [UserManager filtStr:fullData[@"regionLimit"] :@""];
+        //[orgData setValue:regionLimit forKey:@"regionLimit"];
+        
+        NSString* otherLimit = [UserManager filtStr:fullData[@"otherLimit"] :@""];
+        [orgData setValue:otherLimit forKey:@"otherLimit"];
+        
+        NSString* tags = [UserManager filtStr:fullData[@"tags"] :@""];
+        [orgData setValue:tags forKey:@"tags"];
+        
+        NSString* createTime = fullData[@"createdDate"];
+        [orgData setValue:createTime forKey:@"createdDate"];
+    }
+}
+
+- (void) InitOrgData
+{
+    if (orgData == nil)
+    {
+        orgData = [[NSMutableDictionary alloc]init];
+    }
+    else
+    {
+        orgName.text = orgData[@"name"];
+        orgDescription.text = orgData[@"description"];
+        
+        if (orgName.text.length > 0)
+            nameHolder.text = @"";
+        if (orgDescription.text.length > 0)
+            descriptionHolder.text = @"";
+    }
+}
+
+- (void) UpdateOrgData
+{
+    [orgData setValue:orgName.text forKey:@"name"];
+    [orgData setValue:orgDescription forKey:@"description"];
+}
+
+- (void)DoAlert : (NSString*)caption: (NSString*)content
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    [alertView show];
+}
+
+- (BOOL) CheckActivityData
+{
+    if (orgName.text.length == 0)
+    {
+        [self DoAlert:@"标题不能为空":@""];
+        return false;
+    }
+    if (orgDescription.text.length == 0)
+    {
+        [self DoAlert:@"描述不能为空":@""];
+        return false;
+    }
+    
+    return true;
 }
 
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
@@ -122,9 +262,15 @@
 }
 
 - (IBAction)nextButton:(id)sender {
+    
+    if (![self CheckActivityData])
+        return;
+    
+    [self UpdateOrgData];
 
     EditOrganizationDetailTableViewController *EditOrgDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditOrganizationDetailTableViewController"];
     EditOrgDetailVC.navigationItem.title = @"详细页面";
+    //
     [self.navigationController pushViewController:EditOrgDetailVC animated:YES];
     
 }
@@ -135,6 +281,27 @@
     [actionSheet showInView:self.view];
     
 }
+
+- (IBAction)OnCancelPhoto:(id)sender {
+    
+    localNewIcon = nil;
+    
+    if (originIcon == nil)
+        [orgIcon setImage:[UIImage imageNamed:@"default_Icon"] forState:UIControlStateNormal];
+    else
+        [orgIcon setImage:originIcon forState:UIControlStateNormal];
+    
+    [_CancelPhotoButton setHidden:true];
+}
+
+- (void) AfterIconLoad : (UIImage*)loadImg
+{
+    originIcon = loadImg;
+    
+    if (localNewIcon != nil)
+        [orgIcon setImage:localNewIcon forState:UIControlStateNormal];
+}
+
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"%i", buttonIndex);
