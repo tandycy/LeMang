@@ -35,8 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     // Uncomment the following lineto preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";
