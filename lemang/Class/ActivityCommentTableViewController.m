@@ -116,7 +116,7 @@
     
     cell.selectedBackgroundView = [[UIView alloc] init];
     
-    [cell SetActivityCreator:owner.activity.creatorId];
+    [cell SetActivityCreator:[owner GetCreatorId]];
     [cell SetComment:tableData[indexPath.row]];
     [cell SetOwner:self];
     
@@ -166,7 +166,7 @@
     UITableView* table=(UITableView*)[[cell superview] nextResponder];
     NSIndexPath* index=[table indexPathForCell:cell];
     
-    NSString* delUrlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", owner.activity.activityId];
+    NSString* delUrlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", [owner GetActivityId]];
     delUrlStr = [delUrlStr stringByAppendingFormat:@"/comment/%@", cell.GetCommentId];
 
     ASIHTTPRequest* deleteRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:delUrlStr]];

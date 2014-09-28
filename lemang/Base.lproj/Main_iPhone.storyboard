@@ -64,7 +64,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oiU-qv-xiX">
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oiU-qv-xiX" customClass="IconImageViewLoader">
                                                     <rect key="frame" x="10" y="10" width="67" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
@@ -81,7 +81,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oPg-1e-tqw" userLabel="Image View_type">
-                                                    <rect key="frame" x="289" y="3" width="25" height="25"/>
+                                                    <rect key="frame" x="289" y="4" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="member_number" id="PSK-Ll-m1w">
@@ -109,7 +109,13 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="activityIconImg" destination="oiU-qv-xiX" id="0gr-0n-CT2"/>
+                                            <outlet property="actBookmark" destination="uFe-XX-7QJ" id="w4x-US-EdS"/>
+                                            <outlet property="actIcon" destination="oiU-qv-xiX" id="SGH-fo-GVn"/>
+                                            <outlet property="actLimit" destination="arw-d5-xWw" id="mNs-hC-R0g"/>
+                                            <outlet property="actMember" destination="vgo-ko-IC6" id="Zbj-f7-qGL"/>
+                                            <outlet property="actTime" destination="h1I-b2-2Hc" id="pWX-dF-JEq"/>
+                                            <outlet property="actTitle" destination="Kt3-1k-5bM" id="Vdx-gU-kBV"/>
+                                            <outlet property="actTypeIcon" destination="oPg-1e-tqw" id="gD1-Gg-fHU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2221,7 +2227,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oVs-ZV-wMi">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oVs-ZV-wMi" customClass="IconImageViewLoader">
                                     <rect key="frame" x="10" y="33" width="150" height="94"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>

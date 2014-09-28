@@ -14,29 +14,18 @@
 
 @interface ActivityDetailTableViewController : UITableViewController
 {
-    Activity *activity;
-    UILabel *titleLabel;
-    UILabel *activityDescription;
-    UILabel *joinState;
-    UILabel *hot;
-    UILabel *amount;
-    UIImageView *titleImgView;
-    UILabel *address;
-    UILabel *time;
-    
-    NSData* receivedData;
     NSDictionary* activityData;
-        
     NSArray* localCommentData;
+    NSNumber* localId;
+    NSNumber* creatorId;
 }
 
-@property (nonatomic, retain) Activity *activity;
 @property IBOutlet UILabel *titleLabel;
 @property IBOutlet UILabel *activityDescription;
 @property IBOutlet UILabel *joinState;
 @property IBOutlet UILabel *hot;
 @property IBOutlet UILabel *amount;
-@property IBOutlet UIImageView *titleImgView;
+@property IBOutlet IconImageViewLoader *titleImgView;
 @property IBOutlet UILabel *address;
 @property IBOutlet UILabel *time;
 @property (strong, nonatomic) IBOutlet UILabel *people;
@@ -62,7 +51,11 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *totalCommentNumber;
 
-- (void) refreshActivityDetail;
+- (void) SetActivityId:(NSNumber*)actid;
+- (void) SetActivityData:(NSDictionary*)data;
+- (void) UpdateActivityDisplay;
 - (void) RefreshCommentList;
+- (NSNumber*) GetCreatorId;
+- (NSNumber*) GetActivityId;
 
 @end

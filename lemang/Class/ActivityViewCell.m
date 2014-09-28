@@ -9,8 +9,6 @@
 #import "ActivityViewCell.h"
 
 @implementation ActivityViewCell
-@synthesize activityIconImg;
-@synthesize linkedActivity;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -28,45 +26,32 @@
     // Configure the view for the selected state
 }
 
-- (void) SetIconImgUrl:(NSURL *)url
-{    
-    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
-    [request setUsername:@"admin"];
-    [request setPassword:@"admin"];
-    [request setDelegate:self];
-    
-    [activityIconImg setImage:[UIImage imageNamed:@"default_Icon"]];
-    linkedActivity.cachedImg = activityIconImg.image;
-    imgData = [[NSMutableData alloc] init];
-    
-    localRequest = request;
-    [request startAsynchronous];
+- (void)SetActData:(NSDictionary *)data
+{
+    localData = data;
+    actId = data[@"id"];
 }
 
-- (void)requestFinished:(ASIHTTPRequest*)request
+- (void) SetActivity:(Activity *)_act
 {
-    imgData = [request responseData];
+    actId = _act.activityId;
+    localData = [_act GetActivityData];
     
-    UIImage *img=[UIImage imageWithData:imgData];
-    [activityIconImg setImage:img];
-    linkedActivity.cachedImg = img;
-    localRequest = nil;
+    _actTitle.text = [UserManager filtStr:_act.title :@""];
+    _actTime.text = [UserManager filtStr:_act.date :@""];
+    _actLimit.text = [UserManager filtStr:_act.limit :@""];
+    
+    NSString* favStr = @"";
+    favStr = [favStr stringByAppendingFormat:@"%@", _act.fav];
+    _actBookmark.text = [UserManager filtStr:favStr :@""];
+    
+    NSString* memberNum = @"";
+    memberNum = [memberNum stringByAppendingFormat:@"%@/%@", _act.member, _act.memberUpper];
+
+    _actTypeIcon.image = _act.icon;
+    
+    [_actIcon LoadFromUrl:_act.imgUrlStr :[UIImage imageNamed:@"default_Icon"]];
 }
 
-- (void)requestFailed:(ASIHTTPRequest*)request
-{
-    NSError* error = [request error];
-    NSLog(@"Download activity image fail: %d",error.code);
-    localRequest = nil;
-}
-
--(void) dealloc
-{
-    if (localRequest != nil)
-    {
-        [localRequest clearDelegatesAndCancel];
-        NSLog(@"Request canceled by dealloc.");
-    }
-}
 
 @end

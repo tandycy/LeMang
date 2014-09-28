@@ -366,30 +366,8 @@ NSString *navTitle;
         activity = [self.activityArray objectAtIndex:indexPath.row];
     }
     
-    cell.linkedActivity = activity;
-    
-    [cell SetIconImgUrl:activity.imgUrlStr];
-    
-    UILabel *titleLable = (UILabel *)[cell viewWithTag:ActivityTitle];
-    titleLable.text = activity.title;
-    
-    UILabel *dateLable = (UILabel *)[cell viewWithTag:ActivityDate];
-    dateLable.text = activity.date;
-    
-    UILabel *limitLable = (UILabel *)[cell viewWithTag:ActivityLimit];
-    limitLable.text = @"";
-    limitLable.text = [limitLable.text stringByAppendingFormat:@"%@",activity.limit];
-    
-    UIImageView *typeIcon = (UIImageView *)[cell viewWithTag:ActivityTypeIcon];
-    typeIcon.image = activity.icon;
-    
-    UILabel *memberLable = (UILabel *)[cell viewWithTag:ActivityMember];
-    memberLable.text = [NSString stringWithFormat:@"%@/%@",activity.member, activity.memberUpper];
-   // memberLable.text = [memberLable.text stringByAppendingFormat:@"%@/%@",activity.member, activity.memberUpper];
-    
-    UILabel *favLable = (UILabel *)[cell viewWithTag:ActivityFav];
-    favLable.text = [UserManager filtStr: activity.fav.stringValue: @"0"];
-    
+    [cell SetActivity:activity];
+   
     return cell;
 }
 
