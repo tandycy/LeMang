@@ -117,7 +117,6 @@
 
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-    
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",                                     searchText];
     self.searchResults = [self.historyItems filteredArrayUsingPredicate:resultPredicate];
 }
@@ -128,13 +127,14 @@
 {
     
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles]                                       objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    [self.searchDisplayController.searchResultsTableView setRowHeight:95];
     return YES;
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller  shouldReloadTableForSearchScope:(NSInteger)searchOption
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
-    
     [self filterContentForSearchText:[self.searchDisplayController.searchBar text]scope:[[self.searchDisplayController.searchBar scopeButtonTitles]objectAtIndex:searchOption]];
+    [self.searchDisplayController.searchResultsTableView setRowHeight:95];
     return YES;
 }
 - (void)didReceiveMemoryWarning
@@ -151,8 +151,6 @@
         viewController.navigationItem.title = @"活动详细页面";
         
         Activity *activity = nil;
-        
-        
         activity = [filteredActivityArray objectAtIndex:indexPath.row];
         
         viewController.activity = activity;
