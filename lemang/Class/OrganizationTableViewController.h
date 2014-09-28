@@ -22,6 +22,7 @@
     int pageSize;
     int maxPage;
 }
+@property (strong, nonatomic) IBOutlet UIButton *searchButton;
 @property (strong, nonatomic) IBOutlet UITableView *localTabelView;
 - (IBAction)OnCreateOrganization:(id)sender;
 - (void)OnCreateDone;

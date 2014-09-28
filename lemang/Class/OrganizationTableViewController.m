@@ -10,6 +10,7 @@
 #import "SelectTableViewController.h"
 #import "Constants.h"
 #import "MJRefresh.h"
+#import "SearchTableViewController.h"
 
 @interface OrganizationTableViewController ()
 {
@@ -45,6 +46,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.searchButton addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(IBAction)searchClick:(id)sender{
+    SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
+    [self.navigationController pushViewController:searchView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -231,6 +238,8 @@
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    [self.navigationController.navigationBar setBarTintColor:defaultMainColor];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     //[activitySearchBar setHidden:NO];
 }
 

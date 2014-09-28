@@ -898,7 +898,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="764" y="-1939"/>
         </scene>
-        <!--Organization Table View Controller - 组织-->
+        <!--Organization Table View Controller-->
         <scene sceneID="Vc7-sc-vQp">
             <objects>
                 <tableViewController id="hbP-KD-ZZ3" customClass="OrganizationTableViewController" sceneMemberID="viewController">
@@ -971,7 +971,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="组织" id="93b-WY-cbg">
+                    <navigationItem key="navigationItem" id="93b-WY-cbg">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="NeM-AP-irb">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CR6-5S-z0B">
                                 <rect key="frame" x="16" y="5" width="23" height="33"/>
@@ -984,6 +985,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JiL-Yv-36K">
+                            <rect key="frame" x="73" y="7" width="174" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="search_back">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" image="main_top_create_activity" id="saj-PN-BIm">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -994,6 +1002,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="localTabelView" destination="cAx-Wl-o7C" id="3FT-i1-PnR"/>
+                        <outlet property="searchButton" destination="JiL-Yv-36K" id="Aq2-x8-EFK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SS-XO-cKf" userLabel="First Responder" sceneMemberID="firstResponder"/>

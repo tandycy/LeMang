@@ -299,6 +299,8 @@ typedef enum {
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:YES];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 -(IBAction)likeClick:(id)sender{
