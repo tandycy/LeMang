@@ -280,7 +280,8 @@ typedef enum {
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
     viewController.navigationItem.title = @"活动详细页面";
     
-    viewController.activity = activityArray[indexPath.row];
+    [viewController SetData:activityArray[indexPath.row]];
+    //viewController.activity = activityArray[indexPath.row];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
