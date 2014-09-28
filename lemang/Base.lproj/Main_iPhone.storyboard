@@ -1025,7 +1025,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="OrganizationActivityCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="orgDetailCell" id="bul-tn-Gv4" customClass="OrganizationActivityCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="OrganizationActivityCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OrganizationActivityCell" id="bul-tn-Gv4" customClass="OrganizationActivityCell">
                                 <rect key="frame" x="0.0" y="222" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bul-tn-Gv4" id="YAr-Rs-FzB">
@@ -1058,9 +1058,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
-                                    <outlet property="actMember" destination="Z45-82-MCS" id="r6V-Kw-jGn"/>
-                                    <outlet property="actState" destination="gxn-9k-sn3" id="vRJ-xR-K22"/>
-                                    <outlet property="actTitle" destination="NgO-Yf-hDl" id="XGo-MF-ohv"/>
+                                    <outlet property="actMember" destination="Z45-82-MCS" id="Urd-aj-GBz"/>
+                                    <outlet property="actState" destination="gxn-9k-sn3" id="O4R-nv-c0S"/>
+                                    <outlet property="actTitle" destination="NgO-Yf-hDl" id="aZc-Tl-rg5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
