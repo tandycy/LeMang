@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -1620,9 +1620,20 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" id="FfQ-cn-EkG" customClass="IconImageViewLoaderWithButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LwA-Rg-P52" customClass="IconImageButtonLoader">
                                 <rect key="frame" x="90" y="81" width="140" height="140"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="user_icon_de">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="OnClickPhoto:" destination="0VP-GQ-YGB" eventType="touchUpInside" id="f92-rh-MaA"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_photo" id="J1m-gP-Prm">
+                                <rect key="frame" x="90" y="81" width="140" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的真实姓名" minimumFontSize="17" id="st7-Qi-lUu">
                                 <rect key="frame" x="48" y="243" width="225" height="30"/>
@@ -1654,10 +1665,6 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upload_photo" id="J1m-gP-Prm">
-                                <rect key="frame" x="90" y="81" width="140" height="140"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1667,6 +1674,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="okButton" destination="exA-xn-lJx" id="pDg-v7-FLb"/>
                         <outlet property="userCode" destination="ygj-y0-oV0" id="pLU-nN-CfU"/>
                         <outlet property="userRealName" destination="st7-Qi-lUu" id="8Hn-zE-m9e"/>
+                        <outlet property="userVerifyPhoto" destination="LwA-Rg-P52" id="O7n-hC-u0q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uG-G6-jS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4259,7 +4267,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="doge3.jpg" width="80" height="80"/>
         <image name="doge4.jpg" width="80" height="80"/>
         <image name="group1.png" width="130" height="170"/>
-        <image name="icon" width="27" height="26"/>
         <image name="like_number" width="12" height="11"/>
         <image name="main_activity_off" width="27" height="25"/>
         <image name="main_mainpage_off" width="27" height="26"/>

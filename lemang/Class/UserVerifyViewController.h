@@ -7,13 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IconImageViewLoaderWithButton.h"
+#import "UserManager.h"
+#import "IconImageButtonLoader.h"
+#import "ASIFormDataRequest.h"
 
 @interface UserVerifyViewController : UIViewController<UITextFieldDelegate>
+{    
+    UIImagePickerController *imagePicker;
+    UIImage* photoImg;
+}
 
-@property (strong, nonatomic) IBOutlet IconImageViewLoaderWithButton *userVerifyPhoto;
+@property (strong, nonatomic) IBOutlet IconImageButtonLoader *userVerifyPhoto;
 @property (strong, nonatomic) IBOutlet UITextField *userRealName;
 @property (strong, nonatomic) IBOutlet UITextField *userCode;
+- (IBAction)OnClickPhoto:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIButton *okButton;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
