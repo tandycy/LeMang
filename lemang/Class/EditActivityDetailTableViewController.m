@@ -221,6 +221,10 @@
     {
         textField = actCollege;
     }
+    else if (actHost.isEditing)
+    {
+        textField = actHost;
+    }
     textField.text = [pickerArray objectAtIndex:row];
 }
 
@@ -236,6 +240,10 @@
     else if(actCollege.isEditing)
     {
         [actCollege endEditing:YES];
+    }
+    else if(actHost.isEditing)
+    {
+        [actHost endEditing:YES];
     }
 }
 
@@ -517,7 +525,11 @@
         [self DoAlert:@"院系不能为空":@""];
         return false;
     }
-    
+    if (actHost.text.length == 0)
+    {
+        [self DoAlert:@"所属组织不能为空":@""];
+        return false;
+    }
     
     if (_actLocation.text.length == 0)
     {
