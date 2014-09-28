@@ -15,7 +15,6 @@
 
 @implementation ActivityDetailTableViewController
 
-@synthesize activity;
 @synthesize titleLabel,activityDescription;
 @synthesize amount, hot, joinState,address,time;
 @synthesize titleImgView;
@@ -33,13 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    titleLabel.text = activity.title;
-    amount.text = [NSString stringWithFormat:@"%@/%@",activity.member,activity.memberUpper];
-    hot.text = activity.fav.stringValue;
-    titleImgView.image = activity.cachedImg;
-    address.text = activity.title;
-    time.text = activity.date;
-    _people.text = activity.limit;
+
     activityDescription.text = @"";
     
     _commentContent.text = @"";
@@ -51,7 +44,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self refreshActivityDetail];
+    [self UpdateActivityDisplay];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,7 +60,7 @@
 
 - (void)RefreshCommentList
 {
-    NSString* URLString = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", activity.activityId];
+    NSString* URLString = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", localId];
     URLString = [URLString stringByAppendingString:@"/comment"];
     NSURL *URL = [NSURL URLWithString:URLString];
     
@@ -117,12 +110,25 @@
     }
 }
 
-- (void) refreshActivityDetail
+- (void) SetActivityData:(NSDictionary *)data
 {
-    if (activity == nil)
+    activityData = data;
+    localId = data[@"id"];
+}
+
+- (void) SetActivityId:(NSNumber *)actid
+{
+    localId = actid;
+}
+
+- (void) RefreshActivityData
+{
+    activityData = [[NSDictionary alloc]init];
+    
+    if (!localId)
         return;
     
-    NSString* URLString = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", activity.activityId];
+    NSString* URLString = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/activity/%@", localId];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
@@ -133,107 +139,162 @@
     
     if (!error)
     {
-        receivedData = [request responseData];
-        activityData = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
-        
-        //NSLog(@"%@", activityData);
-        
-        NSString* detailInfo = @"";//activityData[@"description"];
-        detailInfo = [detailInfo stringByAppendingFormat:@"%@", activityData[@"description"]];
-        
-        _detailContent.text = detailInfo;
-        
-        NSMutableArray* memberArray = [[NSMutableArray alloc]init];
-        
-        NSDictionary* memberDataAll = activityData[@"users"];
+        activityData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+    }
+    
+    [self RefreshCommentList];
+}
 
-        if ([memberDataAll isKindOfClass:[NSDictionary class]])
-        {
-            NSEnumerator* memberEnum = [memberDataAll objectEnumerator];
-            for (NSDictionary* obj in memberEnum)
-            {
-                [memberArray addObject:obj];
-            }
-        }
-        
-        
-        NSUInteger memberNumber = memberArray.count;
-        _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
-        
-        NSArray* memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
-        NSArray* rateIconList = [[NSArray alloc] initWithObjects:_rateIcon1, _rateIcon2, _rateIcon3, _rateIcon4, _rateIcon5, nil];
-        NSArray* rateAllList = [[NSArray alloc] initWithObjects:_rateScore1, _rateScore2, _rateScore3, _rateScore4, _rateScore5, nil];
-        for (int i = 0; i < memberIconList.count; i++)
-        {
-            if (i >= memberNumber)
-            {
-                [memberIconList[i] setHidden:true];
-                continue;
-            }
-            
-            [memberIconList[i] setHidden:false];
-            
-            NSString* rule = memberArray[i][@"role"];
-            
-            NSDictionary* memberInfo = memberArray[i][@"user"][@"profile"];
-            NSString* memberIconUrl = @"";
-            if ([memberInfo isKindOfClass:[NSDictionary class]])
-            {
-                memberIconUrl = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@",memberInfo[@"iconUrl"]];
-                NSURL* iconUrl = [NSURL URLWithString:memberIconUrl];
-                [memberIconList[i] LoadFromUrl:iconUrl: [UserManager DefaultIcon]];
-            }
-            else
-                [memberIconList[i] setImage:[UserManager DefaultIcon]];
-            
-        }
-        
-        
-        address.text = [UserManager filtStr:activityData[@"address"]: @""];
-        localCommentData = activityData[@"activityComment"];
-        NSUInteger commentNumber = localCommentData.count;
-        
-        _totalCommentNumber.text = [NSString stringWithFormat:@"(%d)",commentNumber];
-        if (commentNumber > 0)
-        {
-            NSDictionary* commentItem = localCommentData[0];
-            
-            _commentTittle.text = commentItem[@"title"];
-            _commentContent.text = commentItem[@"content"];
-            
-            // images
-            //int rating
-            
-            NSNumber* rate = commentItem[@"rating"];
-            for (int i = 0; i < rateIconList.count; i++)
-            {
-                if ( i+1 > rate.integerValue)
-                    [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
-                else
-                    [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
-            }
-        }
-        else
-        {
-            _commentTittle.text = @"";
-            _commentContent.text = @"";
-            for (int i = 0; i < rateIconList.count; i++)
-            {
-                [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
-            }
-        }
+- (NSNumber*)GetCreatorId
+{
+    return creatorId;
+}
 
-        NSDictionary* board = activityData[@"board"];
-        NSNumber* rate = activityData[@"rating"];
-        for (int i = 0; i < rateAllList.count; i++)
+- (NSNumber*)GetActivityId
+{
+    return localId;
+}
+
+- (void) UpdateActivityDisplay
+{
+    if (activityData == nil)
+        [self RefreshActivityData];
+    
+    
+    NSString* beginTime = [UserManager filtStr:activityData[@"beginTime"] : @""];
+    NSString* endTime = [UserManager filtStr:activityData[@"endTime"] : @""];
+    time.text = [beginTime stringByAppendingFormat:@" ~ %@", endTime];
+    
+    NSDictionary* creator = activityData[@"createdBy"];
+    creatorId = creator[@"id"];
+    
+    NSDictionary* members = activityData[@"users"];
+    int memberNum = 0;
+    if ([members isKindOfClass:[NSDictionary class]])
+    {
+        memberNum = members.count;
+    }
+    NSString* memberMax = [UserManager filtStr:activityData[@"peopleLimit"] : @""];
+    amount.text = [NSString stringWithFormat:@"%d/%@",memberNum,memberMax];
+    
+    
+    NSString* imgUrlString = [UserManager filtStr:activityData[@"iconUrl"] :@""];
+    if (imgUrlString.length > 0)
+    {
+        NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/a/";
+        tempstr = [tempstr stringByAppendingFormat:@"%@/", activityData[@"id"]];
+        tempstr = [tempstr stringByAppendingString:imgUrlString];
+        imgUrlString = tempstr;
+    }
+    NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
+    [titleImgView LoadFromUrl:imgUrl :[UIImage imageNamed:@"default_Icon"]];
+    
+    NSDictionary* board = activityData[@"board"];
+    NSNumber* favNum = [NSNumber numberWithInt:0];
+    if ([board isKindOfClass:[NSDictionary class]])
+    {
+        NSNumber* fav = board[@"bookmarkCount"];
+        if ([fav isKindOfClass:[NSDictionary class]])
+            favNum = fav;
+    }    
+    hot.text = [NSString stringWithFormat:@"%@", favNum];
+
+    
+    titleLabel.text = [UserManager filtStr:activityData[@"title"] :@""];
+    address.text = [UserManager filtStr:activityData[@"address"] :@""];
+    _people.text = [UserManager filtStr:activityData[@"regionLimit"] : @""];
+    
+    _detailContent.text = [UserManager filtStr:activityData[@"description"] :@""];
+    
+    NSMutableArray* memberArray = [[NSMutableArray alloc]init];
+    
+    NSDictionary* memberDataAll = activityData[@"users"];
+    
+    if ([memberDataAll isKindOfClass:[NSDictionary class]])
+    {
+        NSEnumerator* memberEnum = [memberDataAll objectEnumerator];
+        for (NSDictionary* obj in memberEnum)
         {
-            if ( i+1 > rate.integerValue)
-                [rateAllList[i]  setImage: [UIImage imageNamed:@"rate_star_off"]];
-            else
-                [rateAllList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
+            [memberArray addObject:obj];
         }
     }
     
+    
+    NSUInteger memberNumber = memberArray.count;
+    _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
+    
+    NSArray* memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
+    NSArray* rateIconList = [[NSArray alloc] initWithObjects:_rateIcon1, _rateIcon2, _rateIcon3, _rateIcon4, _rateIcon5, nil];
+    NSArray* rateAllList = [[NSArray alloc] initWithObjects:_rateScore1, _rateScore2, _rateScore3, _rateScore4, _rateScore5, nil];
+    for (int i = 0; i < memberIconList.count; i++)
+    {
+        if (i >= memberNumber)
+        {
+            [memberIconList[i] setHidden:true];
+            continue;
+        }
+        
+        [memberIconList[i] setHidden:false];
+        
+        NSString* rule = memberArray[i][@"role"];
+        
+        NSDictionary* memberInfo = memberArray[i][@"user"][@"profile"];
+        NSString* memberIconUrl = @"";
+        if ([memberInfo isKindOfClass:[NSDictionary class]])
+        {
+            memberIconUrl = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@",memberInfo[@"iconUrl"]];
+            NSURL* iconUrl = [NSURL URLWithString:memberIconUrl];
+            [memberIconList[i] LoadFromUrl:iconUrl: [UserManager DefaultIcon]];
+        }
+        else
+            [memberIconList[i] setImage:[UserManager DefaultIcon]];
+        
+    }
+    
+    
+    address.text = [UserManager filtStr:activityData[@"address"]: @""];
+    localCommentData = activityData[@"activityComment"];
+    NSUInteger commentNumber = localCommentData.count;
+    
+    _totalCommentNumber.text = [NSString stringWithFormat:@"(%d)",commentNumber];
+    if (commentNumber > 0)
+    {
+        NSDictionary* commentItem = localCommentData[0];
+        
+        _commentTittle.text = commentItem[@"title"];
+        _commentContent.text = commentItem[@"content"];
+        
+        // images
+        //int rating
+        
+        NSNumber* rate = commentItem[@"rating"];
+        for (int i = 0; i < rateIconList.count; i++)
+        {
+            if ( i+1 > rate.integerValue)
+                [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
+            else
+                [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
+        }
+    }
+    else
+    {
+        _commentTittle.text = @"";
+        _commentContent.text = @"";
+        for (int i = 0; i < rateIconList.count; i++)
+        {
+            [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_off"]];
+        }
+    }
+    
+    
+    NSNumber* rate = activityData[@"rating"];
+    for (int i = 0; i < rateAllList.count; i++)
+    {
+        if ( i+1 > rate.integerValue)
+            [rateAllList[i]  setImage: [UIImage imageNamed:@"rate_star_off"]];
+        else
+            [rateAllList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -247,7 +308,7 @@
     }
     else if (indexPath.section == 1){
         ActivityMemberTableViewController *AMTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityMemberTableViewController"];
-        [AMTVC SetActivity:activity];
+        [AMTVC SetActivity:activityData];
         [self.navigationController pushViewController:AMTVC animated:YES];
     }
 }

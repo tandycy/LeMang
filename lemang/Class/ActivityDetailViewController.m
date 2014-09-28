@@ -57,7 +57,8 @@
     // [self.tabBarController.tabBar setHidden:YES];
     
     ActivityDetailTableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
-    tableVC.activity = activity;
+    [tableVC SetActivityData:[activity GetActivityData]];
+    [tableVC SetActivityId:activity.activityId];
     
     toolBar.tintColor = defaultMainColor;
     

@@ -51,16 +51,18 @@
     NSLog(@"%f",self.tableView.frame.size.width);
 }
 
-- (void) SetActivity:(Activity *)activity
+- (void) SetActivity:(NSDictionary *)actData
 {
-    linkedActivity = activity;
     
     adminList = [[NSMutableArray alloc]init];
     memberList = [[NSMutableArray alloc]init];
     guestList = [[NSMutableArray alloc]init];
     
+    localData = actData;
+    NSNumber* actId = localData[@"id"];
+    
     NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
-    memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", activity.activityId];
+    memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", actId];
     ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
     [memberRequest startSynchronous];
     
@@ -157,7 +159,7 @@
     
     if (section == 0) {
         cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        NSDictionary* creator = [linkedActivity GetActivityData][@"createdBy"];
+        NSDictionary* creator = localData[@"createdBy"];
         
         NSDictionary* profile = creator[@"profile"];
         NSDictionary* creatorSchoolData = creator[@"university"];

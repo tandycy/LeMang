@@ -172,7 +172,7 @@ typedef enum {
     
     if (!error)
     {
-        NSArray* data = [NSJSONSerialization JSONObjectWithData:[activityRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+        NSArray* data = [NSJSONSerialization JSONObjectWithData:[activityRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
         NSMutableArray* actTemp = [[NSMutableArray alloc]init];
         
         for (NSDictionary* item in data)
@@ -236,36 +236,22 @@ typedef enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *orgDetailCell = @"orgDetailCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:orgDetailCell forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"OrganizationActivityCell";
+    OrganizationActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.accessoryType = UITableViewCellAccessoryNone;
     
-    // Configure the cell...
-    
-    if (cell==nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:orgDetailCell forIndexPath:indexPath];
+    if ( cell == nil )
+    {
+        cell = [[OrganizationActivityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
     UIImageView *bg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"activity_bar.png"]];
     [cell addSubview:bg];
     
-    /*
-    Activity *activity = nil;
-    activity = [activityArray objectAtIndex:indexPath.row];
+    NSDictionary* actData = activityArray[indexPath.row];
+    [cell SetData:actData];
     
-    UILabel *activityMember = (UILabel*)[cell viewWithTag:ActivityMember];
-    activityMember.text = activity.member;
-    
-    UILabel *activityTitle = (UILabel*)[cell viewWithTag:ActivityTitle];
-    activityTitle.text = activity.title;
-    
-    UIImageView *activityState = (UIImageView*)[cell viewWithTag:ActivityState];
-    UIImage *on = [UIImage imageNamed:@"activity_state_on.png"];
-    UIImage *off = [UIImage imageNamed:@"activity_state_off.png"];
-    if (activity.state) {
-        activityState.image = on;
-    }
-    else activityState.image = off;
-    */
+ 
     return cell;
 }
 
@@ -294,7 +280,7 @@ typedef enum {
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
     viewController.navigationItem.title = @"活动详细页面";
     
-    viewController.activity = [activityArray objectAtIndex:indexPath.row];
+    viewController.activity = activityArray[indexPath.row];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

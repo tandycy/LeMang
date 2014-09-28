@@ -15,15 +15,15 @@
 
 @interface ActivityMemberTableViewController : UITableViewController
 {
-    Activity* linkedActivity;
     NSMutableArray* adminList;
     NSMutableArray* memberList;
     NSMutableArray* guestList;
+    
+    NSDictionary* localData;
 }
 
 @property IBOutlet UIView *containerView;
 @property IBOutlet UITableView *tbV;
-
-- (void) SetActivity:(Activity*)activity;
+- (void) SetActivity:(NSDictionary*)actData;
 
 @end
