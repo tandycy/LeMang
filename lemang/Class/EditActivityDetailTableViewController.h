@@ -15,6 +15,8 @@
 {
     NSMutableDictionary* activityData;
     UIImage* iconImage;
+    
+    UIViewController* rootVC;
 }
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *actHostType;
@@ -46,5 +48,6 @@
 
 - (void) SetActivityData:(NSMutableDictionary*)data;
 - (void) SetIconData : (UIImage*)img;
+- (void) SetRootView:(UIViewController*)vc;
 
 @end

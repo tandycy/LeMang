@@ -100,6 +100,11 @@
     orgData = [NSMutableDictionary dictionaryWithDictionary:data];
 }
 
+- (void)SetRootView:(UIViewController *)vc
+{
+    rootVC = vc;
+}
+
 - (void)SetOrganizationDataFromId:(NSNumber *)orgId
 {
     NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/association";
@@ -299,6 +304,7 @@
     EditOrgDetailVC.navigationItem.title = @"详细页面";
     [EditOrgDetailVC SetOrganizationData:orgData];
     [EditOrgDetailVC SetIconData:localNewIcon];
+    [EditOrgDetailVC SetRootView:rootVC];
     //
     [self.navigationController pushViewController:EditOrgDetailVC animated:YES];
     

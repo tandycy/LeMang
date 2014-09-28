@@ -98,6 +98,7 @@
     EditActVC.navigationItem.title = @"编辑活动";
     NSNumber* aid = localData[@"id"];
     [EditActVC SetActivityDataFromId:aid];
+    [EditActVC SetRootView:parView];
     [parView.navigationController pushViewController:EditActVC animated:YES];
 }
 

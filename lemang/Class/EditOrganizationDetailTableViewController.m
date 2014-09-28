@@ -18,6 +18,8 @@
     NSArray *collegeArray;
     
     NSArray* tagButtonArray;
+    
+    UIAlertView* endMessageView;
 }
 
 @end
@@ -48,6 +50,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *ttt = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"top_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(ToFirstPage:)];
+    self.navigationItem.leftBarButtonItem = ttt;
+    
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(DoCommitEdit:)];
     self.navigationItem.rightBarButtonItem = doneButton;
     [self RecoverDataContent];
@@ -228,6 +233,11 @@
 {
     [self UpdateDataContent];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)SetRootView:(UIViewController *)vc
+{
+    rootVC = vc;
 }
 
 - (void) RecoverDataContent
@@ -463,20 +473,26 @@
     {
         [self UploadImageFile: orgId];
         
-        // TODO create success operation
-        /*
-         if (owner != nil && [owner isKindOfClass:[ActivityViewController class]])
-         {
-         [(ActivityViewController*)owner CreateActivityDone];
-         [self.navigationController popViewControllerAnimated:true];
-         }
-         */
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"编辑完成" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        endMessageView = alertView;
+        [alertView show];
     }
     else
     {
         NSLog(@"%d - %@", returnCode, jsonString);
     }
     
+}
+
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger*)buttonIndex
+{
+    if ((id)alertView == (id)endMessageView)
+    {
+        if (rootVC)
+            [self.navigationController popToViewController:rootVC animated:true];
+        else
+            [self.navigationController popToRootViewControllerAnimated:true];
+    }
 }
 
 - (void) UploadImageFile : (NSNumber*)aid

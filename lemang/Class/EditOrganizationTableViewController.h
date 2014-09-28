@@ -17,6 +17,8 @@
     
     UIImage* localNewIcon;
     UIImage* originIcon;
+    
+    UIViewController* rootVC;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *orgName;
@@ -27,6 +29,7 @@
 
 - (void)SetOrganizationData:(NSDictionary*)data;
 - (void)SetOrganizationDataFromId:(NSNumber*)orgId;
+- (void)SetRootView:(UIViewController*)vc;
 
 
 @end

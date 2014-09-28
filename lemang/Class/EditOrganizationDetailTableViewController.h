@@ -14,6 +14,8 @@
 {
     NSMutableDictionary* orgData;
     UIImage* iconImage;
+    
+    UIViewController* rootVC;
 }
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *orgType;
@@ -40,5 +42,7 @@
 
 - (void) SetOrganizationData:(NSMutableDictionary*)data;
 - (void) SetIconData : (UIImage*)img;
+- (void)SetRootView:(UIViewController*)vc;
+
 
 @end

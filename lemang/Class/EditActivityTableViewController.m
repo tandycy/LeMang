@@ -103,6 +103,14 @@
     [UserManager RefreshTagData];
     
 }
+- (void) OnCommit
+{
+}
+
+- (void)SetRootView:(UIViewController *)vc
+{
+    rootVC = vc;
+}
 
 - (void) SetActivityData:(NSDictionary *)data
 {
@@ -388,6 +396,7 @@
     
     [EditActDetailVC SetActivityData:activityData];
     [EditActDetailVC SetIconData:localNewIcon];
+    [EditActDetailVC SetRootView:rootVC];
     [self.navigationController pushViewController:EditActDetailVC animated:YES];
     
 }

@@ -17,6 +17,8 @@
     NSArray *collegeArray;
     
     NSArray* tagButtonArray;
+    
+    UIAlertView* endMessageView;
 }
 
 @end
@@ -241,6 +243,11 @@
 {
     [self UpdateDataContent];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)SetRootView:(UIViewController *)vc
+{
+    rootVC = vc;
 }
 
 - (void) RecoverDataContent
@@ -478,7 +485,7 @@
 
 - (void)DoAlert : (NSString*)caption: (NSString*)content
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alertView show];
 }
 
@@ -560,20 +567,25 @@
     {
         [self UploadImageFile: actId];
         
-        // TODO create success operation
-        /*
-        if (owner != nil && [owner isKindOfClass:[ActivityViewController class]])
-        {
-            [(ActivityViewController*)owner CreateActivityDone];
-            [self.navigationController popViewControllerAnimated:true];
-        }
-         */
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"编辑完成" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        endMessageView = alertView;
+        [alertView show];
     }
     else
     {
         NSLog(@"%d - %@", returnCode, jsonString);
     }
+}
 
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger*)buttonIndex
+{
+    if ((id)alertView == (id)endMessageView)
+    {
+        if (rootVC)
+            [self.navigationController popToViewController:rootVC animated:true];
+        else
+            [self.navigationController popToRootViewControllerAnimated:true];
+    }
 }
 
 - (void) UploadImageFile : (NSNumber*)aid

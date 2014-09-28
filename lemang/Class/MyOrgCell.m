@@ -97,6 +97,7 @@
     EditOrgVC.navigationItem.title = @"编辑组织";
     NSNumber* orgId = localData[@"id"];
     [EditOrgVC SetOrganizationDataFromId:orgId];
+    [EditOrgVC SetRootView:parView];
     [parView.navigationController pushViewController:EditOrgVC animated:YES];
 }
 

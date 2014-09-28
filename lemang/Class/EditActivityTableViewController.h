@@ -16,7 +16,8 @@
     UIImage* localNewIcon;
     UIImage* originIcon;
     UIImagePickerController *imagePicker;
-
+    
+    UIViewController* rootVC;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *actName;
@@ -36,5 +37,7 @@
 - (IBAction)OnCancelPhoto:(id)sender;
 - (void)SetActivityData:(NSDictionary*)data;
 - (void)SetActivityDataFromId:(NSNumber*)actId;
+- (void)SetRootView:(UIViewController*)vc;
+
 
 @end
