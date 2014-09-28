@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -128,7 +128,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Nqc-Nk-Swj">
+                    <navigationItem key="navigationItem" id="Nqc-Nk-Swj">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="JEo-gc-rZA">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OzE-Pk-659">
                                 <rect key="frame" x="16" y="5" width="23" height="33"/>
@@ -140,6 +141,13 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="B9P-p7-oSB">
+                            <rect key="frame" x="73" y="7" width="174" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="search_back">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" image="main_top_create_activity" id="hvh-y2-5rK">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -151,6 +159,7 @@
                         <outlet property="activityList" destination="9Hg-RG-Qen" id="49S-f3-P9k"/>
                         <outlet property="activitySearchBar" destination="obB-DF-Kw4" id="jd8-ls-9rj"/>
                         <outlet property="scrollView" destination="6Bi-6k-BTf" id="BLG-8b-5UT"/>
+                        <outlet property="searchButton" destination="B9P-p7-oSB" id="9tT-yD-gAm"/>
                         <outlet property="searchDisplayController" destination="Ih2-Ul-UgE" id="CxD-hU-Q37"/>
                     </connections>
                 </viewController>
@@ -1623,6 +1632,54 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                 </toolbar>
             </objects>
             <point key="canvasLocation" x="948" y="999"/>
+        </scene>
+        <!--Search Table View Controller-->
+        <scene sceneID="5qX-Dz-W6O">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FQX-BS-z7t" customClass="SearchTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Les-UW-78n">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="NXp-Qi-IA8">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="FQX-BS-z7t" id="13W-6Y-iyq"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="I0l-BX-L0K">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I0l-BX-L0K" id="A7I-Ii-55s">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FQX-BS-z7t" id="hYR-9C-IO9"/>
+                            <outlet property="delegate" destination="FQX-BS-z7t" id="axd-T0-4Vr"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="ESf-Hg-yNt" id="T9P-3s-FZr"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2yg-dR-fXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="ESf-Hg-yNt">
+                    <connections>
+                        <outlet property="delegate" destination="FQX-BS-z7t" id="4qR-Qe-7cI"/>
+                        <outlet property="searchBar" destination="NXp-Qi-IA8" id="NxV-7V-M09"/>
+                        <outlet property="searchContentsController" destination="FQX-BS-z7t" id="Pq7-9O-WnP"/>
+                        <outlet property="searchResultsDataSource" destination="FQX-BS-z7t" id="NkR-T1-Osv"/>
+                        <outlet property="searchResultsDelegate" destination="FQX-BS-z7t" id="2Qb-ed-jQC"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1521" y="975"/>
         </scene>
         <!--User Verify View Controller-->
         <scene sceneID="vnr-Zm-9cV">
@@ -4309,6 +4366,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="no" width="23" height="25"/>
         <image name="rate_star_off" width="39" height="39"/>
         <image name="rate_star_whole" width="14" height="14"/>
+        <image name="search_back" width="174" height="30"/>
         <image name="split_line" width="1" height="1"/>
         <image name="tags" width="120" height="66"/>
         <image name="upload_photo" width="141" height="141"/>

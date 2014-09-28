@@ -29,6 +29,7 @@
     UIImage* privateIcon;
     
 }
+@property (strong, nonatomic) IBOutlet UIButton *searchButton;
 @property (strong,nonatomic) NSMutableArray *activityArray;
 
 @property (strong,nonatomic) NSMutableArray *filteredActivityArray;

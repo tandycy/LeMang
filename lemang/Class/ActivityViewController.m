@@ -12,6 +12,8 @@
 #import "MJRefresh.h"
 #import "CreateActivityTableViewController.h"
 #import "SelectTableViewController.h"
+#import "SearchTableViewController.h"
+#import "Constants.h"
 
 #define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
 
@@ -199,11 +201,11 @@ NSString *navTitle;
 {
     NSLog(@"load");
     [super viewDidLoad];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     [self setupRefresh];
     // Do any additional setup after loading the view.
 
+    [self.searchButton addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     // initialize activity list
     
     bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
@@ -412,6 +414,8 @@ NSString *navTitle;
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    [self.navigationController.navigationBar setBarTintColor:defaultMainColor];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -448,6 +452,14 @@ NSString *navTitle;
 {
     [self popover:sender];
     NSLog(@"popover");
+}
+
+-(IBAction)searchClick:(id)sender
+{
+    SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
+    //searchView.modalPresentationStyle = UIModalPresentationPageSheet;
+    searchView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:searchView animated:YES];
 }
 
 /*
