@@ -7,7 +7,7 @@
 //
 
 #import "InviteMyFriendsTableViewController.h"
-#import "MyFriendCell.h"
+#import "InviteFriendCell.h"
 #import "MemberInfoTableViewController.h"
 #import "Friend.h"
 
@@ -47,6 +47,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) SetInviteActivity:(NSNumber *)aid
+{
+    inviteType = Activity;
+    inviteId = aid;
+}
+
+- (void) SetInviteGroup:(NSNumber *)gid
+{
+    inviteType = Group;
+    inviteId = gid;
 }
 
 -(void)dataInit
@@ -127,13 +139,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MyFriendCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MyFriendCell"];
+    InviteFriendCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"InviteFriendCell"];
     // Configure the cell...
     
     Friend *friend = nil;
     
     if (cell==nil) {
-        cell = [[MyFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyFriendCell"];
+        cell = [[InviteFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"InviteFriendCell"];
     }
     
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -146,6 +158,7 @@
     }
     
     [cell SetItem:friend];
+    [cell SetOwner:self];
     
     return cell;
 }
@@ -220,5 +233,46 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+- (void) DoInviteFriend:(Friend *)friendItem
+{
+    NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    int localId = [[UserManager Instance]GetLocalUserId];
+    urlStr = [urlStr stringByAppendingFormat:@"%d/invite/%@", localId, friendItem.userId];
+    
+    if (inviteType == Activity)
+    {
+        urlStr = [urlStr stringByAppendingFormat:@"/activity/%@", inviteId];
+    }
+    else  if (inviteType == Group)
+    {
+        urlStr = [urlStr stringByAppendingFormat:@"/association/%@", inviteId];
+    }
+    else
+        return;
+    
+    ASIHTTPRequest *inviteRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [inviteRequest addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [inviteRequest setRequestMethod:@"POST"];
+    [inviteRequest setUsername:[UserManager UserName]];
+    [inviteRequest setPassword:[UserManager UserPW]];
+    [inviteRequest startSynchronous];
+    
+    NSError *error = [inviteRequest error];
+    
+    if (!error)
+    {
+        int returnCode = [inviteRequest responseStatusCode];
+        
+        if (returnCode == 200)
+        {
+            NSString* content = [NSString stringWithFormat:@"已向好友<%@>发送邀请。",friendItem.userName];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"成功邀请" message:content delegate:nil cancelButtonTitle:@"完成" otherButtonTitles: nil];
+            [alertView show];
+        }
+        else
+            NSLog(@"Invite failed: %d", returnCode);
+    }
+}
 
 @end

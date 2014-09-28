@@ -7,7 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
+#import "IconImageViewLoader.h"
+#import "Friend.h"
 
 @interface InviteMyFriendsTableViewController : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate>
+{
+    enum InviteType
+    {
+        Unknown,
+        Activity,
+        Group,
+    }inviteType;
+    
+    NSNumber* inviteId;
+}
+
+- (void)DoInviteFriend:(Friend*)friendItem;
+- (void)SetInviteActivity:(NSNumber*)aid;
+- (void)SetInviteGroup:(NSNumber*)gid;
 
 @end

@@ -102,5 +102,15 @@
 }
 
 - (IBAction)DoActInvite:(id)sender{
+    if (![owner isKindOfClass:[MyAcitivityTableViewController class]])
+        return;
+    
+    MyAcitivityTableViewController* parView = (MyAcitivityTableViewController*)owner;
+    
+    InviteMyFriendsTableViewController *EditActVC = [parView.storyboard instantiateViewControllerWithIdentifier:@"InviteMyFriendsTableViewController"];
+
+    NSNumber* aid = localData[@"id"];
+    [EditActVC SetInviteActivity:aid];
+    [parView.navigationController pushViewController:EditActVC animated:YES];
 }
 @end

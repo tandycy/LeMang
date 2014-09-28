@@ -9,6 +9,7 @@
 #import "MyOrgCell.h"
 #import "MyOrganizationTableViewController.h"
 #import "EditOrganizationTableViewController.h"
+#import "InviteMyFriendsTableViewController.h"
 
 @implementation MyOrgCell
 
@@ -99,7 +100,17 @@
     [parView.navigationController pushViewController:EditOrgVC animated:YES];
 }
 
-- (IBAction)DoActInvite:(id)sender{
+- (IBAction)DoOrgInvite:(id)sender{
+    if (![owner isKindOfClass:[MyOrganizationTableViewController class]])
+        return;
+    
+    MyOrganizationTableViewController* parView = (MyOrganizationTableViewController*)owner;
+    
+    InviteMyFriendsTableViewController *EditActVC = [parView.storyboard instantiateViewControllerWithIdentifier:@"InviteMyFriendsTableViewController"];
+    
+    NSNumber* oid = localData[@"id"];
+    [EditActVC SetInviteGroup:oid];
+    [parView.navigationController pushViewController:EditActVC animated:YES];
 }
 
 @end
