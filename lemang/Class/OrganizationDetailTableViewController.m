@@ -172,7 +172,7 @@ typedef enum {
     
     if (!error)
     {
-        NSArray* data = [NSJSONSerialization JSONObjectWithData:[activityRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+        NSArray* data = [NSJSONSerialization JSONObjectWithData:[activityRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
         NSMutableArray* actTemp = [[NSMutableArray alloc]init];
         
         for (NSDictionary* item in data)
@@ -248,7 +248,7 @@ typedef enum {
     UIImageView *bg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"activity_bar.png"]];
     [cell addSubview:bg];
     
-    NSDictionary* actData = [activityArray objectAtIndex:indexPath.row];
+    NSDictionary* actData = activityArray[indexPath.row];
     [cell SetData:actData];
     
  
@@ -280,7 +280,7 @@ typedef enum {
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
     viewController.navigationItem.title = @"活动详细页面";
     
-    viewController.activity = [activityArray objectAtIndex:indexPath.row];
+    viewController.activity = activityArray[indexPath.row];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }

@@ -29,6 +29,16 @@
 - (void)SetData:(NSDictionary *)data
 {
     localData = data;
+    
+    _actTitle.text = [UserManager filtStr:localData[@"title"] :@""];
+    
+    NSDictionary* members = localData[@"users"];
+    int memberNum = 0;
+    if ([members isKindOfClass:[NSDictionary class]])
+    {
+        memberNum = members.count;
+    }
+    _actMember.text = [NSString stringWithFormat:@"%d",memberNum];
 }
 
 @end
