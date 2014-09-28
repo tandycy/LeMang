@@ -7,6 +7,7 @@
 //
 
 #import "MyAcitivityTableViewController.h"
+#import "ActivityDetailViewController.h"
 
 @interface MyAcitivityTableViewController ()
 {
@@ -205,6 +206,29 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
+    viewController.navigationItem.title = @"活动详细页面";
+    
+    NSDictionary* actData = nil;
+    
+    if (indexPath.section == 0)
+    {
+        actData = adminActivity[indexPath.row];
+    }
+    else if (indexPath.section == 1)
+    {
+        actData = joinedActivity[indexPath.row];
+    }
+    else if (indexPath.section == 2)
+    {
+        actData = bookmarkActivity[indexPath.row];
+    }
+    
+    [viewController SetData:actData];
+    //viewController.activity = activityArray[indexPath.row];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 

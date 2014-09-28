@@ -103,6 +103,7 @@ typedef enum {
 - (void) SetOrgnizationData:(NSDictionary *)data
 {
     localData = data;
+    orgId = localData[@"id"];
 }
 
 - (void) SetOrgnizationIcon:(UIImage *)image
@@ -150,8 +151,17 @@ typedef enum {
         [_organizationIcon setImage:localIconData];
     else
     {
-        NSString* iconUrl = [UserManager filtStr:localData[@"iconUrl"]];
-        [_organizationIcon LoadFromUrl:[NSURL URLWithString:iconUrl] :[UIImage imageNamed:@""] :@selector(SetOrgnizationIcon:) :self];
+        NSString* iconUrl = [UserManager filtStr:localData[@"iconUrl"]: @""];
+        
+        if (iconUrl.length > 0)
+        {
+            NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/g/";
+            tempstr = [tempstr stringByAppendingFormat:@"%@/", orgId];
+            tempstr = [tempstr stringByAppendingString:iconUrl];
+            iconUrl = tempstr;
+        }
+        
+        [_organizationIcon LoadFromUrl:[NSURL URLWithString:iconUrl] :[UIImage imageNamed:@"default_Icon"] :@selector(SetOrgnizationIcon:) :self];
     }
     
     //   - id - contact - department - peopleLimit - tags - description - iconUrl - address - regionLimit - otherLimit - users - linkUrl - name - area - shortName - createdBy - createdDate - university
