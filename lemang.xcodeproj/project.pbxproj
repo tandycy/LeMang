@@ -138,6 +138,7 @@
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
 		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
+		EE73C3CA19D7BBD200106D91 /* InviteFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE73C3C919D7BBD200106D91 /* InviteFriendCell.m */; };
 		EE77B02A19D26D330018EAF7 /* IconImageViewLoaderWithButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE77B02919D26D330018EAF7 /* IconImageViewLoaderWithButton.m */; };
 		EE9B1DAF19BC2C76001E2C7C /* SchoolManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE9B1DAE19BC2C76001E2C7C /* SchoolManager.mm */; };
 		EE9B1DB219BC34F8001E2C7C /* HttpGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */; };
@@ -396,6 +397,8 @@
 		EE54DB1819B563EF0000845F /* UserManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UserManager.mm; path = Class/UserManager.mm; sourceTree = "<group>"; };
 		EE54DB1A19B56A270000845F /* StringEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringEncoder.h; path = Class/StringEncoder.h; sourceTree = "<group>"; };
 		EE54DB1B19B56A270000845F /* StringEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringEncoder.m; path = Class/StringEncoder.m; sourceTree = "<group>"; };
+		EE73C3C819D7BBD200106D91 /* InviteFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteFriendCell.h; path = Class/InviteFriendCell.h; sourceTree = "<group>"; };
+		EE73C3C919D7BBD200106D91 /* InviteFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InviteFriendCell.m; path = Class/InviteFriendCell.m; sourceTree = "<group>"; };
 		EE77B02819D26D330018EAF7 /* IconImageViewLoaderWithButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoaderWithButton.h; path = Class/IconImageViewLoaderWithButton.h; sourceTree = "<group>"; };
 		EE77B02919D26D330018EAF7 /* IconImageViewLoaderWithButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoaderWithButton.m; path = Class/IconImageViewLoaderWithButton.m; sourceTree = "<group>"; };
 		EE9B1DAD19BC2C76001E2C7C /* SchoolManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolManager.h; path = Class/SchoolManager.h; sourceTree = "<group>"; };
@@ -930,6 +933,8 @@
 				28DC154519D35ADE00DE97F0 /* MyActivityCell.m */,
 				25A411F819D55BD500914599 /* MyOrgCell.h */,
 				25A411F919D55BD500914599 /* MyOrgCell.m */,
+				EE73C3C819D7BBD200106D91 /* InviteFriendCell.h */,
+				EE73C3C919D7BBD200106D91 /* InviteFriendCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1024,7 +1029,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1124,6 +1129,7 @@
 				256E04391987A106009845A5 /* AppDelegate.m in Sources */,
 				258087C419A71DCB005E308D /* UserVerifyViewController.m in Sources */,
 				EE54DB1919B563EF0000845F /* UserManager.mm in Sources */,
+				EE73C3CA19D7BBD200106D91 /* InviteFriendCell.m in Sources */,
 				28DC152119BD5E8000DE97F0 /* ASIAuthenticationDialog.m in Sources */,
 				256E04351987A106009845A5 /* main.m in Sources */,
 				258087AD19A71C63005E308D /* MyAcitivityTableViewController.m in Sources */,
@@ -1430,7 +1436,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

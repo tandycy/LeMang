@@ -43,9 +43,7 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self createActivityData];
-    
+        
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -145,11 +143,24 @@ typedef enum {
     [self ParseOrgType:groupType];
     
     // Get group activity
-}
-
-- (void)createActivityData
-{
-    // TODO
+    NSString* actUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
+    actUrlStr = [actUrlStr stringByAppendingFormat:@"%@/%@", groupType, orgId];
+    ASIHTTPRequest* activityRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:actUrlStr]];
+    [activityRequest startSynchronous];
+    NSError* error = [activityRequest error];
+    int returnCode = [activityRequest responseStatusCode];
+    
+    if (!error)
+    {
+        NSArray* data = [NSJSONSerialization JSONObjectWithData:[activityRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+        NSMutableArray* actTemp = [[NSMutableArray alloc]init];
+        
+        for (NSDictionary* item in data)
+        {
+            [actTemp addObject:item];
+        }
+        activityArray = [NSArray arrayWithArray:actTemp];
+    }
 }
 
 - (void)didReceiveMemoryWarning
