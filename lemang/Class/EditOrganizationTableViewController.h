@@ -26,7 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *CancelPhotoButton;
 
 - (void)SetOrganizationData:(NSDictionary*)data;
-- (void)SetOrganizationDataFromId:(NSNumber*)actId;
+- (void)SetOrganizationDataFromId:(NSNumber*)orgId;
 
 
 @end

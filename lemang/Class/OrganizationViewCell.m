@@ -110,6 +110,14 @@
     
     NSString* urlStr = [UserManager filtStr:localData[@"iconUrl"]];
     
+    if (urlStr.length > 0)
+    {
+        NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/g/";
+        tempstr = [tempstr stringByAppendingFormat:@"%@/", organizationId];
+        tempstr = [tempstr stringByAppendingString:urlStr];
+        urlStr = tempstr;
+    }
+    
     [_organizationIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UIImage imageNamed:@"default_Icon.png"]];
 }
 

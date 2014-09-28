@@ -39,6 +39,9 @@
 {
     [super viewDidLoad];
     
+    localNewIcon = nil;
+    [_CancelPhotoButton setHidden:true];
+    
     [self initView];
     
     [UserManager RefreshTagData];
@@ -97,10 +100,10 @@
     orgData = [NSMutableDictionary dictionaryWithDictionary:data];
 }
 
-- (void)SetOrganizationDataFromId:(NSNumber *)actId
+- (void)SetOrganizationDataFromId:(NSNumber *)orgId
 {
     NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/association";
-    urlStr = [urlStr stringByAppendingFormat:@"/%@", actId];
+    urlStr = [urlStr stringByAppendingFormat:@"/%@", orgId];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
     
@@ -119,14 +122,14 @@
         iconStr = [UserManager filtStr:fullData[@"iconUrl"] :@""];
         if (iconStr.length > 0)
         {
-            NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/a/";
-            tempstr = [tempstr stringByAppendingFormat:@"%@/", actId];
+            NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/g/";
+            tempstr = [tempstr stringByAppendingFormat:@"%@/", orgId];
             tempstr = [tempstr stringByAppendingString:iconStr];
             iconStr = tempstr;
         }
         
         // Reset id
-        [orgData setValue:actId forKey:@"id"];
+        [orgData setValue:orgId forKey:@"id"];
         
         // Page1 part
         NSString* title = [UserManager filtStr: fullData[@"name"] : @""];
@@ -360,11 +363,11 @@
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    /*
+    
     localNewIcon = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    [_AddPhotoButton setImage:localNewIcon forState:UIControlStateNormal];
+    [orgIcon setImage:localNewIcon forState:UIControlStateNormal];
     [_CancelPhotoButton setHidden:false];
-    */
+    
      
     [self dismissModalViewControllerAnimated:YES];
     
