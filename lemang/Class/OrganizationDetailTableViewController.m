@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "ActivityDetailViewController.h"
 #import "Activity.h"
+#import "UMSocial.h"
 
 typedef enum {
 	ActivityMember = 100,
@@ -46,6 +47,21 @@ typedef enum {
         
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    UIBarButtonItem *like = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_like_on"] style:UIBarButtonItemStylePlain target:self action:@selector(likeClick:)];
+    UIBarButtonItem *sign = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_sign_on"] style:UIBarButtonItemStylePlain target:self action:@selector(signClick:)];
+    UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_share_on"] style:UIBarButtonItemStylePlain target:self action:@selector(shareClick:)];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    NSArray *buttonArray = [NSArray arrayWithObjects:flexItem, like, flexItem, share, flexItem, sign, flexItem, nil];
+    
+    self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-40, self.view.frame.size.width, 40)];
+    NSLog(@"%f",self.view.frame.size.height);
+    [self.toolbar setTintColor:defaultMainColor];
+    [self.toolbar setBarStyle:UIBarStyleDefault];
+    self.toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [self.toolbar setItems:buttonArray];
+    [self.tableView addSubview:self.toolbar];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, -53.0f, 0.0f); //set tableview scroll range
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -73,6 +89,10 @@ typedef enum {
     activityArray = [[NSArray alloc]init];
     
     [self updateDisplay];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    self.toolbar.frame = CGRectMake(0,self.tableView.contentOffset.y+self.view.frame.size.height-40, 320, 40);
 }
 
 - (void) SetOrgnizationId:(NSNumber *)oid
@@ -263,6 +283,51 @@ typedef enum {
     viewController.activity = [activityArray objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tabBarController.tabBar setHidden:YES];
+}
+
+-(IBAction)likeClick:(id)sender{
+    
+}
+
+-(IBAction)signClick:(id)sender{
+    
+}
+
+-(IBAction)shareClick:(id)sender{
+    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"5422c5acfd98c5ccad0135fc"
+                                      shareText:@"你要分享的文字"
+                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToWechatFavorite,nil]
+                                       delegate:nil];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
 }
 
 /*
