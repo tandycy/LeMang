@@ -199,7 +199,7 @@ NSString *navTitle;
 {
     NSLog(@"load");
     [super viewDidLoad];
-    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self setupRefresh];
     // Do any additional setup after loading the view.
     //self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
