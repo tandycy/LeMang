@@ -170,6 +170,8 @@
         //  cell.selectedBackgroundView = [[UIView alloc]init];
         
         IconImageViewLoader *creatorImg = [[IconImageViewLoader alloc]initWithImage:self.image];
+        creatorImg.bounds = CGRectMake(0, 0, 50, 50);
+        creatorImg.center = CGPointMake(25, 25);
         NSString* creatorNameStr = creator[@"name"];
         
         if ([profile isKindOfClass:[NSDictionary class]])
@@ -322,6 +324,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section==0) {
+        MemberInfoTableViewController *memberInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
+        NSDictionary* creator = localData[@"createdBy"];
+        [memberInfoTVC SetMemberId:creator[@"id"]];
+        [self.navigationController pushViewController:memberInfoTVC animated:YES];
+    }
 }
 
 // click the specify member
