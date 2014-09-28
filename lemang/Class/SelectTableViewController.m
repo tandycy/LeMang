@@ -30,6 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [UserManager RefreshTagData];
+    [SchoolManager InitSchoolList];
+    [self RefreshTags];
     
     titleArray = [[NSMutableArray alloc] initWithObjects:@"热门标签", @"学校", @"收藏的活动", nil];
     // Uncomment the following line to preserve selection between presentations.
@@ -37,6 +40,20 @@
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void) RefreshTags
+{
+    hotArray = [[NSMutableArray alloc]init];
+    schoolArray = [[NSMutableArray alloc]init];
+    bookmarkArray = [[NSMutableArray alloc]init];
+    
+    for (TagItem* item in [UserManager GetTags])
+    {
+        [hotArray addObject:item.name];
+    }
+    
+    schoolArray = [SchoolManager GetSchoolNameList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,9 +73,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 10;
+    if (section == 0)
+        return hotArray.count;
+    
+    if (section == 1)
+        return schoolArray.count;
+    
+    if (section == 2)
+        return bookmarkArray.count;
+
+    return 0;
 }
 
 
@@ -71,7 +95,17 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"tags %d",indexPath.row];
+    
+    NSString* tagName = @"";
+    
+    if (indexPath.section == 0)
+        tagName = hotArray[indexPath.row];
+    if (indexPath.section == 1)
+        tagName = schoolArray[indexPath.row];
+    if (indexPath.section == 2)
+        tagName = bookmarkArray[indexPath.row];
+    
+    cell.textLabel.text = tagName;
     cell.textLabel.font = [UIFont fontWithName:defaultFont size:18];
     
     return cell;
