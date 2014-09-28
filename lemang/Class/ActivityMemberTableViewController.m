@@ -271,9 +271,7 @@
             //[button setBackgroundImage:self.image forState:UIControlStateNormal];
             [button addSubview:name];
             [cell addSubview:button];
-            [array addObject:button];
-            
-            
+            [array addObject:button]; 
         }
         [cell setValue:array forKey:@"buttons"];
 

@@ -44,7 +44,7 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     UIBarButtonItem *like = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_like_on"] style:UIBarButtonItemStylePlain target:self action:@selector(likeClick:)];

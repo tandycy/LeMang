@@ -7,6 +7,7 @@
 //
 
 #import "OrganizationTableViewController.h"
+#import "SelectTableViewController.h"
 #import "Constants.h"
 #import "MJRefresh.h"
 
@@ -35,6 +36,9 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self refreshOrganizationData];//refresh here
+    
+    //[self.navigationController.navigationBar setBackgroundColor:defaultMainColor];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -230,6 +234,42 @@
     //[activitySearchBar setHidden:NO];
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.localTabelView reloadData];
+    [self.localTabelView headerEndRefreshing];
+}
+
+
+-(void)popover:(id)sender
+{
+    //the controller we want to present as a popover
+    SelectTableViewController *controller = [[SelectTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    controller.title = @"请选择您需要筛选的关键字";
+    
+    FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
+    
+    //popover.arrowDirection = FPPopoverArrowDirectionAny;
+    popover.tint = FPPopoverYellowTinit;
+    popover.contentSize = CGSizeMake(200, 400);
+    popover.arrowDirection = FPPopoverArrowDirectionAny;
+    
+    //sender is the UIButton view
+    [popover presentPopoverFromView:sender];
+}
+
+
+- (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController
+          shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController
+{
+    [visiblePopoverController dismissPopoverAnimated:YES];
+}
+
+-(IBAction)topLeft:(id)sender
+{
+    [self popover:sender];
+    NSLog(@"popover");
+}
 
 /*
 // Override to support conditional editing of the table view.

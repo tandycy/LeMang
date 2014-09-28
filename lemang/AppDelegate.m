@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocial.h"
+#import "ActivityViewController.h"
+#import "ActivityDetailTableViewController.h"
+#import "Constants.h"
 
 @implementation AppDelegate
 
@@ -19,6 +22,7 @@
     
     [UMSocialData setAppKey:@"5422c5acfd98c5ccad0135fc"];
     [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
+
     return YES;
 }
 							

@@ -1,22 +1,18 @@
 //
-//  SelectTableViewController.m
+//  SearchTableViewController.m
 //  lemang
 //
-//  Created by 汤 骋原 on 14-9-25.
+//  Created by 汤 骋原 on 14-9-28.
 //  Copyright (c) 2014年 university media. All rights reserved.
 //
 
-#import "SelectTableViewController.h"
-#import "Constants.h"
+#import "SearchTableViewController.h"
 
-@interface SelectTableViewController ()
-{
-    NSMutableArray *titleArray;
-}
+@interface SearchTableViewController ()
 
 @end
 
-@implementation SelectTableViewController
+@implementation SearchTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,10 +27,9 @@
 {
     [super viewDidLoad];
     
-    titleArray = [[NSMutableArray alloc] initWithObjects:@"热门标签", @"学校", @"收藏的活动", nil];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -51,61 +46,26 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return titleArray.count;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 10;
+    return 0;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"tags %d",indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:defaultFont size:18];
+    // Configure the cell...
     
     return cell;
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return  20;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
-    [view setBackgroundColor:[UIColor colorWithRed:0.95294117647059 green:0.95294117647059 blue:0.95294117647059 alpha:1]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 100, 20)];
-    label.textColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
-    label.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
-    label.backgroundColor = [UIColor clearColor];
-    label.text = [titleArray objectAtIndex:section];
-    [view addSubview:label];
-    
-    return view;
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 30;
-    
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.

@@ -49,8 +49,6 @@
     [UserManager Instance].loginDelegate = self;
     [[UserManager Instance] LogInCheck];
     [SchoolManager InitSchoolList] ;
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +62,6 @@
     MyMessageTableViewController *MyMsgTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyMessageTableViewController"];
     [self.navigationController pushViewController:MyMsgTVC animated:YES];
 }
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:NO];

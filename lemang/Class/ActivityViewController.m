@@ -203,14 +203,7 @@ NSString *navTitle;
     
     [self setupRefresh];
     // Do any additional setup after loading the view.
-    //self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
-    //activitySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(50.0f,0.0f,200.0f,44.0f)];
-    //[activitySearchBar setPlaceholder:@"search"];
-    //[activitySearchBar setShowsCancelButton:YES];
-    //activitySearchBar.delegate = self;
-    //[self.navigationController.navigationBar addSubview:activitySearchBar];
-    
-    
+
     // initialize activity list
     
     bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
@@ -394,28 +387,6 @@ NSString *navTitle;
 }
 
 
-#pragma mark Content Filtering
--(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    [self.filteredActivityArray removeAllObjects];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.title contains[c] %@",searchText];
-    filteredActivityArray = [NSMutableArray arrayWithArray:[activityArray filteredArrayUsingPredicate:predicate]];
-}
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self.searchDisplayController.searchResultsTableView setRowHeight:95]; //set searchResultTable Row Height
-    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    return YES;
-}
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-    [self.searchDisplayController.searchResultsTableView setRowHeight:95]; //set searchResultTable Row Height
-    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-    return YES;
-}
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
@@ -432,38 +403,19 @@ NSString *navTitle;
         activity = [self.activityArray objectAtIndex:indexPath.row];
     }
     viewController.activity = activity;
+    [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     [self.navigationController pushViewController:viewController animated:YES];
-}
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    [self.searchDisplayController setActive:YES];
-    activitySearchBar.showsCancelButton = YES;
-}
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    activitySearchBar.showsCancelButton = NO;
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    [self.searchDisplayController setActive:NO];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
-    
-    //[self refreshActivityData];
-    //[activitySearchBar setHidden:NO];
-   // [self refreshActivityData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    //  [activitySearchBar setHidden:YES];
     [self.activityList reloadData];
     [self.activityList headerEndRefreshing];
 }

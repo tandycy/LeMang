@@ -963,11 +963,20 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="组织" id="93b-WY-cbg">
-                        <barButtonItem key="leftBarButtonItem" image="main_top_select" id="iLQ-Ba-QG9">
-                            <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="NeM-AP-irb">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CR6-5S-z0B">
+                                <rect key="frame" x="16" y="5" width="23" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="main_top_select"/>
+                                <connections>
+                                    <action selector="topLeft:" destination="hbP-KD-ZZ3" eventType="touchUpInside" id="Rft-B1-O9y"/>
+                                    <action selector="topLeft:" destination="QUy-BD-bpt" eventType="touchUpInside" id="xif-u4-69i"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="main_top_create_activity" id="saj-PN-BIm">
-                            <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="OnCreateOrganization:" destination="hbP-KD-ZZ3" id="dxK-BT-w2B"/>
                             </connections>
@@ -2044,6 +2053,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     <tabBarItem key="tabBarItem" tag="3" title="组织" image="main_organization_off" id="9nn-42-3eM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rRQ-T2-mN0">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="hbP-KD-ZZ3" kind="relationship" relationship="rootViewController" id="kWq-0W-4FE"/>
@@ -2930,11 +2940,11 @@ COaPkOS+m+mHkeiejeacjeWKoQ
             </objects>
             <point key="canvasLocation" x="412" y="235"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - 用户-->
         <scene sceneID="NPO-YE-5D2">
             <objects>
                 <navigationController definesPresentationContext="YES" id="N4j-DS-CXS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="main_user_off" id="rFE-cv-DBA"/>
+                    <tabBarItem key="tabBarItem" title="用户" image="main_user_off" id="rFE-cv-DBA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IHT-Og-r9X">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

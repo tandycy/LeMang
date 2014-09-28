@@ -13,8 +13,6 @@
 @interface MyMessageTableViewController : UITableViewController
 {
     NSMutableArray* messageList;
-    NSMutableArray* ActmessageList;
-    NSMutableArray* OrgmessageList;
 }
 
 - (void)OnMessageDelete : (MyMessageCell*)cell;
