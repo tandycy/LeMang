@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UserManager.h"
+#import "ASIFormDataRequest.h"
 
 @interface EditOrganizationDetailTableViewController : UITableViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource, UIActionSheetDelegate>
 {
     NSMutableDictionary* orgData;
+    UIImage* iconImage;
 }
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *orgType;

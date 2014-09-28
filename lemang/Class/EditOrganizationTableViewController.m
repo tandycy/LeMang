@@ -41,6 +41,8 @@
     
     [self initView];
     
+    [UserManager RefreshTagData];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -131,6 +133,8 @@
         [orgData setValue:title forKey:@"name"];
         NSString* description = [UserManager filtStr:fullData[@"description"] :@""];
         [orgData setValue:description forKey:@"description"];
+        NSString* shortName = [UserManager filtStr: fullData[@"shortName"] : @""];
+        [orgData setValue:shortName forKey:@"shortName"];
         
         // Page2 part
         NSString* groupType = fullData[@"type"];
@@ -173,6 +177,19 @@
         
         NSString* createTime = fullData[@"createdDate"];
         [orgData setValue:createTime forKey:@"createdDate"];
+        
+        NSDictionary* created = fullData[@"createdBy"];
+        NSNumber* cid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
+        if ([created isKindOfClass:[NSDictionary class]])
+        {
+            NSNumber* oldcid = created[@"id"];
+            if ([oldcid isKindOfClass:[NSNumber class]])
+                cid = oldcid;
+        }
+        NSMutableDictionary* cdic = [[NSMutableDictionary alloc]init];
+        [cdic setValue:cid forKey:@"id"];
+        [orgData setValue:cdic forKey:@"createdBy"];
+        
     }
 }
 
@@ -186,6 +203,7 @@
     {
         orgName.text = orgData[@"name"];
         orgDescription.text = orgData[@"description"];
+        orgShortName.text = orgData[@"shortName"];
         
         if (orgName.text.length > 0)
             nameHolder.text = @"";
@@ -197,7 +215,8 @@
 - (void) UpdateOrgData
 {
     [orgData setValue:orgName.text forKey:@"name"];
-    [orgData setValue:orgDescription forKey:@"description"];
+    [orgData setValue:orgDescription.text forKey:@"description"];
+    [orgData setValue:orgShortName.text forKey:@"shortName"];
 }
 
 - (void)DoAlert : (NSString*)caption: (NSString*)content
@@ -216,6 +235,11 @@
     if (orgDescription.text.length == 0)
     {
         [self DoAlert:@"描述不能为空":@""];
+        return false;
+    }
+    if (orgShortName.text.length == 0)
+    {
+        [self DoAlert:@"简称不能为空":@""];
         return false;
     }
     
@@ -270,6 +294,8 @@
 
     EditOrganizationDetailTableViewController *EditOrgDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditOrganizationDetailTableViewController"];
     EditOrgDetailVC.navigationItem.title = @"详细页面";
+    [EditOrgDetailVC SetOrganizationData:orgData];
+    [EditOrgDetailVC SetIconData:localNewIcon];
     //
     [self.navigationController pushViewController:EditOrgDetailVC animated:YES];
     

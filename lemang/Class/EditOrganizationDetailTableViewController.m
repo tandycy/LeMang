@@ -41,12 +41,16 @@
     [super viewDidLoad];
     [self universityListInit];
     [self detailViewInit];
+    [self initTag];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(DoCommitEdit:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
+    [self RecoverDataContent];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,13 +59,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) SetOrganizationData:(NSMutableDictionary*)data
+{
+    orgData = data;
+}
+
+- (void) SetIconData : (UIImage*)img
+{
+    iconImage = img;
+}
+
 
 
 -(void)universityListInit
 {
-    schoolArray = [SchoolManager GetSchoolNameList];
-    //NSLog(@"done",schoolArray);
-}
+    schoolArray = [SchoolManager GetSchoolNameList];}
 
 - (void)detailViewInit
 {
@@ -220,7 +232,7 @@
 
 - (void) RecoverDataContent
 {
-    NSString* category = [UserManager filtStr:orgData[@"activityGroup"] :@""];
+    NSString* category = [UserManager filtStr:orgData[@"type"] :@""];
     
     if ([category isEqualToString:@"University"])
         [orgType setSelectedSegmentIndex:0];
@@ -295,19 +307,19 @@
     
     switch (orgType.selectedSegmentIndex) {
         case 0:// 0 - 学校
-            [orgData setValue:@"University" forKey:@"activityGroup"];
+            [orgData setValue:@"University" forKey:@"type"];
             break;
         case 1:// 1 - 院系
-            [orgData setValue:@"Department" forKey:@"activityGroup"];
+            [orgData setValue:@"Department" forKey:@"type"];
             break;
         case 2:// 2 - 商家
-            [orgData setValue:@"Company" forKey:@"activityGroup"];
+            [orgData setValue:@"Company" forKey:@"type"];
             break;
         case 3:// 3 - 社团
-            [orgData setValue:@"Association" forKey:@"activityGroup"];
+            [orgData setValue:@"Association" forKey:@"type"];
             break;
         case 4:// 4 - 个人
-            [orgData setValue:@"Person" forKey:@"activityGroup"];
+            [orgData setValue:@"Person" forKey:@"type"];
             break;
         default:
             break;
@@ -402,6 +414,167 @@
     }
     
 }
+
+- (IBAction)DoCommitEdit:(id)sender
+{
+    if (![self CheckActivityData])  // failed pass info check
+        return;
+    
+    [self UpdateDataContent];
+    [self UpdateIdData];
+    
+    // TODO: type change is not allowed?
+    [orgData removeObjectForKey:@"type"];
+    
+    NSData* postData = [NSJSONSerialization dataWithJSONObject:orgData options:NSJSONWritingPrettyPrinted error:nil];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\\\"" withString:@"\""];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\"true\"" withString:@"true"];
+    jsonString = [jsonString stringByReplacingOccurrencesOfString:@"\"false\"" withString:@"false"];
+    
+    //NSLog(@"%@", jsonString);
+    
+    NSString* orgUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/association";
+    NSNumber* orgId = orgData[@"id"];
+    orgUrlStr = [orgUrlStr stringByAppendingFormat:@"/%@", orgId];
+    ASIHTTPRequest* createRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:orgUrlStr]];
+    
+    [createRequest addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [createRequest appendPostData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    [createRequest setRequestMethod:@"PUT"];
+    
+    [createRequest startSynchronous];
+    
+    NSError* error = [createRequest error];
+    
+    if (error)
+    {
+        NSString* errorStr = @"网络连接错误:";
+        errorStr = [errorStr stringByAppendingFormat:@"%d - %@",error.code, error.localizedDescription];
+        [self DoAlert:@"编辑失败" :errorStr];
+        return;
+    }
+    
+    int returnCode = [createRequest responseStatusCode];
+    
+    if (returnCode == 200)
+    {
+        [self UploadImageFile: orgId];
+        
+        // TODO create success operation
+        /*
+         if (owner != nil && [owner isKindOfClass:[ActivityViewController class]])
+         {
+         [(ActivityViewController*)owner CreateActivityDone];
+         [self.navigationController popViewControllerAnimated:true];
+         }
+         */
+    }
+    else
+    {
+        NSLog(@"%d - %@", returnCode, jsonString);
+    }
+    
+}
+
+- (void) UploadImageFile : (NSNumber*)aid
+{
+    if (iconImage == nil)
+        return;
+    
+    NSString* fileName = [NSString stringWithFormat: @"group_icon_%@", aid];
+    NSString* fileFullName = [fileName stringByAppendingString:@".jpg"];
+    [self saveImage:iconImage WithName:fileFullName];
+    
+    NSString* firstPath = @"http://e.taoware.com:8080/quickstart/api/v1/images/group/";
+    firstPath = [firstPath stringByAppendingFormat:@"%@?imageName=%@.jpg", aid, fileName];
+    
+    NSURL* URL = [NSURL URLWithString:firstPath];
+    ASIHTTPRequest *putRequest = [ASIHTTPRequest requestWithURL:URL];
+    [putRequest setUsername:[UserManager UserName]];
+    [putRequest setPassword:[UserManager UserPW]];
+    
+    [putRequest setRequestMethod:@"PUT"];
+    [putRequest startSynchronous];
+    
+    NSError *error = [putRequest error];
+    NSString* pathResp;
+    
+    if (!error)
+    {
+        pathResp = [putRequest responseString];
+    }
+    else
+    {
+        // TODO
+        return;
+    }
+    
+    
+    NSURL* uploadUrl = [NSURL URLWithString:@"http://e.taoware.com:8080/quickstart/api/v1/images/upload"];
+    
+    NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    //获取完整路径
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:@"iconImageBig.jpg"];
+    
+    
+    //[ASIHTTPRequest clearSession];
+    ASIFormDataRequest *uploadRequest = [ASIFormDataRequest requestWithURL:uploadUrl];
+    
+    [uploadRequest setRequestMethod:@"POST"];
+    [uploadRequest setTimeOutSeconds:15];
+    
+    [uploadRequest setPostValue:pathResp forKey:@"name"];
+    [uploadRequest setFile:iconPath withFileName:fileFullName andContentType:@"image/jpeg" forKey:@"file"];
+    [uploadRequest buildRequestHeaders];
+    [uploadRequest buildPostBody];
+    
+    NSDictionary* hdata = [uploadRequest requestHeaders];
+    NSLog(@"header: %@", hdata);
+    
+    [uploadRequest startSynchronous];
+    
+    error = [uploadRequest error];
+    int aaa = [uploadRequest responseStatusCode];
+    NSString* bbb = [uploadRequest responseString];
+    
+    if (error)
+    {
+        // TODO
+        NSLog(@"upload user icon fail: %d", error.code);
+    }
+    if (aaa == 200)
+    {
+        // TODO: success
+    }
+    else
+    {
+        // TODO
+        NSLog(@"upload user icon return: %d", aaa);
+    }
+    
+}
+
+#pragma mark 保存图片到document
+- (void)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName
+{
+    NSData* imageData = UIImagePNGRepresentation(tempImage);
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    // Now we get the full path to the file
+    NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
+    // and then we write it out
+    [imageData writeToFile:fullPathToFile atomically:NO];
+}
+
+- (NSString *)documentFolderPath
+{
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+}
+
 
 - (void)DoAlert : (NSString*)caption: (NSString*)content
 {
