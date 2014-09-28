@@ -183,7 +183,7 @@
     {
         // TODO
         int resCode = [request responseStatusCode];
-        NSLog(@"regist %d",resCode);
+        NSLog(@"bookmark %d",resCode);
         
         if (resCode == 200)
         {
