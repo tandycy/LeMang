@@ -280,7 +280,8 @@ typedef enum {
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
     viewController.navigationItem.title = @"活动详细页面";
     
-    viewController.activity = activityArray[indexPath.row];
+    [viewController SetData:activityArray[indexPath.row]];
+    //viewController.activity = activityArray[indexPath.row];
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
@@ -292,10 +293,82 @@ typedef enum {
 
 -(IBAction)likeClick:(id)sender{
     
+    if (![UserManager IsInitSuccess])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        
+        return;
+    }
+    
+    
+    NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    urlstr = [urlstr stringByAppendingFormat:@"%d/group/%@", [[UserManager Instance]GetLocalUserId], orgId];
+    NSURL* url = [NSURL URLWithString:urlstr];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request setUsername:[UserManager UserName]];
+    [request setPassword:[UserManager UserPW]];
+    
+    [request addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [request setRequestMethod:@"POST"];
+    
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (!error)
+    {
+        // TODO
+        int resCode = [request responseStatusCode];
+        NSLog(@"bookmark %d",resCode);
+        
+        if (resCode == 200)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:@"成功收藏至我的组织。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            [alertView show];
+        }
+    }
+
 }
 
 -(IBAction)signClick:(id)sender{
     
+    if (![UserManager IsInitSuccess])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        
+        return;
+    }
+    
+    NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    urlstr = [urlstr stringByAppendingFormat:@"%d/request/association/%@", [[UserManager Instance]GetLocalUserId], orgId];
+    NSURL* url = [NSURL URLWithString:urlstr];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request setUsername:[UserManager UserName]];
+    [request setPassword:[UserManager UserPW]];
+    
+    [request addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [request setRequestMethod:@"POST"];
+    
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (!error)
+    {
+        // TODO
+        int resCode = [request responseStatusCode];
+        NSLog(@"regist %d",resCode);
+        
+        if (resCode == 200)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名成功" message:@"成功提交报名申请。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            [alertView show];
+        }
+    }
 }
 
 -(IBAction)shareClick:(id)sender{

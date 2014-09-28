@@ -57,8 +57,15 @@
     // [self.tabBarController.tabBar setHidden:YES];
     
     ActivityDetailTableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
-    [tableVC SetActivityData:[activity GetActivityData]];
-    [tableVC SetActivityId:activity.activityId];
+    if (activity)
+        [tableVC SetActivityData:[activity GetActivityData]];
+    else
+        [tableVC SetActivityData:localData];
+    
+    if (activity)
+        [tableVC SetActivityId:activity.activityId];
+    else
+        [tableVC SetActivityId:localId];
     
     toolBar.tintColor = defaultMainColor;
     
@@ -90,6 +97,12 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论提交成功" message:@"您成功提交了一条评论。" delegate:self
                                               cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
     [alertView show];
+}
+
+- (void)SetData:(NSDictionary *)actData
+{
+    localData = actData;
+    localId = actData[@"id"];
 }
 
 
@@ -183,7 +196,7 @@
     {
         // TODO
         int resCode = [request responseStatusCode];
-        NSLog(@"regist %d",resCode);
+        NSLog(@"bookmark %d",resCode);
         
         if (resCode == 200)
         {

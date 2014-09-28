@@ -13,6 +13,8 @@
 @interface ActivityDetailViewController : UIViewController
 {
     Activity *activity;
+    NSDictionary* localData;
+    NSNumber* localId;
 }
 
 @property (nonatomic, retain) Activity *activity;
@@ -24,5 +26,7 @@
 - (IBAction)bookMark:(id)sender;
 - (IBAction)doShare:(id)sender;
 - (void)OnCommentSuccess;
+
+- (void)SetData:(NSDictionary*)actData;
 
 @end

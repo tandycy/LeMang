@@ -11,10 +11,16 @@
 #import "OrganizationViewCell.h"
 #import "OrganizationDetailTableViewController.h"
 #import "CreateOrganizationTableViewController.h"
+#import "FPPopoverController.h"
 
 @interface OrganizationTableViewController : UITableViewController
 {
-    NSMutableArray* organizationData;
+    NSMutableArray* organizationArray;
+    
+    int currentPage;
+    int nextPage;
+    int pageSize;
+    int maxPage;
 }
 @property (strong, nonatomic) IBOutlet UITableView *localTabelView;
 - (IBAction)OnCreateOrganization:(id)sender;

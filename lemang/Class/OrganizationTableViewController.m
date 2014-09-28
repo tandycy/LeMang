@@ -8,6 +8,7 @@
 
 #import "OrganizationTableViewController.h"
 #import "Constants.h"
+#import "MJRefresh.h"
 
 @interface OrganizationTableViewController ()
 {
@@ -30,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupRefresh];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self refreshOrganizationData];//refresh here
@@ -47,9 +49,80 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setupRefresh
+{
+    // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
+    [self.localTabelView addHeaderWithTarget:self action:@selector(headerRereshing)];
+#warning 自动刷新(一进入程序就下拉刷新)
+    [self.localTabelView headerBeginRefreshing];
+    
+    // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.localTabelView addFooterWithTarget:self action:@selector(footerRereshing)];
+    
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    self.localTabelView.headerPullToRefreshText = @"下拉刷新";
+    self.localTabelView.headerReleaseToRefreshText = @"释放刷新";
+    self.localTabelView.headerRefreshingText = @"数据刷新中...";
+    
+    self.localTabelView.footerPullToRefreshText = @"上拉可以加载更多数据";
+    self.localTabelView.footerReleaseToRefreshText = @"松开马上加载更多数据";
+    self.localTabelView.footerRefreshingText = @"数据加载中...";
+}
+
+- (void)headerRereshing
+{
+    // 1.添加数据
+    [self refreshOrganizationData];
+    
+    // 2.2秒后刷新表格UI
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.localTabelView reloadData];
+        
+        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+        [self.localTabelView headerEndRefreshing];
+    });
+}
+
+- (void)footerRereshing
+{
+    // 1.添加数据
+    [self appendOrganizationData];
+    
+    // 2.2秒后刷新表格UI
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.localTabelView reloadData];
+        
+        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+        [self.localTabelView footerEndRefreshing];
+    });
+}
+
 - (void) refreshOrganizationData
 {
-    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association/q";
+    //
+    currentPage = 0;
+    nextPage = 1;
+    pageSize = 10;
+    
+    if (organizationArray == nil)
+        organizationArray = [[NSMutableArray alloc]init];
+    [organizationArray removeAllObjects];
+    [self appendOrganizationData];
+}
+
+- (void) appendOrganizationData
+{
+    if (currentPage == nextPage)
+    {
+        NSLog(@"organization at final page: %d, refresh cancel", currentPage);
+        return;
+    }
+    NSLog(@"append organization data for page: %d", nextPage);
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/association/q?page=";
+    URLString = [URLString stringByAppendingFormat:@"%d&page.size=%d&sortType=auto", nextPage, pageSize];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
@@ -59,10 +132,26 @@
     [request startSynchronous];
     
     NSError *error = [request error];
+    int returnCode = [request responseStatusCode];
     
     if (!error)
     {
-        organizationData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        NSDictionary* returnData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+        NSArray* orgArray = returnData[@"content"];
+        
+        NSNumber* totalPage = returnData[@"totalPages"];
+        maxPage = totalPage.integerValue;
+        
+        currentPage = nextPage;
+        if (currentPage == maxPage)
+            nextPage = maxPage;
+        else
+            nextPage = currentPage+1;
+        
+        for (NSDictionary* item in orgArray)
+        {
+            [organizationArray addObject:item];
+        }
         
         [_localTabelView reloadData];
     }
@@ -87,7 +176,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return organizationData.count;
+    return organizationArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -102,7 +191,7 @@
         cell = [_localTabelView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     }
     
-    NSDictionary* orgData = organizationData[indexPath.row];
+    NSDictionary* orgData = organizationArray[indexPath.row];
     
     [cell updateData:orgData];
     
@@ -124,7 +213,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     }
     
-    [cell updateData:organizationData[indexPath.row]];
+    [cell updateData:organizationArray[indexPath.row]];
     
     //[viewController SetOrgnizationData:[cell getLocalData]];
     [viewController SetOrgnizationId:[cell getOrgId]];
