@@ -274,6 +274,10 @@ static UserManager* managerInstance;
     initedLocalData = false;
     [self UpdateLocalData];
     [UserManager SetClear];
+    
+    adminGroup = nil;
+    joinGroup = nil;
+    groupDic = nil;
 }
 
 - (void) UpdateLocalData
