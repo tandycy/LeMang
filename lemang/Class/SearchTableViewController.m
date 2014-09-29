@@ -13,6 +13,9 @@
 @interface SearchTableViewController ()
 {
     NSMutableArray *filteredActivityArray;
+    NSMutableArray *historyArray;
+    
+    NSMutableArray *resultArray;
 }
 
 @end
@@ -44,19 +47,76 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
 }
 
+-(void)SetSearchActivity
+{
+    searchType = Result_Activity;
+}
+
+-(void)SetSearchOrganization
+{
+    searchType = Result_Organization;
+}
+
 -(void)initView
 {
     self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";
     self.tableView.scrollEnabled = YES;
     
-    // TODO
-    NSArray *historyArray = [[NSArray alloc] initWithObjects:@"同济大学",@"复旦大学'",@"体育",@"休闲",@"娱乐",nil];
+    [self initHistory];
+    [self initScope];
+
+}
+
+- (void) initScope
+{
+    [self.searchDisplayController.searchBar setShowsScopeBar:YES];// 是否显示分栏条
+    
+    NSMutableArray* scopeArray = [NSMutableArray arrayWithObjects:@"全部", nil];
+    NSArray* tagArray = [UserManager GetTags];
+    
+    int maxNum = 5;
+    if (tagArray.count < maxNum)
+        maxNum = tagArray.count;
+    for (int i = 0; i < maxNum; i++)
+    {
+        TagItem* item = tagArray[i];
+        [scopeArray addObject:item.name];
+    }
+    
+    [self.searchDisplayController.searchBar setScopeButtonTitles:scopeArray];
+
+}
+
+- (void) initHistory
+{
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"profile" ofType:@"plist"];
+    NSMutableDictionary* dict =  [ [ NSMutableDictionary alloc ] initWithContentsOfFile:plistPath];
+    
+    NSArray* history = dict[@"history"];
+    historyArray = [NSMutableArray arrayWithArray:history];
+    
+    self.historyItems = historyArray;
+    [self.tableView reloadData];
+}
+
+- (void) AddHistoryData:(NSString*)key
+{
+    [historyArray addObject:key];
     self.historyItems = historyArray;
     [self.tableView reloadData];
     
-    // scope here
-    [self.searchDisplayController.searchBar setShowsScopeBar:YES];// 是否显示分栏条
-    [self.searchDisplayController.searchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"体育",@"休闲",@"娱乐", nil]];
+    [self saveHistory];
+}
+
+- (void) saveHistory
+{
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"profile" ofType:@"plist"];
+    
+    NSMutableDictionary* dict = [ [ NSMutableDictionary alloc ] initWithContentsOfFile:plistPath ];
+    
+    [dict setObject:historyArray forKey:@"history"];
+    
+    [dict writeToFile:plistPath atomically:YES];
 }
 
 
@@ -65,36 +125,7 @@
     filteredActivityArray = [[NSMutableArray alloc]init];
     
     // TODO
-    Activity* newAct = [Activity
-                        activityOfCategory:@"All"
-                        imgUrlStr:nil
-                        title:@"title"
-                        date:@"date"
-                        limit:@"limit"
-                        icon:nil
-                        member:@"1"
-                        memberUpper:@"20"
-                        fav:[NSNumber numberWithInt:20]
-                        state:0
-                        activitiId:[NSNumber numberWithInt:1]
-                        creatorId:[NSNumber numberWithInt:2]
-                        ];
-    Activity* newAct2 = [Activity
-                        activityOfCategory:@"All"
-                        imgUrlStr:nil
-                        title:@"title"
-                        date:@"date"
-                        limit:@"limit"
-                        icon:nil
-                        member:@"1"
-                        memberUpper:@"20"
-                        fav:[NSNumber numberWithInt:20]
-                        state:0
-                        activitiId:[NSNumber numberWithInt:1]
-                        creatorId:[NSNumber numberWithInt:2]
-                        ];
-    filteredActivityArray[0] = newAct;
-    filteredActivityArray[1] = newAct2;
+
 }
 
 #pragma mark - Table view data source
@@ -124,25 +155,7 @@
 {
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
-        /*
-        static NSString *CellIdentifier = @"ActivityTableCell";
-        ActivityViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        if ( cell == nil )
-        {
-            cell = [[ActivityViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        // UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_list_back.png"]];
-        // [cell setBackgroundView:cellBG];
-        
-        Activity *activity = nil;
-        activity = [filteredActivityArray objectAtIndex:indexPath.row];
-        
-        [cell SetActivity:activity];
-        return cell;
-         */
-        static NSString *CellIdentifier = @"Cell";
+                static NSString *CellIdentifier = @"Cell";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -153,9 +166,9 @@
         
         // TODO - cell - type?
         
-        Activity *activity = nil;
-        activity = [filteredActivityArray objectAtIndex:indexPath.row];
-        cell.textLabel.text = activity.title;
+        SearchResultItem *item = nil;
+        item = [filteredActivityArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = item.title;
         return cell;
     }
     else
@@ -221,7 +234,7 @@
     }
     else
     {
-        // not TODO
+        // done
         [self.searchDisplayController.searchBar becomeFirstResponder];
         searchDisplayController.searchBar.text = historyItems[indexPath.row];
         [self.searchBar setSearchResultsButtonSelected:NO];
@@ -264,9 +277,23 @@
     NSLog(@"load results");
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+-(void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
 {
     // TODO after click search
+    bool isExist = false;
+    for(NSString* item in historyArray)
+    {
+        if ([item isEqualToString:_searchBar.text])
+        {
+            isExist = true;
+            break;
+        }
+    }
+    if (!isExist)
+        [self AddHistoryData:_searchBar.text];
+    NSLog(@"%@", _searchBar.text);
+    
+    
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
