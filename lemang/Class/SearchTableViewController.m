@@ -153,9 +153,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    if ([tableView isEqual:self.searchDisplayController.searchResultsTableView])
     {
-                static NSString *CellIdentifier = @"Cell";
+        static NSString *CellIdentifier = @"Cell";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -219,7 +219,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // TODO click jump
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    if ([tableView isEqual:self.searchDisplayController.searchResultsTableView])
     {
         ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
         viewController.navigationItem.title = @"活动详细页面";
@@ -293,7 +293,56 @@
         [self AddHistoryData:_searchBar.text];
     NSLog(@"%@", _searchBar.text);
     
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/";//q?search_LIKE_loginName=";
     
+    if (searchType == Result_Organization)
+    {
+        urlString = [urlString stringByAppendingString:@"group/"];
+        urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_name="];
+    }
+    else if (searchType == Result_Activity)
+    {
+        urlString = [urlString stringByAppendingString:@"activity/"];
+        urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_title="];
+    }
+    
+    urlString = [urlString stringByAppendingFormat:@"%@&search_LIKE_description=%@&search_LIKE_university.name=%@",_searchBar.text,_searchBar.text,_searchBar.text];
+    //urlString = [urlString stringByAppendingFormat:@"%@",_searchBar.text];
+    
+    NSURL* URL = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    [request startSynchronous];
+
+    NSError *error = [request error];
+    int returnCode = [request responseStatusCode];
+    if (!error) {
+        NSArray* resultData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        [filteredActivityArray removeAllObjects];
+        
+        for (int i = 0; i < resultData.count; i++)
+        {
+            NSDictionary* item = resultData[i];
+            SearchResultItem* resultItem = [[SearchResultItem alloc]init];
+            
+            resultItem.itemType = searchType;
+            resultItem.itemId = item[@"id"];
+            resultItem.localData = item;
+            
+            if (searchType == Result_Activity)
+                resultItem.title = item[@"title"];
+            else if (searchType == Result_Organization)
+                resultItem.title = item[@"name"];
+            
+            [filteredActivityArray addObject:resultItem];
+        }
+        
+        NSLog(@"%@",self.tableView);
+        
+    }
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar

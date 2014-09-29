@@ -459,6 +459,7 @@ NSString *navTitle;
     SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
     //searchView.modalPresentationStyle = UIModalPresentationPageSheet;
     //searchView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [searchView SetSearchActivity];
     [self.navigationController pushViewController:searchView animated:YES];
 }
 

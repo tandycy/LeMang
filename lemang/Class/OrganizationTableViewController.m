@@ -51,6 +51,7 @@
 
 -(IBAction)searchClick:(id)sender{
     SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
+    [searchView SetSearchOrganization];
     [self.navigationController pushViewController:searchView animated:YES];
 }
 
