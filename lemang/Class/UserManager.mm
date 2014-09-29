@@ -399,6 +399,88 @@ static UserManager* managerInstance;
     return [UserManager Instance]->tagList;
 }
 
++ (void)RefreshGroupData
+{
+    [[UserManager Instance]RefreshLocalGroupData];
+}
+
+- (void) RefreshLocalGroupData
+{
+    int uid = [[UserManager Instance]GetLocalUserId];
+    
+    if (!adminGroup)
+        adminGroup = [[NSMutableArray alloc]init];
+    [adminGroup removeAllObjects];
+    
+    if (!joinGroup)
+        joinGroup = [[NSMutableArray alloc]init];
+    [joinGroup removeAllObjects];
+    
+    if (!groupDic)
+        groupDic = [[NSMutableDictionary alloc]init];
+    [groupDic removeAllObjects];
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    URLString = [URLString stringByAppendingFormat:@"%d/associations", uid];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest setUsername:@"admin"];
+    [URLRequest setPassword:@"admin"];
+    
+    [URLRequest startSynchronous];
+    
+    NSError *error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* item = returnData[i];
+            NSDictionary* creator = item[@"createdBy"];
+            NSNumber* cid = creator[@"id"];
+            NSString* groupName = item[@"name"];
+            
+            if (uid == cid.integerValue)
+            {
+                [adminGroup addObject:item];
+            }
+            else
+            {
+                [joinGroup addObject:item];
+            }
+            
+            [groupDic setValue:cid forKey:groupName];
+        }
+    }
+}
+
+- (NSArray*)GetAdminGroup
+{
+    if (!adminGroup)
+        [UserManager RefreshGroupData];
+    
+    return adminGroup;
+}
+
+- (NSArray*)GetJoinGroup
+{
+    if (!joinGroup)
+        [UserManager RefreshGroupData];
+    
+    return joinGroup;
+}
+
+- (NSDictionary*)GetGroupMap
+{
+    if (!groupDic)
+        [UserManager RefreshGroupData];
+    
+    return groupDic;
+}
+
 - (id)copyWithZone:(struct _NSZone *)zone
 {
     return self;

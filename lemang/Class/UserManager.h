@@ -37,6 +37,11 @@
     bool isdirty;
     
     NSArray* tagList;
+    
+    NSMutableArray* adminGroup;
+    NSMutableArray* joinGroup;
+    
+    NSMutableDictionary* groupDic;
 }
 
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
@@ -51,12 +56,17 @@
 + (void) RefreshUserData;
 + (void) RefreshTagData;
 + (NSArray*) GetTags;
++ (void) RefreshGroupData;
+
 
 + (bool)IsUserNameExists:(NSString*)nameData;
 + (bool) IsInitSuccess;
 
 - (void) RefreshData;
 - (int) GetLocalUserId;
+- (NSArray*)GetJoinGroup;
+- (NSArray*)GetAdminGroup;
+- (NSDictionary*)GetGroupMap;
 - (void) DoLogIn : (NSString*)name :(NSString*)pw;
 - (void) ClearLocalUserData;
 //- (void) InitLocalData;

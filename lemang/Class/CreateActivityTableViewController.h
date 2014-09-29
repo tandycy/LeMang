@@ -36,6 +36,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *otherTag;
 @property (strong, nonatomic) IBOutlet UIPickerView *dataPicker;
 
+- (IBAction)OnTypeChange:(UISegmentedControl *)sender;
 //tag buttons
 //tag button
 @property (strong, nonatomic) IBOutlet UIButton *tag1;

@@ -63,7 +63,7 @@
 {
     [super viewDidLoad];
     
-    [self universityListInit];
+    [self pickerListInit];
     [self initView];
     [self initTag];
     
@@ -607,10 +607,21 @@
     // [alert show];
 }
 
--(void)universityListInit
+-(void)pickerListInit
 {
     schoolArray = [SchoolManager GetSchoolNameList];
-    //NSLog(@"done %@",schoolArray);
+    
+    NSArray* groupArray = [[UserManager Instance]GetAdminGroup];
+    NSMutableArray* groupNames = [[NSMutableArray alloc]init];
+    for (NSDictionary* item in groupArray)
+    {
+        NSString* name = item[@"name"];
+        [groupNames addObject:name];
+    }
+    hostArray = [NSArray arrayWithArray:groupNames];
+    
+    [actHost setEnabled:false];
+    actHost.text = @"";
 }
 
 - (IBAction)schoolOnEditing:(id)sender {
@@ -794,4 +805,17 @@
 }
 */
 
+
+- (IBAction)OnTypeChange:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == 3)   // select group
+    {
+        [actHost setEnabled:true];
+    }
+    else
+    {
+        [actHost setEnabled:false];
+        actHost.text = @"";
+    }
+}
 @end
