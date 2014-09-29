@@ -9,6 +9,7 @@
 #import "SearchTableViewController.h"
 #import "ActivityViewCell.h"
 #import "ActivityDetailViewController.h"
+#import "OrganizationDetailTableViewController.h"
 
 @interface SearchTableViewController ()
 {
@@ -218,23 +219,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO click jump
+    
     if ([tableView isEqual:self.searchDisplayController.searchResultsTableView])
     {
-        ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
-        viewController.navigationItem.title = @"活动详细页面";
+        SearchResultItem* item = [filteredActivityArray objectAtIndex:indexPath.row];
         
-        Activity *activity = nil;
-        activity = [filteredActivityArray objectAtIndex:indexPath.row];
+        if (item.itemType == Result_Activity)
+        {
+            ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
+            viewController.navigationItem.title = @"活动详细页面";
+            
+            [viewController SetData:item.localData];
+            [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+            
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else if (item.itemType == Result_Organization)
+        {
+            OrganizationDetailTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OrganizationDetailView"];
+            viewController.navigationItem.title = @"组织详细页面";
+            
+            [viewController SetOrgnizationData:item.localData];
+            [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+            
+            [self.navigationController pushViewController:viewController animated:YES];
+        }      
         
-        viewController.activity = activity;
-        [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-        
-        [self.navigationController pushViewController:viewController animated:YES];
     }
     else
     {
-        // done
         [self.searchDisplayController.searchBar becomeFirstResponder];
         searchDisplayController.searchBar.text = historyItems[indexPath.row];
         [self.searchBar setSearchResultsButtonSelected:NO];
