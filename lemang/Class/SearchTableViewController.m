@@ -35,24 +35,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initView];
     [self initSearchResult];
     // Uncomment the following lineto preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";
+    // self.clearsSelectionOnViewWillAppear = NO
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    
-    //[self.tableView setScrollsToTop:NO];
+
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
-    //self.edgesForExtendedLayout = UIRectEdgeNone;
-    //self.extendedLayoutIncludesOpaqueBars = NO;
-    
+}
+
+-(void)initView
+{
+    self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";
     self.tableView.scrollEnabled = YES;
     
     NSArray *historyArray = [[NSArray alloc] initWithObjects:@"同济大学",@"复旦大学'",@"体育",@"休闲",@"娱乐",nil];
     self.historyItems = historyArray;
     [self.tableView reloadData];
+    
+    [self.searchDisplayController.searchBar setShowsScopeBar:YES];// 是否显示分栏条
+    [self.searchDisplayController.searchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"体育",@"休闲",@"娱乐", nil]];
 }
+
+
 -(void)initSearchResult
 {
     filteredActivityArray = [[NSMutableArray alloc]init];
@@ -163,6 +168,7 @@
 
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    NSLog(@"%@",scope);
     self.searchResults = filteredActivityArray;
 }
 
@@ -206,6 +212,7 @@
     {
         [self.searchDisplayController.searchBar becomeFirstResponder];
         searchDisplayController.searchBar.text = historyItems[indexPath.row];
+        [self.searchBar setSearchResultsButtonSelected:NO];
     }
 }
 
