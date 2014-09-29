@@ -8,6 +8,10 @@
 
 #import "MyMessageCell.h"
 #import "MyMessageTableViewController.h"
+#import "ActivityDetailViewController.h"
+#import "OrganizationDetailTableViewController.h"
+#import "MyMessageTableViewController.h"
+#import "MemberInfoTableViewController.h"
 
 @implementation MyMessageCell
 
@@ -247,7 +251,7 @@
     }
     else
     {
-        alertView = [[UIAlertView alloc] initWithTitle:messTitle message:messContent delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同意", @"拒绝", nil];
+        alertView = [[UIAlertView alloc] initWithTitle:messTitle message:messContent delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"同意", @"拒绝", @"去看看", nil];
     }
     
     [alertView show];
@@ -335,6 +339,43 @@
         {
             messState = 2;  // set state done
             _messageIcon.image = [UIImage imageNamed:@"yes"];
+        }
+    }
+    else if (buttonIndex == 3)
+    {
+        MyMessageTableViewController* table = (MyMessageTableViewController*)messageTable;
+        // view detail
+        if (messCategory == INVITATION_ASSOCIATION)
+        {
+            NSDictionary* groupData = localData[@"association"];
+            
+            OrganizationDetailTableViewController *viewController = [table.storyboard instantiateViewControllerWithIdentifier:@"OrganizationDetailView"];
+            viewController.navigationItem.title = @"组织详细页面";
+            
+            [viewController SetOrgnizationData:groupData];
+            [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+            
+            [table.navigationController pushViewController:viewController animated:YES];
+        }
+        else if (messCategory == INVITATION_ACTIVITY)
+        {
+            NSDictionary* activityData = localData[@"activity"];
+            
+            ActivityDetailViewController *viewController = [table.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
+            viewController.navigationItem.title = @"活动详细页面";
+            
+            [viewController SetData:activityData];
+            [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+            
+            [table.navigationController pushViewController:viewController animated:YES];
+        }
+        else if (messCategory == ENROLLMENT_ASSOCIATION || messCategory == ENROLLMENT_ACTIVITY || messCategory == INVITATION_FRIEND)
+        {
+            NSDictionary* senderData = localData[@"from"];
+            
+            MemberInfoTableViewController *memberInfoTVC = [table.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
+            [memberInfoTVC SetMemberId:senderData[@"id"]];
+            [table.navigationController pushViewController:memberInfoTVC animated:YES];
         }
     }
     else if (buttonIndex == 0)
