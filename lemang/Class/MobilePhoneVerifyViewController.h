@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface MobilePhoneVerifyViewController : UIViewController
+{
+    NSNumber* verifyNum;
+}
 
 @property (strong,nonatomic) UITextField *mobliePhoneNumber;
 

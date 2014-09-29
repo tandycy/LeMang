@@ -14,6 +14,11 @@
 @end
 
 @implementation MobilePhoneVerifyViewController
+{
+    UITextField* verifyText;
+    UILabel* resultLabel;
+    UIAlertView* endMessageView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +54,7 @@
     [self.mobliePhoneNumber setBorderStyle:UITextBorderStyleRoundedRect];
     self.mobliePhoneNumber.placeholder = @"请输入您的手机号码";
     self.mobliePhoneNumber.backgroundColor = defaultLightGray243;
+    self.mobliePhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
     self.mobliePhoneNumber.font = [UIFont fontWithName:defaultFont size:15];
     [self.view addSubview:self.mobliePhoneNumber];
     
@@ -66,9 +72,16 @@
     verifyCode.placeholder = @"请输入获取的验证码";
     [self.view addSubview:verifyCode];
     
+    verifyText = verifyCode;
+    
     //init right barbutton item
     UIBarButtonItem *finish = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(finishBond:)];
     self.navigationItem.rightBarButtonItem = finish;
+    
+    resultLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 300, 320, 60)];
+    resultLabel.text = @"";
+    resultLabel.font = [UIFont fontWithName:defaultBoldFont size:15];
+    [self.view addSubview:resultLabel];
     
     //[self.editText setText:defaultV];
 }
@@ -76,13 +89,96 @@
 -(IBAction)sendMP:(id)sender
 {
     //send MP number function
+    if (_mobliePhoneNumber.text.length != 11)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"手机号错误" message:@"请输入11位手机号" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        return;
+    }
+    
+    NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    urlStr = [urlStr stringByAppendingFormat:@"%d/validate/%@",[[UserManager Instance]GetLocalUserId], _mobliePhoneNumber.text];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    [request setRequestMethod:@"PUT"];
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (error)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"发送信息失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        resultLabel.text = @"";
+        return;
+    }
+    
+    int returnCode = [request responseStatusCode];
+    NSNumber* resp = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];;
+    
+    if ([resp isKindOfClass:[NSNumber class]])
+    {
+        verifyNum = resp;
+        resultLabel.text = [NSString stringWithFormat:@"验证码：%@",verifyNum];
+    }
+    else
+    {
+        verifyNum = nil;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"获取验证码失败" message:@"服务器内部错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        resultLabel.text = @"";
+        return;
+    }
 }
 
 -(IBAction)finishBond:(id)sender
 {
     //verify return code and user input
     //if ok ,send bond ok to server
+    if (!verifyNum)
+        return;
     
+    NSString* codeStr = [NSString stringWithFormat:@"%@",verifyNum];
+    
+    if ([verifyText.text isEqualToString:codeStr])
+    {
+        NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+        urlStr = [urlStr stringByAppendingFormat:@"%d/bind/%@",[[UserManager Instance]GetLocalUserId], _mobliePhoneNumber.text];
+        
+        ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
+        [request setRequestMethod:@"PUT"];
+        [request startSynchronous];
+        
+        NSError* error = [request error];
+        if (error)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"验证失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+            return;
+        }
+        
+        int returnCode = [request responseStatusCode];
+        
+        if (returnCode == 200)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"验证成功" message:@"成功验证手机号" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            endMessageView = alertView;
+            [alertView show];
+            return;
+        }
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"验证失败" message:@"验证码错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
+}
+
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger*)buttonIndex
+{
+    if ((id)alertView == (id)endMessageView)
+    {
+        [self.navigationController popToRootViewControllerAnimated:true];
+    }
 }
 
 - (void)didReceiveMemoryWarning
