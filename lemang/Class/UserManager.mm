@@ -442,6 +442,7 @@ static UserManager* managerInstance;
             NSDictionary* creator = item[@"createdBy"];
             NSNumber* cid = creator[@"id"];
             NSString* groupName = item[@"name"];
+            NSNumber* gid = item[@"id"];
             
             if (uid == cid.integerValue)
             {
@@ -452,7 +453,7 @@ static UserManager* managerInstance;
                 [joinGroup addObject:item];
             }
             
-            [groupDic setValue:cid forKey:groupName];
+            [groupDic setValue:gid forKey:groupName];
         }
     }
 }

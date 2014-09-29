@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
     
-    [self universityListInit];
+    [self pickerListInit];
     [self detailViewInit];
     [self initTag];
     
@@ -62,6 +62,19 @@
     self.navigationItem.rightBarButtonItem = doneButton;
     
     [self RecoverDataContent];
+}
+
+- (IBAction)OnTypeChange:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == 3)   // select group
+    {
+        [actHost setEnabled:true];
+    }
+    else
+    {
+        [actHost setEnabled:false];
+        actHost.text = @"";
+    }
 }
 
 - (void)SetActivityData:(NSMutableDictionary *)data
@@ -138,10 +151,21 @@
     }
 }
 
--(void)universityListInit
+-(void)pickerListInit
 {
     schoolArray = [SchoolManager GetSchoolNameList];
-    //NSLog(@"done",schoolArray);
+    
+    NSArray* groupArray = [[UserManager Instance]GetAdminGroup];
+    NSMutableArray* groupNames = [[NSMutableArray alloc]init];
+    for (NSDictionary* item in groupArray)
+    {
+        NSString* name = item[@"name"];
+        [groupNames addObject:name];
+    }
+    hostArray = [NSArray arrayWithArray:groupNames];
+    
+    [actHost setEnabled:false];
+    actHost.text = @"";
 }
 
 - (void)detailViewInit
@@ -286,6 +310,11 @@
     else
         [_actHostType setSelectedSegmentIndex:0];
     
+    if (_actHostType.selectedSegmentIndex == 3)
+    {
+        [actHost setEnabled:true];
+    }
+    
     NSString* region = [UserManager filtStr:activityData[@"regionLimit"] :@""];
     [_actAreaLimit setSelectedSegmentIndex:0];
     for (int i = 0; i < _actAreaLimit.numberOfSegments; i++)
@@ -382,6 +411,9 @@
         default:
             break;
     }
+    
+    if (actHost.text.length > 0)
+        [activityData setValue:actHost.text forKey:@"createdByAssociation"];
     
     NSString* areaLimitTxt = [_actAreaLimit titleForSegmentAtIndex:[_actAreaLimit selectedSegmentIndex]];
     [activityData setValue:areaLimitTxt forKey:@"regionLimit"];
@@ -498,6 +530,21 @@
         [activityData removeObjectForKey:@"area"];
     }
     
+    if (_actHostType.selectedSegmentIndex == 3 && actHost.text.length > 0)
+    {
+        NSString* groupName = actHost.text;
+        NSDictionary* groupDic = [[UserManager Instance]GetGroupMap];
+        
+        NSNumber* gid = groupDic[groupName];
+        
+        if ([gid isKindOfClass:[NSNumber class]])
+        {
+            NSMutableDictionary* hostDic = [[NSMutableDictionary alloc]init];
+            [hostDic setValue:gid forKey:@"id"];
+            [activityData setObject:hostDic forKey:@"createdByAssociation"];
+        }
+    }
+    
     NSNumber* memberUp = [NSNumber numberWithLong:_actPeopleLimit.text.integerValue];
     [activityData setValue:memberUp forKey:@"peopleLimit"];
 }
@@ -525,11 +572,11 @@
         [self DoAlert:@"院系不能为空":@""];
         return false;
     }
-    if (actHost.text.length == 0)
-    {
-        [self DoAlert:@"所属组织不能为空":@""];
-        return false;
-    }
+    //if (actHost.text.length == 0)
+    //{
+    //    [self DoAlert:@"所属组织不能为空":@""];
+    //    return false;
+    //}
     
     if (_actLocation.text.length == 0)
     {
@@ -540,6 +587,12 @@
     {
         [self DoAlert:@"未指定人数限制":@""];
         return false;
+    }
+    
+    if (_actHostType.selectedSegmentIndex == 3 && actHost.text.length == 0)
+    {
+        //[self DoAlert:@"请选择活动所属组织":@"需要为本人创建或管理的组织"];
+        //return false;
     }
     
     return true;

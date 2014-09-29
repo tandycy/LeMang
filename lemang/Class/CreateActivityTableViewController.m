@@ -278,11 +278,13 @@
         [self DoAlert:@"院系不能为空":@""];
         return false;
     }
+    /*
     if (actHost.text.length == 0)
     {
         [self DoAlert:@"所属组织不能为空":@""];
         return false;
     }
+     */
 
     
     if (actLocation.text.length == 0)
@@ -296,7 +298,12 @@
         return false;
     }
     
-    // TODO: 活动发起？ act host
+    if (actHostType.selectedSegmentIndex == 3 && actHost.text.length == 0)
+    {
+        //[self DoAlert:@"请选择活动所属组织":@"需要为本人创建或管理的组织"];
+        //return false;
+    }
+    
     return true;
 }
 
@@ -347,8 +354,22 @@
         default:
             break;
     }
-
     [activityData setValue:@"Activity" forKey:@"activityType"];
+    
+    if (actHostType.selectedSegmentIndex == 3 && actHost.text.length > 0)
+    {
+        NSString* groupName = actHost.text;
+        NSDictionary* groupDic = [[UserManager Instance]GetGroupMap];
+        
+        NSNumber* gid = groupDic[groupName];
+        
+        if ([gid isKindOfClass:[NSNumber class]])
+        {
+            NSMutableDictionary* hostDic = [[NSMutableDictionary alloc]init];
+            [hostDic setValue:gid forKey:@"id"];
+            [activityData setObject:hostDic forKey:@"createdByAssociation"];
+        }
+    }
 
     
     NSString* schoolName = actUniversity.text;

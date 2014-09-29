@@ -45,6 +45,7 @@
 
 @property (strong, nonatomic) IBOutlet UIPickerView *dataPicker;
 @property (strong, nonatomic) IBOutlet UIToolbar *doneToolbar;
+- (IBAction)OnTypeChange:(UISegmentedControl *)sender;
 
 - (void) SetActivityData:(NSMutableDictionary*)data;
 - (void) SetIconData : (UIImage*)img;

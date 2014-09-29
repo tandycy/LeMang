@@ -454,6 +454,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                         <segment title="个人"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="OnTypeChange:" destination="KLa-Yy-sIL" eventType="valueChanged" id="eZx-Pu-kwO"/>
+                                                    </connections>
                                                 </segmentedControl>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动发起" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QMJ-2S-TK0">
                                                     <rect key="frame" x="20" y="6" width="71" height="21"/>
