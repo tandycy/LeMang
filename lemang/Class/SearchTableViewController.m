@@ -240,7 +240,7 @@
         [self.searchBar setSearchResultsButtonSelected:NO];
     }
 }
-
+/*
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (tableView != self.searchDisplayController.searchResultsTableView) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
@@ -266,7 +266,7 @@
     }
     else return 0;
 }
-
+*/
 -(void)viewWillAppear:(BOOL)animated
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
@@ -315,7 +315,7 @@
     [request setUsername:@"admin"];
     [request setPassword:@"admin"];
     [request startSynchronous];
-
+    
     NSError *error = [request error];
     int returnCode = [request responseStatusCode];
     if (!error) {
@@ -340,9 +340,12 @@
             [filteredActivityArray addObject:resultItem];
         }
         
-        NSLog(@"%@",self.tableView);
-        
     }
+}
+
+-(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
