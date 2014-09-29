@@ -35,24 +35,63 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initView];
+    [self initSearchResult];
     // Uncomment the following lineto preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";
+    // self.clearsSelectionOnViewWillAppear = NO
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    
-    //[self.tableView setScrollsToTop:NO];
+
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
-    //self.edgesForExtendedLayout = UIRectEdgeNone;
-    //self.extendedLayoutIncludesOpaqueBars = NO;
-    
+}
+
+-(void)initView
+{
+    self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";
     self.tableView.scrollEnabled = YES;
     
     NSArray *historyArray = [[NSArray alloc] initWithObjects:@"同济大学",@"复旦大学'",@"体育",@"休闲",@"娱乐",nil];
     self.historyItems = historyArray;
     [self.tableView reloadData];
+    
+    [self.searchDisplayController.searchBar setShowsScopeBar:YES];// 是否显示分栏条
+    [self.searchDisplayController.searchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"体育",@"休闲",@"娱乐", nil]];
 }
 
+
+-(void)initSearchResult
+{
+    filteredActivityArray = [[NSMutableArray alloc]init];
+    Activity* newAct = [Activity
+                        activityOfCategory:@"All"
+                        imgUrlStr:nil
+                        title:@"title"
+                        date:@"date"
+                        limit:@"limit"
+                        icon:nil
+                        member:@"1"
+                        memberUpper:@"20"
+                        fav:[NSNumber numberWithInt:20]
+                        state:0
+                        activitiId:[NSNumber numberWithInt:1]
+                        creatorId:[NSNumber numberWithInt:2]
+                        ];
+    Activity* newAct2 = [Activity
+                        activityOfCategory:@"All"
+                        imgUrlStr:nil
+                        title:@"title"
+                        date:@"date"
+                        limit:@"limit"
+                        icon:nil
+                        member:@"1"
+                        memberUpper:@"20"
+                        fav:[NSNumber numberWithInt:20]
+                        state:0
+                        activitiId:[NSNumber numberWithInt:1]
+                        creatorId:[NSNumber numberWithInt:2]
+                        ];
+    filteredActivityArray[0] = newAct;
+    filteredActivityArray[1] = newAct2;
+}
 
 #pragma mark - Table view data source
 
@@ -81,6 +120,7 @@
 {
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
+        /*
         static NSString *CellIdentifier = @"ActivityTableCell";
         ActivityViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -96,6 +136,19 @@
         activity = [filteredActivityArray objectAtIndex:indexPath.row];
         
         [cell SetActivity:activity];
+        return cell;
+         */
+        static NSString *CellIdentifier = @"Cell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        /* Configure the cell. */
+        Activity *activity = nil;
+        activity = [filteredActivityArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = activity.title;
         return cell;
     }
     else
@@ -115,24 +168,23 @@
 
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",                                     searchText];
-    self.searchResults = [self.historyItems filteredArrayUsingPredicate:resultPredicate];
+    NSLog(@"%@",scope);
+    self.searchResults = filteredActivityArray;
 }
 
 #pragma mark - UISearchDisplayController delegate methods
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller  shouldReloadTableForSearchString:(NSString *)searchString
 {
-    
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles]                                       objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    [self.searchDisplayController.searchResultsTableView setRowHeight:95];
+    //[self.searchDisplayController.searchResultsTableView setRowHeight:95];
     return YES;
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
     [self filterContentForSearchText:[self.searchDisplayController.searchBar text]scope:[[self.searchDisplayController.searchBar scopeButtonTitles]objectAtIndex:searchOption]];
-    [self.searchDisplayController.searchResultsTableView setRowHeight:95];
+    //[self.searchDisplayController.searchResultsTableView setRowHeight:95];
     return YES;
 }
 - (void)didReceiveMemoryWarning
@@ -160,7 +212,7 @@
     {
         [self.searchDisplayController.searchBar becomeFirstResponder];
         searchDisplayController.searchBar.text = historyItems[indexPath.row];
-        
+        [self.searchBar setSearchResultsButtonSelected:NO];
     }
 }
 
