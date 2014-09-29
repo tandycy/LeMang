@@ -278,13 +278,6 @@
         [self DoAlert:@"院系不能为空":@""];
         return false;
     }
-    /*
-    if (actHost.text.length == 0)
-    {
-        [self DoAlert:@"所属组织不能为空":@""];
-        return false;
-    }
-     */
 
     
     if (actLocation.text.length == 0)
@@ -300,8 +293,8 @@
     
     if (actHostType.selectedSegmentIndex == 3 && actHost.text.length == 0)
     {
-        //[self DoAlert:@"请选择活动所属组织":@"需要为本人创建或管理的组织"];
-        //return false;
+        [self DoAlert:@"请选择活动所属组织":@"需要为本人创建或管理的组织"];
+        return false;
     }
     
     return true;
@@ -367,7 +360,7 @@
         {
             NSMutableDictionary* hostDic = [[NSMutableDictionary alloc]init];
             [hostDic setValue:gid forKey:@"id"];
-            [activityData setObject:hostDic forKey:@"createdByAssociation"];
+            [activityData setObject:hostDic forKey:@"createdByGroup"];
         }
     }
 

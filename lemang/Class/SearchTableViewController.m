@@ -49,10 +49,12 @@
     self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";
     self.tableView.scrollEnabled = YES;
     
+    // TODO
     NSArray *historyArray = [[NSArray alloc] initWithObjects:@"同济大学",@"复旦大学'",@"体育",@"休闲",@"娱乐",nil];
     self.historyItems = historyArray;
     [self.tableView reloadData];
     
+    // scope here
     [self.searchDisplayController.searchBar setShowsScopeBar:YES];// 是否显示分栏条
     [self.searchDisplayController.searchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"体育",@"休闲",@"娱乐", nil]];
 }
@@ -61,6 +63,8 @@
 -(void)initSearchResult
 {
     filteredActivityArray = [[NSMutableArray alloc]init];
+    
+    // TODO
     Activity* newAct = [Activity
                         activityOfCategory:@"All"
                         imgUrlStr:nil
@@ -146,6 +150,9 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         /* Configure the cell. */
+        
+        // TODO - cell - type?
+        
         Activity *activity = nil;
         activity = [filteredActivityArray objectAtIndex:indexPath.row];
         cell.textLabel.text = activity.title;
@@ -169,6 +176,9 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     NSLog(@"%@",scope);
+    
+    // wot iz scope?
+    
     self.searchResults = filteredActivityArray;
 }
 
@@ -195,6 +205,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TODO click jump
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
@@ -210,6 +221,7 @@
     }
     else
     {
+        // not TODO
         [self.searchDisplayController.searchBar becomeFirstResponder];
         searchDisplayController.searchBar.text = historyItems[indexPath.row];
         [self.searchBar setSearchResultsButtonSelected:NO];
@@ -254,12 +266,12 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    
+    // TODO after click search
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    
+    //
 }
 
 /*
