@@ -140,6 +140,7 @@
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
 		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
+		EE715CE919D8FF7E00061B1F /* SearchResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE715CE819D8FF7E00061B1F /* SearchResultItem.m */; };
 		EE73C3CA19D7BBD200106D91 /* InviteFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE73C3C919D7BBD200106D91 /* InviteFriendCell.m */; };
 		EE73C3CD19D8023E00106D91 /* OrganizationActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE73C3CC19D8023E00106D91 /* OrganizationActivityCell.m */; };
 		EE77B02A19D26D330018EAF7 /* IconImageViewLoaderWithButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE77B02919D26D330018EAF7 /* IconImageViewLoaderWithButton.m */; };
@@ -404,6 +405,8 @@
 		EE54DB1819B563EF0000845F /* UserManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UserManager.mm; path = Class/UserManager.mm; sourceTree = "<group>"; };
 		EE54DB1A19B56A270000845F /* StringEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringEncoder.h; path = Class/StringEncoder.h; sourceTree = "<group>"; };
 		EE54DB1B19B56A270000845F /* StringEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringEncoder.m; path = Class/StringEncoder.m; sourceTree = "<group>"; };
+		EE715CE719D8FF7E00061B1F /* SearchResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultItem.h; path = Class/SearchResultItem.h; sourceTree = "<group>"; };
+		EE715CE819D8FF7E00061B1F /* SearchResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultItem.m; path = Class/SearchResultItem.m; sourceTree = "<group>"; };
 		EE73C3C819D7BBD200106D91 /* InviteFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteFriendCell.h; path = Class/InviteFriendCell.h; sourceTree = "<group>"; };
 		EE73C3C919D7BBD200106D91 /* InviteFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InviteFriendCell.m; path = Class/InviteFriendCell.m; sourceTree = "<group>"; };
 		EE73C3CB19D8023E00106D91 /* OrganizationActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganizationActivityCell.h; path = Class/OrganizationActivityCell.h; sourceTree = "<group>"; };
@@ -977,6 +980,8 @@
 				EED245DE19D58535002D99D7 /* TagItem.m */,
 				25E2AC6419D8391C005074F0 /* SearchTableViewController.h */,
 				25E2AC6519D8391C005074F0 /* SearchTableViewController.m */,
+				EE715CE719D8FF7E00061B1F /* SearchResultItem.h */,
+				EE715CE819D8FF7E00061B1F /* SearchResultItem.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -1044,7 +1049,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1168,6 +1173,7 @@
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
 				25E2AC6619D8391C005074F0 /* SearchTableViewController.m in Sources */,
 				25BEE1CB19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m in Sources */,
+				EE715CE919D8FF7E00061B1F /* SearchResultItem.m in Sources */,
 				EED245DF19D58535002D99D7 /* TagItem.m in Sources */,
 				EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */,
 				2537509719989B9A006974C9 /* ActivityDetailTableViewController.m in Sources */,
@@ -1454,7 +1460,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,
