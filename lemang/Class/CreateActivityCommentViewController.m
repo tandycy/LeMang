@@ -332,12 +332,14 @@
                 NSString* fileName = [NSString stringWithFormat:@"comment_%@_%@", linkedActivity.activityId, currentTime];
                 NSString* fileFullName = [fileName stringByAppendingString:@".jpg"];
                 
-                [self saveImage:item.image WithName:@"commentImageBig.jpg"];
+                NSString* localName = [NSString stringWithFormat:@"commentImageBig_%d.jpg",i];
+                
+                [self saveImage:item.image WithName:localName];
                 
                 NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
                 //获取完整路径
                 NSString *documentsDirectory = [paths objectAtIndex:0];
-                NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:@"iconImageBig.jpg"];
+                NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:localName];
                 
                 
                 NSString* firstPathStr = [location stringByAppendingString:@"/image"];;
@@ -369,7 +371,9 @@
                 }
                 else
                 {
-                    // TODO
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"无法提交图片信息" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                    [alertView show];
+                    
                     return;
                 }
                 
@@ -393,8 +397,10 @@
                 int aaa = [uploadRequest responseStatusCode];
                 NSString* bbb = [uploadRequest responseString];
                 
-                if (!error)
+                if (error)
                 {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"上传图片失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                    [alertView show];
                 }
             }
             
@@ -406,7 +412,8 @@
     }
     else
     {
-        // create comment fail
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"上传评论失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
     }
 }
 
