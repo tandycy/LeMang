@@ -10,6 +10,9 @@
 #import "Constants.h"
 
 @interface HomeViewController ()
+{
+    UIActivityIndicatorView *activityIndicator;
+}
 
 @end
 
@@ -29,8 +32,36 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationController.navigationBar setBackgroundColor:defaultMainColor];
-    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
-    [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1]];
+    [self.tabBarController.tabBar setTintColor:defaultMainColor];
+    
+    NSString *path = @"http://app.gxcm.com.cn";
+    NSURL *url = [NSURL URLWithString:path];
+    [self.myWebView loadRequest:[NSURLRequest requestWithURL:url]];
+
+}
+
+- (void) webViewDidStartLoad:(UIWebView *)webView
+{
+    //创建UIActivityIndicatorView背底半透明View
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    [view setTag:108];
+    [view setBackgroundColor:[UIColor blackColor]];
+    [view setAlpha:0.5];
+    [self.view addSubview:view];
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
+    [activityIndicator setCenter:view.center];
+    [activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
+    [view addSubview:activityIndicator];
+    
+    [activityIndicator startAnimating];
+}
+- (void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    [activityIndicator stopAnimating];
+    UIView *view = (UIView*)[self.view viewWithTag:108];
+    [view removeFromSuperview];
+    NSLog(@"webViewDidFinishLoad");
 }
 
 - (void)didReceiveMemoryWarning

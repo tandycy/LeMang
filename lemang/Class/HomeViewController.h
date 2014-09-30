@@ -10,4 +10,5 @@
 
 @interface HomeViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIWebView *myWebView;
 @end
