@@ -37,7 +37,17 @@
     NSString *path = @"http://app.gxcm.com.cn";
     NSURL *url = [NSURL URLWithString:path];
     [self.myWebView loadRequest:[NSURLRequest requestWithURL:url]];
+    
+    [self FullRefresh];
 
+}
+
+ - (void) FullRefresh
+{
+    // Refresh all local data
+    [[UserManager Instance] LogInCheck];
+    [SchoolManager InitSchoolList];
+    [UserManager RefreshTagData];
 }
 
 - (void) webViewDidStartLoad:(UIWebView *)webView
