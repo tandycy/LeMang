@@ -62,6 +62,7 @@
     MyMessageTableViewController *MyMsgTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyMessageTableViewController"];
     [self.navigationController pushViewController:MyMsgTVC animated:YES];
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:NO];
@@ -72,7 +73,6 @@
         [self refreshUserData];
     }
 }
-
 
 - (void) UserLoginContact
 {
@@ -136,6 +136,11 @@
 {
     // TODO
     _userNameText.text = @"未登录";
+    _userGenderText.text = @"";
+    _userSchoolText.text = @"";
+    _userDescText.text = @"";
+    
+    [_userIconImageLoader setImage:[UserManager DefaultIcon]];
     
     [self userLoginState:false];
 }

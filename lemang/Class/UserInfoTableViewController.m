@@ -238,37 +238,34 @@
     [uploadRequest setFile:iconPath withFileName:fileFullName andContentType:@"image/jpeg" forKey:@"file"];
     [uploadRequest buildRequestHeaders];
     [uploadRequest buildPostBody];
-   
-    NSDictionary* hdata = [uploadRequest requestHeaders];
-    NSLog(@"header: %@", hdata);
     
-    //[uploadRequest setDelegate:self];
-    //[uploadRequest startAsynchronous];
     
     [uploadRequest startSynchronous];
     
     error = [uploadRequest error];
     int aaa = [uploadRequest responseStatusCode];
-    NSString* bbb = [uploadRequest responseString];
     
     if (error)
     {
-        // TODO
-        NSLog(@"upload user icon fail: %d", error.code);
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"上传图片失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
     }
     if (aaa == 200)
     {
-        // TODO: success
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"上传图片完成" message:@"成功更新头像" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
         [self UpdateContentDisplay];
     }
     else
     {
-        // TODO
-        NSLog(@"upload user icon return: %d", aaa);
+        NSString* content = [NSString stringWithFormat:@"服务器内部错误：%d",aaa];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"上传图片失败" message:content delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
     }
    
 }
 
+/*
 - (void)requestFinished:(ASIHTTPRequest*)request
 {
     NSString* resp = [request responseString];
@@ -283,6 +280,7 @@
     NSLog(@"resp %@", resp);
     NSLog(@"Upload file: %d - %d",error.code, [request responseStatusCode]);
 }
+ */
 
 
 - (NSString *)documentFolderPath
