@@ -17,6 +17,9 @@
 @end
 
 @implementation ActivityDetailViewController
+{
+    ActivityDetailTableViewController *tableVC;
+}
 
 @synthesize title;
 @synthesize containerView;
@@ -57,7 +60,7 @@
                                                                      nil]];
     // [self.tabBarController.tabBar setHidden:YES];
     
-    ActivityDetailTableViewController *tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
+    tableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailTableViewController"];
     if (activity)
         [tableVC SetActivityData:[activity GetActivityData]];
     else
@@ -98,6 +101,8 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"评论提交成功" message:@"您成功提交了一条评论。" delegate:self
                                               cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
     [alertView show];
+    
+    [tableVC RefreshCommentList];
 }
 
 - (void)SetData:(NSDictionary *)actData
