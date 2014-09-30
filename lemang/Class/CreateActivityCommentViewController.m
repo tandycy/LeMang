@@ -142,7 +142,7 @@
 {
     CGRect baseOrigin = addPhoto.frame;
     int width = baseOrigin.size.width + 20;
-    int height = baseOrigin.size.height + 20;
+    int height = baseOrigin.size.height + 10;
     
     for (int i = 0; i < photoList.count; i++)
     {
@@ -155,9 +155,9 @@
         
         CGRect newOrigin = baseOrigin;
         newOrigin.origin.x += index_x * width;
-        newOrigin.origin.x += index_y * height;
+        newOrigin.origin.y += index_y * height;
         
-        item.frame = newOrigin;
+        item.frame = newOrigin;        
     }
 }
 
@@ -319,7 +319,6 @@
             NSString* location = resHeader[@"Location"];
             NSArray *arry=[location componentsSeparatedByString:@"/"];
             
-            NSString* commentId = arry[arry.count - 1];
             
             NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
@@ -362,7 +361,6 @@
                 [putRequest startSynchronous];
                 
                 NSError *error = [putRequest error];
-                int codeResp = [putRequest responseStatusCode];
                 NSString* pathResp;
                 
                 if (!error)
@@ -388,14 +386,10 @@
                 [uploadRequest buildRequestHeaders];
                 [uploadRequest buildPostBody];
                 
-                NSDictionary* hdata = [uploadRequest requestHeaders];
-                NSLog(@"header: %@", hdata);
 
                 [uploadRequest startSynchronous];
                 
                 error = [uploadRequest error];
-                int aaa = [uploadRequest responseStatusCode];
-                NSString* bbb = [uploadRequest responseString];
                 
                 if (error)
                 {
