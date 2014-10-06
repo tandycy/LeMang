@@ -309,7 +309,14 @@ NSString *navTitle;
 {
     if (![UserManager IsInitSuccess])
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        return;
+    }
+    
+    if (![UserManager IsUserAuthen])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未认证" message:@"只有认证用户才能创建活动。" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
         return;
     }

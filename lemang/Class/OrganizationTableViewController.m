@@ -344,6 +344,13 @@
         return;
     }
     
+    if (![UserManager IsUserAuthen])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未认证" message:@"只有认证用户才能创建组织。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    
     CreateOrganizationTableViewController *createOrgVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateOrganizationTableViewController"];
     [createOrgVC SetOwner:self];
     [self.navigationController pushViewController:createOrgVC animated:YES];

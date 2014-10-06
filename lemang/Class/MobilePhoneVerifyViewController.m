@@ -78,10 +78,14 @@
     UIBarButtonItem *finish = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(finishBond:)];
     self.navigationItem.rightBarButtonItem = finish;
     
-    resultLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 300, 320, 60)];
-    resultLabel.text = @"";
-    resultLabel.font = [UIFont fontWithName:defaultBoldFont size:15];
-    [self.view addSubview:resultLabel];
+    
+    if ([UserManager IsTestVersion])
+    {
+        resultLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 300, 320, 60)];
+        resultLabel.text = @"";
+        resultLabel.font = [UIFont fontWithName:defaultBoldFont size:15];
+        [self.view addSubview:resultLabel];
+    }
     
     //[self.editText setText:defaultV];
 }
@@ -118,7 +122,9 @@
     if ([resp isKindOfClass:[NSNumber class]])
     {
         verifyNum = resp;
-        resultLabel.text = [NSString stringWithFormat:@"验证码：%@",verifyNum];
+        
+        if ([UserManager IsTestVersion])
+            resultLabel.text = [NSString stringWithFormat:@"验证码：%@",verifyNum];
     }
     else
     {

@@ -24,5 +24,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *okButton;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) IBOutlet UIButton *TestVerifyButton;
+- (IBAction)OnTestVerify:(id)sender;
 
 @end

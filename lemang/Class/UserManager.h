@@ -25,6 +25,7 @@
     NSString* localNickName;
     int localUserId;
     bool initedLocalData;
+    bool isCertify;
     
     NSMutableData* receivedData;
     
@@ -61,6 +62,7 @@
 
 + (bool)IsUserNameExists:(NSString*)nameData;
 + (bool) IsInitSuccess;
++ (bool) IsUserAuthen;
 
 - (void) RefreshData;
 - (int) GetLocalUserId;
@@ -72,9 +74,12 @@
 //- (void) InitLocalData;
 - (void) LogInCheck;
 - (void) UpdateLocalData;
+- (void) SetAuthen;
 
 + (void) SetDirty;
 + (void) SetClear;
 + (bool) IsDirty;
+
++ (bool) IsTestVersion;
 
 @end

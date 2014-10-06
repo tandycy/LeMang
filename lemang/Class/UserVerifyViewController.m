@@ -35,13 +35,33 @@
     self.userRealName.delegate = self;
     self.userCode.delegate = self;
     nameState=codeState=0;
+    
+    if ([UserManager IsTestVersion])
+        [_TestVerifyButton setHidden:false];
+    else
+        [_TestVerifyButton setHidden:true];
+    
+    [self performSelector:@selector(DelayCheck) withObject:nil afterDelay:0.5];
 }
 
 -(void)initView
 {
     [self.okButton addTarget:self action:@selector(okClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.cancelButton addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
-   
+}
+
+- (void) DelayCheck
+{
+    [self performSelectorInBackground:@selector(VerifyCheck) withObject:nil];
+}
+
+- (void) VerifyCheck
+{
+    if ([UserManager IsUserAuthen])
+    {
+        [self DoAlert:@"用户已认证" :@"已经是认证用户"];
+        [self.navigationController popToRootViewControllerAnimated:true];
+    }
 }
 
 - (void)DoAlert : (NSString*)caption: (NSString*)content
@@ -319,4 +339,12 @@
 */
 
 
+- (IBAction)OnTestVerify:(id)sender {
+    
+    if ([UserManager IsTestVersion])
+    {
+        [[UserManager Instance] SetAuthen];
+        [self VerifyCheck];
+    }
+}
 @end

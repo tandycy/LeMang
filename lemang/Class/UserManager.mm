@@ -19,9 +19,20 @@ static UserManager* managerInstance;
 
 @synthesize loginDelegate;
 
++ (bool) IsTestVersion
+{
+    // ONLY RETURN TRUE FOR TEST VERSION !!!
+    return true;
+}
+
 + (bool) IsInitSuccess
 {
     return [UserManager Instance]->initedLocalData;
+}
+
++ (bool) IsUserAuthen
+{
+    return [UserManager Instance]->isCertify;
 }
 
 + (NSString*) UserName
@@ -183,7 +194,7 @@ static UserManager* managerInstance;
         
         localUserData = userData;
         
-        [self UpdateNickName];
+        [self UpdateUserProfile];
         
         [UserManager SetDirty];
     }
@@ -238,7 +249,7 @@ static UserManager* managerInstance;
                 localUserId = [idNum integerValue];
                 localUserData = data;
                 
-                [self UpdateNickName];
+                [self UpdateUserProfile];
                 
                 initedLocalData = true;
                 [self UpdateLocalData];
@@ -250,7 +261,7 @@ static UserManager* managerInstance;
     [loginDelegate UserLoginContact];
 }
 
-- (void) UpdateNickName
+- (void) UpdateUserProfile
 {
     NSDictionary* profileData = localUserData[@"profile"];
     if ([profileData isKindOfClass:[NSDictionary class]])
@@ -259,6 +270,18 @@ static UserManager* managerInstance;
         if (nickname.length > 0)
             localNickName = nickname;
     }
+    
+    NSDictionary* auth = localUserData[@"authentication"];
+    if ([auth isKindOfClass:[NSDictionary class]])
+    {
+        // TODO
+        isCertify = true;
+    }
+}
+
+- (void) SetAuthen
+{
+    isCertify = true;
 }
 
 - (int) GetLocalUserId
@@ -272,6 +295,7 @@ static UserManager* managerInstance;
     localPassword = @"";
     localNickName = @"";
     initedLocalData = false;
+    isCertify = false;
     [self UpdateLocalData];
     [UserManager SetClear];
     
