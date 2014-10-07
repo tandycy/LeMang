@@ -355,12 +355,13 @@
     
     urlString = [urlString stringByAppendingFormat:@"%@&search_LIKE_description=%@&search_LIKE_university.name=%@",_searchBar.text,_searchBar.text,_searchBar.text];
     //urlString = [urlString stringByAppendingFormat:@"%@",_searchBar.text];
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL* URL = [NSURL URLWithString:urlString];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];
-    [request setUsername:@"admin"];
-    [request setPassword:@"admin"];
+    [request setUsername:@"user"];
+    [request setPassword:@"user"];
     [request startSynchronous];
     
     NSError *error = [request error];
