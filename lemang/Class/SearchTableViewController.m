@@ -10,6 +10,7 @@
 #import "ActivityViewCell.h"
 #import "ActivityDetailViewController.h"
 #import "OrganizationDetailTableViewController.h"
+#import "Constants.h"
 
 @interface SearchTableViewController ()
 {
@@ -135,7 +136,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-        return 1;
+        return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -146,7 +147,10 @@
     }
     else
     {
-        rows = [historyItems count];
+        if (section==0) {
+            return 1;
+        }
+        else rows = [historyItems count];
     }
     return rows;
 }
@@ -179,11 +183,35 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        /* Configure the cell. */
-        cell.textLabel.text = [self.historyItems objectAtIndex:indexPath.row];
-        return cell;
+        
+        if (indexPath.section==0) {
+            UIButton *hotButton1 = [[UIButton alloc]initWithFrame:CGRectMake(20, 6, 80, 30)];
+            UIButton *hotButton2 = [[UIButton alloc]initWithFrame:CGRectMake(120, 6, 80, 30)];
+            UIButton *hotButton3 = [[UIButton alloc]initWithFrame:CGRectMake(220, 6, 80, 30)];
+            [hotButton1 setTitle:@"hot" forState:UIControlStateNormal];
+            [hotButton2 setTitle:@"hot" forState:UIControlStateNormal];
+            [hotButton3 setTitle:@"hot" forState:UIControlStateNormal];
+            
+            [hotButton1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [hotButton1 setBackgroundColor:defaultLightGray243];
+            [hotButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [hotButton2 setBackgroundColor:defaultLightGray243];
+            [hotButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [hotButton3 setBackgroundColor:defaultLightGray243];
+            
+            [cell addSubview:hotButton1];
+            [cell addSubview:hotButton2];
+            [cell addSubview:hotButton3];
+            return cell;
+        }
+        else
+        {
+            /* Configure the cell. */
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.textLabel.text = [self.historyItems objectAtIndex:indexPath.row];
+            return cell;
+        }
     }
 }
 
@@ -219,7 +247,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([tableView isEqual:self.searchDisplayController.searchResultsTableView])
     {
         SearchResultItem* item = [filteredActivityArray objectAtIndex:indexPath.row];
@@ -248,9 +276,15 @@
     }
     else
     {
-        [self.searchDisplayController.searchBar becomeFirstResponder];
-        searchDisplayController.searchBar.text = historyItems[indexPath.row];
-        [self.searchBar setSearchResultsButtonSelected:NO];
+        if (indexPath.section==0) {
+            return;
+        }
+        else
+        {
+            [self.searchDisplayController.searchBar becomeFirstResponder];
+            searchDisplayController.searchBar.text = historyItems[indexPath.row];
+            [self.searchBar setSearchResultsButtonSelected:NO];
+        }
     }
 }
 /*
