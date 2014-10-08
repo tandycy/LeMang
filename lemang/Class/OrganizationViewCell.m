@@ -112,8 +112,8 @@
     
     if (urlStr.length > 0)
     {
-        NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/g/";
-        tempstr = [tempstr stringByAppendingFormat:@"%@/", organizationId];
+        NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources";
+        //tempstr = [tempstr stringByAppendingFormat:@"/g/@/", organizationId];
         tempstr = [tempstr stringByAppendingString:urlStr];
         urlStr = tempstr;
     }

@@ -158,8 +158,8 @@ NSString *navTitle;
             
             if (imgUrlString.length > 0)
             {
-                NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/a/";
-                tempstr = [tempstr stringByAppendingFormat:@"%@/", temp[@"id"]];
+                NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources";
+                //tempstr = [tempstr stringByAppendingFormat:@"/a/%@/", temp[@"id"]];
                 tempstr = [tempstr stringByAppendingString:imgUrlString];
                 imgUrlString = tempstr;
             }

@@ -90,6 +90,42 @@
         return;
     }
     
+    NSNumber* actId = activity.activityId;
+    bool isjoin = false;
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    URLString = [URLString stringByAppendingFormat:@"%d/activities", [[UserManager Instance]GetLocalUserId]];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest startSynchronous];
+    NSError *error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* item = returnData[i];
+            NSNumber* itemId = item[@"id"];
+            
+            if (itemId.integerValue == actId.integerValue)
+            {
+                isjoin = true;
+                break;
+            }
+        }
+    }
+
+    
+    if (!isjoin)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"未参加该活动" message:@"只有加入活动后才能评论。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    
+    
     CreateActivityCommentViewController *createActivityCommentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityCommentViewController"];
     [createActivityCommentVC SetActivity:activity];
     [createActivityCommentVC SetOwner:self];

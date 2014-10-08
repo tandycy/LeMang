@@ -45,11 +45,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self UpdateActivityDisplay];
+    //[self RefreshCommentList];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //[self RefreshCommentList];
+    [self RefreshCommentList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -181,8 +182,8 @@
     NSString* imgUrlString = [UserManager filtStr:activityData[@"iconUrl"] :@""];
     if (imgUrlString.length > 0)
     {
-        NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/a/";
-        tempstr = [tempstr stringByAppendingFormat:@"%@/", activityData[@"id"]];
+        NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources";
+        //tempstr = [tempstr stringByAppendingFormat:@"/a/%@/", activityData[@"id"]];
         tempstr = [tempstr stringByAppendingString:imgUrlString];
         imgUrlString = tempstr;
     }

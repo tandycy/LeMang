@@ -71,7 +71,7 @@
     
     creatorId = creator[@"id"];
     
-    if (creatorId == activityCreator)
+    if (creatorId.integerValue == activityCreator.integerValue)
     {
         isEnableRemove = true;
     }

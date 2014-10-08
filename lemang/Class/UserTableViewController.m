@@ -74,7 +74,7 @@
     }
 }
 
-- (void) UserLoginContact
+- (void) UserLoginContact:(int)returnCode
 {
     if ([UserManager IsInitSuccess])
     {

@@ -71,7 +71,7 @@
 - (void)SetJoin
 {
     [_buttonEdit setHidden:true];
-    [_buttonInvite setHidden:FALSE];
+    [_buttonInvite setHidden:true];
 }
 
 - (void)SetBookmark
