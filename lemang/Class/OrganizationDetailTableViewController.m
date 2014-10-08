@@ -45,6 +45,8 @@ typedef enum {
 {
     [super viewDidLoad];
     
+    [self memberView];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     UIBarButtonItem *like = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_like_on"] style:UIBarButtonItemStylePlain target:self action:@selector(likeClick:)];
@@ -100,6 +102,30 @@ typedef enum {
     activityArray = [[NSArray alloc]init];
     
     [self updateDisplay];
+}
+
+-(void)memberView
+{
+    [self.upperView setFrame:CGRectMake(0, 0, 320, 269)];
+    UIButton *memberDetailBT = [[UIButton alloc]initWithFrame:CGRectMake(0, 200, 320, 70)];
+    [memberDetailBT setImage:[UIImage imageNamed:@"or_back"] forState:UIControlStateNormal];
+    [self.view addSubview:memberDetailBT];
+    
+    UILabel *memberTitle = [[UILabel alloc]initWithFrame:CGRectMake(11, 11, 29, 34)];
+    memberTitle.font = [UIFont fontWithName:defaultFont size:13];
+    memberTitle.text = @"社团成员";
+    memberTitle.textAlignment = UITextAlignmentCenter;
+    memberTitle.lineBreakMode = UILineBreakModeWordWrap;
+    memberTitle.numberOfLines = 0;
+    
+    UILabel *memberCount = [[UILabel alloc]initWithFrame:CGRectMake(11, 47, 29, 15)];
+    memberCount.font = [UIFont fontWithName:defaultFont size:13];
+    memberCount.text = @"(20)";
+    memberCount.textAlignment = UITextAlignmentCenter;
+
+    [memberDetailBT addSubview:memberCount];
+    [memberDetailBT addSubview:memberTitle];
+    
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

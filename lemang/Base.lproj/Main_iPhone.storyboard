@@ -1107,6 +1107,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="organizationDetail" destination="9Wt-mT-f0W" id="Xz2-CB-wI5"/>
                         <outlet property="organizationIcon" destination="P19-oV-QLR" id="Bwh-Gn-tE8"/>
                         <outlet property="orgnizationTittle" destination="qFJ-Ia-ECb" id="Na9-kx-rfE"/>
+                        <outlet property="upperView" destination="CzO-ih-SZc" id="LTa-Xr-8Ax"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZaP-h8-9oo" userLabel="First Responder" sceneMemberID="firstResponder"/>
