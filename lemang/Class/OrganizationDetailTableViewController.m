@@ -11,6 +11,7 @@
 #import "ActivityDetailViewController.h"
 #import "Activity.h"
 #import "UMSocial.h"
+#import "ActivityMemberTableViewController.h"
 
 typedef enum {
 	ActivityMember = 100,

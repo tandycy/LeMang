@@ -136,7 +136,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-        return 2;
+        return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -148,6 +148,10 @@
     else
     {
         if (section==0) {
+            return 1;
+        }
+        else if(section==2)
+        {
             return 1;
         }
         else rows = [historyItems count];
@@ -185,6 +189,12 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         
+        NSLog(@"%ld",(long)indexPath.section);
+        
+        UILabel *clear = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, 320, 30)];
+        clear.textAlignment = UITextAlignmentCenter;
+        clear.text = @"清除所有历史记录";
+        
         if (indexPath.section==0) {
             UIButton *hotButton1 = [[UIButton alloc]initWithFrame:CGRectMake(20, 6, 80, 30)];
             UIButton *hotButton2 = [[UIButton alloc]initWithFrame:CGRectMake(120, 6, 80, 30)];
@@ -203,15 +213,20 @@
             [cell addSubview:hotButton1];
             [cell addSubview:hotButton2];
             [cell addSubview:hotButton3];
-            return cell;
         }
-        else
+        else if(indexPath.section == 1)
         {
             /* Configure the cell. */
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = [self.historyItems objectAtIndex:indexPath.row];
-            return cell;
         }
+        
+        else if(indexPath.section == 2)
+        {
+            [cell addSubview:clear];
+        }
+        
+        return cell;
     }
 }
 
@@ -277,6 +292,11 @@
     else
     {
         if (indexPath.section==0) {
+            return;
+        }
+        else if(indexPath.section==2)
+        {
+            //to do clear history
             return;
         }
         else

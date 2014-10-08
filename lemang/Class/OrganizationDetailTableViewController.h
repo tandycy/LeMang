@@ -25,6 +25,7 @@
 
 @property IBOutlet UIView *orgDetailTitleView;
 
+@property (strong, nonatomic) IBOutlet UIView *upperView;
 @property (strong, nonatomic) IBOutlet UILabel *orgnizationTittle;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *organizationIcon;
 @property (strong, nonatomic) IBOutlet UILabel *organizationDetail;
