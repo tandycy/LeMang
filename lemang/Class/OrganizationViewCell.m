@@ -104,7 +104,6 @@
 
     if (orgType == Association || orgType == Person)
         [self UpdateMemberNumber];
-
     
     // Download icon
     
