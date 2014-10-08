@@ -287,11 +287,13 @@
         }
     }
     
+    NSNumber* bookmarkNum = board[@"bookmarkCount"];
+    hot.text = [NSString stringWithFormat:@"%@",bookmarkNum];
+    NSNumber* score = board[@"rating"];
     
-    NSNumber* rate = activityData[@"rating"];
     for (int i = 0; i < rateAllList.count; i++)
     {
-        if ( i+1 > rate.integerValue)
+        if ( i+1 > score.integerValue)
             [rateAllList[i]  setImage: [UIImage imageNamed:@"rate_star_off"]];
         else
             [rateAllList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];

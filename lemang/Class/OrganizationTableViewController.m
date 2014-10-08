@@ -46,6 +46,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]init];
+    rightButton.title = @"发通知";
+    self.navigationItem.rightBarButtonItem = rightButton;
+    rightButton.target = self;
+    rightButton.action = @selector(createAnnounce:);
+    
     [self.searchButton addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -53,6 +60,11 @@
     SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
     [searchView SetSearchOrganization];
     [self.navigationController pushViewController:searchView animated:YES];
+}
+
+-(IBAction)createAnnounce:(id)sender
+{
+    //
 }
 
 - (void)didReceiveMemoryWarning

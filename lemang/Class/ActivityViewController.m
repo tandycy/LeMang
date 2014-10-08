@@ -181,7 +181,7 @@ NSString *navTitle;
                                 title:temp[@"title"]
                                 date:dateData
                                 limit:regionLimit
-                                icon:schoolIcon
+                                icon:iconImg
                                 member:[NSString stringWithFormat:@"%d",memberNum]
                                 memberUpper:peopleLimit
                                 fav:favNum
@@ -216,7 +216,7 @@ NSString *navTitle;
     bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
     schoolIcon = [UIImage imageNamed:@"school_icon.png"];
     groupIcon = [UIImage imageNamed:@"group_icon.png"];
-    privateIcon = [UIImage imageNamed:@"private_icon.png"];
+    privateIcon = [UIImage imageNamed:@"group_icon.png"];
     
     
     // [self refreshActivityData];
