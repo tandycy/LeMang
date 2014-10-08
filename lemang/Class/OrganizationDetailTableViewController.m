@@ -11,6 +11,7 @@
 #import "ActivityDetailViewController.h"
 #import "Activity.h"
 #import "UMSocial.h"
+#import "ActivityMemberTableViewController.h"
 
 typedef enum {
 	ActivityMember = 100,
@@ -109,6 +110,7 @@ typedef enum {
     [self.upperView setFrame:CGRectMake(0, 0, 320, 269)];
     UIButton *memberDetailBT = [[UIButton alloc]initWithFrame:CGRectMake(0, 200, 320, 70)];
     [memberDetailBT setImage:[UIImage imageNamed:@"or_back"] forState:UIControlStateNormal];
+    [memberDetailBT addTarget:self action:@selector(orgMemberBtClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:memberDetailBT];
     
     UILabel *memberTitle = [[UILabel alloc]initWithFrame:CGRectMake(11, 11, 29, 34)];
@@ -126,6 +128,12 @@ typedef enum {
     [memberDetailBT addSubview:memberCount];
     [memberDetailBT addSubview:memberTitle];
     
+}
+
+-(IBAction)orgMemberBtClick:(id)sender{
+    //to do
+    ActivityMemberTableViewController *activityMemberTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityMemberTableViewController"];
+    [self.navigationController pushViewController:activityMemberTVC animated:YES];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
