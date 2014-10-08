@@ -35,7 +35,11 @@
     
     NSString* beginTime = [UserManager filtStr:localData[@"beginTime"] : @""];
     NSString* endTime = [UserManager filtStr:localData[@"endTime"] : @""];
-    _actTime.text = [beginTime stringByAppendingFormat:@" ~ %@", endTime];
+    
+    NSString* beginDate = [self stringFromDate:[self dateFromString:beginTime]];
+    NSString* endDate = [self stringFromDate:[self dateFromString:endTime]];
+    
+    _actTime.text = [beginDate stringByAppendingFormat:@" ~ %@", endDate];
 
     _actLimit.text = [UserManager filtStr:localData[@"regionLimit"] : @""];
     
@@ -112,5 +116,23 @@
     [_actIcon LoadFromUrl:_act.imgUrlStr :[UIImage imageNamed:@"default_Icon"]];
 }
 
+- (NSDate *)dateFromString:(NSString *)dateString{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *destDate= [dateFormatter dateFromString:dateString];
+
+    return destDate;
+}
+
+- (NSString *)stringFromDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+
+    return destDateString;
+}
 
 @end

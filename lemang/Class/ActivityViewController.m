@@ -117,7 +117,12 @@ NSString *navTitle;
             
             NSString* beginTime = [UserManager filtStr:temp[@"beginTime"] : @""];
             NSString* endTime = [UserManager filtStr:temp[@"endTime"] : @""];
-            NSString* dateData = [beginTime stringByAppendingFormat:@" ~ %@", endTime];
+            
+            NSString* beginDate = [self stringFromDate:[self dateFromString:beginTime]];
+            NSString* endDate = [self stringFromDate:[self dateFromString:endTime]];
+            
+            NSString* dateData = [beginDate stringByAppendingFormat:@" ~ %@", endDate];
+            
             
             
             NSDictionary* members = temp[@"users"];
@@ -357,6 +362,34 @@ NSString *navTitle;
     // [cell setBackgroundView:cellBG];
     
     
+    CGRect tagBackFrame2 = CGRectMake(83, 73, 30, 15);
+    CGRect tagBackFrame3 = CGRectMake(120, 73, 45, 15);
+    CGRect tagTitleFrame2 = CGRectMake(0, 0, 30, 15);
+    CGRect tagTitleFrame3 = CGRectMake(0, 0, 45, 15);
+    
+    UIImageView *tagBack2 = [[UIImageView alloc]initWithFrame:tagBackFrame2];
+    tagBack2.image = [UIImage imageNamed:@"tags"];
+    
+    UILabel *tagTitle2 = [[UILabel alloc]initWithFrame:tagTitleFrame2];
+    tagTitle2.text = @"体育";
+    tagTitle2.textAlignment = UITextAlignmentCenter;
+    tagTitle2.font = [UIFont fontWithName:defaultFont size:13];
+    
+    [tagBack2 addSubview:tagTitle2];
+    [cell addSubview:tagBack2];
+    
+    UIImageView *tagBack3 = [[UIImageView alloc]initWithFrame:tagBackFrame3];
+    tagBack3.image = [UIImage imageNamed:@"tags"];
+    
+    UILabel *tagTitle3 = [[UILabel alloc]initWithFrame:tagTitleFrame3];
+    tagTitle3.text = @"体育好";
+    tagTitle3.textAlignment = UITextAlignmentCenter;
+    tagTitle3.font = [UIFont fontWithName:defaultFont size:13];
+    
+    [tagBack3 addSubview:tagTitle3];
+    [cell addSubview:tagBack3];
+    
+    
     Activity *activity = nil;
     
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -367,6 +400,8 @@ NSString *navTitle;
     {
         activity = [self.activityArray objectAtIndex:indexPath.row];
     }
+    
+    
     
     [cell SetActivity:activity];
    
@@ -468,6 +503,25 @@ NSString *navTitle;
     //searchView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [searchView SetSearchActivity];
     [self.navigationController pushViewController:searchView animated:YES];
+}
+
+- (NSDate *)dateFromString:(NSString *)dateString{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *destDate= [dateFormatter dateFromString:dateString];
+    
+    return destDate;
+}
+
+- (NSString *)stringFromDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    
+    return destDateString;
 }
 
 /*
