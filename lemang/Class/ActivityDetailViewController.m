@@ -91,17 +91,32 @@
     }
     
     NSNumber* actId = activity.activityId;
-    NSDictionary* groupMap = [[UserManager Instance] GetGroupMap];
-    NSEnumerator* idEnum = [groupMap objectEnumerator];
     bool isjoin = false;
-    for (NSNumber* idNum in idEnum)
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    URLString = [URLString stringByAppendingFormat:@"%d/activities", [[UserManager Instance]GetLocalUserId]];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest startSynchronous];
+    NSError *error = [URLRequest error];
+    
+    if (!error)
     {
-        if (idNum.integerValue == actId.integerValue)
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
         {
-            isjoin = true;
-            break;
+            NSDictionary* item = returnData[i];
+            NSNumber* itemId = item[@"id"];
+            
+            if (itemId.integerValue == actId.integerValue)
+            {
+                isjoin = true;
+                break;
+            }
         }
     }
+
     
     if (!isjoin)
     {
