@@ -207,7 +207,7 @@ static UserManager* managerInstance;
     
     if (localUserName == nil)
     {
-        [loginDelegate UserLoginContact];
+        [loginDelegate UserLoginContact:0];
         return;
     }
     
@@ -258,7 +258,7 @@ static UserManager* managerInstance;
         }
     }
     
-    [loginDelegate UserLoginContact];
+    [loginDelegate UserLoginContact : [request responseStatusCode]];
 }
 
 - (void) UpdateUserProfile

@@ -13,7 +13,7 @@
 
 @protocol UserLoginDelegate <NSObject>
 
--(void) UserLoginContact;
+-(void) UserLoginContact:(int)returnCode;
 
 @end
 

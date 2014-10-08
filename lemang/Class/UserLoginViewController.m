@@ -105,7 +105,7 @@
     [self.view addSubview:regist];
 }
 
-- (void) UserLoginContact
+- (void) UserLoginContact : (int)returnCode
 {
     if ([UserManager IsInitSuccess])
     {
@@ -122,7 +122,9 @@
     }
     else
     {
-        // WTF?
+        NSString* state = [NSString stringWithFormat:@"服务器错误：%d", returnCode];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登陆失败" message:state delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
         NSLog(@"Log in fail.");
     }
 }
