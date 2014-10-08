@@ -45,12 +45,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self UpdateActivityDisplay];
-    [self RefreshCommentList];
+    //[self RefreshCommentList];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //[self RefreshCommentList];
+    [self RefreshCommentList];
 }
 
 - (void)didReceiveMemoryWarning

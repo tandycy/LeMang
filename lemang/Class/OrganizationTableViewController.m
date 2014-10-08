@@ -332,6 +332,7 @@
 
 - (void) OnCreateDone
 {
+    [UserManager RefreshGroupData];
     [self refreshOrganizationData];
 }
 
