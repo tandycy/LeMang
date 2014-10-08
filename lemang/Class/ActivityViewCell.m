@@ -39,15 +39,16 @@
 
     _actLimit.text = [UserManager filtStr:localData[@"regionLimit"] : @""];
     
-    
+    /*
     NSDictionary* members = localData[@"users"];
     int memberNum = 0;
     if ([members isKindOfClass:[NSDictionary class]])
     {
         memberNum = members.count;
     }
+     */
     NSString* memberMax = [UserManager filtStr:localData[@"peopleLimit"] : @""];
-    _actMember.text = [NSString stringWithFormat:@"%d/%@",memberNum,memberMax];
+    //_actMember.text = [NSString stringWithFormat:@"%d/%@",memberNum,memberMax];
     
     NSDictionary* board = localData[@"board"];
     NSNumber* favNum = [NSNumber numberWithInt:0];
@@ -90,6 +91,8 @@
         iconImg = [UIImage imageNamed:@"private_icon.png"];;
     }
     _actIcon.image = iconImg;
+    
+    [self UpdateBoard:memberMax];
 }
 
 - (void) SetActivity:(Activity *)_act
@@ -105,11 +108,26 @@
     favStr = [favStr stringByAppendingFormat:@"%@", _act.fav];
     _actBookmark.text = [UserManager filtStr:favStr :@""];
     
-    _actMember.text = [NSString stringWithFormat:@"%@/%@", _act.member, _act.memberUpper];
+    //_actMember.text = [NSString stringWithFormat:@"%@/%@", _act.member, _act.memberUpper];
 
     _actTypeIcon.image = _act.icon;
     
     [_actIcon LoadFromUrl:_act.imgUrlStr :[UIImage imageNamed:@"default_Icon"]];
+    
+    [self UpdateBoard:_act.memberUpper];
+}
+
+- (void)UpdateBoard:(NSString*)maxMember
+{
+    NSDictionary* board = localData[@"board"];
+    
+    NSNumber* bookmarkNum = board[@"bookmarkCount"];
+    NSNumber* members = board[@"joinCount"];
+    NSNumber* score = board[@"rating"];
+    
+    _actMember.text = [NSString stringWithFormat:@"%@/%@", members, maxMember];
+    _actBookmark.text = [NSString stringWithFormat:@"%@",bookmarkNum];
+
 }
 
 

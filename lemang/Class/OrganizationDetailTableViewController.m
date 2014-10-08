@@ -68,23 +68,34 @@ typedef enum {
     
     UIImageView *orgLocationBg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"oranization_add_bar.png"]];
     UIImageView *orgTempBg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"oranization_add_bar.png"]];
-    orgLocation = [[UILabel alloc]initWithFrame:CGRectMake(0, 137, 320, 33)];
-    orgInfo = [[UILabel alloc]initWithFrame:CGRectMake(0, 169, 320, 33)];
-    [orgLocation addSubview:orgLocationBg];
-    [orgInfo addSubview:orgTempBg];
+    
+    UILabel* orgLocationGroup = [[UILabel alloc]initWithFrame:CGRectMake(0, 137, 320, 33)];
+    UILabel* orgInfoGroup = [[UILabel alloc]initWithFrame:CGRectMake(0, 169, 320, 33)];
+    [orgLocationGroup addSubview:orgLocationBg];
+    [orgInfoGroup addSubview:orgTempBg];
     
     UILabel *orgLocationTitle = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, 65, 13)];
-    orgLocationTitle.text = @"商家地点：";
+    orgLocationTitle.text = @"组织地点：";
     orgLocationTitle.font = [UIFont fontWithName:defaultBoldFont size:13];
-    [orgLocation addSubview:orgLocationTitle];
+    [orgLocationGroup addSubview:orgLocationTitle];
+    
+    orgLocation = [[UILabel alloc]initWithFrame:CGRectMake(80, 10, 500, 13)];
+    orgLocation.text = @"";
+    orgLocation.font = [UIFont fontWithName:defaultBoldFont size:13];
+    [orgLocationGroup addSubview:orgLocation];
     
     UILabel *orgTempTitle = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, 65, 13)];
-    orgTempTitle.text = @"商户信息：";
+    orgTempTitle.text = @"组织信息：";
     orgTempTitle.font = [UIFont fontWithName:defaultBoldFont size:13];
-    [orgInfo addSubview:orgTempTitle];
+    [orgInfoGroup addSubview:orgTempTitle];
     
-    [orgDetailTitleView addSubview:orgLocation];
-    [orgDetailTitleView addSubview:orgInfo];
+    orgInfo = [[UILabel alloc]initWithFrame:CGRectMake(80, 10, 500, 13)];
+    orgInfo.text = @"";
+    orgInfo.font = [UIFont fontWithName:defaultBoldFont size:13];
+    [orgInfoGroup addSubview:orgInfo];
+    
+    [orgDetailTitleView addSubview:orgLocationGroup];
+    [orgDetailTitleView addSubview:orgInfoGroup];
     
     activityArray = [[NSArray alloc]init];
     
@@ -155,8 +166,8 @@ typedef enum {
         
         if (iconUrl.length > 0)
         {
-            NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources/g/";
-            tempstr = [tempstr stringByAppendingFormat:@"%@/", orgId];
+            NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources";
+            //tempstr = [tempstr stringByAppendingFormat:@"/g/%@/", orgId];
             tempstr = [tempstr stringByAppendingString:iconUrl];
             iconUrl = tempstr;
         }
