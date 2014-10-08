@@ -141,7 +141,7 @@
     endDate.inputAccessoryView = doneToolbar;
     
     [datePicker setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:3600*8]];
-    //[datePicker setMinimumDate:[NSDate date]];
+    [datePicker setMinimumDate:[NSDate date]];
     [allDayTrigger addTarget:self action:@selector(allDayTriggerChanged:) forControlEvents:UIControlEventValueChanged];
     [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     datePicker.frame =  CGRectMake(0, 480, 320, 260);
@@ -152,7 +152,7 @@
     endDate.text = [nowDate stringFromDate:[NSDate date]];
     tempDate = tempDate2 = [NSDate date];
     
-    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm"];
     startDataText = [nowDate stringFromDate:[NSDate date]];
     endDataText = [nowDate stringFromDate:[NSDate date]];
     
@@ -324,7 +324,7 @@
     [activityData setValue:endDataText forKey:@"endTime"];
     
     nowDate = [[NSDateFormatter alloc]init];
-    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString* createDataText = [nowDate stringFromDate:[NSDate date]];
     [activityData setValue:createDataText forKey:@"createdDate"];
     
@@ -534,7 +534,7 @@
         [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
     }
     else {
-        [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm:ss"];
+        [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
         [datePicker setDatePickerMode:UIDatePickerModeDateAndTime];
     }
     
@@ -543,7 +543,7 @@
     startDate.text = dateAndTime;
     endDate.text = dateAndTime2;
     
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     startDataText = [dateFormatter stringFromDate:tempDate];
     endDataText = [dateFormatter stringFromDate:tempDate2];
 }
@@ -597,14 +597,14 @@
     if (allDayTrigger.isOn) {
         [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
     }
-    else [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm:ss"];
+    else [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
     
     NSString *dateAndTime =  [dateFormatter stringFromDate:selected];
     if (startDate.isEditing) {
         startDate.text = dateAndTime;
         tempDate = selected;
         
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         startDataText = [dateFormatter stringFromDate:tempDate];
     }
     else if (endDate.isEditing)
@@ -612,7 +612,7 @@
         endDate.text =dateAndTime;
         tempDate2 = selected;
         
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         endDataText = [dateFormatter stringFromDate:tempDate2];
     }
     

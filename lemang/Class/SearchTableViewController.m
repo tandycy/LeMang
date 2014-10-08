@@ -387,7 +387,6 @@
             
             [filteredActivityArray addObject:resultItem];
         }
-        
         [self.searchDisplayController.searchResultsTableView reloadData];
         [self.searchBar resignFirstResponder];
     }
