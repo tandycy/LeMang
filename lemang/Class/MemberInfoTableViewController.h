@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "IconImageViewLoader.h"
 #include "UserManager.h"
+#import "Friend.h"
 
 @interface MemberInfoTableViewController : UITableViewController
 {

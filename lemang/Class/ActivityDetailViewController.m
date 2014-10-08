@@ -90,6 +90,27 @@
         return;
     }
     
+    NSNumber* actId = activity.activityId;
+    NSDictionary* groupMap = [[UserManager Instance] GetGroupMap];
+    NSEnumerator* idEnum = [groupMap objectEnumerator];
+    bool isjoin = false;
+    for (NSNumber* idNum in idEnum)
+    {
+        if (idNum.integerValue == actId.integerValue)
+        {
+            isjoin = true;
+            break;
+        }
+    }
+    
+    if (!isjoin)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"未参加该活动" message:@"只有加入活动后才能评论。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        return;
+    }
+    
+    
     CreateActivityCommentViewController *createActivityCommentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityCommentViewController"];
     [createActivityCommentVC SetActivity:activity];
     [createActivityCommentVC SetOwner:self];

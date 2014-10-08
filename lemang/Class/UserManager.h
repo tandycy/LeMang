@@ -43,6 +43,7 @@
     NSMutableArray* joinGroup;
     
     NSMutableDictionary* groupDic;
+    NSMutableDictionary* groupIdDic;
 }
 
 @property (nonatomic, strong) id<UserLoginDelegate>loginDelegate;
@@ -69,6 +70,7 @@
 - (NSArray*)GetJoinGroup;
 - (NSArray*)GetAdminGroup;
 - (NSDictionary*)GetGroupMap;
+- (NSDictionary*)GetGroupIdMap;
 - (void) DoLogIn : (NSString*)name :(NSString*)pw;
 - (void) ClearLocalUserData;
 //- (void) InitLocalData;

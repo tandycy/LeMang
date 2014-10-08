@@ -86,8 +86,34 @@
     }
     
     int rcode = [request responseStatusCode];
-    //NSLog(@"code %d",rcode);
     NSDictionary* userData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+    
+    // Friend check
+    bool isfriend = false;
+    NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    friendStr = [friendStr stringByAppendingFormat:@"%d/friend", [[UserManager Instance]GetLocalUserId]];
+    
+    ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
+    [friendRequest startSynchronous];
+    
+    error = [friendRequest error];
+    if (!error)
+    {
+        NSArray* respData = [NSJSONSerialization JSONObjectWithData:[friendRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < respData.count; i++)
+        {
+            NSDictionary* item = respData[i];
+            Friend* fitem = [[Friend alloc]init];
+            [fitem SetData:item];
+            
+            if ([fitem userId].integerValue == memberId.integerValue)
+            {
+                isfriend = true;
+                break;
+            }
+        }
+    }
     
     _userName.text = @"未认证用户";
     _schoolName.text = [UserManager filtStr:userData[@"university"][@"name"]];
@@ -116,6 +142,15 @@
             _phoneNumber.text = @"未绑定手机";
         _qqNumber.text = [UserManager filtStr:contactData[@"QQ"] : @""];
         _wechatId.text = [UserManager filtStr:contactData[@"WECHAT"] : @""];
+    }
+    
+    if (!isfriend)
+    {
+        _phoneNumber.text = @"仅好友可见";
+        _qqNumber.text = @"仅好友可见";
+        _wechatId.text = @"仅好友可见";
+        _schoolNumber.text = @"仅好友可见";
+        _userName.text = @"";
     }
 
 }

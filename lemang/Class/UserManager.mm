@@ -302,6 +302,7 @@ static UserManager* managerInstance;
     adminGroup = nil;
     joinGroup = nil;
     groupDic = nil;
+    groupIdDic = nil;
 }
 
 - (void) UpdateLocalData
@@ -448,6 +449,10 @@ static UserManager* managerInstance;
         groupDic = [[NSMutableDictionary alloc]init];
     [groupDic removeAllObjects];
     
+    if (!groupIdDic)
+        groupIdDic = [[NSMutableDictionary alloc]init];
+    [groupIdDic removeAllObjects];
+    
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
     URLString = [URLString stringByAppendingFormat:@"%d/associations", uid];
     NSURL *URL = [NSURL URLWithString:URLString];
@@ -481,7 +486,10 @@ static UserManager* managerInstance;
                 [joinGroup addObject:item];
             }
             
+            NSString* idStr = [NSString stringWithFormat:@"%@",gid];
+            
             [groupDic setValue:gid forKey:groupName];
+            [groupIdDic setValue:groupName forKey:idStr];
         }
     }
 }
@@ -508,6 +516,14 @@ static UserManager* managerInstance;
         [UserManager RefreshGroupData];
     
     return groupDic;
+}
+
+- (NSDictionary*)GetGroupIdMap
+{
+    if (!groupIdDic)
+        [UserManager RefreshGroupData];
+    
+    return groupIdDic;
 }
 
 - (id)copyWithZone:(struct _NSZone *)zone
