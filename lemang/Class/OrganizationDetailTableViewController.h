@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "OrganizationViewCell.h"
 #import "OrganizationActivityCell.h"
+#import "CreateActivityTableViewController.h"
 
 @interface OrganizationDetailTableViewController : UITableViewController
 {
     enum OrgnizationType orgType;
     NSNumber* orgId;
+    NSString* orgName;
+    NSNumber* creatorId;
     NSDictionary* localData;
     UIImage* localIconData;
     

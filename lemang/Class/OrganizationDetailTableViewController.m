@@ -28,6 +28,8 @@ typedef enum {
 {
     UILabel *orgLocation;
     UILabel *orgInfo;
+    
+    UIBarButtonItem* noticeButton;
 }
 
 @synthesize orgDetailTitleView;
@@ -44,7 +46,7 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+   
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     UIBarButtonItem *like = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_like_on"] style:UIBarButtonItemStylePlain target:self action:@selector(likeClick:)];
@@ -102,6 +104,16 @@ typedef enum {
     [self updateDisplay];
 }
 
+-(IBAction)createAnnounce:(id)sender
+{
+    if ([[UserManager Instance]GetLocalUserId] != creatorId.integerValue)
+        return;
+    
+    CreateActivityTableViewController *createActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityTableViewController"];
+    [createActivityVC SetAnnounce:orgName];
+    [self.navigationController pushViewController:createActivityVC animated:YES];
+}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.toolbar.frame = CGRectMake(0,self.tableView.contentOffset.y+self.view.frame.size.height-40, 320, 40);
 }
@@ -151,6 +163,31 @@ typedef enum {
     if (localData == nil)
     {
         [self RefreshData];
+    }
+    
+    orgName = localData[@"name"];
+    NSDictionary* creator = localData[@"createdBy"];
+    creatorId = creator[@"id"];
+    
+    if ([[UserManager Instance]GetLocalUserId] == creatorId.integerValue)
+    {
+        if (!noticeButton)
+        {
+            UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]init];
+            rightButton.title = @"发通知";
+            self.navigationItem.rightBarButtonItem = rightButton;
+            rightButton.target = self;
+            rightButton.action = @selector(createAnnounce:);
+            noticeButton = rightButton;
+        }
+    }
+    else
+    {
+        if (noticeButton)
+        {
+            noticeButton = nil;
+            self.navigationItem.rightBarButtonItem = nil;
+        }
     }
     
     _orgnizationTittle.text = [UserManager filtStr:localData[@"name"] : @""];

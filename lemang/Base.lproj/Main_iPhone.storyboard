@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -3709,6 +3709,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="datePicker" destination="Mgf-VL-wDD" id="oGL-42-IB7"/>
                         <outlet property="doneToolbar" destination="ugF-gn-lx4" id="1be-It-jm0"/>
                         <outlet property="endDate" destination="u9j-mK-SzS" id="jBD-0J-0nY"/>
+                        <outlet property="groupCell" destination="LNc-ba-qc8" id="gwh-Ik-NYm"/>
                         <outlet property="otherTag" destination="9yf-Gq-fMn" id="w48-zq-pUq"/>
                         <outlet property="startDate" destination="Evw-9F-TuV" id="fY2-wv-QUc"/>
                         <outlet property="tag1" destination="HYP-2N-tPJ" id="Y3P-Ge-F7R"/>
@@ -3719,6 +3720,15 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="tag6" destination="4TI-CD-Aov" id="w7y-l0-Vmm"/>
                         <outlet property="tag7" destination="hGR-31-pSe" id="YEx-rJ-QJ0"/>
                         <outlet property="tag8" destination="bTM-rv-0MB" id="z2X-JU-bmS"/>
+                        <outlet property="titleAddress" destination="fMu-kq-MTU" id="xU4-oM-KSw"/>
+                        <outlet property="titleArea" destination="BB3-5r-Hzn" id="uKC-3f-dwA"/>
+                        <outlet property="titleDepart" destination="fTh-I2-CRX" id="9Q8-Q3-xLg"/>
+                        <outlet property="titleDesc" destination="I5P-Aj-zGl" id="xwM-fF-SL5"/>
+                        <outlet property="titleSchool" destination="wpx-hO-8ST" id="SVg-9V-0O0"/>
+                        <outlet property="titleTag" destination="UFV-kD-dX1" id="Fe9-uV-Y5J"/>
+                        <outlet property="titleTimeBegin" destination="G5M-em-WRP" id="1Rb-VT-vvB"/>
+                        <outlet property="titleTimeEnd" destination="Hob-9b-RAQ" id="8Rq-io-20f"/>
+                        <outlet property="titleTop" destination="R2H-hn-Ifx" id="7nG-U4-w1U"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyM-wW-ecr" userLabel="First Responder" sceneMemberID="firstResponder"/>

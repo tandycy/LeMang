@@ -16,6 +16,9 @@
     NSString* startDataText;
     NSString* endDataText;
     id owner;
+    
+    bool isActivity;
+    NSString* groupName;
 }
 
 @property (strong, nonatomic) IBOutlet UITextView *actName;
@@ -48,7 +51,20 @@
 @property (strong, nonatomic) IBOutlet UIButton *tag7;
 @property (strong, nonatomic) IBOutlet UIButton *tag8;
 
+@property (strong, nonatomic) IBOutlet UILabel *titleTop;
+@property (strong, nonatomic) IBOutlet UILabel *titleDesc;
+@property (strong, nonatomic) IBOutlet UILabel *titleTimeBegin;
+@property (strong, nonatomic) IBOutlet UILabel *titleTimeEnd;
+@property (strong, nonatomic) IBOutlet UILabel *titleSchool;
+@property (strong, nonatomic) IBOutlet UILabel *titleArea;
+@property (strong, nonatomic) IBOutlet UILabel *titleDepart;
+@property (strong, nonatomic) IBOutlet UILabel *titleAddress;
+@property (strong, nonatomic) IBOutlet UILabel *titleTag;
+
+@property (strong, nonatomic) IBOutlet UITableViewCell *groupCell;
+
 - (IBAction)selectButton:(id)sender;
-- (void)SetOwner:(id)_owner;
+- (void)SetActivity:(id)_owner;
+- (void)SetAnnounce:(NSString*)gname;
 
 @end

@@ -327,7 +327,7 @@ NSString *navTitle;
     }
     
     CreateActivityTableViewController *createActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityTableViewController"];
-    [createActivityVC SetOwner:self];
+    [createActivityVC SetActivity:self];
     [self.navigationController pushViewController:createActivityVC animated:YES];
 }
 
@@ -340,8 +340,10 @@ NSString *navTitle;
 
 - (void) CreateActivityDone
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"创建活动成功" message:@"在-我的活动-中可以编辑活动详细信息" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"创建活动成功" message:@"在-我的活动-中可以编辑活动详细信息" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alertView show];
+    
+    [self refreshActivityData];
 }
 
 
@@ -361,6 +363,8 @@ NSString *navTitle;
     // UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_list_back.png"]];
     // [cell setBackgroundView:cellBG];
     
+    
+    // TODO
     
     CGRect tagBackFrame2 = CGRectMake(83, 73, 30, 15);
     CGRect tagBackFrame3 = CGRectMake(120, 73, 45, 15);

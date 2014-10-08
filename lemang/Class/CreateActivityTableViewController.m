@@ -34,6 +34,8 @@
     NSArray* tagButtonArray;
     
     int keyboardHeight;
+    
+    NSArray* titleArray;
 }
 
 @end
@@ -79,6 +81,8 @@
                                                object:nil];
     
     
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -115,14 +119,13 @@
     
     nameHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
     nameHolder.font = [UIFont fontWithName:defaultFont  size:15];
-    nameHolder.text = @"请输入活动标题...";
     nameHolder.enabled = NO;//lable必须设置为不可用
     nameHolder.backgroundColor = [UIColor clearColor];
     [actName addSubview:nameHolder];
     
     descriptionHolder = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, actDescription.frame.size.width, 20)];
     descriptionHolder.font = [UIFont fontWithName:defaultFont  size:15];
-    descriptionHolder.text = @"请输入活动描述...";
+
     descriptionHolder.enabled = NO;//lable必须设置为不可用
     descriptionHolder.backgroundColor = [UIColor clearColor];
     [actDescription addSubview:descriptionHolder];
@@ -184,6 +187,41 @@
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
+    
+    
+    
+    titleArray = [NSArray arrayWithObjects: _titleTop, _titleDesc, _titleTimeBegin, _titleTimeEnd, _titleSchool, _titleArea, _titleDepart, _titleAddress, _titleTag, nil];
+    if (isActivity)
+    {
+        self.navigationItem.title = @"创建活动";
+        nameHolder.text = @"请输入活动标题...";
+        descriptionHolder.text = @"请输入活动描述...";
+
+        for (UILabel* label in titleArray)
+        {
+            NSString* title = label.text;
+            title = [title stringByReplacingOccurrencesOfString:@"通知" withString:@"活动"];
+            label.text = title;
+        }
+    }
+    else
+    {
+        self.navigationItem.title = @"创建通知";
+        nameHolder.text = @"请输入通知标题...";
+        descriptionHolder.text = @"请输入通知描述...";
+        
+        for (UILabel* label in titleArray)
+        {
+            NSString* title = label.text;
+            title = [title stringByReplacingOccurrencesOfString:@"活动" withString:@"通知"];
+            label.text = title;
+        }
+        
+        actHost.text = groupName;
+        [actHost setEnabled: false];
+        [actHostType setSelectedSegmentIndex:3];    // for association only
+        [actHostType setEnabled: false];
+    }
 }
 
 
@@ -247,7 +285,7 @@
 
 - (void)DoAlert : (NSString*)caption: (NSString*)content
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
     [alertView show];
 }
 
@@ -347,7 +385,11 @@
         default:
             break;
     }
-    [activityData setValue:@"Activity" forKey:@"activityType"];
+    
+    if (isActivity)
+        [activityData setValue:@"Activity" forKey:@"activityType"];
+    else
+        [activityData setValue:@"Announcement" forKey:@"activityType"];
     
     if (actHostType.selectedSegmentIndex == 3 && actHost.text.length > 0)
     {
@@ -471,18 +513,37 @@
     
     if (returnCode == 201)
     {
-        // TODO create success operation
         if (owner != nil && [owner isKindOfClass:[ActivityViewController class]])
         {
             [(ActivityViewController*)owner CreateActivityDone];
-            [self.navigationController popViewControllerAnimated:true];
         }
+        else if (!isActivity)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"创建通知成功" message:@"在-我的活动-中可以编辑通知详细信息" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+        
+        [self.navigationController popViewControllerAnimated:true];
+    }
+    else
+    {
+        NSString* message = [NSString stringWithFormat:@"服务器错误:%d",returnCode];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"创建通知失败" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        NSLog(@"%@", jsonString);
     }
 }
 
-- (void)SetOwner:(id)_owner
+- (void)SetActivity:(id)_owner
 {
+    isActivity = true;
     owner = _owner;
+}
+
+- (void) SetAnnounce:(NSString *)gname
+{
+    isActivity = false;
+    groupName = gname;
 }
 
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
