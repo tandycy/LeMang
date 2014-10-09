@@ -364,36 +364,6 @@ NSString *navTitle;
     // [cell setBackgroundView:cellBG];
     
     
-    // TODO
-    
-    CGRect tagBackFrame2 = CGRectMake(83, 73, 30, 15);
-    CGRect tagBackFrame3 = CGRectMake(120, 73, 45, 15);
-    CGRect tagTitleFrame2 = CGRectMake(0, 0, 30, 15);
-    CGRect tagTitleFrame3 = CGRectMake(0, 0, 45, 15);
-    
-    UIImageView *tagBack2 = [[UIImageView alloc]initWithFrame:tagBackFrame2];
-    tagBack2.image = [UIImage imageNamed:@"tags"];
-    
-    UILabel *tagTitle2 = [[UILabel alloc]initWithFrame:tagTitleFrame2];
-    tagTitle2.text = @"体育";
-    tagTitle2.textAlignment = UITextAlignmentCenter;
-    tagTitle2.font = [UIFont fontWithName:defaultFont size:13];
-    
-    [tagBack2 addSubview:tagTitle2];
-    [cell addSubview:tagBack2];
-    
-    UIImageView *tagBack3 = [[UIImageView alloc]initWithFrame:tagBackFrame3];
-    tagBack3.image = [UIImage imageNamed:@"tags"];
-    
-    UILabel *tagTitle3 = [[UILabel alloc]initWithFrame:tagTitleFrame3];
-    tagTitle3.text = @"体育好";
-    tagTitle3.textAlignment = UITextAlignmentCenter;
-    tagTitle3.font = [UIFont fontWithName:defaultFont size:13];
-    
-    [tagBack3 addSubview:tagTitle3];
-    [cell addSubview:tagBack3];
-    
-    
     Activity *activity = nil;
     
     if (tableView == self.searchDisplayController.searchResultsTableView)

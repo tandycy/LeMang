@@ -12,6 +12,7 @@
 @implementation OrganizationViewCell
 {
     UILabel* memberNumberText;
+    NSMutableArray* tagItemArray;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -118,6 +119,87 @@
     }
     
     [_organizationIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UIImage imageNamed:@"default_Icon.png"]];
+    
+    [self UpdateTags];
+}
+
+- (void) UpdateTags
+{
+    if (tagItemArray)
+    {
+        for (UIImageView* item in tagItemArray)
+        {
+            [item removeFromSuperview];
+        }
+    }
+    else
+        tagItemArray = [[NSMutableArray alloc]init];
+    
+    NSMutableArray* filteredTags = [[NSMutableArray alloc]init];
+    NSString* tags = [UserManager filtStr:localData[@"tags"]:@""];
+    
+    NSArray *tagArray1 = [tags componentsSeparatedByString:@";"];
+    
+    for (NSString* tagPart1 in tagArray1)
+    {
+        NSArray *tagArray2 = [tagPart1 componentsSeparatedByString:@"；"];
+        
+        if (tagArray2.count > 1)
+            NSLog(@"Meet CN ; symble.");
+        
+        for (NSString* tagPart2 in tagArray2)
+        {
+            if (tagPart2.length > 0)
+                [filteredTags addObject:tagPart2];
+        }
+    }
+    
+    int maxNumber = 4;
+    if (filteredTags.count < maxNumber)
+        maxNumber = filteredTags.count;
+    
+    CGRect tagTitleFrame2 = CGRectMake(0, 0, 30, 15);
+    CGRect tagTitleFrame3 = CGRectMake(0, 0, 45, 15);
+    CGRect tagTitleFrame4 = CGRectMake(0, 0, 60, 15);
+    
+    int index = 86;
+    for (int i = 0; i < maxNumber; i++)
+    {
+        NSString* item = filteredTags[i];
+        UIImageView* tagItem;
+        UILabel* tagTitle;
+        
+        if (item.length <= 2)
+        {
+            CGRect backFrame = CGRectMake(index, 63, 30, 15);
+            tagItem = [[UIImageView alloc]initWithFrame:backFrame];
+            tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame2];
+            index += (30 + 7);
+        }
+        else if (item.length == 3)
+        {
+            CGRect backFrame = CGRectMake(index, 63, 45, 15);
+            tagItem = [[UIImageView alloc]initWithFrame:backFrame];
+            tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame3];
+            index += (45 + 7);
+        }
+        else
+        {
+            CGRect backFrame = CGRectMake(index, 63, 60, 15);
+            tagItem = [[UIImageView alloc]initWithFrame:backFrame];
+            tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame4];
+            index += (60 + 7);
+        }
+        
+        tagItem.image = [UIImage imageNamed:@"tags"];
+        tagTitle.text = item;
+        tagTitle.textAlignment = UITextAlignmentCenter;
+        tagTitle.font = [UIFont fontWithName:defaultFont size:13];
+        
+        [tagItem addSubview:tagTitle];
+        [self addSubview:tagItem];
+        [tagItemArray addObject:tagItem];
+    }
 }
 
 - (void) UpdateMemberNumber
