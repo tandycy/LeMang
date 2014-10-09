@@ -10,6 +10,7 @@
 #import "MyFriendCell.h"
 #import "MemberInfoTableViewController.h"
 #import "Friend.h"
+#import "SearchUserTabelViewController.h"
 
 @interface MyFriendsTableViewController ()
 {
@@ -40,8 +41,21 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]init];
+    rightButton.title = @"添加好友";
+    self.navigationItem.rightBarButtonItem = rightButton;
+    rightButton.target = self;
+    rightButton.action = @selector(ToAddFriendPage:);
+    
     [self dataInit];
     [self.tableView reloadData];
+}
+
+-(IBAction)ToAddFriendPage:(id)sender
+{
+    SearchUserTabelViewController *searchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchUserTabelViewController"];
+    searchVC.navigationItem.title = @"查找和添加好友";
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -146,6 +146,10 @@
 {
     MyActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyActivityCell" forIndexPath:indexPath];
     
+    if (cell==nil) {
+        cell = [[MyActivityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyActivityCell"];
+    }
+    
     // Configure the cell...
     int section = indexPath.section;
     NSDictionary* actData = nil;

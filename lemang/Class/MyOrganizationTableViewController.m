@@ -153,7 +153,7 @@
     MyOrgCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrgCell" forIndexPath:indexPath];
     
     if (cell==nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrgCell" forIndexPath:indexPath];
+        cell = [[MyOrgCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyOrgCell"];
     }
     
     // Configure the cell...

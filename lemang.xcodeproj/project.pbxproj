@@ -150,6 +150,8 @@
 		EEC7756819B0702B0035B400 /* OrganizationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC7756719B0702B0035B400 /* OrganizationViewCell.m */; };
 		EED245DF19D58535002D99D7 /* TagItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EED245DE19D58535002D99D7 /* TagItem.m */; };
 		EEEE40AE19C845C900001B37 /* IconImageButtonLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */; };
+		EEF71F8719E66E9400E72ED3 /* SearchUserTabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF71F8619E66E9400E72ED3 /* SearchUserTabelViewController.m */; };
+		EEF71F8A19E66F8B00E72ED3 /* AddFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF71F8919E66F8B00E72ED3 /* AddFriendCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -425,6 +427,10 @@
 		EED245DE19D58535002D99D7 /* TagItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagItem.m; path = Class/TagItem.m; sourceTree = "<group>"; };
 		EEEE40AC19C845C900001B37 /* IconImageButtonLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageButtonLoader.h; path = Class/IconImageButtonLoader.h; sourceTree = "<group>"; };
 		EEEE40AD19C845C900001B37 /* IconImageButtonLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageButtonLoader.m; path = Class/IconImageButtonLoader.m; sourceTree = "<group>"; };
+		EEF71F8519E66E9400E72ED3 /* SearchUserTabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchUserTabelViewController.h; path = Class/SearchUserTabelViewController.h; sourceTree = "<group>"; };
+		EEF71F8619E66E9400E72ED3 /* SearchUserTabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchUserTabelViewController.m; path = Class/SearchUserTabelViewController.m; sourceTree = "<group>"; };
+		EEF71F8819E66F8B00E72ED3 /* AddFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddFriendCell.h; path = Class/AddFriendCell.h; sourceTree = "<group>"; };
+		EEF71F8919E66F8B00E72ED3 /* AddFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddFriendCell.m; path = Class/AddFriendCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -627,6 +633,8 @@
 				259F017D19D3FF8D0073492F /* InviteMyFriendsTableViewController.m */,
 				25BEE1C919D81ACE0020D0AA /* MobilePhoneVerifyViewController.h */,
 				25BEE1CA19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m */,
+				EEF71F8519E66E9400E72ED3 /* SearchUserTabelViewController.h */,
+				EEF71F8619E66E9400E72ED3 /* SearchUserTabelViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -951,6 +959,8 @@
 				25A411F919D55BD500914599 /* MyOrgCell.m */,
 				EE73C3C819D7BBD200106D91 /* InviteFriendCell.h */,
 				EE73C3C919D7BBD200106D91 /* InviteFriendCell.m */,
+				EEF71F8819E66F8B00E72ED3 /* AddFriendCell.h */,
+				EEF71F8919E66F8B00E72ED3 /* AddFriendCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1168,10 +1178,12 @@
 				258087BB19A71D59005E308D /* MyMessageTableViewController.m in Sources */,
 				28DC153E19BE8F8500DE97F0 /* SchoolItem.m in Sources */,
 				258087CA19A71EED005E308D /* UITableGridViewCell.m in Sources */,
+				EEF71F8A19E66F8B00E72ED3 /* AddFriendCell.m in Sources */,
 				251CEBBB19A31FBC00C80BAF /* OrganizationTableViewController.m in Sources */,
 				EE73C3CD19D8023E00106D91 /* OrganizationActivityCell.m in Sources */,
 				25C7F337198B7A3500AB8B2F /* Activity.m in Sources */,
 				25E2AC6619D8391C005074F0 /* SearchTableViewController.m in Sources */,
+				EEF71F8719E66E9400E72ED3 /* SearchUserTabelViewController.m in Sources */,
 				25BEE1CB19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m in Sources */,
 				EE715CE919D8FF7E00061B1F /* SearchResultItem.m in Sources */,
 				EED245DF19D58535002D99D7 /* TagItem.m in Sources */,
