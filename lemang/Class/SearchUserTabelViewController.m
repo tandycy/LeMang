@@ -7,7 +7,9 @@
 //
 
 #import "SearchUserTabelViewController.h"
+#import "MemberInfoTableViewController.h"
 #import "AddFriendCell.h"
+#import "Friend.h"
 
 @interface SearchUserTabelViewController ()
 
@@ -116,6 +118,18 @@
     
     [cell SetData:resultArray[indexPath.row]];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MemberInfoTableViewController *MemberInfoTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
+    
+    NSDictionary* item = resultArray[indexPath.row];
+    NSNumber* fId = item[@"id"];
+    
+    MemberInfoTVC.navigationItem.title = @"用户信息";
+    [MemberInfoTVC SetMemberId:fId];
+    [self.navigationController pushViewController:MemberInfoTVC animated:YES];
 }
 
 /*
