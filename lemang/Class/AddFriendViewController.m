@@ -49,6 +49,46 @@
     self.navigationItem.rightBarButtonItem = rightButton;
     rightButton.target = self;
     rightButton.action = @selector(OnSendRequest:);
+    
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
+}
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [_requestContent resignFirstResponder];
+}
+
+-(void)downAnim
+{
+    NSTimeInterval animationDuration = 0.20f;
+    CGRect frame = self.view.frame;
+    frame.origin.y += 120;
+    frame.size.height -=10;
+    //self.view移回原位置
+    [UIView beginAnimations:@"ResizeView" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder
+    NSTimeInterval animationDuration = 0.30f;
+    CGRect frame = self.view.frame;
+    frame.origin.y -= 120;
+    frame.size.height +=10;
+    [UIView beginAnimations:@"ResizeView" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = frame;
+    [UIView commitAnimations];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    [self downAnim];
 }
 
 - (void)didReceiveMemoryWarning

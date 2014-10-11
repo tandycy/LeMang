@@ -78,6 +78,11 @@
         {
             NSDictionary* item = userData[i];
             
+            NSString* name = item[@"loginName"];
+            
+            if ([name isEqualToString:@"user"] || [name isEqualToString:@"admin"])
+                continue;
+            
             NSNumber* uid = item[@"id"];
             
             if (uid.longValue != [[UserManager Instance]GetLocalUserId].longValue)
