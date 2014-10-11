@@ -8,6 +8,7 @@
 
 #import "UserTableViewController.h"
 #import "MyMessageTableViewController.h"
+#import "Constants.h"
 
 @interface UserTableViewController ()
 {
@@ -66,6 +67,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:NO];
+    [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    [self.navigationController.navigationBar setBarTintColor:defaultMainColor];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self userLoginState:[UserManager IsInitSuccess]];
     
     if ([UserManager IsInitSuccess] && [UserManager IsDirty])
