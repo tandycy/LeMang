@@ -28,6 +28,9 @@ typedef enum {
 } ActivityListTags;
 
 @interface ActivityViewController ()
+{
+    UIView *loadingView;
+}
 
 @end
 
@@ -201,6 +204,35 @@ NSString *navTitle;
     }
 }
 
+-(void)showLoadingCircle
+{
+    CGRect loadingFrame = CGRectMake(0, 128, activityList.frame.size.width, activityList.frame.size.height-128);
+    loadingView = [[UIView alloc]initWithFrame:loadingFrame];
+    [loadingView setUserInteractionEnabled:YES];
+    [loadingView setBackgroundColor:[UIColor whiteColor]];
+    
+    UIActivityIndicatorView *loading = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [loading setCenter:CGPointMake(160, 140)];
+    [loading setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    [loading startAnimating];
+    [loadingView addSubview:loading];
+    
+    UILabel *loadingText = [[UILabel alloc]initWithFrame:CGRectMake(110, 80, 150, 20)];
+    loadingText.font = [UIFont fontWithName:defaultBoldFont size:15];
+    [loadingText setTextColor:defaultMainColor];
+    loadingText.text = @"加载中...请稍后";
+    
+    [loadingView addSubview:loadingText];
+    
+    [activityList setUserInteractionEnabled:NO];
+    [activityList addSubview:loadingView];
+}
+
+-(void)deleteLoadingCircle
+{
+    [activityList setUserInteractionEnabled:YES];
+    [loadingView removeFromSuperview];
+}
 
 - (void)viewDidLoad
 {
@@ -208,6 +240,7 @@ NSString *navTitle;
     [super viewDidLoad];
     
     [self setupRefresh];
+    [self showLoadingCircle];
     // Do any additional setup after loading the view.
 
     [self.searchButton addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
