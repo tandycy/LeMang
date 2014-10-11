@@ -16,6 +16,8 @@
 {
     NSMutableArray *friendArray;
     NSMutableArray *filteredFriendArray;
+    
+    NSMutableArray *friendIdArray;
 }
 
 @end
@@ -55,6 +57,7 @@
 {
     SearchUserTabelViewController *searchVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchUserTabelViewController"];
     searchVC.navigationItem.title = @"查找和添加好友";
+    [searchVC SetIdArray:friendIdArray];
     [self.navigationController pushViewController:searchVC animated:YES];
 }
 
@@ -69,14 +72,15 @@
     filteredFriendArray = [NSMutableArray arrayWithCapacity:[friendArray count]];
     
     friendArray = [[NSMutableArray alloc]init];
+    friendIdArray = [[NSMutableArray alloc]init];
     
     if (![UserManager IsInitSuccess])
         return;
     
-    int uid = [[UserManager Instance]GetLocalUserId];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
     NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    friendStr = [friendStr stringByAppendingFormat:@"%d/friend", uid];
+    friendStr = [friendStr stringByAppendingFormat:@"%@/friend", uid];
     
     ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
     [friendRequest startSynchronous];
@@ -98,6 +102,8 @@
         Friend* fitem = [[Friend alloc]init];
         [fitem SetData:item];
         [friendArray addObject:fitem];
+        
+        [friendIdArray addObject:fitem.userId];
     }
     
 }

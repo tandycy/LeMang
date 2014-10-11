@@ -23,7 +23,7 @@
     NSString* localUserName;
     NSString* localPassword;
     NSString* localNickName;
-    int localUserId;
+    NSNumber* localUserId;
     bool initedLocalData;
     bool isCertify;
     
@@ -66,7 +66,7 @@
 + (bool) IsUserAuthen;
 
 - (void) RefreshData;
-- (int) GetLocalUserId;
+- (NSNumber*) GetLocalUserId;
 - (NSArray*)GetJoinGroup;
 - (NSArray*)GetAdminGroup;
 - (NSDictionary*)GetGroupMap;

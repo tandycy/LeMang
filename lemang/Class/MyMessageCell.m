@@ -289,22 +289,22 @@
     {
         // accept
         NSString* acceptStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-        int uid = [[UserManager Instance]GetLocalUserId];
+        NSNumber* uid = [[UserManager Instance]GetLocalUserId];
         
         if (messCategory == INVITATION_ASSOCIATION)
             acceptStr = [acceptStr stringByAppendingFormat:@"accept/association/%@",messId];
         else if (messCategory == INVITATION_ACTIVITY)
             acceptStr = [acceptStr stringByAppendingFormat:@"accept/activity/%@", messId];
         else if (messCategory == ENROLLMENT_ASSOCIATION)
-            acceptStr = [acceptStr stringByAppendingFormat:@"%d/approve/association/%@", uid, messId];
+            acceptStr = [acceptStr stringByAppendingFormat:@"%@/approve/association/%@", uid, messId];
         else if (messCategory == ENROLLMENT_ACTIVITY)
-            acceptStr = [acceptStr stringByAppendingFormat:@"%d/approve/activity/%@", uid, messId];
+            acceptStr = [acceptStr stringByAppendingFormat:@"%@/approve/activity/%@", uid, messId];
         else if (messCategory == INVITATION_FRIEND)
         {
             @try {
                 NSDictionary* senderData = localData[@"from"];
                 NSNumber* fromId = senderData[@"id"];
-                acceptStr = [acceptStr stringByAppendingFormat:@"%d/friend/%@", uid, fromId];
+                acceptStr = [acceptStr stringByAppendingFormat:@"%@/friend/%@", uid, fromId];
             }
             @catch (NSException *exception) {
                 UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"操作失败" message:@"消息数据错误" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];

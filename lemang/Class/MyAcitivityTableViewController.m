@@ -51,10 +51,10 @@
 
 - (void)RefreshActivityList
 {
-    int uid = [[UserManager Instance]GetLocalUserId];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    URLString = [URLString stringByAppendingFormat:@"%d/activities", uid];
+    URLString = [URLString stringByAppendingFormat:@"%@/activities", uid];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
@@ -75,7 +75,7 @@
             NSDictionary* creator = item[@"createdBy"];
             NSNumber* cid = creator[@"id"];
             
-            if (uid == cid.integerValue)
+            if (uid.longValue == cid.longValue)
             {
                 [adminActivity addObject:item];
             }

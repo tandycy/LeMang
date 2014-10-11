@@ -124,7 +124,7 @@
     
     NSMutableDictionary* orgData = [[NSMutableDictionary alloc]init];
     
-    NSNumber* uid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     NSMutableDictionary* uidDic = [[NSMutableDictionary alloc]init];
     [uidDic setValue:uid forKey:@"id"];
     [orgData setValue:uidDic forKey:@"createdBy"];

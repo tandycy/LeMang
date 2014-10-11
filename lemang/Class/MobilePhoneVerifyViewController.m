@@ -101,7 +101,7 @@
     }
     
     NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlStr = [urlStr stringByAppendingFormat:@"%d/validate/%@",[[UserManager Instance]GetLocalUserId], _mobliePhoneNumber.text];
+    urlStr = [urlStr stringByAppendingFormat:@"%@/validate/%@",[[UserManager Instance]GetLocalUserId], _mobliePhoneNumber.text];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
     [request setRequestMethod:@"PUT"];
@@ -148,7 +148,7 @@
     if ([verifyText.text isEqualToString:codeStr])
     {
         NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-        urlStr = [urlStr stringByAppendingFormat:@"%d/bind/%@",[[UserManager Instance]GetLocalUserId], _mobliePhoneNumber.text];
+        urlStr = [urlStr stringByAppendingFormat:@"%@/bind/%@",[[UserManager Instance]GetLocalUserId], _mobliePhoneNumber.text];
         
         ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlStr]];
         [request setRequestMethod:@"PUT"];

@@ -378,7 +378,7 @@
     EditActivityDetailTableViewController *EditActDetailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditActivityDetailTableViewController"];
     EditActDetailVC.navigationItem.title = @"详细页面";
     
-    NSNumber* uid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
 
     [activityData setValue:actName.text forKey:@"title"];

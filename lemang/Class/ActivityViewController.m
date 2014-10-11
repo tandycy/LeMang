@@ -97,7 +97,7 @@ NSString *navTitle;
         
         // Update data list info
         NSNumber* totalPage = returnData[@"totalPages"];
-        maxPage = totalPage.integerValue;
+        maxPage = totalPage.longValue;
         
         currentPage = nextPage;
         if (currentPage == maxPage)

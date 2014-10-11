@@ -71,14 +71,14 @@
     
     creatorId = creator[@"id"];
     
-    if (creatorId.integerValue == activityCreator.integerValue)
+    if (creatorId.longValue == activityCreator.longValue)
     {
         isEnableRemove = true;
     }
     else if ([UserManager IsInitSuccess])
     {
-        int uid = [[UserManager Instance] GetLocalUserId];
-        if (uid == creatorId.integerValue)
+        NSNumber* uid = [[UserManager Instance] GetLocalUserId];
+        if (uid.longValue == creatorId.longValue)
         {
             isEnableRemove = true;
         }

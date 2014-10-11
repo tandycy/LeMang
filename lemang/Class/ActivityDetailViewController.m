@@ -93,7 +93,7 @@
     NSNumber* actId = activity.activityId;
     bool isjoin = false;
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    URLString = [URLString stringByAppendingFormat:@"%d/activities", [[UserManager Instance]GetLocalUserId]];
+    URLString = [URLString stringByAppendingFormat:@"%@/activities", [[UserManager Instance]GetLocalUserId]];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
@@ -109,7 +109,7 @@
             NSDictionary* item = returnData[i];
             NSNumber* itemId = item[@"id"];
             
-            if (itemId.integerValue == actId.integerValue)
+            if (itemId.longValue == actId.longValue)
             {
                 isjoin = true;
                 break;
@@ -183,7 +183,7 @@
     }
     
     NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlstr = [urlstr stringByAppendingFormat:@"%d/request/activity/%@", [[UserManager Instance]GetLocalUserId], activity.activityId];
+    urlstr = [urlstr stringByAppendingFormat:@"%@/request/activity/%@", [[UserManager Instance]GetLocalUserId], activity.activityId];
     NSLog(@"%@",urlstr);
     NSURL* url = [NSURL URLWithString:urlstr];
     
@@ -223,7 +223,7 @@
     
     
     NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlstr = [urlstr stringByAppendingFormat:@"%d/activity/%@", [[UserManager Instance]GetLocalUserId], activity.activityId];
+    urlstr = [urlstr stringByAppendingFormat:@"%@/activity/%@", [[UserManager Instance]GetLocalUserId], activity.activityId];
     NSURL* url = [NSURL URLWithString:urlstr];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];

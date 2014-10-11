@@ -270,7 +270,7 @@
     
     //post comment information
     NSNumber* actId = linkedActivity.activityId;
-    int userId = [[UserManager Instance] GetLocalUserId];
+    NSNumber* userId = [[UserManager Instance] GetLocalUserId];
     
     NSDateFormatter *nsdf2=[[NSDateFormatter alloc] init];
     [nsdf2 setDateStyle:NSDateFormatterShortStyle];
@@ -283,7 +283,7 @@
     postContent = [postContent stringByAppendingFormat:@"%@},\"title\":\"", actId];
     postContent = [postContent stringByAppendingFormat:@"%@\",\"content\":\"", [UserManager UserNick]];
     postContent = [postContent stringByAppendingFormat:@"%@\",\"createdBy\":{\"id\":", commentDetail.text];
-    postContent = [postContent stringByAppendingFormat:@"%d},\"createdDate\":\"", userId];
+    postContent = [postContent stringByAppendingFormat:@"%@},\"createdDate\":\"", userId];
     postContent = [postContent stringByAppendingFormat:@"%@\",\"rating\":%d}", t2, rate];
     
     NSLog(@"comment post: %@",postContent);

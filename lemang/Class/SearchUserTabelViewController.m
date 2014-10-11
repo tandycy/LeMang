@@ -20,6 +20,11 @@
     NSMutableArray* resultArray;
 }
 
+- (void) SetIdArray:(NSArray *)array
+{
+    friendIdArray = array;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -75,7 +80,7 @@
             
             NSNumber* uid = item[@"id"];
             
-            if (uid.integerValue != [[UserManager Instance]GetLocalUserId])
+            if (uid.longValue != [[UserManager Instance]GetLocalUserId].longValue)
                 [resultArray addObject:item];
         }
     }
@@ -116,7 +121,20 @@
         cell = [[AddFriendCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddFriendCell"];
     }
     
-    [cell SetData:resultArray[indexPath.row]];
+    NSDictionary* udata = resultArray[indexPath.row];
+    NSNumber* uid = udata[@"id"];
+    bool isFriend = false;
+    for (NSNumber* num in friendIdArray)
+    {
+        if (num.longValue == uid.longValue)
+        {
+            isFriend = true;
+            break;
+        }
+    }
+    
+    [cell SetOwner:self];
+    [cell SetData:udata isFriend:isFriend];
     return cell;
 }
 

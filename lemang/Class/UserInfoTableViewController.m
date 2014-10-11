@@ -60,7 +60,7 @@
     if (![UserManager IsInitSuccess])
         return;
     
-    userId = [NSNumber numberWithInt:[[UserManager Instance] GetLocalUserId]];
+    userId = [[UserManager Instance]GetLocalUserId];
 
     NSDictionary* userData = [UserManager LocalUserData];
     if (userData == nil)
@@ -163,8 +163,8 @@
     
     //if ([UserManager IsInitSuccess])
     //{
-        int userId = [[UserManager Instance] GetLocalUserId];
-        NSString* fileName = [NSString stringWithFormat:@"userIcon_%d", userId];
+        NSNumber* userId = [[UserManager Instance] GetLocalUserId];
+        NSString* fileName = [NSString stringWithFormat:@"userIcon_%@", userId];
     //}
     
     [self saveImage:bigImage WithName:@"iconImageBig.jpg"];
@@ -183,17 +183,17 @@
 {
     if (![UserManager IsInitSuccess])
         return;
-    int uid = [[UserManager Instance] GetLocalUserId];
+    NSNumber* uid = [[UserManager Instance] GetLocalUserId];
     
     NSData* imageData = UIImageJPEGRepresentation(image, 1.0);
     if (!imageData)
         return;
 //    NSString* dataLength = [NSString stringWithFormat:@"%d",imageData.length];
     
-    NSString* fileName = [NSString stringWithFormat:@"userIcon_%d", uid];
+    NSString* fileName = [NSString stringWithFormat:@"userIcon_%@", uid];
     NSString* fileFullName = [fileName stringByAppendingString:@".jpg"];
     NSString* firstPath = @"http://e.taoware.com:8080/quickstart/api/v1/images/profile/";
-    firstPath = [firstPath stringByAppendingFormat:@"%d?imageName=%@.jpg", uid, fileName];
+    firstPath = [firstPath stringByAppendingFormat:@"%@?imageName=%@.jpg", uid, fileName];
     
     NSURL* URL = [NSURL URLWithString:firstPath];
     ASIHTTPRequest *putRequest = [ASIHTTPRequest requestWithURL:URL];

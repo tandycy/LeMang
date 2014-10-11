@@ -33,11 +33,11 @@
     NSNumber* ulNumber = ul[@"id"];
     NSNumber* urNumber = ur[@"id"];
     
-    int uid = [[UserManager Instance]GetLocalUserId];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
-    if (uid == ulNumber.integerValue)
+    if (uid.longValue == ulNumber.longValue)
         localData = ur;
-    else if (uid == urNumber.integerValue)
+    else if (uid.longValue == urNumber.longValue)
         localData = ul;
     else
     {

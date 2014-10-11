@@ -140,6 +140,8 @@
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
 		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
+		EE6BF8DC19E8D3FC00844301 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6BF8DB19E8D3FC00844301 /* AddFriendViewController.m */; };
+		EE6BF8DF19E909B100844301 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6BF8DE19E909B100844301 /* NSString+URL.m */; };
 		EE715CE919D8FF7E00061B1F /* SearchResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE715CE819D8FF7E00061B1F /* SearchResultItem.m */; };
 		EE73C3CA19D7BBD200106D91 /* InviteFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE73C3C919D7BBD200106D91 /* InviteFriendCell.m */; };
 		EE73C3CD19D8023E00106D91 /* OrganizationActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE73C3CC19D8023E00106D91 /* OrganizationActivityCell.m */; };
@@ -407,6 +409,10 @@
 		EE54DB1819B563EF0000845F /* UserManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = UserManager.mm; path = Class/UserManager.mm; sourceTree = "<group>"; };
 		EE54DB1A19B56A270000845F /* StringEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringEncoder.h; path = Class/StringEncoder.h; sourceTree = "<group>"; };
 		EE54DB1B19B56A270000845F /* StringEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringEncoder.m; path = Class/StringEncoder.m; sourceTree = "<group>"; };
+		EE6BF8DA19E8D3FC00844301 /* AddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddFriendViewController.h; path = Class/AddFriendViewController.h; sourceTree = "<group>"; };
+		EE6BF8DB19E8D3FC00844301 /* AddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddFriendViewController.m; path = Class/AddFriendViewController.m; sourceTree = "<group>"; };
+		EE6BF8DD19E909B100844301 /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URL.h"; path = "Class/NSString+URL.h"; sourceTree = "<group>"; };
+		EE6BF8DE19E909B100844301 /* NSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URL.m"; path = "Class/NSString+URL.m"; sourceTree = "<group>"; };
 		EE715CE719D8FF7E00061B1F /* SearchResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultItem.h; path = Class/SearchResultItem.h; sourceTree = "<group>"; };
 		EE715CE819D8FF7E00061B1F /* SearchResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultItem.m; path = Class/SearchResultItem.m; sourceTree = "<group>"; };
 		EE73C3C819D7BBD200106D91 /* InviteFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteFriendCell.h; path = Class/InviteFriendCell.h; sourceTree = "<group>"; };
@@ -635,6 +641,8 @@
 				25BEE1CA19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m */,
 				EEF71F8519E66E9400E72ED3 /* SearchUserTabelViewController.h */,
 				EEF71F8619E66E9400E72ED3 /* SearchUserTabelViewController.m */,
+				EE6BF8DA19E8D3FC00844301 /* AddFriendViewController.h */,
+				EE6BF8DB19E8D3FC00844301 /* AddFriendViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -980,6 +988,8 @@
 				EE9B1DB119BC34F8001E2C7C /* HttpGetter.m */,
 				28DC153919BE1E5200DE97F0 /* Base64.h */,
 				28DC153A19BE1E5200DE97F0 /* Base64.m */,
+				EE6BF8DD19E909B100844301 /* NSString+URL.h */,
+				EE6BF8DE19E909B100844301 /* NSString+URL.m */,
 				28DC153C19BE8F8500DE97F0 /* SchoolItem.h */,
 				28DC153D19BE8F8500DE97F0 /* SchoolItem.m */,
 				EEEE40AC19C845C900001B37 /* IconImageButtonLoader.h */,
@@ -1169,6 +1179,7 @@
 				28DC152419BD5E8000DE97F0 /* ASIDownloadCache.m in Sources */,
 				25C3A0FA19ADC4EC00BB48B3 /* MJRefreshFooterView.m in Sources */,
 				253B26E319D349FE00027C74 /* FPPopoverController.m in Sources */,
+				EE6BF8DF19E909B100844301 /* NSString+URL.m in Sources */,
 				28DC152D19BD5E8100DE97F0 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				258087AA19A71C4C005E308D /* UserInfoTableViewController.m in Sources */,
 				28DC153119BD5E8100DE97F0 /* ASIS3Bucket.m in Sources */,
@@ -1210,6 +1221,7 @@
 				EE18D80519CEC3AF00B1DCA2 /* MyMessageCell.m in Sources */,
 				25337BE119D6E23600542C84 /* EditOrganizationDetailTableViewController.m in Sources */,
 				EE9B1DAF19BC2C76001E2C7C /* SchoolManager.mm in Sources */,
+				EE6BF8DC19E8D3FC00844301 /* AddFriendViewController.m in Sources */,
 				28DC152619BD5E8000DE97F0 /* ASIHTTPRequest.m in Sources */,
 				257CD60A19A36EF1001FF078 /* ActivityCommetImageDetailViewController.m in Sources */,
 				28DC153319BD5E8100DE97F0 /* ASIS3BucketRequest.m in Sources */,

@@ -187,7 +187,7 @@
         [orgData setValue:createTime forKey:@"createdDate"];
         
         NSDictionary* created = fullData[@"createdBy"];
-        NSNumber* cid = [NSNumber numberWithInt:[[UserManager Instance]GetLocalUserId]];
+        NSNumber* cid = [[UserManager Instance]GetLocalUserId];
         if ([created isKindOfClass:[NSDictionary class]])
         {
             NSNumber* oldcid = created[@"id"];

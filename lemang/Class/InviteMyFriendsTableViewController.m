@@ -70,10 +70,10 @@
     if (![UserManager IsInitSuccess])
         return;
     
-    int uid = [[UserManager Instance]GetLocalUserId];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
     NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    friendStr = [friendStr stringByAppendingFormat:@"%d/friend", uid];
+    friendStr = [friendStr stringByAppendingFormat:@"%@/friend", uid];
     
     ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
     [friendRequest startSynchronous];
@@ -237,8 +237,8 @@
 - (void) DoInviteFriend:(Friend *)friendItem
 {
     NSString* urlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    int localId = [[UserManager Instance]GetLocalUserId];
-    urlStr = [urlStr stringByAppendingFormat:@"%d/invite/%@", localId, friendItem.userId];
+    NSNumber* localId = [[UserManager Instance]GetLocalUserId];
+    urlStr = [urlStr stringByAppendingFormat:@"%@/invite/%@", localId, friendItem.userId];
     
     if (inviteType == Activity)
     {

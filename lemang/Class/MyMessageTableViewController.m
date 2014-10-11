@@ -45,7 +45,7 @@
         return;
     
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/message/q?search_EQ_to.id=";
-    urlString = [urlString stringByAppendingFormat:@"%d", [[UserManager Instance]GetLocalUserId]];
+    urlString = [urlString stringByAppendingFormat:@"%@", [[UserManager Instance]GetLocalUserId]];
     NSURL* URL = [NSURL URLWithString:urlString];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
@@ -71,7 +71,7 @@
         return;
     
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlString = [urlString stringByAppendingFormat:@"%d", [[UserManager Instance]GetLocalUserId]];
+    urlString = [urlString stringByAppendingFormat:@"%@", [[UserManager Instance]GetLocalUserId]];
     urlString = [urlString stringByAppendingString:@"/message/activity"];
     NSURL* URL = [NSURL URLWithString:urlString];
     
@@ -98,7 +98,7 @@
         return;
     
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlString = [urlString stringByAppendingFormat:@"%d", [[UserManager Instance]GetLocalUserId]];
+    urlString = [urlString stringByAppendingFormat:@"%@", [[UserManager Instance]GetLocalUserId]];
     urlString = [urlString stringByAppendingString:@"/message/association"];
     NSURL* URL = [NSURL URLWithString:urlString];
     

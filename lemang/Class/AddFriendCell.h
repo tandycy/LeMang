@@ -13,6 +13,9 @@
 @interface AddFriendCell : UITableViewCell
 {
     NSDictionary* localData;
+    bool isUserFriend;
+    
+    UITableViewController* owner;
     
     NSNumber* userID;
 }
@@ -20,8 +23,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *friendName;
 @property (strong, nonatomic) IBOutlet UILabel *friendSchool;
 @property (strong, nonatomic) IBOutlet UILabel *friendCollage;
+@property (strong, nonatomic) IBOutlet UIButton *addButton;
 - (IBAction)OnAddFriend:(id)sender;
 
+- (void)SetOwner:(UITableViewController*)_owner;
 - (void)SetData:(NSDictionary*)data;
+- (void)SetData:(NSDictionary*)data isFriend:(bool)isFriend;
 
 @end

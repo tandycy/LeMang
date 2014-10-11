@@ -109,7 +109,7 @@ typedef enum {
 
 -(IBAction)createAnnounce:(id)sender
 {
-    if ([[UserManager Instance]GetLocalUserId] != creatorId.integerValue)
+    if ([[UserManager Instance]GetLocalUserId].longValue != creatorId.longValue)
         return;
     
     CreateActivityTableViewController *createActivityVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateActivityTableViewController"];
@@ -203,7 +203,7 @@ typedef enum {
     NSDictionary* creator = localData[@"createdBy"];
     creatorId = creator[@"id"];
     
-    if ([[UserManager Instance]GetLocalUserId] == creatorId.integerValue)
+    if ([[UserManager Instance]GetLocalUserId].longValue == creatorId.longValue)
     {
         if (!noticeButton)
         {
@@ -397,7 +397,7 @@ typedef enum {
     
     
     NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlstr = [urlstr stringByAppendingFormat:@"%d/group/%@", [[UserManager Instance]GetLocalUserId], orgId];
+    urlstr = [urlstr stringByAppendingFormat:@"%@/group/%@", [[UserManager Instance]GetLocalUserId], orgId];
     NSURL* url = [NSURL URLWithString:urlstr];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
@@ -437,7 +437,7 @@ typedef enum {
     }
     
     NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlstr = [urlstr stringByAppendingFormat:@"%d/request/association/%@", [[UserManager Instance]GetLocalUserId], orgId];
+    urlstr = [urlstr stringByAppendingFormat:@"%@/request/association/%@", [[UserManager Instance]GetLocalUserId], orgId];
     NSURL* url = [NSURL URLWithString:urlstr];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];

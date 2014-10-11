@@ -91,7 +91,7 @@
     // Friend check
     bool isfriend = false;
     NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    friendStr = [friendStr stringByAppendingFormat:@"%d/friend", [[UserManager Instance]GetLocalUserId]];
+    friendStr = [friendStr stringByAppendingFormat:@"%@/friend", [[UserManager Instance]GetLocalUserId]];
     
     ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
     [friendRequest startSynchronous];
@@ -107,7 +107,7 @@
             Friend* fitem = [[Friend alloc]init];
             [fitem SetData:item];
             
-            if ([fitem userId].integerValue == memberId.integerValue)
+            if ([fitem userId].longValue == memberId.longValue)
             {
                 isfriend = true;
                 break;

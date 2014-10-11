@@ -11,8 +11,9 @@
 
 @interface SearchUserTabelViewController : UITableViewController <UISearchBarDelegate>
 {
-    
+    NSArray* friendIdArray;
 }
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+- (void)SetIdArray:(NSArray*)array;
 @end

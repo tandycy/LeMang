@@ -54,10 +54,10 @@
 
 - (void)RefreshOrganizationList
 {
-    int uid = [[UserManager Instance]GetLocalUserId];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    URLString = [URLString stringByAppendingFormat:@"%d/associations", uid];
+    URLString = [URLString stringByAppendingFormat:@"%@/associations", uid];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
@@ -78,7 +78,7 @@
             NSDictionary* creator = item[@"createdBy"];
             NSNumber* cid = creator[@"id"];
             
-            if (uid == cid.integerValue)
+            if (uid.longValue == cid.longValue)
             {
                 [orgAdminList addObject:item];
             }

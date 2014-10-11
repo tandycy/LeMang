@@ -245,8 +245,7 @@ static UserManager* managerInstance;
             
             if (res == NSOrderedSame)
             {
-                NSNumber* idNum = data[@"id"];
-                localUserId = [idNum integerValue];
+                localUserId = data[@"id"];
                 localUserData = data;
                 
                 [self UpdateUserProfile];
@@ -284,7 +283,7 @@ static UserManager* managerInstance;
     isCertify = true;
 }
 
-- (int) GetLocalUserId
+- (NSNumber*) GetLocalUserId
 {
     return localUserId;
 }
@@ -435,7 +434,7 @@ static UserManager* managerInstance;
 
 - (void) RefreshLocalGroupData
 {
-    int uid = [[UserManager Instance]GetLocalUserId];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
     if (!adminGroup)
         adminGroup = [[NSMutableArray alloc]init];
@@ -454,7 +453,7 @@ static UserManager* managerInstance;
     [groupIdDic removeAllObjects];
     
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    URLString = [URLString stringByAppendingFormat:@"%d/associations", uid];
+    URLString = [URLString stringByAppendingFormat:@"%@/associations", uid];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
@@ -477,7 +476,7 @@ static UserManager* managerInstance;
             NSString* groupName = item[@"name"];
             NSNumber* gid = item[@"id"];
             
-            if (uid == cid.integerValue)
+            if (uid.longValue == cid.longValue)
             {
                 [adminGroup addObject:item];
             }

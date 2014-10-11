@@ -7,6 +7,7 @@
 //
 
 #import "AddFriendCell.h"
+#import "AddFriendViewController.h"
 
 @implementation AddFriendCell
 
@@ -26,12 +27,30 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)OnAddFriend:(id)sender {
+- (IBAction)OnAddFriend:(id)sender
+{
+    if (isUserFriend)
+        return;
+    
+    AddFriendViewController *addVC = [owner.storyboard instantiateViewControllerWithIdentifier:@"AddFriendViewController"];
+    [addVC SetData:localData];
+    [owner.navigationController pushViewController:addVC animated:YES];
 }
 
-- (void) SetData:(NSDictionary *)data
+- (void)SetOwner:(UITableViewController *)_owner
+{
+    owner = _owner;
+}
+
+- (void)SetData:(NSDictionary*)data
+{
+    [self SetData:data isFriend:false];
+}
+
+- (void)SetData:(NSDictionary*)data isFriend:(bool)isFriend
 {
     localData = data;
+    isUserFriend = isFriend;
     
     userID = localData[@"id"];
     NSString* userName = localData[@"name"];
@@ -53,6 +72,13 @@
     
     _friendName.text = userName;
     
+    if (isFriend)
+    {
+        _addButton.titleLabel.text = @"已加好友";
+    }
+    else
+        _addButton.titleLabel.text = @"加为好友";
+        
     [_friendIcon LoadFromUrl:[NSURL URLWithString:iconUrl] :[UserManager DefaultIcon]];
 }
 @end

@@ -91,10 +91,10 @@
         return;
     }
     
-    int uid = [[UserManager Instance]GetLocalUserId];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
     NSString* authRequestUrl = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    authRequestUrl = [authRequestUrl stringByAppendingFormat:@"%d/authenticate", uid];
+    authRequestUrl = [authRequestUrl stringByAppendingFormat:@"%@/authenticate", uid];
     
     NSMutableDictionary* dic = [[NSMutableDictionary alloc]init];
     [dic setValue:_userRealName.text forKey:@"fullName"];
