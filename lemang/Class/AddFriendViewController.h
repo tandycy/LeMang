@@ -10,7 +10,7 @@
 #import "UserManager.h"
 #import "IconImageViewLoader.h"
 
-@interface AddFriendViewController : UIViewController <UITextFieldDelegate>
+@interface AddFriendViewController : UIViewController <UITextViewDelegate>
 {
     NSDictionary* localData;
     NSNumber* userID;
