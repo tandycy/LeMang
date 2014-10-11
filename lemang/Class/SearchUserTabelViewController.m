@@ -89,6 +89,11 @@
                 [resultArray addObject:item];
         }
     }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"搜索失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
     
     [self.tableView reloadData];
 }
