@@ -211,7 +211,6 @@ NSString *navTitle;
     [loadingView setUserInteractionEnabled:YES];
     [loadingView setBackgroundColor:[UIColor whiteColor]];
     
-    
     UIActivityIndicatorView *loading = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
     [loading setCenter:CGPointMake(160, 140)];
     [loading setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
@@ -225,11 +224,13 @@ NSString *navTitle;
     
     [loadingView addSubview:loadingText];
     
+    [activityList setUserInteractionEnabled:NO];
     [activityList addSubview:loadingView];
 }
 
 -(void)deleteLoadingCircle
 {
+    [activityList setUserInteractionEnabled:YES];
     [loadingView removeFromSuperview];
 }
 
