@@ -31,6 +31,9 @@ typedef enum {
     UILabel *orgInfo;
     
     UIBarButtonItem* noticeButton;
+    
+    NSMutableArray* memberIconArray;
+    UILabel* memberCount;
 }
 
 @synthesize orgDetailTitleView;
@@ -132,7 +135,7 @@ typedef enum {
     memberTitle.lineBreakMode = UILineBreakModeWordWrap;
     memberTitle.numberOfLines = 0;
     
-    UILabel *memberCount = [[UILabel alloc]initWithFrame:CGRectMake(11, 47, 29, 15)];
+    memberCount = [[UILabel alloc]initWithFrame:CGRectMake(11, 47, 29, 15)];
     memberCount.font = [UIFont fontWithName:defaultFont size:13];
     memberCount.text = @"(20)";
     memberCount.textAlignment = UITextAlignmentCenter;
@@ -140,11 +143,84 @@ typedef enum {
     [memberDetailBT addSubview:memberCount];
     [memberDetailBT addSubview:memberTitle];
     
+    memberIconArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i < 4; i++)
+    {
+        IconImageViewLoader* icon = [[IconImageViewLoader alloc]initWithFrame:CGRectMake(60+i*58, 10, 50, 50)];
+        [memberDetailBT addSubview:icon];
+        [memberIconArray addObject: icon];
+    }
 }
 
--(IBAction)orgMemberBtClick:(id)sender{
-    //to do
+- (void) UpdateMemberInfo
+{
+    for (IconImageViewLoader* icon in memberIconArray)
+    {
+        [icon setHidden:true];
+    }
+    memberCount.text = @"(0)";
+    
+    NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/association/";
+    memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", orgId];
+    ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
+    [memberRequest startSynchronous];
+    
+    NSError* error = [memberRequest error];
+    
+    if (error)
+        return;
+    
+    NSArray* members = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+    
+    if (![members isKindOfClass:[NSArray class]])
+        members = [NSArray alloc];
+    
+    NSMutableArray* filteredMembers = [[NSMutableArray alloc]init];
+    
+    for (NSDictionary* member in members)
+    {
+        if (filteredMembers.count >= memberIconArray.count)
+            break;
+        
+        NSString* rule = member[@"role"];
+        
+        if ([rule isEqualToString:@"User"])
+        {
+            NSDictionary* userData = member[@"user"];
+            [filteredMembers addObject:userData];
+        }
+        else if ([rule isEqualToString:@"Administrator"])
+        {
+            NSDictionary* userData = member[@"user"];
+            [filteredMembers addObject:userData];
+        }
+    }    
+    
+    memberCount.text = [NSString stringWithFormat:@"(%d)", filteredMembers.count];
+    
+    for (int i = 0; i < filteredMembers.count; i++)
+    {
+        IconImageViewLoader* icon = memberIconArray[i];
+        [icon setHidden:false];
+        NSDictionary* data = filteredMembers[i];
+        NSString* iconStr = @"";
+        
+        NSDictionary* profile = data[@"profile"];
+        if ([profile isKindOfClass:[NSDictionary class]])
+        {
+            iconStr = profile[@"iconUrl"];
+            iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
+            
+        }
+        
+        [icon LoadFromUrl: [NSURL URLWithString:iconStr] :[UserManager DefaultIcon]];
+    }
+}
+
+-(IBAction)orgMemberBtClick:(id)sender
+{
     ActivityMemberTableViewController *activityMemberTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityMemberTableViewController"];
+    [activityMemberTVC SetOrganization:localData];
     [self.navigationController pushViewController:activityMemberTVC animated:YES];
 }
 
@@ -273,6 +349,8 @@ typedef enum {
         }
         activityArray = [NSArray arrayWithArray:actTemp];
     }
+    
+    [self UpdateMemberInfo];
 }
 
 - (void)didReceiveMemoryWarning
