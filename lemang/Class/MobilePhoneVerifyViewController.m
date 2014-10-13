@@ -87,7 +87,16 @@
         [self.view addSubview:resultLabel];
     }
     
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
+    
     //[self.editText setText:defaultV];
+}
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [self.mobliePhoneNumber resignFirstResponder];
 }
 
 -(IBAction)sendMP:(id)sender

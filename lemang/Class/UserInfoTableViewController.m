@@ -89,8 +89,9 @@
     
     if ([contactData isKindOfClass:[NSDictionary class]])
     {
-        _phoneNumber.text = [UserManager filtStr:contactData[@"CELL"] : @"未绑定手机"];
-        if (_phoneNumber.text.length == 0)
+        _phoneNumber.text = [UserManager filtStr:profileData[@"cell"] : @"未绑定手机"];
+        NSString *cellBound = [UserManager filtStr:profileData[@"isCellBound:"]];
+        if ([cellBound  isEqual: @"true"])
             _phoneNumber.text = @"未绑定手机";
         _qqNumber.text = [UserManager filtStr:contactData[@"QQ"] : @""];
         _wechatId.text = [UserManager filtStr:contactData[@"WECHAT"] : @""];

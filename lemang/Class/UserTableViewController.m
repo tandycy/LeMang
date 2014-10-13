@@ -68,6 +68,10 @@
 {
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     [UIColor whiteColor], UITextAttributeTextColor,
+                                                                     [UIFont fontWithName:defaultBoldFont size:20.0], UITextAttributeFont,
+                                                                     nil]];
     [self.navigationController.navigationBar setBarTintColor:defaultMainColor];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self userLoginState:[UserManager IsInitSuccess]];
@@ -140,7 +144,7 @@
 {
     // TODO
     _userNameText.text = @"未登录";
-    _userGenderText.text = @"";
+    _userGenderText.text = @"♂♀";
     _userSchoolText.text = @"";
     _userDescText.text = @"";
     
@@ -184,14 +188,14 @@
     //[NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
     
     _userNameText.text = [UserManager filtStr:userData[@"name"]];
-    _userGenderText.text = @"";
+    _userGenderText.text = @"♂♀";
     _userDescText.text = @"";
     _userSchoolText.text = [UserManager filtStr:userData[@"university"][@"name"]];
     NSDictionary* profileData = userData[@"profile"];
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
-        _userGenderText.text = [UserManager filtStr:profileData[@"gender"] : @""];
+        _userGenderText.text = [UserManager filtStr:profileData[@"gender"] : @"♂♀"];
         _userDescText.text = [UserManager filtStr:profileData[@"signature"] : @""];
         
         NSString* nick = [UserManager filtStr:profileData[@"nickName"] : @""];
@@ -209,21 +213,21 @@
 }
 
 #pragma mark - Table view data source
-/*
+
  - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
  {
  #warning Potentially incomplete method implementation.
  // Return the number of sections.
- return 0;
+ return 1;
  }
  
  - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
  {
  #warning Incomplete method implementation.
  // Return the number of rows in the section.
- return 0;
+ return 4;
  }
- 
+ /*
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
  {
  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
