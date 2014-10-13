@@ -176,9 +176,9 @@
     if (filteredTags.count < maxNumber)
         maxNumber = filteredTags.count;
     
-    CGRect tagTitleFrame2 = CGRectMake(0, 0, 30, 15);
-    CGRect tagTitleFrame3 = CGRectMake(0, 0, 45, 15);
-    CGRect tagTitleFrame4 = CGRectMake(0, 0, 60, 15);
+    CGRect tagTitleFrame2 = CGRectMake(0, 0.5f, 30, 15);
+    CGRect tagTitleFrame3 = CGRectMake(0, 0.5f, 45, 15);
+    CGRect tagTitleFrame4 = CGRectMake(0, 0.5f, 60, 15);
     
     int index = 83;
     for (int i = 0; i < maxNumber; i++)
@@ -189,30 +189,31 @@
         
         if (item.length <= 2)
         {
-            CGRect backFrame = CGRectMake(index, 73, 30, 15);
+            CGRect backFrame = CGRectMake(index, 73, 30, 17);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame2];
             index += (30 + 7);
         }
         else if (item.length == 3)
         {
-            CGRect backFrame = CGRectMake(index, 73, 45, 15);
+            CGRect backFrame = CGRectMake(index, 73, 45, 17);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame3];
             index += (45 + 7);
         }
         else
         {
-            CGRect backFrame = CGRectMake(index, 73, 60, 15);
+            CGRect backFrame = CGRectMake(index, 73, 60, 17);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame4];
             index += (60 + 7);
         }
         
-        tagItem.image = [UIImage imageNamed:@"tags"];
+        tagItem.image = [UIImage imageNamed:@"create_tag_off"];
         tagTitle.text = item;
         tagTitle.textAlignment = UITextAlignmentCenter;
-        tagTitle.font = [UIFont fontWithName:defaultFont size:13];
+        tagTitle.font = [UIFont fontWithName:defaultFont size:12];
+        tagTitle.textColor = defaultMainColor;
         
         [tagItem addSubview:tagTitle];
         [self addSubview:tagItem];

@@ -240,7 +240,7 @@ NSString *navTitle;
     [super viewDidLoad];
     
     [self setupRefresh];
-    [self showLoadingCircle];
+   // [self showLoadingCircle];
     // Do any additional setup after loading the view.
 
     [self.searchButton addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
