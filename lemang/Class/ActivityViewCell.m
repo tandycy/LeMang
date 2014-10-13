@@ -189,21 +189,21 @@
         
         if (item.length <= 2)
         {
-            CGRect backFrame = CGRectMake(index, 73, 30, 17);
+            CGRect backFrame = CGRectMake(index, 60, 30, 17);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame2];
             index += (30 + 7);
         }
         else if (item.length == 3)
         {
-            CGRect backFrame = CGRectMake(index, 73, 45, 17);
+            CGRect backFrame = CGRectMake(index, 60, 45, 17);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame3];
             index += (45 + 7);
         }
         else
         {
-            CGRect backFrame = CGRectMake(index, 73, 60, 17);
+            CGRect backFrame = CGRectMake(index, 60, 60, 17);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame4];
             index += (60 + 7);
