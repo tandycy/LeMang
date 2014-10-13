@@ -133,12 +133,48 @@
     NSDictionary* board = localData[@"board"];
     
     NSNumber* bookmarkNum = board[@"bookmarkCount"];
-    NSNumber* members = board[@"joinCount"];
+    NSNumber* memberNumber = board[@"joinCount"];
     NSNumber* score = board[@"rating"];
     
-    _actMember.text = [NSString stringWithFormat:@"%@/%@", members, maxMember];
+    _actMember.text = [NSString stringWithFormat:@"%@/%@", memberNumber, maxMember];
     _actBookmark.text = [NSString stringWithFormat:@"%@",bookmarkNum];
 
+
+    // Update members
+    NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
+    memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", actId];
+    ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
+    [memberRequest startSynchronous];
+    
+    NSError* error = [memberRequest error];
+    
+    if (error)
+    {
+        NSLog(@"Get activity member error: %d", error.code);
+        return;
+    }
+    
+    NSArray* members = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+    
+    if (![members isKindOfClass:[NSArray class]])
+        members = [NSArray alloc];
+    
+    int memberNum = 0;
+    for (NSDictionary* member in members)
+    {
+        NSString* rule = member[@"role"];
+        
+        if ([rule isEqualToString:@"User"])
+        {
+            memberNum++;
+        }
+        else if ([rule isEqualToString:@"Administrator"])
+        {
+            memberNum++;
+        }
+    }
+    
+    _actMember.text = [NSString stringWithFormat:@"%d/%@", memberNum, maxMember];
 }
 
 - (void) UpdateTags
