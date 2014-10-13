@@ -148,11 +148,15 @@ NSString *navTitle;
             {
                 iconImg = bussinessIcon;
             }
+            else if ([group isEqualToString:@"Department"])
+            {
+                iconImg = collegeIcon;
+            }
             else if ([group isEqualToString:@"University"])
             {
                 iconImg = schoolIcon;
             }
-            else if ([group isEqualToString:@"Department"])
+            else if ([group isEqualToString:@"Private"])
             {
                 iconImg = privateIcon;
             }
@@ -248,8 +252,10 @@ NSString *navTitle;
     
     bussinessIcon = [UIImage imageNamed:@"buisness_icon.png"];
     schoolIcon = [UIImage imageNamed:@"school_icon.png"];
+    collegeIcon = [UIImage imageNamed:@"coll_icon.png"];
     groupIcon = [UIImage imageNamed:@"group_icon.png"];
-    privateIcon = [UIImage imageNamed:@"group_icon.png"];
+    privateIcon = [UIImage imageNamed:@"private_icon.png"];
+    
     
     
     // [self refreshActivityData];

@@ -27,6 +27,7 @@
     UIImage* schoolIcon;
     UIImage* groupIcon;
     UIImage* privateIcon;
+    UIImage* collegeIcon;
     
 }
 @property (strong, nonatomic) IBOutlet UIButton *searchButton;

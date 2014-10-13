@@ -52,7 +52,7 @@
                                     </connections>
                                 </scrollView>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="ActivityTableCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ActivityTableCell" rowHeight="85" id="mhn-tz-nB2" customClass="ActivityViewCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="ActivityTableCell" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="ActivityTableCell" rowHeight="85" id="mhn-tz-nB2" customClass="ActivityViewCell">
                                         <rect key="frame" x="0.0" y="214" width="320" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mhn-tz-nB2" id="fZs-TX-U39">
@@ -63,10 +63,10 @@
                                                     <rect key="frame" x="84" y="8" width="200" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oiU-qv-xiX" customClass="IconImageViewLoader">
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_Icon" id="oiU-qv-xiX" customClass="IconImageViewLoader">
                                                     <rect key="frame" x="8" y="8" width="70" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
@@ -4571,6 +4571,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="buisness_icon" width="21" height="21"/>
         <image name="canncel" width="103" height="45"/>
         <image name="comfirm" width="103" height="45"/>
+        <image name="default_Icon" width="70" height="70"/>
         <image name="delete" width="28" height="30"/>
         <image name="detail" width="15" height="31"/>
         <image name="doge.jpg" width="197" height="171"/>
