@@ -59,7 +59,7 @@
     else if ([input isEqualToString:@"Department"])
     {
         orgType = Department;
-        [_typeIcon setImage:[UIImage imageNamed:@"school_icon"]];
+        [_typeIcon setImage:[UIImage imageNamed:@"coll_icon"]];
     }
     else if ([input isEqualToString:@"Person"])
     {
@@ -158,11 +158,11 @@
     if (filteredTags.count < maxNumber)
         maxNumber = filteredTags.count;
     
-    CGRect tagTitleFrame2 = CGRectMake(0, 0, 30, 15);
-    CGRect tagTitleFrame3 = CGRectMake(0, 0, 45, 15);
-    CGRect tagTitleFrame4 = CGRectMake(0, 0, 60, 15);
+    CGRect tagTitleFrame2 = CGRectMake(0, 0, 32, 18);
+    CGRect tagTitleFrame3 = CGRectMake(0, 0, 43, 18);
+    CGRect tagTitleFrame4 = CGRectMake(0, 0, 54, 18);
     
-    int index = 86;
+    int index = 92;
     for (int i = 0; i < maxNumber; i++)
     {
         NSString* item = filteredTags[i];
@@ -171,30 +171,34 @@
         
         if (item.length <= 2)
         {
-            CGRect backFrame = CGRectMake(index, 63, 30, 15);
+            CGRect backFrame = CGRectMake(index, 60, 32, 18);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
+            tagItem.image = [UIImage imageNamed:@"tags_2"];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame2];
-            index += (30 + 7);
+            index += (32 + 7);
         }
         else if (item.length == 3)
         {
-            CGRect backFrame = CGRectMake(index, 63, 45, 15);
+            CGRect backFrame = CGRectMake(index, 60, 43, 18);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
+            tagItem.image = [UIImage imageNamed:@"tags_3"];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame3];
-            index += (45 + 7);
+            index += (43 + 7);
         }
         else
         {
-            CGRect backFrame = CGRectMake(index, 63, 60, 15);
+            CGRect backFrame = CGRectMake(index, 60, 54, 18);
             tagItem = [[UIImageView alloc]initWithFrame:backFrame];
+            tagItem.image = [UIImage imageNamed:@"tags_4"];
             tagTitle = [[UILabel alloc]initWithFrame:tagTitleFrame4];
-            index += (60 + 7);
+            index += (54 + 7);
         }
         
-        tagItem.image = [UIImage imageNamed:@"tags"];
+        
         tagTitle.text = item;
         tagTitle.textAlignment = UITextAlignmentCenter;
-        tagTitle.font = [UIFont fontWithName:defaultFont size:13];
+        tagTitle.font = [UIFont fontWithName:defaultFont size:12];
+        tagTitle.textColor = defaultMainColor;
         
         [tagItem addSubview:tagTitle];
         [self addSubview:tagItem];

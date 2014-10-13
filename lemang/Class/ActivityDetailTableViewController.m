@@ -164,7 +164,11 @@
     
     NSString* beginTime = [UserManager filtStr:activityData[@"beginTime"] : @""];
     NSString* endTime = [UserManager filtStr:activityData[@"endTime"] : @""];
-    time.text = [beginTime stringByAppendingFormat:@" ~ %@", endTime];
+    
+    NSString* beginDate = [self stringFromDate:[self dateFromString:beginTime]];
+    NSString* endDate = [self stringFromDate:[self dateFromString:endTime]];
+    
+    time.text  = [beginDate stringByAppendingFormat:@" ~ %@", endDate];
     
     NSDictionary* creator = activityData[@"createdBy"];
     creatorId = creator[@"id"];
@@ -302,6 +306,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 2) {
      //   NSLog(@"%@",indexPath.section);
         ActivityCommentTableViewController *ACTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityCommentTableViewController"];
@@ -314,6 +319,25 @@
         [AMTVC SetActivity:activityData];
         [self.navigationController pushViewController:AMTVC animated:YES];
     }
+}
+
+- (NSDate *)dateFromString:(NSString *)dateString{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *destDate= [dateFormatter dateFromString:dateString];
+    
+    return destDate;
+}
+
+- (NSString *)stringFromDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+    [dateFormatter setDateFormat:@"MM月dd日 HH:mm"];
+    
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    
+    return destDateString;
 }
                                                            
 /*

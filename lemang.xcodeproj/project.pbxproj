@@ -202,7 +202,7 @@
 		253B26E719D355F600027C74 /* SelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectTableViewController.m; path = Class/SelectTableViewController.m; sourceTree = "<group>"; };
 		2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommentTableViewController.h; path = Class/ActivityCommentTableViewController.h; sourceTree = "<group>"; };
 		2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommentTableViewController.m; path = Class/ActivityCommentTableViewController.m; sourceTree = "<group>"; };
-		256E04251987A106009845A5 /* lemang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lemang.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		256E04251987A106009845A5 /* 乐芒.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "乐芒.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		256E04281987A106009845A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		256E042A1987A106009845A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		256E042C1987A106009845A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -500,7 +500,7 @@
 		256E04261987A106009845A5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				256E04251987A106009845A5 /* lemang.app */,
+				256E04251987A106009845A5 /* 乐芒.app */,
 				256E044C1987A106009845A5 /* lemangTests.xctest */,
 			);
 			name = Products;
@@ -1034,7 +1034,7 @@
 			);
 			name = lemang;
 			productName = lemang;
-			productReference = 256E04251987A106009845A5 /* lemang.app */;
+			productReference = 256E04251987A106009845A5 /* 乐芒.app */;
 			productType = "com.apple.product-type.application";
 		};
 		256E044B1987A106009845A5 /* lemangTests */ = {
@@ -1407,7 +1407,7 @@
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "乐芒";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1437,7 +1437,7 @@
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "乐芒";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1459,7 +1459,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "lemangTests/lemangTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = lemangTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1477,7 +1477,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lemang/lemang-Prefix.pch";
 				INFOPLIST_FILE = "lemangTests/lemangTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = lemangTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

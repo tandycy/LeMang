@@ -124,20 +124,17 @@
     }
     else if (section == 1)
     {
-        if (adminList != nil && adminList.count > 0)
-            return 1;
-        else
-            return 0;
+        return 1;
     }
     else if (section == 2)
     {
         if (memberList == nil)
-            return 0;
+            return 1;
         
         int members = memberList.count;
         
         if (members == 0)
-            return 0;
+            return 1;
         
         int rows = members / 4;
         
@@ -199,7 +196,9 @@
         creatorName.font = [UIFont fontWithName:defaultBoldFont size:13];
         creatorName.textColor = defaultMainColor;
         creatorSchool.font = [UIFont fontWithName:defaultBoldFont size:13];
+        creatorSchool.textColor = defaultTitleGray96;
         creatorColleage.font = [UIFont fontWithName:defaultBoldFont size:13];
+        creatorColleage.textColor = defaultTitleGray96;
         
         [creatorHead addSubview:creatorImg];
         [cell addSubview:creatorHead];
@@ -211,72 +210,103 @@
     else if (section == 1)
     {
         // TODO: admin list
-        cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        UILabel *noAdmin = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 88)];
+        noAdmin.font = [UIFont fontWithName:defaultBoldFont size:13];
+        noAdmin.textColor = defaultTitleGray96;
+        noAdmin.textAlignment = UITextAlignmentCenter;
+        noAdmin.text = @"暂无活动管理员";
         
-        int iconNumber = 4;
-        if (iconNumber > adminList.count)
-            iconNumber = adminList.count;
-        
-        for (int i = 0; i < iconNumber; i++)
+        if (adminList != nil && adminList.count > 0)
         {
-            //
+            cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            
+            int iconNumber = 4;
+            if (iconNumber > adminList.count)
+                iconNumber = adminList.count;
+            
+            for (int i = 0; i < iconNumber; i++)
+            {
+                //
+            }
         }
+        else
+        {
+            cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            [cell addSubview:noAdmin];
+        }
+        
+        
     }
     else
     {
-        cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        UIImageView *cbg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"member_list_back.png"]];
-        cell.selectedBackgroundView = [[UIView alloc] init];
-        cell.backgroundView = cbg;
-        
-        int rowIndex = [indexPath row];
-        int maxRow = memberList.count / 4;
-        int iconNumber = 4;
-        if (rowIndex == maxRow)
-            iconNumber = memberList.count - 4 * maxRow;
-        
-        NSMutableArray *array = [NSMutableArray array];
-        
-        for (int i=0; i<iconNumber; i++) {
+        if (memberList == nil||memberList.count==0)
+        {
+            UILabel *noMember = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 88)];
+            noMember.font = [UIFont fontWithName:defaultBoldFont size:13];
+            noMember.textAlignment = UITextAlignmentCenter;
+            noMember.textColor = defaultTitleGray96;
+            noMember.text = @"暂无活动成员";
             
-            int memberIndex = i + rowIndex*4;
-            NSDictionary* member = memberList[memberIndex];
+            cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            [cell addSubview:noMember];
             
-            IconImageButtonLoader *button = [IconImageButtonLoader buttonWithType:UIButtonTypeCustom];
-            
-            UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, 50, 20)];
-            name.text = member[@"name"];
-            name.font = [UIFont fontWithName:defaultFont size:11];
-            name.textAlignment = UITextAlignmentCenter;
-            name.textColor = defaultMainColor;
-            
-            
-            NSDictionary* profileData = member[@"profile"];
-            [button setBackgroundImage:self.image forState:UIControlStateNormal];
-            if ([profileData isKindOfClass:[NSDictionary class]])
-            {
-                NSString* iconStr = [profileData valueForKey:@"iconUrl"];
-                iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
-                NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
-                [button LoadFromUrl:creatorIconUrl :self.image];
-            }
-            
-            button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
-            if (i==0) {
-                button.center = CGPointMake((1 + i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
-            }
-            else button.center = CGPointMake((1 + 2*i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
-            [button SetLocation:section : rowIndex: i];
-            //button.column = i;
-            [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
-            [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
-            //[button setBackgroundImage:self.image forState:UIControlStateNormal];
-            [button addSubview:name];
-            [cell addSubview:button];
-            [array addObject:button]; 
         }
-        [cell setValue:array forKey:@"buttons"];
-
+        else
+        {
+            cell = [[UITableGridViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            UIImageView *cbg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"member_list_back.png"]];
+            cell.selectedBackgroundView = [[UIView alloc] init];
+            cell.backgroundView = cbg;
+            
+            int rowIndex = [indexPath row];
+            int maxRow = memberList.count / 4;
+            int iconNumber = 4;
+            if (rowIndex == maxRow)
+                iconNumber = memberList.count - 4 * maxRow;
+            
+            NSMutableArray *array = [NSMutableArray array];
+            
+            for (int i=0; i<iconNumber; i++) {
+                
+                int memberIndex = i + rowIndex*4;
+                NSDictionary* member = memberList[memberIndex];
+                
+                IconImageButtonLoader *button = [IconImageButtonLoader buttonWithType:UIButtonTypeCustom];
+                
+                UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, 50, 20)];
+                name.text = member[@"name"];
+                name.font = [UIFont fontWithName:defaultFont size:11];
+                name.textAlignment = UITextAlignmentCenter;
+                name.textColor = defaultMainColor;
+                
+                
+                NSDictionary* profileData = member[@"profile"];
+                [button setBackgroundImage:self.image forState:UIControlStateNormal];
+                if ([profileData isKindOfClass:[NSDictionary class]])
+                {
+                    NSString* iconStr = [profileData valueForKey:@"iconUrl"];
+                    iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
+                    NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
+                    [button LoadFromUrl:creatorIconUrl :self.image];
+                }
+                
+                button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
+                if (i==0) {
+                    button.center = CGPointMake((1 + i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
+                }
+                else button.center = CGPointMake((1 + 2*i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
+                [button SetLocation:section : rowIndex: i];
+                //button.column = i;
+                [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
+                [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
+                //[button setBackgroundImage:self.image forState:UIControlStateNormal];
+                [button addSubview:name];
+                [cell addSubview:button];
+                [array addObject:button]; 
+            }
+            [cell setValue:array forKey:@"buttons"];
+        }
+        
     }
     
     //获取到里面的cell里面的3个图片按钮引用
@@ -297,7 +327,7 @@
     
     label.textColor = [UIColor colorWithRed:0.94117647 green:0.42352941 blue:0.11764706 alpha:1];
     
-    label.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
+    label.font = [UIFont fontWithName:defaultBoldFont size:13];
     
     label.backgroundColor = [UIColor clearColor];
     
