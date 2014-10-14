@@ -30,6 +30,7 @@ typedef enum {
 @interface ActivityViewController ()
 {
     UIView *loadingView;
+    bool initUpdate;
 }
 
 @end
@@ -240,10 +241,11 @@ NSString *navTitle;
 
 - (void)viewDidLoad
 {
-    NSLog(@"load");
+    initUpdate = false;
+    
     [super viewDidLoad];
     
-    [self setupRefresh];
+    
    // [self showLoadingCircle];
     // Do any additional setup after loading the view.
 
@@ -291,6 +293,15 @@ NSString *navTitle;
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (initUpdate)
+        return;
+    initUpdate = true;
+    
+    [self setupRefresh];
+}
+
 - (void)setupRefresh
 {
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
@@ -315,7 +326,9 @@ NSString *navTitle;
 - (void)headerRereshing
 {
     // 1.添加数据
+    [self showLoadingCircle];
     [self refreshActivityData];
+    [self deleteLoadingCircle];
     
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
