@@ -97,9 +97,6 @@
 
     [self ParseOrgType:orgnizaitonType];
     
-    NSArray* memberArray = localData[@"associationMember"];
-    memberNum = memberArray.count;
-    
     _favNumberTxt.text = @"0";
     _memberLimitTxt.text = @"";
 
@@ -229,6 +226,40 @@
         UIImageView *memberIconImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"member_number.png"]];
         [memberIcon addSubview:memberIconImg];
         [self addSubview:memberIcon];
+    }
+    
+    
+    NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/association/";
+    memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", organizationId];
+    ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
+    [memberRequest startSynchronous];
+    
+    NSError* error = [memberRequest error];
+    
+    if (error)
+    {
+        memberNumberText.text = @"0";
+        return;
+    }
+    
+    NSArray* members = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+    
+    if (![members isKindOfClass:[NSArray class]])
+        members = [NSArray alloc];
+    
+    memberNum = 0;
+    for (NSDictionary* member in members)
+    {
+        NSString* rule = member[@"role"];
+        
+        if ([rule isEqualToString:@"User"])
+        {
+            memberNum++;
+        }
+        else if ([rule isEqualToString:@"Administrator"])
+        {
+            memberNum++;
+        }
     }
     
     memberNumberText.text = [NSString stringWithFormat:@"%d",memberNum];

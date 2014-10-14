@@ -172,16 +172,7 @@
     
     NSDictionary* creator = activityData[@"createdBy"];
     creatorId = creator[@"id"];
-    
-    NSDictionary* members = activityData[@"users"];
-    int memberNum = 0;
-    if ([members isKindOfClass:[NSDictionary class]])
-    {
-        memberNum = members.count;
-    }
-    NSString* memberMax = [UserManager filtStr:activityData[@"peopleLimit"] : @""];
-    amount.text = [NSString stringWithFormat:@"%d/%@",memberNum,memberMax];
-    
+   
     
     NSString* imgUrlString = [UserManager filtStr:activityData[@"iconUrl"] :@""];
     if (imgUrlString.length > 0)
@@ -210,52 +201,10 @@
     _people.text = [UserManager filtStr:activityData[@"regionLimit"] : @""];
     
     _detailContent.text = [UserManager filtStr:activityData[@"description"] :@""];
+ 
     
-    NSMutableArray* memberArray = [[NSMutableArray alloc]init];
-    
-    NSDictionary* memberDataAll = activityData[@"users"];
-    
-    if ([memberDataAll isKindOfClass:[NSDictionary class]])
-    {
-        NSEnumerator* memberEnum = [memberDataAll objectEnumerator];
-        for (NSDictionary* obj in memberEnum)
-        {
-            [memberArray addObject:obj];
-        }
-    }
-    
-    
-    NSUInteger memberNumber = memberArray.count;
-    _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",memberNumber];
-    
-    NSArray* memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
     NSArray* rateIconList = [[NSArray alloc] initWithObjects:_rateIcon1, _rateIcon2, _rateIcon3, _rateIcon4, _rateIcon5, nil];
     NSArray* rateAllList = [[NSArray alloc] initWithObjects:_rateScore1, _rateScore2, _rateScore3, _rateScore4, _rateScore5, nil];
-    for (int i = 0; i < memberIconList.count; i++)
-    {
-        if (i >= memberNumber)
-        {
-            [memberIconList[i] setHidden:true];
-            continue;
-        }
-        
-        [memberIconList[i] setHidden:false];
-        
-        NSString* rule = memberArray[i][@"role"];
-        
-        NSDictionary* memberInfo = memberArray[i][@"user"][@"profile"];
-        NSString* memberIconUrl = @"";
-        if ([memberInfo isKindOfClass:[NSDictionary class]])
-        {
-            memberIconUrl = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@",memberInfo[@"iconUrl"]];
-            NSURL* iconUrl = [NSURL URLWithString:memberIconUrl];
-            [memberIconList[i] LoadFromUrl:iconUrl: [UserManager DefaultIcon]];
-        }
-        else
-            [memberIconList[i] setImage:[UserManager DefaultIcon]];
-        
-    }
-    
     
     address.text = [UserManager filtStr:activityData[@"address"]: @""];
     localCommentData = activityData[@"activityComment"];
@@ -302,6 +251,76 @@
         else
             [rateAllList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
     }
+    
+    [self UpdateMembers];
+}
+
+- (void) UpdateMembers
+{
+    NSArray* memberIconList = [[NSArray alloc] initWithObjects:_memberIcon1,_memberIcon2,_memberIcon3,_memberIcon4, nil];
+    for (IconImageViewLoader* icon in memberIconList)
+    {
+        [icon setHidden:true];
+    }
+
+    NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
+    memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", localId];
+    ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
+    [memberRequest startSynchronous];
+    
+    NSError* error = [memberRequest error];
+    
+    if (error)
+        return;
+    
+    NSArray* members = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+    
+    if (![members isKindOfClass:[NSArray class]])
+        members = [NSArray alloc];
+    
+    NSMutableArray* filteredMembers = [[NSMutableArray alloc]init];
+    
+    for (NSDictionary* member in members)
+    {
+        if (filteredMembers.count >= memberIconList.count)
+            break;
+        
+        NSString* rule = member[@"role"];
+        
+        if ([rule isEqualToString:@"User"])
+        {
+            NSDictionary* userData = member[@"user"];
+            [filteredMembers addObject:userData];
+        }
+        else if ([rule isEqualToString:@"Administrator"])
+        {
+            NSDictionary* userData = member[@"user"];
+            [filteredMembers addObject:userData];
+        }
+    }
+    
+    NSString* memberMax = [UserManager filtStr:activityData[@"peopleLimit"] : @""];
+    amount.text = [NSString stringWithFormat:@"%d/%@",filteredMembers.count,memberMax];
+    _totalMemberNum.text = [NSString stringWithFormat:@"(%d)",filteredMembers.count];
+    
+    for (int i = 0; i < filteredMembers.count; i++)
+    {
+        IconImageViewLoader* icon = memberIconList[i];
+        [icon setHidden:false];
+        NSDictionary* data = filteredMembers[i];
+        NSString* iconStr = @"";
+        
+        NSDictionary* profile = data[@"profile"];
+        if ([profile isKindOfClass:[NSDictionary class]])
+        {
+            iconStr = profile[@"iconUrl"];
+            iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
+            
+        }
+        
+        [icon LoadFromUrl: [NSURL URLWithString:iconStr] :[UserManager DefaultIcon]];
+    }
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

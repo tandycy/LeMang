@@ -20,10 +20,13 @@
     NSMutableArray* guestList;
     
     NSDictionary* localData;
+    
+    bool isActivity;
 }
 
 @property IBOutlet UIView *containerView;
 @property IBOutlet UITableView *tbV;
 - (void) SetActivity:(NSDictionary*)actData;
+- (void) SetOrganization:(NSDictionary*)orgData;
 
 @end
