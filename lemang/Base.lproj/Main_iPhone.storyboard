@@ -2431,7 +2431,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oVs-ZV-wMi" customClass="IconImageViewLoader">
-                                    <rect key="frame" x="10" y="33" width="150" height="94"/>
+                                    <rect key="frame" x="10" y="32" width="150" height="94"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动人气：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W8o-wh-AXF">
@@ -3476,6 +3476,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                         <segment title="院系"/>
                                                         <segment title="商家"/>
                                                         <segment title="社团"/>
+                                                        <segment title="个人"/>
                                                     </segments>
                                                     <color key="tintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>

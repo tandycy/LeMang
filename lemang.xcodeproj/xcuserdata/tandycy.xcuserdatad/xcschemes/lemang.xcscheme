@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "256E04241987A106009845A5"
-               BuildableName = "lemang.app"
+               BuildableName = "&#x4e50;&#x8292;.app"
                BlueprintName = "lemang"
                ReferencedContainer = "container:lemang.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "256E04241987A106009845A5"
-            BuildableName = "lemang.app"
+            BuildableName = "&#x4e50;&#x8292;.app"
             BlueprintName = "lemang"
             ReferencedContainer = "container:lemang.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "256E04241987A106009845A5"
-            BuildableName = "lemang.app"
+            BuildableName = "&#x4e50;&#x8292;.app"
             BlueprintName = "lemang"
             ReferencedContainer = "container:lemang.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "256E04241987A106009845A5"
-            BuildableName = "lemang.app"
+            BuildableName = "&#x4e50;&#x8292;.app"
             BlueprintName = "lemang"
             ReferencedContainer = "container:lemang.xcodeproj">
          </BuildableReference>

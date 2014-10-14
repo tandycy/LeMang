@@ -380,7 +380,7 @@
             [activityData setValue:@"Association" forKey:@"activityGroup"];
             break;
         case 4:// 4 - 个人
-            [activityData setValue:@"Person" forKey:@"activityGroup"];
+            [activityData setValue:@"Private" forKey:@"activityGroup"];
             break;
         default:
             break;
