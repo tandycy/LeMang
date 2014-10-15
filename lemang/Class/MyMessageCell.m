@@ -301,16 +301,7 @@
             acceptStr = [acceptStr stringByAppendingFormat:@"%@/approve/activity/%@", uid, messId];
         else if (messCategory == INVITATION_FRIEND)
         {
-            @try {
-                NSDictionary* senderData = localData[@"from"];
-                NSNumber* fromId = senderData[@"id"];
-                acceptStr = [acceptStr stringByAppendingFormat:@"%@/friend/%@", uid, fromId];
-            }
-            @catch (NSException *exception) {
-                UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"操作失败" message:@"消息数据错误" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
-                [alertView show];
-                return;
-            }
+            acceptStr = [acceptStr stringByAppendingFormat:@"accept/friend/%@", messId];
         }
         else
         {

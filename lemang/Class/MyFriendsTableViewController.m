@@ -80,7 +80,7 @@
     NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
     NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    friendStr = [friendStr stringByAppendingFormat:@"%@/friend", uid];
+    friendStr = [friendStr stringByAppendingFormat:@"%@/friend/q", uid];
     
     ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
     [friendRequest startSynchronous];
