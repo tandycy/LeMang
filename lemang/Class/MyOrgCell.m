@@ -119,6 +119,7 @@
     else
     {
         canjoin = true;
+        [_buttonInvite setHidden:false];
         _buttonInvite.titleLabel.text = @"参加";
     }
 }
@@ -191,7 +192,7 @@
         
         if (resCode == 200)
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名成功" message:@"成功提交报名申请。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名成功" message:@"成功提交报名申请。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
             [alertView show];
         }
     }
