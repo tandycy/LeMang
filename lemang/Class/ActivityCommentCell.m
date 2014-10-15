@@ -57,6 +57,12 @@
     if (localData == nil)
         return;
     
+    NSMutableDictionary* imgBuffer;
+    if ([owner isKindOfClass:[ActivityCommentTableViewController class]])
+    {
+        imgBuffer = [(ActivityCommentTableViewController*)owner GetCommentImageBuffer];
+    }
+    
     _commentTittle.text = localData[@"title"];
     _commentContent.text = localData[@"content"];
     
@@ -65,11 +71,27 @@
     NSArray* commentImgData = localData[@"images"];
     
     NSDictionary* creator = localData[@"createdBy"];
-    
-    if (creator.count == 0)
-        return;
-    
     creatorId = creator[@"id"];
+    
+    NSDictionary* profileData = creator[@"profile"];
+    NSString* nick = @"";
+    NSString* iconStr = @"";
+    if ([profileData isKindOfClass:[NSDictionary class]])
+    {
+        nick = [UserManager filtStr:profileData[@"nickName"]:@""];
+        NSString* urlStr = profileData[@"iconUrl"];
+        iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
+    }
+    
+    if (_commentTittle.text.length == 0)
+    {
+        if (nick.length > 0)
+            _commentTittle.text = nick;
+        else
+            _commentTittle.text = creator[@"name"];
+    }
+    
+    [_creatorIcon LoadFromUrl:[NSURL URLWithString:iconStr] :[UserManager DefaultIcon] :imgBuffer];
     
     if (creatorId.longValue == activityCreator.longValue)
     {
@@ -96,12 +118,6 @@
         else
             [rateIconList[i] setImage: [UIImage imageNamed:@"rate_star_whole"]];
     }
-    
-    
-    NSString* creatorUrlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/api/v1/user/%@", creatorId];
-    NSURL* url = [NSURL URLWithString:creatorUrlStr];
-    
-    NSLog(@"%@", creatorUrlStr);
     
     
     _commentTittle.textColor = [UIColor colorWithRed:0.17647059 green:0.17647059 blue:0.17647059 alpha:1];
@@ -152,18 +168,7 @@
     commentDate.font = [UIFont fontWithName:defaultFont size:11];
     commentDate.tag = 208;
     [self addSubview:commentDate];
-    
-    [_creatorIcon setImage:[UIImage imageNamed:@"user_icon_de.png"]];
-    
-    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    
-    NSMutableDictionary* imgBuffer;
-    if ([owner isKindOfClass:[ActivityCommentTableViewController class]])
-    {
-        imgBuffer = [(ActivityCommentTableViewController*)owner GetCommentImageBuffer];
-    }
+
     
     for (int i = 0; i < 6; i++)
     {
@@ -218,30 +223,19 @@
     activityCreator = creator;
 }
 
-- (void)requestFinished:(ASIHTTPRequest*)request
+- (IBAction)OnIconClick:(id)sender
 {
-    NSDictionary* returnData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+    ActivityCommentTableViewController* VC = nil;
     
-    if (returnData.count == 0)
-        return;
-
-    // Get creator data
-    NSDictionary* profile = returnData[@"profile"];
-    
-    if (![profile isKindOfClass:[NSDictionary class]])
+    if ([owner isKindOfClass:[ActivityCommentTableViewController class]])
+        VC = (ActivityCommentTableViewController*)owner;
+    else
         return;
     
-    NSString* iconUrlStr = profile[@"iconUrl"];
-    if (iconUrlStr.length == 0)
-        return;
-    
-    [_creatorIcon LoadFromUrl:[NSURL URLWithString:iconUrlStr]];
-}
-
-- (void)requestFailed:(ASIHTTPRequest*)request
-{
-    NSError* error = [request error];
-    NSLog(@"Get comment creator error: %d",error.code);
+    MemberInfoTableViewController *memberInfoTVC = [VC.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
+    NSDictionary* creator = localData[@"createdBy"];
+    [memberInfoTVC SetMemberId:creator[@"id"]];
+    [VC.navigationController pushViewController:memberInfoTVC animated:YES];
 }
 
 @end

@@ -2244,10 +2244,6 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="SC8-pH-0Qp" customClass="IconImageViewLoader">
-                                            <rect key="frame" x="8" y="8" width="49" height="49"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_frame" id="vU3-26-qZk">
                                             <rect key="frame" x="62" y="5" width="8" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2278,12 +2274,22 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pag-Dd-hvd" customClass="IconImageButtonLoader">
+                                            <rect key="frame" x="8" y="8" width="49" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="user_icon_de">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="OnIconClick:" destination="CKZ-pd-5Ig" eventType="touchUpInside" id="IFG-xT-LO0"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentContent" destination="mqM-Lz-9Mf" id="XSn-RH-7iO"/>
                                     <outlet property="commentTittle" destination="IKL-sN-Iou" id="yon-A2-YeF"/>
-                                    <outlet property="creatorIcon" destination="SC8-pH-0Qp" id="dQ1-sw-Ych"/>
+                                    <outlet property="creatorIcon" destination="Pag-Dd-hvd" id="gqb-xz-4o7"/>
                                     <outlet property="rateIcon1" destination="eJw-c3-DXO" id="Wqg-dU-TUb"/>
                                     <outlet property="rateIcon2" destination="ZV9-yf-18E" id="U0G-Jc-0yK"/>
                                     <outlet property="rateIcon3" destination="LH9-6I-teJ" id="GTg-q8-jDz"/>
