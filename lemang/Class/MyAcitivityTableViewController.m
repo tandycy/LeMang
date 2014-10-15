@@ -91,24 +91,25 @@
     }
     
     NSString* bookmarkStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    bookmarkStr = [bookmarkStr stringByAppendingFormat:@"%d/bookmark/activity", uid];
-    NSURL *bookmarkUrl = [NSURL URLWithString:URLString];
+    bookmarkStr = [bookmarkStr stringByAppendingFormat:@"%@/bookmark/activity", uid];
+    NSURL *bookmarkUrl = [NSURL URLWithString:bookmarkStr];
     
     ASIHTTPRequest *bookmarkRequest = [ASIHTTPRequest requestWithURL:bookmarkUrl];
     [bookmarkRequest setUsername:@"admin"];
     [bookmarkRequest setPassword:@"admin"];
     
-    [URLRequest startSynchronous];
+    [bookmarkRequest startSynchronous];
     
-    error = [URLRequest error];
+    error = [bookmarkRequest error];
     
     if (!error)
     {
-        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[bookmarkRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
         
         for (int i = 0; i < returnData.count; i++)
         {
-            NSDictionary* item = returnData[i];
+            NSDictionary* data = returnData[i];
+            NSDictionary* item = data[@"value"];
             [bookmarkActivity addObject:item];
         }
     }
@@ -167,7 +168,37 @@
     else if (section == 2)
     {
         actData = bookmarkActivity[indexPath.row];
-        [cell SetBookmark];
+        
+        NSNumber* aid = actData[@"id"];
+        bool isjoined = false;
+        
+        for (NSDictionary* item in adminActivity)
+        {
+            NSNumber* actid = item[@"id"];
+            if (actid.longValue == aid.longValue)
+            {
+                isjoined = true;
+                break;
+            }
+        }
+        
+        if (!isjoined)
+        {
+            for (NSDictionary* item in joinedActivity)
+            {
+                NSNumber* actid = item[@"id"];
+                if (actid.longValue == aid.longValue)
+                {
+                    isjoined = true;
+                    break;
+                }
+            }
+        }
+        
+        if (isjoined)
+            [cell SetBookmarkJoined];
+        else
+            [cell SetBookmark];
     }
     
     [cell SetData:actData :self];

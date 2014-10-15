@@ -56,8 +56,6 @@
     }
     _actMember.text = [NSString stringWithFormat:@"%d", memberNum];
     
-    if (canjoin)
-        [self JoinCheck];
 }
 
 - (void)awakeFromNib
@@ -96,25 +94,15 @@
     _buttonInvite.titleLabel.text = @"参加";
 }
 
-- (void) JoinCheck
+- (void)SetBookmarkJoined
 {
-    NSNumber* localId = localData[@"id"];
-    NSString* idstr = [NSString stringWithFormat:@"%@",localId];
+    [_buttonEdit setHidden:true];
+    [_buttonInvite setHidden:true];
     
-    NSDictionary* idmap = [[UserManager Instance]GetGroupIdMap];
+    caninvite = false;
+    canjoin = false;
     
-    NSString* str = [UserManager filtStr:idmap[idstr] :@""];
-    
-    if (str.length > 0)
-    {
-        canjoin = false;
-        [_buttonInvite setHidden:true];
-    }
-    else
-    {
-        canjoin = true;
-        _buttonInvite.titleLabel.text = @"参加";
-    }
+    _buttonInvite.titleLabel.text = @"已参加";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

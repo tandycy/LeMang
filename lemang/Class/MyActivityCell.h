@@ -16,6 +16,7 @@
     bool caninvite;
     bool canjoin;
 }
+
 @property (strong, nonatomic) IBOutlet UILabel *actTitle;
 @property (strong, nonatomic) IBOutlet UILabel *actMember;
 @property (strong, nonatomic) IBOutlet UIButton *buttonEdit;
@@ -27,5 +28,6 @@
 - (void)SetAdmin;
 - (void)SetJoin;
 - (void)SetBookmark;
+- (void)SetBookmarkJoined;
 
 @end
