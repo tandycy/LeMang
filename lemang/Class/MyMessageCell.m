@@ -101,6 +101,7 @@
             break;
         case INVITATION_FRIEND:
         {
+            NSString* titleContent = localData[@"title"];
             if (![senderData isKindOfClass:[NSDictionary class]])
             {
                 NSLog(@"Missing sender data for INVITATION_FRIEND message.");
@@ -108,7 +109,7 @@
             }
             NSString* nameStr = [UserManager filtStr: senderData[@"name"]];
             messTitle = @"收到好友邀请";
-            messContent = [NSString stringWithFormat:@"收到<%@>的好友邀请\n是否同意？",nameStr];
+            messContent = [NSString stringWithFormat:@"收到<%@>的好友邀请\n验证信息:\"%@\"\n是否同意？",nameStr, titleContent];
         }
             break;
         case ENROLLMENT_ASSOCIATION:

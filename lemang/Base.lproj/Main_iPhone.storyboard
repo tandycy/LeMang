@@ -1476,6 +1476,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <state key="normal" image="delete">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="OnRemoveFriend:" destination="Oaj-cY-ObP" eventType="touchUpInside" id="O5Z-Xu-b7w"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>

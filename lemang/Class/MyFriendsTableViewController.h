@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyFriendCell.h"
 
 @interface MyFriendsTableViewController : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate>
+
+- (void) DoRemoveFriend:(MyFriendCell*)linkedCell;
 
 @end

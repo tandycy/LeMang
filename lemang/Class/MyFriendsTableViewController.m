@@ -7,7 +7,6 @@
 //
 
 #import "MyFriendsTableViewController.h"
-#import "MyFriendCell.h"
 #import "MemberInfoTableViewController.h"
 #import "Friend.h"
 #import "SearchUserTabelViewController.h"
@@ -49,8 +48,7 @@
     rightButton.target = self;
     rightButton.action = @selector(ToAddFriendPage:);
     
-    [self dataInit];
-    [self.tableView reloadData];
+    [self RefreshData];
 }
 
 -(IBAction)ToAddFriendPage:(id)sender
@@ -67,7 +65,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)dataInit
+-(void)RefreshData
 {
     filteredFriendArray = [NSMutableArray arrayWithCapacity:[friendArray count]];
     
@@ -106,6 +104,8 @@
         [friendIdArray addObject:fitem.userId];
     }
     
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -166,7 +166,7 @@
         friend = [friendArray objectAtIndex:indexPath.row];
     }
     
-    [cell SetItem:friend];
+    [cell SetItem:friend :self];
    
     return cell;
 }
@@ -196,6 +196,47 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:YES];
+}
+
+- (void) DoRemoveFriend:(MyFriendCell*)linkedCell
+{
+    NSNumber* fid = [linkedCell GetFriendId];
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
+    
+    NSString* removeStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    removeStr = [removeStr stringByAppendingFormat:@"%@/friend/%@", uid, fid];
+    
+    ASIHTTPRequest* removeRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:removeStr]];
+    [removeRequest setRequestMethod:@"DELETE"];
+    [removeRequest startSynchronous];
+    
+    NSError* error = [removeRequest error];
+    
+    if (!error)
+    {
+        int returnCode = [removeRequest responseStatusCode];
+        
+        if (returnCode == 200)
+        {
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"删除好友成功" message:@"成功移除好友" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+            [alertView show];
+        }
+        else
+        {
+            NSString* messageContent = [NSString stringWithFormat:@"服务器错误%d",returnCode];
+            UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"删除好友失败" message:messageContent delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+            [alertView show];
+        }
+        
+        [self RefreshData];
+        
+    }
+    else
+    {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"删除好友失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles: nil];
+        [alertView show];
+    }
+    
 }
 
 /*
