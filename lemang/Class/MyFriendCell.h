@@ -13,6 +13,7 @@
 @interface MyFriendCell : UITableViewCell
 {
     Friend* localItem;
+    id owner;
 }
 
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *userIcon;
@@ -20,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *userSchool;
 @property (strong, nonatomic) IBOutlet UILabel *userCollege;
 
-- (void) SetItem:(Friend*)friendItem;
+- (void) SetItem:(Friend*)friendItem :(id)_owner;
+- (IBAction)OnRemoveFriend:(id)sender;
+- (NSNumber*)GetFriendId;
 
 @end
