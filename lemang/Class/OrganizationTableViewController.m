@@ -48,6 +48,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self.searchButton addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [UserManager RefreshGroupData];
 }
 
 -(IBAction)searchClick:(id)sender{
