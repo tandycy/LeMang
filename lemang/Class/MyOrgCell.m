@@ -66,24 +66,62 @@
         memberNum = members.count;
     }
     _orgMember.text = [NSString stringWithFormat:@"%d", memberNum];
+    
+    if (canjoin)
+        [self JoinCheck];
 }
 
 - (void)SetAdmin
 {
     [_buttonEdit setHidden:FALSE];
     [_buttonInvite setHidden:FALSE];
+    
+    _buttonInvite.titleLabel.text = @"邀请";
+    
+    caninvite = true;
+    canjoin = false;
 }
 
 - (void)SetJoin
 {
     [_buttonEdit setHidden:true];
     [_buttonInvite setHidden:true];
+    
+    caninvite = false;
+    canjoin = false;
 }
 
 - (void)SetBookmark
 {
     [_buttonEdit setHidden:true];
     [_buttonInvite setHidden:true];
+    
+    caninvite = false;
+    canjoin = true;
+    
+    _buttonInvite.titleLabel.text = @"参加";
+}
+
+- (void) JoinCheck
+{
+    NSNumber* localId = localData[@"id"];
+    NSString* idstr = [NSString stringWithFormat:@"%@",localId];
+    
+    NSDictionary* idmap = [[UserManager Instance]GetGroupIdMap];
+    
+    NSString* str = [UserManager filtStr:idmap[idstr] :@""];
+    
+    if (str.length > 0)
+    {
+        canjoin = false;
+        [_buttonInvite setHidden:true];
+    }
+    else
+    {
+        canjoin = true;
+        [_buttonInvite setHidden:false];
+        _buttonInvite.titleLabel.text = @"参加";
+    }
 }
 
 -(IBAction)DoOrgEdit:(id)sender
@@ -101,7 +139,20 @@
     [parView.navigationController pushViewController:EditOrgVC animated:YES];
 }
 
-- (IBAction)DoOrgInvite:(id)sender{
+- (IBAction)DoOrgInvite:(id)sender
+{
+    if (caninvite)
+    {
+        [self DoInvite];
+    }
+    else if (canjoin)
+    {
+        [self DoJoin];
+    }
+}
+
+- (void)DoInvite
+{
     if (![owner isKindOfClass:[MyOrganizationTableViewController class]])
         return;
     
@@ -112,6 +163,40 @@
     NSNumber* oid = localData[@"id"];
     [EditActVC SetInviteGroup:oid];
     [parView.navigationController pushViewController:EditActVC animated:YES];
+}
+
+- (void) DoJoin
+{
+    NSNumber* orgId = localData[@"id"];
+    
+    NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    urlstr = [urlstr stringByAppendingFormat:@"%@/request/association/%@", [[UserManager Instance]GetLocalUserId], orgId];
+    NSURL* url = [NSURL URLWithString:urlstr];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request setUsername:[UserManager UserName]];
+    [request setPassword:[UserManager UserPW]];
+    
+    [request addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [request setRequestMethod:@"POST"];
+    
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    if (!error)
+    {
+        // TODO
+        int resCode = [request responseStatusCode];
+        NSLog(@"regist %d",resCode);
+        
+        if (resCode == 200)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名成功" message:@"成功提交报名申请。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            [alertView show];
+        }
+    }
+
 }
 
 @end

@@ -87,6 +87,20 @@
             _commentTittle.text = commentItem[@"title"];
             _commentContent.text = commentItem[@"content"];
             
+            if (_commentTittle.text.length == 0)
+            {
+                NSDictionary* creator = commentItem[@"createdBy"];
+                _commentTittle.text = creator[@"name"];
+                
+                NSDictionary* profileData = creator[@"profile"];
+                if ([profileData isKindOfClass:[NSDictionary class]])
+                {
+                    NSString* nick = [UserManager filtStr:profileData[@"nickName"]:@""];
+                    if (nick.length > 0)
+                        _commentTittle.text = nick;
+                }
+            }
+            
             // images
             //int rating
             

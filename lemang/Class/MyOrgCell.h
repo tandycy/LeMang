@@ -12,6 +12,9 @@
 {
     NSDictionary* localData;
     id owner;
+    
+    bool caninvite;
+    bool canjoin;
 }
 @property (strong, nonatomic) IBOutlet UILabel *orgTitle;
 @property (strong, nonatomic) IBOutlet UILabel *orgMember;

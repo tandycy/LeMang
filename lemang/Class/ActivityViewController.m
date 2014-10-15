@@ -291,6 +291,7 @@ NSString *navTitle;
     [pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
     [self.activityList addSubview:pageControl];
     
+    [UserManager RefreshGroupData];
 }
 
 -(void)viewDidAppear:(BOOL)animated

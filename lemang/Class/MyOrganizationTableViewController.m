@@ -94,24 +94,25 @@
     }
     
     NSString* bookmarkStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    bookmarkStr = [bookmarkStr stringByAppendingFormat:@"%d/bookmark/group", uid];
-    NSURL *bookmarkUrl = [NSURL URLWithString:URLString];
+    bookmarkStr = [bookmarkStr stringByAppendingFormat:@"%@/bookmark/group", uid];
+    NSURL *bookmarkUrl = [NSURL URLWithString:bookmarkStr];
     
     ASIHTTPRequest *bookmarkRequest = [ASIHTTPRequest requestWithURL:bookmarkUrl];
     [bookmarkRequest setUsername:@"admin"];
     [bookmarkRequest setPassword:@"admin"];
     
-    [URLRequest startSynchronous];
+    [bookmarkRequest startSynchronous];
     
-    error = [URLRequest error];
+    error = [bookmarkRequest error];
     
     if (!error)
     {
-        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[bookmarkRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
         
         for (int i = 0; i < returnData.count; i++)
         {
-            NSDictionary* item = returnData[i];
+            NSDictionary* data = returnData[i];
+            NSDictionary* item = data[@"value"];
             [orgBookmarkList addObject:item];
         }
     }
