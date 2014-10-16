@@ -21,6 +21,9 @@
     UIImage* localIconData;
     
     NSArray* activityArray;
+    
+    bool canBookMark;
+    bool canJoin;
 }
 
 @property IBOutlet UIView *orgDetailTitleView;

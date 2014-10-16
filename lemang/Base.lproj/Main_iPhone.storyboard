@@ -902,8 +902,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <navigationItem key="navigationItem" id="0eX-SI-LR4"/>
                     <connections>
+                        <outlet property="bookmarkButton" destination="HaC-lE-k1h" id="zFE-CI-aSv"/>
                         <outlet property="containerView" destination="cUd-sv-Pio" id="0sg-W7-Ixl"/>
                         <outlet property="goComment" destination="vaJ-AG-dBh" id="o36-7E-NG5"/>
+                        <outlet property="joinButton" destination="8By-gx-v6o" id="HPc-oE-g0M"/>
                         <outlet property="toolBar" destination="9lu-Fs-TMI" id="dlF-8d-aen"/>
                     </connections>
                 </viewController>

@@ -15,6 +15,9 @@
     Activity *activity;
     NSDictionary* localData;
     NSNumber* localId;
+    
+    bool canBookMark;
+    bool canJoin;
 }
 
 @property (nonatomic, retain) Activity *activity;
@@ -27,6 +30,8 @@
 - (IBAction)doShare:(id)sender;
 - (void)OnCommentSuccess;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *bookmarkButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *joinButton;
 - (void)SetData:(NSDictionary*)actData;
 
 @end

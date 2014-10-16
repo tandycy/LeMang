@@ -80,6 +80,8 @@
     
     goComment.target = self;
     goComment.action = @selector(goCommentPage:);
+    
+    [self UpdateProfileInfo];
 }
 
 -(IBAction)goCommentPage:(id)sender{
@@ -147,6 +149,91 @@
     localId = actData[@"id"];
 }
 
+- (void)UpdateProfileInfo
+{
+    canBookMark = true;
+    canJoin = true;
+    
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    URLString = [URLString stringByAppendingFormat:@"%@/activities", uid];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest setUsername:@"admin"];
+    [URLRequest setPassword:@"admin"];
+    
+    [URLRequest startSynchronous];
+    
+    NSError *error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* item = returnData[i];
+            NSNumber* aid = item[@"id"];
+            
+            if (aid.longValue == activity.activityId.longValue)
+            {
+                canJoin = false;
+                break;
+            }
+        }
+    }
+    
+    NSString* bookmarkStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    bookmarkStr = [bookmarkStr stringByAppendingFormat:@"%@/bookmark/activity", uid];
+    NSURL *bookmarkUrl = [NSURL URLWithString:bookmarkStr];
+    
+    ASIHTTPRequest *bookmarkRequest = [ASIHTTPRequest requestWithURL:bookmarkUrl];
+    [bookmarkRequest setUsername:@"admin"];
+    [bookmarkRequest setPassword:@"admin"];
+    
+    [bookmarkRequest startSynchronous];
+    
+    error = [bookmarkRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[bookmarkRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* data = returnData[i];
+            NSDictionary* item = data[@"value"];
+            NSNumber* aid = item[@"id"];
+            
+            if (aid.longValue == activity.activityId.longValue)
+            {
+                canBookMark = false;
+                break;
+            }
+        }
+    }
+    
+    if (canJoin)
+    {
+        [_joinButton setImage:[UIImage imageNamed:@"bottom_sign_on"]];
+    }
+    else
+    {
+        [_joinButton setImage:[UIImage imageNamed:@"bottom_sign_done"]];
+    }
+    
+    if (canBookMark)
+    {
+        [_bookmarkButton setImage:[UIImage imageNamed:@"bottom_like_on"]];
+    }
+    else
+    {
+        [_bookmarkButton setImage:[UIImage imageNamed:@"bottom_like_done"]];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -177,6 +264,14 @@
     if (![UserManager IsInitSuccess])
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        [alertView show];
+        
+        return;
+    }
+    
+    if (!canJoin)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"已经参加了该活动。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
         
         return;
@@ -221,6 +316,12 @@
         return;
     }
     
+    if (!canBookMark)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"已经收藏了该活动。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        return;
+    }
     
     NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
     urlstr = [urlstr stringByAppendingFormat:@"%@/activity/%@", [[UserManager Instance]GetLocalUserId], activity.activityId];
@@ -247,6 +348,9 @@
         {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:@"成功收藏至我的活动。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
             [alertView show];
+            
+            canBookMark = false;
+            [_bookmarkButton setImage:[UIImage imageNamed:@"bottom_like_done"]];
         }
     }
 }
