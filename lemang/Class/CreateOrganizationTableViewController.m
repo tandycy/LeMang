@@ -11,6 +11,9 @@
 #import "Constants.h"
 
 @interface CreateOrganizationTableViewController ()
+{
+    NSArray* tagButtonArray;
+}
 
 @end
 
@@ -340,6 +343,64 @@
     }
     textField.text = [pickerArray objectAtIndex:row];
 }
+
+-(void)initTag
+{
+    tagButtonArray = [[NSArray alloc]initWithObjects:_tag1,_tag2,_tag3,_tag4,_tag5,_tag6,_tag7,_tag8,nil];
+    
+    for (UIButton* item in tagButtonArray)
+    {
+        item.selected = false;
+        
+        //[_tag1 setTitle:tags[0] forState:UIControlStateNormal];
+        [item setTintColor:[UIColor clearColor]];
+        [item setTitleColor:defaultMainColor forState:UIControlStateNormal];
+        [item addTarget:self action:@selector(tagClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    int currentTag = 0;
+    NSArray* tagList = [UserManager GetTags];
+    
+    for (TagItem *item in tagList)
+    {
+        if (currentTag >= tagButtonArray.count)
+            break;
+        
+        //if (item.tagClass == TagActivity)
+        {
+            UIButton* tagButton = tagButtonArray[currentTag];
+            [tagButton setTitle:item.name forState:UIControlStateNormal];
+            currentTag++;
+        }
+    }
+    
+    for (int i = currentTag; i < tagButtonArray.count; i++)
+    {
+        UIButton* item = tagButtonArray[i];
+        [item setEnabled:NO];
+    }
+    
+}
+
+-(IBAction)tagClick:(id)sender
+{
+    if (![sender isKindOfClass:[UIButton class]])
+        return;
+    
+    UIButton* tagItem = (UIButton*)sender;
+    
+    if (!tagItem.selected) {
+        [tagItem setSelected:YES];
+        [tagItem setBackgroundColor:defaultTagColor];
+        [tagItem setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    }
+    else
+    {
+        [tagItem setSelected:NO];
+        [tagItem setBackgroundColor:[UIColor clearColor]];
+    }
+}
+
 
 #pragma mark - Table view data source
 /*

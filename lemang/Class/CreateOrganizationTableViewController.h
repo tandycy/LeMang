@@ -38,6 +38,16 @@
 @property (strong, nonatomic) IBOutlet UITextField *collegeTextField;
 @property (strong, nonatomic) IBOutlet UITextField *areaTextField;
 
+@property (strong, nonatomic) IBOutlet UIButton *tag1;
+@property (strong, nonatomic) IBOutlet UIButton *tag2;
+@property (strong, nonatomic) IBOutlet UIButton *tag3;
+@property (strong, nonatomic) IBOutlet UIButton *tag4;
+@property (strong, nonatomic) IBOutlet UIButton *tag5;
+@property (strong, nonatomic) IBOutlet UIButton *tag6;
+@property (strong, nonatomic) IBOutlet UIButton *tag7;
+@property (strong, nonatomic) IBOutlet UIButton *tag8;
+@property (strong, nonatomic) IBOutlet UITextField *otherTag;
+
 - (void)SetOwner:(id)_owner;
 
 @end
