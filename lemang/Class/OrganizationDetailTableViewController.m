@@ -34,6 +34,9 @@ typedef enum {
     
     NSMutableArray* memberIconArray;
     UILabel* memberCount;
+    
+    UIBarButtonItem* bookmarkButton;
+    UIBarButtonItem* joinButton;
 }
 
 @synthesize orgDetailTitleView;
@@ -55,11 +58,11 @@ typedef enum {
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    UIBarButtonItem *like = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_like_on"] style:UIBarButtonItemStylePlain target:self action:@selector(likeClick:)];
-    UIBarButtonItem *sign = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_sign_on"] style:UIBarButtonItemStylePlain target:self action:@selector(signClick:)];
+    bookmarkButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_like_on"] style:UIBarButtonItemStylePlain target:self action:@selector(likeClick:)];
+    joinButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_sign_on"] style:UIBarButtonItemStylePlain target:self action:@selector(signClick:)];
     UIBarButtonItem *share = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_share_on"] style:UIBarButtonItemStylePlain target:self action:@selector(shareClick:)];
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    NSArray *buttonArray = [NSArray arrayWithObjects:flexItem, like, flexItem, share, flexItem, sign, flexItem, nil];
+    NSArray *buttonArray = [NSArray arrayWithObjects:flexItem, bookmarkButton, flexItem, share, flexItem, joinButton, flexItem, nil];
     
     self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height-40, self.view.frame.size.width, 40)];
     NSLog(@"%f",self.view.frame.size.height);
@@ -351,6 +354,91 @@ typedef enum {
     }
     
     [self UpdateMemberInfo];
+    [self UpdateProfileInfo];
+}
+
+- (void)UpdateProfileInfo
+{
+    canJoin = true;
+    canBookMark = true;
+    
+    NSNumber* uid = [[UserManager Instance]GetLocalUserId];
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    URLString = [URLString stringByAppendingFormat:@"%@/associations", uid];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest setUsername:@"admin"];
+    [URLRequest setPassword:@"admin"];
+    
+    [URLRequest startSynchronous];
+    
+    NSError *error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* item = returnData[i];
+            NSNumber* oid = item[@"id"];
+            
+            if (oid.longValue == orgId.longValue)
+            {
+                canJoin = false;
+                break;
+            }
+        }
+    }
+    
+    NSString* bookmarkStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    bookmarkStr = [bookmarkStr stringByAppendingFormat:@"%@/bookmark/group", uid];
+    NSURL *bookmarkUrl = [NSURL URLWithString:bookmarkStr];
+    
+    ASIHTTPRequest *bookmarkRequest = [ASIHTTPRequest requestWithURL:bookmarkUrl];
+    [bookmarkRequest setUsername:@"admin"];
+    [bookmarkRequest setPassword:@"admin"];
+    
+    [bookmarkRequest startSynchronous];
+    
+    error = [bookmarkRequest error];
+    
+    if (!error)
+    {
+        NSArray* returnData = [NSJSONSerialization JSONObjectWithData:[bookmarkRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        
+        for (int i = 0; i < returnData.count; i++)
+        {
+            NSDictionary* data = returnData[i][@"value"];
+            NSNumber* oid = data[@"id"];
+            
+            if (oid.longValue == orgId.longValue)
+            {
+                canBookMark = false;
+                break;
+            }
+        }
+    }
+
+    if (canJoin)
+    {
+        [joinButton setImage:[UIImage imageNamed:@"bottom_sign_on"]];
+    }
+    else
+    {
+        [joinButton setImage:[UIImage imageNamed:@"bottom_sign_done"]];
+    }
+    
+    if (canBookMark)
+    {
+        [bookmarkButton setImage:[UIImage imageNamed:@"bottom_like_on"]];
+    }
+    else
+    {
+        [bookmarkButton setImage:[UIImage imageNamed:@"bottom_like_done"]];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -363,14 +451,12 @@ typedef enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return activityArray.count;
 }
@@ -467,12 +553,18 @@ typedef enum {
     
     if (![UserManager IsInitSuccess])
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
         [alertView show];
         
         return;
     }
     
+    if (!canBookMark)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"已经收藏了该组织。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        return;
+    }
     
     NSString* urlstr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
     urlstr = [urlstr stringByAppendingFormat:@"%@/group/%@", [[UserManager Instance]GetLocalUserId], orgId];
@@ -497,8 +589,11 @@ typedef enum {
         
         if (resCode == 200)
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:@"成功收藏至我的组织。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:@"成功收藏至我的组织。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [alertView show];
+            
+            canBookMark = false;
+            [bookmarkButton setImage:[UIImage imageNamed:@"bottom_like_done"]];
         }
     }
 
@@ -508,7 +603,15 @@ typedef enum {
     
     if (![UserManager IsInitSuccess])
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未登录" message:@"登陆后才能执行该操作。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+        
+        return;
+    }
+    
+    if (!canJoin)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"已经加入了该组织。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
         
         return;
@@ -537,7 +640,7 @@ typedef enum {
         
         if (resCode == 200)
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名成功" message:@"成功提交报名申请。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"报名成功" message:@"成功提交报名申请。" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
             [alertView show];
         }
     }

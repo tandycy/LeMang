@@ -101,7 +101,7 @@
     if (state) {
         [self.userSchoolText setHidden:false];
         [self.userDescText setHidden:false];
-        [self.userGenderText setHidden:false];
+        [self.userGenderIcon setHidden:false];
         [self.rankButton setHidden:false];
         [self.verifyButton setHidden:false];
         [self.mobilePhoneButton setHidden:false];
@@ -114,7 +114,7 @@
     else{
         [self.userSchoolText setHidden:true];
         [self.userDescText setHidden:true];
-        [self.userGenderText setHidden:true];
+        [self.userGenderIcon setHidden:true];
         [self.rankButton setHidden:true];
         [self.verifyButton setHidden:true];
         [self.mobilePhoneButton setHidden:true];
@@ -142,13 +142,12 @@
 
 - (void)clearUserDataDisplay
 {
-    // TODO
     _userNameText.text = @"未登录";
-    _userGenderText.text = @"♂♀";
     _userSchoolText.text = @"";
     _userDescText.text = @"";
     
     [_userIconImageLoader setImage:[UserManager DefaultIcon]];
+    [_userGenderIcon setHidden:true];
     
     [self userLoginState:false];
 }
@@ -188,14 +187,13 @@
     //[NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];
     
     _userNameText.text = [UserManager filtStr:userData[@"name"]];
-    _userGenderText.text = @"♂♀";
     _userDescText.text = @"";
     _userSchoolText.text = [UserManager filtStr:userData[@"university"][@"name"]];
     NSDictionary* profileData = userData[@"profile"];
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
-        _userGenderText.text = [UserManager filtStr:profileData[@"gender"] : @"♂♀"];
+        NSString* genderStr = [UserManager filtStr:profileData[@"gender"] : @""];
         _userDescText.text = [UserManager filtStr:profileData[@"signature"] : @""];
         
         NSString* nick = [UserManager filtStr:profileData[@"nickName"] : @""];
@@ -205,10 +203,22 @@
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
         [_userIconImageLoader LoadFromUrl:[NSURL URLWithString:urlStr]:[UserManager DefaultIcon]];
+        
+        if ([genderStr isEqualToString:@"MALE"])
+        {
+            [_userGenderIcon setHidden:false];
+            [_userGenderIcon setImage:[UIImage imageNamed:@"gender_male"]];
+        }
+        else if ([genderStr isEqualToString:@"FEMALE"])
+        {
+            [_userGenderIcon setHidden:false];
+            [_userGenderIcon setImage:[UIImage imageNamed:@"gender_feale"]];
+        }
+        
     }
     else
     {
-        //
+        
     }
 }
 

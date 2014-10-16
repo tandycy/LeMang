@@ -79,6 +79,11 @@
         _userSign.text = [UserManager filtStr:profileData[@"signature"] : @""];
         _schoolNumber.text = [UserManager filtStr:profileData[@"code"] : @"未认证用户"];
         
+        _phoneNumber.text = [UserManager filtStr:profileData[@"cell"] : @"未绑定手机"];        
+        NSString *cellBound = [UserManager filtStr:profileData[@"isCellBound:"]];
+        if ([cellBound  isEqual: @"true"])
+            _phoneNumber.text = @"未绑定手机";
+        
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
         [_userIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UserManager DefaultIcon]];
@@ -86,13 +91,8 @@
     }
     
     NSDictionary* contactData = userData[@"contacts"];
-    
     if ([contactData isKindOfClass:[NSDictionary class]])
     {
-        _phoneNumber.text = [UserManager filtStr:profileData[@"cell"] : @"未绑定手机"];
-        NSString *cellBound = [UserManager filtStr:profileData[@"isCellBound:"]];
-        if ([cellBound  isEqual: @"true"])
-            _phoneNumber.text = @"未绑定手机";
         _qqNumber.text = [UserManager filtStr:contactData[@"QQ"] : @""];
         _wechatId.text = [UserManager filtStr:contactData[@"WECHAT"] : @""];
     }
