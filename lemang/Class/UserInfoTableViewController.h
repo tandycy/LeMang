@@ -31,5 +31,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *phoneNumber;
 @property (strong, nonatomic) IBOutlet UILabel *qqNumber;
 @property (strong, nonatomic) IBOutlet UILabel *wechatId;
-
+@property (strong, nonatomic) IBOutlet UILabel *gender;
 @end
