@@ -176,7 +176,7 @@ static UserManager* managerInstance;
         return;
     
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    urlString = [urlString stringByAppendingFormat:@"%d", localUserId];
+    urlString = [urlString stringByAppendingFormat:@"%@", localUserId];
     NSURL* URL = [NSURL URLWithString:urlString];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:URL];

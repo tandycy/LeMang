@@ -22,7 +22,6 @@
     UserLoginViewController* ULVC;
 }
 @property (strong, nonatomic) IBOutlet UILabel *userNameText;
-@property (strong, nonatomic) IBOutlet UILabel *userGenderText;
 @property (strong, nonatomic) IBOutlet UILabel *userSchoolText;
 @property (strong, nonatomic) IBOutlet UILabel *userDescText;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *userIconImageLoader;
@@ -38,6 +37,7 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *myFriendsCell;
 
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
+@property (strong, nonatomic) IBOutlet UIImageView *userGenderIcon;
 
 - (void) refreshUserData;
 

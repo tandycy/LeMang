@@ -1173,13 +1173,10 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="♂♀" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HKv-LY-Mwe">
-                                    <rect key="frame" x="192" y="14" width="57" height="21"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gender_male" id="hNT-Na-OHu">
+                                    <rect key="frame" x="221" y="16" width="18" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="school" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jbn-IB-xj9">
                                     <rect key="frame" x="100" y="37" width="79" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1330,7 +1327,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="myOrgCell" destination="sr7-ka-JCV" id="6eG-lw-c5W"/>
                         <outlet property="rankButton" destination="B5G-9k-25Z" id="bnF-5a-QMQ"/>
                         <outlet property="userDescText" destination="kA7-cz-xFT" id="LO7-US-5Y1"/>
-                        <outlet property="userGenderText" destination="HKv-LY-Mwe" id="dzd-ya-W5T"/>
+                        <outlet property="userGenderIcon" destination="hNT-Na-OHu" id="SBL-nl-zjw"/>
                         <outlet property="userIconImageLoader" destination="782-Gp-x3p" id="Tb9-zL-zy3"/>
                         <outlet property="userNameText" destination="jFB-qr-ahq" id="mp9-ik-2Xg"/>
                         <outlet property="userSchoolText" destination="jbn-IB-xj9" id="mNH-OT-9F7"/>
@@ -4608,6 +4605,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="doge2.jpg" width="80" height="80"/>
         <image name="doge3.jpg" width="80" height="80"/>
         <image name="doge4.jpg" width="80" height="80"/>
+        <image name="gender_male" width="17" height="18"/>
         <image name="group1.png" width="130" height="170"/>
         <image name="like_number" width="12" height="11"/>
         <image name="logout" width="70" height="24"/>
