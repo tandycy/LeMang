@@ -50,6 +50,7 @@
     [self.searchButton addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [UserManager RefreshGroupData];
+    [UserManager RefreshTagData];
 }
 
 -(IBAction)searchClick:(id)sender{

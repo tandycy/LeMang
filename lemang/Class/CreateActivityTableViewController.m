@@ -175,6 +175,9 @@
     actCollege.delegate = self;
     [actCollege addTarget:self action:@selector(collegeOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
     
+    [actArea setEnabled:FALSE];
+    [actCollege setEnabled:FALSE];
+    
     actHost.inputAccessoryView = doneToolbar;
     actHost.inputView = dataPicker;
     actHost.delegate = self;
@@ -790,6 +793,16 @@
     
     areaArray = [item GetAreaList];
     collegeArray = [item GetDepartList];
+    
+    if (areaArray.count > 0)
+        [actArea setEnabled:TRUE];
+    else
+        [actArea setEnabled:FALSE];
+    
+    if (collegeArray.count > 0)
+        [actCollege setEnabled:TRUE];
+    else
+        [actCollege setEnabled:FALSE];
 }
 
 - (void)didReceiveMemoryWarning
