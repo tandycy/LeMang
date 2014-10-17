@@ -178,6 +178,32 @@
         [orgData removeObjectForKey:@"area"];
     }
     
+    NSString* fullTagStr = @"";
+    
+    for (UIButton* tagItem in tagButtonArray)
+    {
+        if (tagItem.isSelected)
+        {
+            if (fullTagStr.length != 0)
+                fullTagStr = [fullTagStr stringByAppendingString:@";"];
+            
+            NSString* tagName = tagItem.titleLabel.text;
+            
+            fullTagStr = [fullTagStr stringByAppendingString:tagName];
+        }
+    }
+    
+    if (_otherTag.text.length > 0)
+    {
+        if (fullTagStr.length != 0)
+            fullTagStr = [fullTagStr stringByAppendingString:@";"];
+        
+        fullTagStr = [fullTagStr stringByAppendingString:_otherTag.text];
+    }
+    
+    [orgData setValue:fullTagStr forKey:@"tags"];
+
+    
     NSDateFormatter* nowDate = [[NSDateFormatter alloc]init];
     [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString* createDataText = [nowDate stringFromDate:[NSDate date]];
