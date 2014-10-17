@@ -69,6 +69,7 @@
     _userName.text = @"未认证用户";
     _schoolName.text = [UserManager filtStr:userData[@"university"][@"name"]];
     _departName.text =[UserManager filtStr:userData[@"department"][@"name"]];
+    _gender.text = @"未认证用户";
     
     NSDictionary* profileData = userData[@"profile"];
     
@@ -88,6 +89,15 @@
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
         [_userIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UserManager DefaultIcon]];
         
+        NSString* genderStr = [UserManager filtStr:profileData[@"gender"] : @""];
+        if ([genderStr isEqualToString:@"MALE"])
+        {
+            _gender.text = @"男";
+        }
+        else if ([genderStr isEqualToString:@"FEMALE"])
+        {
+            _gender.text = @"女";
+        }
     }
     
     NSDictionary* contactData = userData[@"contacts"];

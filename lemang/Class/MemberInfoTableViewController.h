@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *userSign;
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *userIcon;
+@property (strong, nonatomic) IBOutlet UILabel *userGender;
 
 - (void) SetMemberId:(NSNumber*)userId;
 
