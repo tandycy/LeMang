@@ -59,6 +59,7 @@
 		25A411FA19D55BD500914599 /* MyOrgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A411F919D55BD500914599 /* MyOrgCell.m */; };
 		25BAA3D219ACAFC500E87856 /* EditActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */; };
 		25BEE1CB19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BEE1CA19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m */; };
+		25BF29B519F0C6070023199D /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BF29B419F0C6070023199D /* SettingsTableViewController.m */; };
 		25C2392A19D0207E00F31AFE /* MyFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392919D0207E00F31AFE /* MyFriendCell.m */; };
 		25C2392D19D0272D00F31AFE /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C2392C19D0272D00F31AFE /* Friend.m */; };
 		25C3A0F719ADC4EC00BB48B3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25C3A0E719ADC4EC00BB48B3 /* MJRefresh.bundle */; };
@@ -259,6 +260,8 @@
 		25BAA3D119ACAFC500E87856 /* EditActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditActivityTableViewController.m; path = Class/EditActivityTableViewController.m; sourceTree = "<group>"; };
 		25BEE1C919D81ACE0020D0AA /* MobilePhoneVerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobilePhoneVerifyViewController.h; path = Class/MobilePhoneVerifyViewController.h; sourceTree = "<group>"; };
 		25BEE1CA19D81ACE0020D0AA /* MobilePhoneVerifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobilePhoneVerifyViewController.m; path = Class/MobilePhoneVerifyViewController.m; sourceTree = "<group>"; };
+		25BF29B319F0C6070023199D /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTableViewController.h; path = Class/SettingsTableViewController.h; sourceTree = "<group>"; };
+		25BF29B419F0C6070023199D /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTableViewController.m; path = Class/SettingsTableViewController.m; sourceTree = "<group>"; };
 		25C2392819D0207E00F31AFE /* MyFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFriendCell.h; path = Class/MyFriendCell.h; sourceTree = "<group>"; };
 		25C2392919D0207E00F31AFE /* MyFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFriendCell.m; path = Class/MyFriendCell.m; sourceTree = "<group>"; };
 		25C2392B19D0272D00F31AFE /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friend.h; path = Class/Friend.h; sourceTree = "<group>"; };
@@ -643,6 +646,8 @@
 				EEF71F8619E66E9400E72ED3 /* SearchUserTabelViewController.m */,
 				EE6BF8DA19E8D3FC00844301 /* AddFriendViewController.h */,
 				EE6BF8DB19E8D3FC00844301 /* AddFriendViewController.m */,
+				25BF29B319F0C6070023199D /* SettingsTableViewController.h */,
+				25BF29B419F0C6070023199D /* SettingsTableViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1174,6 +1179,7 @@
 				256E04351987A106009845A5 /* main.m in Sources */,
 				258087AD19A71C63005E308D /* MyAcitivityTableViewController.m in Sources */,
 				256E04651987AA6B009845A5 /* HomeViewController.m in Sources */,
+				25BF29B519F0C6070023199D /* SettingsTableViewController.m in Sources */,
 				25C3A0F819ADC4EC00BB48B3 /* MJRefreshBaseView.m in Sources */,
 				25BAA3D219ACAFC500E87856 /* EditActivityTableViewController.m in Sources */,
 				28DC152419BD5E8000DE97F0 /* ASIDownloadCache.m in Sources */,

@@ -27,6 +27,10 @@
 {
     [super viewDidLoad];
     
+    UIBarButtonItem *addFriend = [[UIBarButtonItem alloc]init];
+    addFriend.title = @"添加好友";
+    [self.navigationItem setRightBarButtonItem:addFriend animated:YES];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
