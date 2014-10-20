@@ -1343,7 +1343,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
             </objects>
             <point key="canvasLocation" x="-382" y="405"/>
         </scene>
-        <!--My Acitivity Table View Controller-->
+        <!--My Acitivity Table View Controller - 我的活动-->
         <scene sceneID="8Pt-OQ-N7b">
             <objects>
                 <tableViewController id="n6G-Es-Jse" customClass="MyAcitivityTableViewController" sceneMemberID="viewController">
@@ -1413,13 +1413,13 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <outlet property="delegate" destination="n6G-Es-Jse" id="hbF-RX-0a1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="C5C-ox-YpS"/>
+                    <navigationItem key="navigationItem" title="我的活动" id="C5C-ox-YpS"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a63-LO-kYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="460" y="2555"/>
         </scene>
-        <!--My Friends Table View Controller-->
+        <!--My Friends Table View Controller - 我的好友-->
         <scene sceneID="IY4-DG-I9s">
             <objects>
                 <tableViewController id="Mym-qh-RuN" customClass="MyFriendsTableViewController" sceneMemberID="viewController">
@@ -1497,7 +1497,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <outlet property="delegate" destination="Mym-qh-RuN" id="Q45-9i-TOn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="7LD-l8-XHA"/>
+                    <navigationItem key="navigationItem" title="我的好友" id="7LD-l8-XHA"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="k93-q8-D2O" id="aQu-lA-shp"/>
                     </connections>
@@ -1829,7 +1829,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
             </objects>
             <point key="canvasLocation" x="958" y="1839"/>
         </scene>
-        <!--My Organization Table View Controller-->
+        <!--My Organization Table View Controller - 我的社群-->
         <scene sceneID="qxL-N3-EVd">
             <objects>
                 <tableViewController id="Iyw-2R-GfU" customClass="MyOrganizationTableViewController" sceneMemberID="viewController">
@@ -1899,7 +1899,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <outlet property="delegate" destination="Iyw-2R-GfU" id="pZf-jb-SUd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Haj-Kf-Opw"/>
+                    <navigationItem key="navigationItem" title="我的社群" id="Haj-Kf-Opw"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ka-FD-Fwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
