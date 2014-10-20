@@ -18,6 +18,8 @@
     NSArray *searchResults;
     
     enum SearchResultType searchType;
+    
+    bool isShowResult;
 }
 
 @property (nonatomic, retain) IBOutlet UISearchDisplayController *searchDisplayController;
@@ -27,5 +29,7 @@
 
 - (void)SetSearchOrganization;
 - (void)SetSearchActivity;
+- (void)SetSearchOrganizationTag:(NSString*)tagstr;
+- (void)SetSearchActivityTag:(NSString*)tagstr;
 
 @end

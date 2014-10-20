@@ -53,7 +53,8 @@
     [UserManager RefreshTagData];
 }
 
--(IBAction)searchClick:(id)sender{
+-(IBAction)searchClick:(id)sender
+{
     SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
     [searchView SetSearchOrganization];
     [self.navigationController pushViewController:searchView animated:YES];
@@ -70,7 +71,7 @@
 {
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
     [self.localTabelView addHeaderWithTarget:self action:@selector(headerRereshing)];
-#warning 自动刷新(一进入程序就下拉刷新)
+//#warning 自动刷新(一进入程序就下拉刷新)
     [self.localTabelView headerBeginRefreshing];
     
     // 2.上拉加载更多(进入刷新状态就会调用self的footerRereshing)
@@ -184,14 +185,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return organizationArray.count;
 }
@@ -215,7 +214,8 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     OrganizationDetailTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OrganizationDetailView"];
@@ -261,6 +261,7 @@
     //the controller we want to present as a popover
     SelectTableViewController *controller = [[SelectTableViewController alloc] initWithStyle:UITableViewStylePlain];
     controller.title = @"请选择您需要筛选的关键字";
+    [controller SetAsOrganization];
     
     FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
     

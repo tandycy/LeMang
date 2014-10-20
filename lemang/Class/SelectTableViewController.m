@@ -7,6 +7,7 @@
 //
 
 #import "SelectTableViewController.h"
+#import "SearchTableViewController.h"
 #import "Constants.h"
 
 @interface SelectTableViewController ()
@@ -66,7 +67,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+//#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return titleArray.count;
 }
@@ -131,14 +132,42 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 30;
-    
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
+    
+    NSString* tagName = @"";
+    
+    if (indexPath.section == 0)
+        tagName = hotArray[indexPath.row];
+    if (indexPath.section == 1)
+        tagName = schoolArray[indexPath.row];
+    if (indexPath.section == 2)
+        tagName = bookmarkArray[indexPath.row];
+    
+    if (isactivity)
+        [searchView SetSearchActivityTag:tagName];
+    else
+        [searchView SetSearchOrganizationTag:tagName];
+    
+    [self.navigationController pushViewController:searchView animated:YES];
+}
+
+-(void)SetAsActivity
+{
+    isactivity = true;
+}
+
+-(void)SetAsOrganization
+{
+    isactivity = false;
 }
 
 /*

@@ -59,6 +59,16 @@
     searchType = Result_Organization;
 }
 
+-(void)SetSearchActivityTag:(NSString *)tagstr
+{
+    searchType = Result_Activity;
+}
+
+-(void)SetSearchOrganizationTag:(NSString *)tagstr
+{
+    searchType = Result_Organization;
+}
+
 -(void)initView
 {
     self.searchDisplayController.searchBar.placeholder = @"输入您需要搜索的关键字";

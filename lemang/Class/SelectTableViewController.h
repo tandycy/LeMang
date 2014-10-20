@@ -15,6 +15,11 @@
     NSMutableArray* hotArray;
     NSArray* schoolArray;
     NSMutableArray* bookmarkArray;
+    
+    bool isactivity;
 }
+
+-(void)SetAsActivity;
+-(void)SetAsOrganization;
 
 @end
