@@ -41,6 +41,7 @@
 {
     [super viewDidLoad];
     [SchoolManager InitSchoolList];
+    [self initTag];
     
     schoolPickerArray = [SchoolManager GetSchoolNameList];
     collegePickerArray = [[NSArray alloc]init];
@@ -59,6 +60,9 @@
     areaTextField.inputView = selectPicker;
     areaTextField.delegate = self;
     [areaTextField addTarget:self action:@selector(areaOnEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    [collegeTextField setEnabled:FALSE];
+    [areaTextField setEnabled:FALSE];
     
     selectPicker.delegate = self;
     selectPicker.dataSource = self;
@@ -173,6 +177,32 @@
         [orgData removeObjectForKey:@"department"];
         [orgData removeObjectForKey:@"area"];
     }
+    
+    NSString* fullTagStr = @"";
+    
+    for (UIButton* tagItem in tagButtonArray)
+    {
+        if (tagItem.isSelected)
+        {
+            if (fullTagStr.length != 0)
+                fullTagStr = [fullTagStr stringByAppendingString:@";"];
+            
+            NSString* tagName = tagItem.titleLabel.text;
+            
+            fullTagStr = [fullTagStr stringByAppendingString:tagName];
+        }
+    }
+    
+    if (_otherTag.text.length > 0)
+    {
+        if (fullTagStr.length != 0)
+            fullTagStr = [fullTagStr stringByAppendingString:@";"];
+        
+        fullTagStr = [fullTagStr stringByAppendingString:_otherTag.text];
+    }
+    
+    [orgData setValue:fullTagStr forKey:@"tags"];
+
     
     NSDateFormatter* nowDate = [[NSDateFormatter alloc]init];
     [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -316,6 +346,16 @@
     areaPickerArray = [item GetAreaList];
     collegePickerArray = [item GetDepartList];
     
+    if (areaPickerArray.count > 0)
+        [areaTextField setEnabled:true];
+    else
+        [areaTextField setEnabled:FALSE];
+    
+    if (collegePickerArray.count > 0)
+        [collegeTextField setEnabled:true];
+    else
+        [collegeTextField setEnabled:FALSE];
+    
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -352,7 +392,6 @@
     {
         item.selected = false;
         
-        //[_tag1 setTitle:tags[0] forState:UIControlStateNormal];
         [item setTintColor:[UIColor clearColor]];
         [item setTitleColor:defaultMainColor forState:UIControlStateNormal];
         [item addTarget:self action:@selector(tagClick:) forControlEvents:UIControlEventTouchUpInside];

@@ -95,7 +95,7 @@
     // Friend check
     bool isfriend = false;
     NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    friendStr = [friendStr stringByAppendingFormat:@"%@/friend", [[UserManager Instance]GetLocalUserId]];
+    friendStr = [friendStr stringByAppendingFormat:@"%@/friend/q", [[UserManager Instance]GetLocalUserId]];
     
     ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
     [friendRequest startSynchronous];
@@ -122,6 +122,7 @@
     _userName.text = @"未认证用户";
     _schoolName.text = [UserManager filtStr:userData[@"university"][@"name"]];
     _departName.text =[UserManager filtStr:userData[@"department"][@"name"]];
+    _userGender.text = @"未认证用户";
     
     NSDictionary* profileData = userData[@"profile"];
     
@@ -135,6 +136,17 @@
         NSString* urlStr = profileData[@"iconUrl"];
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
         [_userIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UserManager DefaultIcon]];
+        
+        
+        NSString* genderStr = [UserManager filtStr:profileData[@"gender"] : @""];
+        if ([genderStr isEqualToString:@"MALE"])
+        {
+            _userGender.text = @"男";
+        }
+        else if ([genderStr isEqualToString:@"FEMALE"])
+        {
+            _userGender.text = @"女";
+        }
     }
     
     NSDictionary* contactData = userData[@"contacts"];
@@ -154,7 +166,8 @@
         _qqNumber.text = @"仅好友可见";
         _wechatId.text = @"仅好友可见";
         _schoolNumber.text = @"仅好友可见";
-        _userName.text = @"";
+        _userName.text = userData[@"name"];
+        _userGender.text = @"仅好友可见";
     }
 
 }

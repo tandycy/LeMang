@@ -193,7 +193,6 @@
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
-        NSString* genderStr = [UserManager filtStr:profileData[@"gender"] : @""];
         _userDescText.text = [UserManager filtStr:profileData[@"signature"] : @""];
         
         NSString* nick = [UserManager filtStr:profileData[@"nickName"] : @""];
@@ -204,6 +203,7 @@
         urlStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", urlStr];
         [_userIconImageLoader LoadFromUrl:[NSURL URLWithString:urlStr]:[UserManager DefaultIcon]];
         
+        NSString* genderStr = [UserManager filtStr:profileData[@"gender"] : @""];
         if ([genderStr isEqualToString:@"MALE"])
         {
             [_userGenderIcon setHidden:false];
