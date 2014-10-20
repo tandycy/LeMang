@@ -103,7 +103,7 @@
         [self.userSchoolText setHidden:false];
         [self.userDescText setHidden:false];
         [self.userGenderIcon setHidden:false];
-        [self.rankButton setHidden:false];
+        //[self.rankButton setHidden:false];
         [self.verifyButton setHidden:false];
         [self.mobilePhoneButton setHidden:false];
         [self.loginButton setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];

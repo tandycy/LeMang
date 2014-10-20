@@ -33,7 +33,7 @@
     [super viewDidLoad];
     
     
-    titleArray = [[NSMutableArray alloc] initWithObjects:@"管理的组织", @"参加的组织", @"收藏的组织", nil];
+    titleArray = [[NSMutableArray alloc] initWithObjects:@"管理的社群", @"参加的社群", @"收藏的社群", nil];
     
     [self ClearDataArray];
     
@@ -193,7 +193,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     OrganizationDetailTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OrganizationDetailView"];
-    viewController.navigationItem.title = @"组织详细页面";
+    viewController.navigationItem.title = @"社群详细页面";
 
     
     NSDictionary* actData = nil;
