@@ -8,6 +8,7 @@
 
 #import "MyOrganizationTableViewController.h"
 #import "OrganizationDetailTableViewController.h"
+#import "Constants.h"
 
 @interface MyOrganizationTableViewController ()
 
@@ -239,6 +240,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.tabBarController.tabBar setHidden:YES];
+    [self initNavBar];
 }
 
 /*
@@ -289,5 +291,34 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)initNavBar
+{
+    [self setBackButton];
+    [self changeToWhite];
+}
+
+-(void)setBackButton
+{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"top_back"] style:UIBarButtonItemStylePlain target:self action:@selector(navBackClick:)];
+    [backButton setTintColor:defaultMainColor];
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+
+-(IBAction)navBackClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(void)changeToWhite
+{
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     defaultMainColor, UITextAttributeTextColor,
+                                                                     [UIFont fontWithName:defaultBoldFont size:20.0], UITextAttributeFont,
+                                                                     nil]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
 
 @end

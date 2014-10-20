@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Home View Controller - First-->
@@ -1153,6 +1153,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                     <state key="normal" image="setting">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <segue destination="vNQ-Ye-yCV" kind="push" id="fYX-sR-ipq"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WlI-73-K2v">
                                     <rect key="frame" x="125" y="96" width="70" height="24"/>
@@ -1340,7 +1343,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
             </objects>
             <point key="canvasLocation" x="-382" y="405"/>
         </scene>
-        <!--My Acitivity Table View Controller-->
+        <!--My Acitivity Table View Controller - 我的活动-->
         <scene sceneID="8Pt-OQ-N7b">
             <objects>
                 <tableViewController id="n6G-Es-Jse" customClass="MyAcitivityTableViewController" sceneMemberID="viewController">
@@ -1410,13 +1413,13 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <outlet property="delegate" destination="n6G-Es-Jse" id="hbF-RX-0a1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="C5C-ox-YpS"/>
+                    <navigationItem key="navigationItem" title="我的活动" id="C5C-ox-YpS"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a63-LO-kYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="460" y="2555"/>
         </scene>
-        <!--My Friends Table View Controller-->
+        <!--My Friends Table View Controller - 我的好友-->
         <scene sceneID="IY4-DG-I9s">
             <objects>
                 <tableViewController id="Mym-qh-RuN" customClass="MyFriendsTableViewController" sceneMemberID="viewController">
@@ -1494,7 +1497,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <outlet property="delegate" destination="Mym-qh-RuN" id="Q45-9i-TOn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="7LD-l8-XHA"/>
+                    <navigationItem key="navigationItem" title="我的好友" id="7LD-l8-XHA"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="k93-q8-D2O" id="aQu-lA-shp"/>
                     </connections>
@@ -1826,7 +1829,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
             </objects>
             <point key="canvasLocation" x="958" y="1839"/>
         </scene>
-        <!--My Organization Table View Controller-->
+        <!--My Organization Table View Controller - 我的社群-->
         <scene sceneID="qxL-N3-EVd">
             <objects>
                 <tableViewController id="Iyw-2R-GfU" customClass="MyOrganizationTableViewController" sceneMemberID="viewController">
@@ -1896,7 +1899,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <outlet property="delegate" destination="Iyw-2R-GfU" id="pZf-jb-SUd"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Haj-Kf-Opw"/>
+                    <navigationItem key="navigationItem" title="我的社群" id="Haj-Kf-Opw"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ka-FD-Fwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3203,7 +3206,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_icon_de.png" id="o7g-QX-5Hc" customClass="IconImageViewLoader">
-                                                    <rect key="frame" x="230" y="28" width="70" height="70"/>
+                                                    <rect key="frame" x="230" y="24" width="70" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王佳" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="St4-Sd-yfb">
@@ -3212,6 +3215,15 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                                     <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lti-r8-qSJ">
+                                                    <rect key="frame" x="215" y="94" width="100" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                                    <state key="normal" title="设置为管理员">
+                                                        <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -3432,7 +3444,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="qqNumber" destination="UUb-C5-Twa" id="RbU-h2-fHX"/>
                         <outlet property="schoolName" destination="NDA-FW-gNc" id="uPJ-z7-RjR"/>
                         <outlet property="schoolNumber" destination="OTf-pz-ojF" id="pSt-Ft-kPS"/>
-                        <outlet property="userGender" destination="Nfo-Cq-A6c" id="mel-7S-Jld"/>
+                        <outlet property="setAdmin" destination="lti-r8-qSJ" id="12b-d1-0WI"/>
                         <outlet property="userIcon" destination="o7g-QX-5Hc" id="P1u-Xi-CHP"/>
                         <outlet property="userName" destination="St4-Sd-yfb" id="YUE-3T-URh"/>
                         <outlet property="userNickName" destination="kq5-ga-WEe" id="bcM-B0-Xu4"/>
@@ -4518,7 +4530,164 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="1934" y="-250"/>
+            <point key="canvasLocation" x="1974" y="-278"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="F4w-T5-Uyz">
+            <objects>
+                <tableViewController storyboardIdentifier="SettingsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vNQ-Ye-yCV" customClass="SettingsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cvC-nJ-cAD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="BQY-oI-qyx">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8lJ-CE-T8T">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8lJ-CE-T8T" id="wF7-PN-9Mu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_common_questions" id="a76-gS-w9O">
+                                                    <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="table_cell_indicator" id="aXk-41-ovI">
+                                                    <rect key="frame" x="289" y="15" width="8" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="常见问题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dFt-TJ-nZJ">
+                                                    <rect key="frame" x="40" y="14" width="231" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                                    <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="uwI-8d-KmI">
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uwI-8d-KmI" id="IxP-t2-AQC">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_contact_us" id="i0j-7x-uzx">
+                                                    <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="问题反馈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tUd-tj-3Ue">
+                                                    <rect key="frame" x="40" y="14" width="231" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                                    <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="table_cell_indicator" id="oBF-sZ-9h6">
+                                                    <rect key="frame" x="289" y="15" width="8" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eqD-yT-QGa">
+                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eqD-yT-QGa" id="0mc-4d-X13">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_about_us" id="lOm-Yi-4Rq">
+                                                    <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于我们" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fRT-Jo-igb">
+                                                    <rect key="frame" x="40" y="14" width="231" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                                    <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="table_cell_indicator" id="rPy-pd-Qx8">
+                                                    <rect key="frame" x="289" y="15" width="8" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="tr0-1d-ayi">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Jqw-8p-w7Y">
+                                        <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jqw-8p-w7Y" id="DAp-yW-lAw">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_update" id="F3y-eN-5lo">
+                                                    <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本更新" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zTM-R8-ryk">
+                                                    <rect key="frame" x="40" y="14" width="231" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                                    <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="table_cell_indicator" id="cQd-Cx-YUQ">
+                                                    <rect key="frame" x="289" y="15" width="8" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="HQp-L9-xqG">
+                                        <rect key="frame" x="0.0" y="240" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HQp-L9-xqG" id="brK-GU-Tz4">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_change_pass" id="quC-g9-U03">
+                                                    <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ViG-Rh-tRD">
+                                                    <rect key="frame" x="40" y="14" width="231" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
+                                                    <color key="textColor" red="0.37647058823529411" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="table_cell_indicator" id="cyv-4y-z09">
+                                                    <rect key="frame" x="289" y="15" width="8" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="0Fg-fv-xv1">
+                                <cells/>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="vNQ-Ye-yCV" id="1lX-YN-Brg"/>
+                            <outlet property="delegate" destination="vNQ-Ye-yCV" id="2bu-BE-R41"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1nb-hd-WaL"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q8c-sn-eQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-404" y="1217"/>
         </scene>
         <!--Search User Tabel View Controller-->
         <scene sceneID="ESg-ie-kIZ">
@@ -4729,7 +4898,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="rate_star_whole" width="14" height="14"/>
         <image name="search_back" width="174" height="30"/>
         <image name="setting" width="70" height="24"/>
+        <image name="setting_about_us" width="21" height="21"/>
+        <image name="setting_change_pass" width="21" height="25"/>
+        <image name="setting_common_questions" width="21" height="21"/>
+        <image name="setting_contact_us" width="21" height="21"/>
+        <image name="setting_update" width="21" height="21"/>
         <image name="split_line" width="1" height="1"/>
+        <image name="table_cell_indicator" width="8" height="14"/>
         <image name="tags" width="60" height="33"/>
         <image name="tel_check" width="62" height="20"/>
         <image name="time" width="24" height="24"/>

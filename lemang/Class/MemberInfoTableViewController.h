@@ -28,6 +28,8 @@
 @property (strong, nonatomic) IBOutlet IconImageViewLoader *userIcon;
 @property (strong, nonatomic) IBOutlet UILabel *userGender;
 
+@property (strong, nonatomic) IBOutlet UIButton *setAdmin;
+
 - (void) SetMemberId:(NSNumber*)userId;
 
 @end
