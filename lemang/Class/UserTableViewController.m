@@ -82,6 +82,7 @@
     }
 }
 
+
 - (void) UserLoginContact:(int)returnCode
 {
     if ([UserManager IsInitSuccess])

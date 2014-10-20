@@ -17,7 +17,6 @@
 		25382404199A1EE300180DB9 /* group1.png in Resources */ = {isa = PBXBuildFile; fileRef = 25382403199A1EE300180DB9 /* group1.png */; };
 		25382410199A2AF900180DB9 /* ActivityMemberTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */; };
 		25382412199A2CBA00180DB9 /* doge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 25382411199A2CBA00180DB9 /* doge.jpg */; };
-		25392FE4198FA35B0094CE6B /* appicon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 25392FE3198FA35B0094CE6B /* appicon152.png */; };
 		253AB34E19A206DF008A93A3 /* doge2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34B19A206DF008A93A3 /* doge2.jpg */; };
 		253AB34F19A206DF008A93A3 /* doge3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34C19A206DF008A93A3 /* doge3.jpg */; };
 		253AB35019A206DF008A93A3 /* doge4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 253AB34D19A206DF008A93A3 /* doge4.jpg */; };
@@ -185,7 +184,6 @@
 		2538240E199A2AF900180DB9 /* ActivityMemberTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityMemberTableViewController.h; path = Class/ActivityMemberTableViewController.h; sourceTree = "<group>"; };
 		2538240F199A2AF900180DB9 /* ActivityMemberTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityMemberTableViewController.m; path = Class/ActivityMemberTableViewController.m; sourceTree = "<group>"; };
 		25382411199A2CBA00180DB9 /* doge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = doge.jpg; sourceTree = "<group>"; };
-		25392FE3198FA35B0094CE6B /* appicon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appicon152.png; sourceTree = "<group>"; };
 		25392FE5198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; explicitFileType = text.plist.scriptTerminology; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPhone.strings"; sourceTree = "<group>"; };
 		25392FE6198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main_iPad.strings"; sourceTree = "<group>"; };
 		25392FE7198FAE160094CE6B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -538,7 +536,6 @@
 				256E04381987A106009845A5 /* AppDelegate.m */,
 				256E043A1987A106009845A5 /* Main_iPhone.storyboard */,
 				256E043D1987A106009845A5 /* Main_iPad.storyboard */,
-				25392FE3198FA35B0094CE6B /* appicon152.png */,
 				253823FE199A097E00180DB9 /* Images.xcassets */,
 				256E042F1987A106009845A5 /* Supporting Files */,
 			);
@@ -1126,7 +1123,6 @@
 				25CA2DF519949CF700BED707 /* 活动详细分享.png in Resources */,
 				25CA2DFD19949CF700BED707 /* 组织页面.png in Resources */,
 				253AB35019A206DF008A93A3 /* doge4.jpg in Resources */,
-				25392FE4198FA35B0094CE6B /* appicon152.png in Resources */,
 				2516A7D6199B5CC000768986 /* head.jpg in Resources */,
 				25CBBEDD19D2FDD5006E72C6 /* UMSocialLocalizable.strings in Resources */,
 				25CBBEE719D2FDD6006E72C6 /* UMSocialSDKResourcesNew.bundle in Resources */,
