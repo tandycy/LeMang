@@ -118,7 +118,6 @@ NSString *navTitle;
             NSString* group = temp[@"activityGroup"];
             NSString* type = temp[@"activityType"];
             
-            
             NSString* beginTime = [UserManager filtStr:temp[@"beginTime"] : @""];
             NSString* endTime = [UserManager filtStr:temp[@"endTime"] : @""];
             
@@ -126,8 +125,6 @@ NSString *navTitle;
             NSString* endDate = [self stringFromDate:[self dateFromString:endTime]];
             
             NSString* dateData = [beginDate stringByAppendingFormat:@" ~ %@", endDate];
-            
-            
             
             NSDictionary* members = temp[@"users"];
             int memberNum = 0;
@@ -244,8 +241,7 @@ NSString *navTitle;
     initUpdate = false;
     
     [super viewDidLoad];
-    
-    
+
    // [self showLoadingCircle];
     // Do any additional setup after loading the view.
 
@@ -413,10 +409,6 @@ NSString *navTitle;
         cell = [[ActivityViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"activity_list_back.png"]];
-    // [cell setBackgroundView:cellBG];
-    
-    
     Activity *activity = nil;
     
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -515,7 +507,6 @@ NSString *navTitle;
     //sender is the UIButton view
     [popover presentPopoverFromView:sender];
 }
-
 
 - (void)presentedNewPopoverController:(FPPopoverController *)newPopoverController
           shouldDismissVisiblePopover:(FPPopoverController*)visiblePopoverController
