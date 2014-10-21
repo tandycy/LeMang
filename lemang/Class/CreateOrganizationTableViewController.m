@@ -98,7 +98,7 @@
 {
     if (_orgName.text.length == 0)
     {
-        [self DoAlert:@"组织名不能为空":@""];
+        [self DoAlert:@"社群名不能为空":@""];
         return false;
     }
     if (_orgDescription.text.length == 0)

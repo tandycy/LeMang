@@ -86,7 +86,7 @@ typedef enum {
     [orgInfoGroup addSubview:orgTempBg];
     
     UILabel *orgLocationTitle = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, 65, 13)];
-    orgLocationTitle.text = @"组织地点：";
+    orgLocationTitle.text = @"社群地点：";
     orgLocationTitle.font = [UIFont fontWithName:defaultBoldFont size:13];
     [orgLocationGroup addSubview:orgLocationTitle];
     
@@ -96,7 +96,7 @@ typedef enum {
     [orgLocationGroup addSubview:orgLocation];
     
     UILabel *orgTempTitle = [[UILabel alloc]initWithFrame:CGRectMake(13, 10, 65, 13)];
-    orgTempTitle.text = @"组织信息：";
+    orgTempTitle.text = @"社群信息：";
     orgTempTitle.font = [UIFont fontWithName:defaultBoldFont size:13];
     [orgInfoGroup addSubview:orgTempTitle];
     
@@ -133,7 +133,7 @@ typedef enum {
     
     UILabel *memberTitle = [[UILabel alloc]initWithFrame:CGRectMake(11, 11, 29, 34)];
     memberTitle.font = [UIFont fontWithName:defaultFont size:13];
-    memberTitle.text = @"社团成员";
+    memberTitle.text = @"社群成员";
     memberTitle.textAlignment = UITextAlignmentCenter;
     memberTitle.lineBreakMode = UILineBreakModeWordWrap;
     memberTitle.numberOfLines = 0;
@@ -561,7 +561,7 @@ typedef enum {
     
     if (!canBookMark)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"已经收藏了该组织。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"已经收藏了该社群。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
         return;
     }
@@ -589,7 +589,7 @@ typedef enum {
         
         if (resCode == 200)
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:@"成功收藏至我的组织。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"收藏成功" message:@"成功收藏至我的社群。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [alertView show];
             
             canBookMark = false;
@@ -611,7 +611,7 @@ typedef enum {
     
     if (!canJoin)
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"已经加入了该组织。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"已经加入了该社群。" delegate:Nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
         
         return;

@@ -155,7 +155,7 @@
     endDate.text = [nowDate stringFromDate:[NSDate date]];
     tempDate = tempDate2 = [NSDate date];
     
-    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     startDataText = [nowDate stringFromDate:[NSDate date]];
     endDataText = [nowDate stringFromDate:[NSDate date]];
     
@@ -365,7 +365,7 @@
     [activityData setValue:endDataText forKey:@"endTime"];
     
     nowDate = [[NSDateFormatter alloc]init];
-    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [nowDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString* createDataText = [nowDate stringFromDate:[NSDate date]];
     [activityData setValue:createDataText forKey:@"createdDate"];
     
@@ -607,7 +607,7 @@
     startDate.text = dateAndTime;
     endDate.text = dateAndTime2;
     
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     startDataText = [dateFormatter stringFromDate:tempDate];
     endDataText = [dateFormatter stringFromDate:tempDate2];
 }
@@ -661,14 +661,14 @@
     if (allDayTrigger.isOn) {
         [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
     }
-    else [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+    else [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm:ss"];
     
     NSString *dateAndTime =  [dateFormatter stringFromDate:selected];
     if (startDate.isEditing) {
         startDate.text = dateAndTime;
         tempDate = selected;
         
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         startDataText = [dateFormatter stringFromDate:tempDate];
     }
     else if (endDate.isEditing)
@@ -676,7 +676,7 @@
         endDate.text =dateAndTime;
         tempDate2 = selected;
         
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         endDataText = [dateFormatter stringFromDate:tempDate2];
     }
     

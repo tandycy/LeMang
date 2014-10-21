@@ -1260,7 +1260,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的组织" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fga-me-0qc">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的社群" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fga-me-0qc">
                                                     <rect key="frame" x="20" y="11" width="280" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="15"/>
@@ -2227,11 +2227,11 @@ COaPkOS+m+mHkeiejeacjeWKoQ
             </objects>
             <point key="canvasLocation" x="1044" y="-225"/>
         </scene>
-        <!--Navigation Controller - 组织-->
+        <!--Navigation Controller - 社群-->
         <scene sceneID="T17-IK-XOW">
             <objects>
                 <navigationController definesPresentationContext="YES" id="gRo-jH-M2v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="3" title="组织" image="main_organization_off" id="9nn-42-3eM"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="社群" image="main_organization_off" id="9nn-42-3eM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rRQ-T2-mN0">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.94117647059999998" green="0.42352941179999998" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>

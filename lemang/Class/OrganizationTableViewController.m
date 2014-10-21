@@ -219,7 +219,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     OrganizationDetailTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"OrganizationDetailView"];
-    viewController.navigationItem.title = @"组织详细页面";
+    viewController.navigationItem.title = @"社群详细页面";
     
     static NSString *cellIdentifier = @"OrganizationTableCell";
     OrganizationViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -353,7 +353,7 @@
     
     if (![UserManager IsUserAuthen])
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未认证" message:@"只有认证用户才能创建组织。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"用户未认证" message:@"只有认证用户才能创建社群。" delegate:self cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
         [alertView show];
         return;
     }
