@@ -14,9 +14,7 @@
 
 @interface SearchTableViewController ()
 {
-    NSMutableArray *filteredActivityArray;
     NSMutableArray *historyArray;
-    
     NSMutableArray *resultArray;
 }
 
@@ -134,9 +132,15 @@
 
 -(void)initSearchResult
 {
-    filteredActivityArray = [[NSMutableArray alloc]init];
+    if (!resultArray)
+    {
+        resultArray = [[NSMutableArray alloc]init];
+    }
     
-    // TODO
+    if (!historyArray)
+    {
+        historyArray = [[NSMutableArray alloc]init];
+    }
 
 }
 
@@ -144,7 +148,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+//#warning Potentially incomplete method implementation.
     // Return the number of sections.
         return 3;
 }
@@ -152,7 +156,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSInteger rows = 0;
-    if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]){
+    if (isShowResult){
         rows = [self.searchResults count];
     }
     else
@@ -172,7 +176,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([tableView isEqual:self.searchDisplayController.searchResultsTableView])
+    if (isShowResult)
     {
         static NSString *CellIdentifier = @"Cell";
         
@@ -181,12 +185,9 @@
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        /* Configure the cell. */
-        
-        // TODO - cell - type?
         
         SearchResultItem *item = nil;
-        item = [filteredActivityArray objectAtIndex:indexPath.row];
+        item = [resultArray objectAtIndex:indexPath.row];
         cell.textLabel.text = item.title;
         return cell;
     }
@@ -241,29 +242,9 @@
 }
 
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-    NSLog(@"%@",scope);
-    
-    // wot iz scope?
-    
-    self.searchResults = filteredActivityArray;
-}
-
 #pragma mark - UISearchDisplayController delegate methods
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller  shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles]                                       objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    //[self.searchDisplayController.searchResultsTableView setRowHeight:95];
-    return YES;
-}
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-    [self filterContentForSearchText:[self.searchDisplayController.searchBar text]scope:[[self.searchDisplayController.searchBar scopeButtonTitles]objectAtIndex:searchOption]];
-    //[self.searchDisplayController.searchResultsTableView setRowHeight:95];
-    return YES;
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -273,9 +254,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([tableView isEqual:self.searchDisplayController.searchResultsTableView])
+    if (isShowResult)
     {
-        SearchResultItem* item = [filteredActivityArray objectAtIndex:indexPath.row];
+        SearchResultItem* item = [resultArray objectAtIndex:indexPath.row];
         
         if (item.itemType == Result_Activity)
         {
@@ -356,7 +337,6 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
 {
-    // TODO after click search
     bool isExist = false;
     for(NSString* item in historyArray)
     {
@@ -399,7 +379,7 @@
     if (!error) {
         NSArray* resultData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
         
-        [filteredActivityArray removeAllObjects];
+        [resultArray removeAllObjects];
         
         for (int i = 0; i < resultData.count; i++)
         {
@@ -415,21 +395,25 @@
             else if (searchType == Result_Organization)
                 resultItem.title = item[@"name"];
             
-            [filteredActivityArray addObject:resultItem];
+            [resultArray addObject:resultItem];
         }
-        [self.searchDisplayController.searchResultsTableView reloadData];
+        isShowResult = true;
+        [self.tableView reloadData];
         [self.searchBar resignFirstResponder];
     }
 }
 
+/*
 -(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {
 
 }
+ */
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    //
+    isShowResult = false;
+    [self.tableView reloadData];
 }
 
 /*
