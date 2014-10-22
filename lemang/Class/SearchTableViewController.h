@@ -14,8 +14,6 @@
 {
     UISearchDisplayController *searchDisplayController;
     UISearchBar *searchBar;
-    NSArray *historyItems;
-    NSArray *searchResults;
     
     enum SearchResultType searchType;
     
@@ -24,8 +22,6 @@
 
 @property (nonatomic, retain) IBOutlet UISearchDisplayController *searchDisplayController;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, copy) NSArray *historyItems;
-@property (nonatomic, copy) NSArray *searchResults;
 
 - (void)SetSearchOrganization;
 - (void)SetSearchActivity;

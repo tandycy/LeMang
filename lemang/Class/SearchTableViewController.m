@@ -23,8 +23,6 @@
 @implementation SearchTableViewController
 @synthesize searchDisplayController;
 @synthesize searchBar;
-@synthesize historyItems;
-@synthesize searchResults;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -105,15 +103,13 @@
     NSArray* history = dict[@"history"];
     historyArray = [NSMutableArray arrayWithArray:history];
     
-    self.historyItems = historyArray;
-    [self.tableView reloadData];
+    [self DoRefreshDisplay:false];
 }
 
 - (void) AddHistoryData:(NSString*)key
 {
     [historyArray addObject:key];
-    self.historyItems = historyArray;
-    [self.tableView reloadData];
+    //[self DoRefreshDisplay:false];
     
     [self saveHistory];
 }
@@ -157,7 +153,8 @@
     
     NSInteger rows = 0;
     if (isShowResult){
-        rows = [self.searchResults count];
+        if (section == 0)
+            rows = [resultArray count];
     }
     else
     {
@@ -168,7 +165,7 @@
         {
             return 1;
         }
-        else rows = [historyItems count];
+        else rows = [historyArray count];
     }
     return rows;
 }
@@ -229,7 +226,7 @@
         {
             /* Configure the cell. */
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = [self.historyItems objectAtIndex:indexPath.row];
+            cell.textLabel.text = historyArray[indexPath.row];
         }
         
         else if(indexPath.section == 2)
@@ -287,13 +284,15 @@
         }
         else if(indexPath.section==2)
         {
-            //to do clear history
+            // clear history
+            [historyArray removeAllObjects];
+            [self DoRefreshDisplay:false];
             return;
         }
         else
         {
             [self.searchDisplayController.searchBar becomeFirstResponder];
-            searchDisplayController.searchBar.text = historyItems[indexPath.row];
+            searchDisplayController.searchBar.text = historyArray[indexPath.row];
             [self.searchBar setSearchResultsButtonSelected:NO];
         }
     }
@@ -335,6 +334,14 @@
     NSLog(@"load results");
 }
 
+- (void)DoRefreshDisplay:(bool)showResult
+{
+    isShowResult = showResult;
+    [self.searchBar setShowsScopeBar:isShowResult];
+    
+    [self.tableView reloadData];
+}
+
 -(void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
 {
     bool isExist = false;
@@ -354,7 +361,7 @@
     
     if (searchType == Result_Organization)
     {
-        urlString = [urlString stringByAppendingString:@"group/"];
+        urlString = [urlString stringByAppendingString:@"association/"];
         urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_name="];
     }
     else if (searchType == Result_Activity)
@@ -397,9 +404,8 @@
             
             [resultArray addObject:resultItem];
         }
-        isShowResult = true;
-        [self.tableView reloadData];
-        [self.searchBar resignFirstResponder];
+        [self DoRefreshDisplay:true];
+        //[self.searchBar resignFirstResponder];
     }
 }
 
@@ -412,8 +418,7 @@
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    isShowResult = false;
-    [self.tableView reloadData];
+    [self DoRefreshDisplay:false];
 }
 
 /*
