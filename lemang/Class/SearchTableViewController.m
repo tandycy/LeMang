@@ -403,7 +403,7 @@
 - (void)DoRefreshDisplay:(bool)showResult
 {
     isShowResult = showResult;
-    [self.searchBar setShowsScopeBar:isShowResult];
+    //[self.searchBar setShowsScopeBar:isShowResult];
     
     [self.tableView reloadData];
 }
@@ -428,7 +428,24 @@
         [self AddHistoryData:_searchBar.text];
     NSLog(@"%@", _searchBar.text);
     
-    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/";//q?search_LIKE_loginName=";
+    [self searchKeyWord:_searchBar.text];
+}
+
+-(void)searchKeyWord:(NSString*)keyword
+{
+    enum SORT_TYPE_ENUM sortType = SORT_AUTO;
+    
+    if(self.searchBar.selectedScopeButtonIndex == 0)
+        sortType = SORT_DATE;
+    else if(self.searchBar.selectedScopeButtonIndex == 1)
+        sortType = SORT_JOINCOUNT;
+    
+    [self searchKeyWord:keyword :sortType];
+}
+
+-(void)searchKeyWord:(NSString*)keyword :(enum SORT_TYPE_ENUM)sortType
+{
+    NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/";
     
     if (searchType == Result_Organization)
     {
@@ -441,8 +458,20 @@
         urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_title="];
     }
     
-    urlString = [urlString stringByAppendingFormat:@"%@&search_LIKE_description=%@&search_LIKE_university.name=%@",_searchBar.text,_searchBar.text,_searchBar.text];
-    //urlString = [urlString stringByAppendingFormat:@"%@",_searchBar.text];
+    urlString = [urlString stringByAppendingFormat:@"%@&search_LIKE_description=%@&search_LIKE_university.name=%@",keyword,keyword,keyword];
+    if (sortType == SORT_AUTO)
+    {
+        urlString = [urlString stringByAppendingString:@"&sortType=auto"];
+    }
+    else if (sortType == SORT_DATE)
+    {
+        urlString = [urlString stringByAppendingString:@"&sortType=createdDate"];
+    }
+    else if (sortType == SORT_JOINCOUNT)
+    {
+        urlString = [urlString stringByAppendingString:@"&sortType=joinCount"];
+    }
+    
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL* URL = [NSURL URLWithString:urlString];
@@ -489,6 +518,7 @@
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+    self.searchBar.text = @"";
     [self DoRefreshDisplay:false];
 }
 

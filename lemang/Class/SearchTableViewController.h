@@ -12,8 +12,15 @@
 
 @interface SearchTableViewController : UITableViewController<UISearchBarDelegate,UISearchDisplayDelegate>
 {
+    enum SORT_TYPE_ENUM
+    {
+        SORT_AUTO,
+        SORT_DATE,
+        SORT_JOINCOUNT,
+        SORT_TOP,
+    };
     UISearchDisplayController *searchDisplayController;
-    UISearchBar *searchBar;
+    //UISearchBar *searchBar;
     
     enum SearchResultType searchType;
     
