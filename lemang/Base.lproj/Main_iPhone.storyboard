@@ -1785,6 +1785,9 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <outlet property="delegate" destination="FQX-BS-z7t" id="axd-T0-4Vr"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="NXp-Qi-IA8" id="YJE-2c-QST"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2yg-dR-fXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="ESf-Hg-yNt">

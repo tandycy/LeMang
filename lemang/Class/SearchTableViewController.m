@@ -297,7 +297,8 @@
     if (tagStr.length == 0)
         return;
     
-    NSLog(@"%@", tagStr);
+    self.searchBar.text = tagStr;
+    [self DoSearch];
 }
 
 
@@ -353,9 +354,12 @@
         else
         {
             // TODO
-            [self.searchDisplayController.searchBar becomeFirstResponder];
-            searchDisplayController.searchBar.text = historyArray[indexPath.row];
-            [self.searchBar setSearchResultsButtonSelected:NO];
+            //[self.searchDisplayController.searchBar becomeFirstResponder];
+            //searchDisplayController.searchBar.text = historyArray[indexPath.row];
+            //[self.searchBar setSearchResultsButtonSelected:NO];
+            
+            self.searchBar.text = historyArray[indexPath.row];
+            [self DoSearch];
         }
     }
 }
@@ -402,6 +406,11 @@
     [self.searchBar setShowsScopeBar:isShowResult];
     
     [self.tableView reloadData];
+}
+
+- (void)DoSearch
+{
+    [self searchBarSearchButtonClicked:self.searchBar];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
