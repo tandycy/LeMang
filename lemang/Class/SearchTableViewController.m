@@ -522,6 +522,17 @@
     [self DoRefreshDisplay:false];
 }
 
+-(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
+{
+    if (!isShowResult)
+        return;
+    
+    if (self.searchBar.text.length == 0)
+        return;
+    
+    [self DoSearch];
+}
+
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
