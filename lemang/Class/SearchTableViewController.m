@@ -36,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [UserManager RefreshTagData];
     [self initView];
     [self initSearchResult];
     // Uncomment the following lineto preserve selection between presentations.
@@ -158,14 +159,26 @@
     }
     else
     {
-        if (section==0) {
+        if (section==0)
+        {
+            // tag sector
+            int tagcount = [UserManager GetTags].count;
+            
+            if (tagcount == 0)
+                return 0;
+            
+            if (tagcount > 4)
+                return 2;
+            
             return 1;
         }
         else if(section==2)
         {
+            // clear history
             return 1;
         }
-        else rows = [historyArray count];
+        else
+            rows = [historyArray count];
     }
     return rows;
 }
@@ -175,7 +188,7 @@
 {
     if (isShowResult)
     {
-        static NSString *CellIdentifier = @"Cell";
+        NSString *CellIdentifier = @"SearchItemCell";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -185,61 +198,83 @@
         
         SearchResultItem *item = nil;
         item = [resultArray objectAtIndex:indexPath.row];
-        cell.textLabel.text = item.title;
+        
+        UILabel* title = [cell viewWithTag:8088];
+        title.text = item.title;
         return cell;
     }
     else
     {
-        static NSString *CellIdentifier = @"Cell";
+        NSString *CellIdentifier;
+        UITableViewCell *cell = nil;
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        
-        NSLog(@"%ld",(long)indexPath.section);
-        
-        UILabel *clear = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, 320, 30)];
-        clear.textAlignment = UITextAlignmentCenter;
-        clear.text = @"清除所有历史记录";
-        
-        if (indexPath.section==0) {
-            UIButton *hotButton1 = [[UIButton alloc]initWithFrame:CGRectMake(20, 6, 80, 30)];
-            UIButton *hotButton2 = [[UIButton alloc]initWithFrame:CGRectMake(120, 6, 80, 30)];
-            UIButton *hotButton3 = [[UIButton alloc]initWithFrame:CGRectMake(220, 6, 80, 30)];
-            [hotButton1 setTitle:@"hot" forState:UIControlStateNormal];
-            [hotButton2 setTitle:@"hot" forState:UIControlStateNormal];
-            [hotButton3 setTitle:@"hot" forState:UIControlStateNormal];
-            
-            [hotButton1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [hotButton1 setBackgroundColor:defaultLightGray243];
-            [hotButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [hotButton2 setBackgroundColor:defaultLightGray243];
-            [hotButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [hotButton3 setBackgroundColor:defaultLightGray243];
-            
-            [cell addSubview:hotButton1];
-            [cell addSubview:hotButton2];
-            [cell addSubview:hotButton3];
-        }
-        else if(indexPath.section == 1)
+        if (indexPath.section == 0)
         {
-            /* Configure the cell. */
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = historyArray[indexPath.row];
+            // tag sector
+            CellIdentifier = @"SearchTagCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            
+            NSMutableArray* tagButtons = [[NSMutableArray alloc]init];
+            // specified component tag here
+            for (int i = 8091; i < 8095; i++)
+            {
+                UIView* item = [cell viewWithTag:8088];
+                if ([item isKindOfClass:[UIButton class]])
+                {
+                    UIButton* button = (UIButton*)item;
+                    [tagButtons addObject:button];
+                }
+            }
         }
-        
-        else if(indexPath.section == 2)
+        else if (indexPath.section == 2)
         {
-            [cell addSubview:clear];
+            // clear sector
+            CellIdentifier = @"SearchHistoryCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            
+            UILabel* title = [cell viewWithTag:8088];
+            if (historyArray.count == 0)
+                title.text = @"无搜索历史";
+            else
+                title.text = @"清除搜索历史";
+            return cell;
+        }
+        else if (indexPath.section == 1)
+        {
+            // item sector
+            CellIdentifier = @"SearchItemCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            
+            UILabel* title = [cell viewWithTag:8088];
+            title.text = historyArray[indexPath.row];
+            return cell;
         }
         
         return cell;
     }
 }
 
-
-#pragma mark - UISearchDisplayController delegate methods
+-(IBAction)tagItemClick:(id)sender
+{
+    if (![sender isKindOfClass:[UIButton class]])
+        return;
+    
+    UIButton* button = (UIButton*)sender;
+    
+    NSString* tagStr = button.titleLabel.text;
+    
+    if (tagStr.length == 0)
+        return;
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -279,10 +314,12 @@
     }
     else
     {
-        if (indexPath.section==0) {
+        if (indexPath.section == 0)
+        {
+            // tags, no opeartion here
             return;
         }
-        else if(indexPath.section==2)
+        else if(indexPath.section == 2)
         {
             // clear history
             [historyArray removeAllObjects];
@@ -291,6 +328,7 @@
         }
         else
         {
+            // TODO
             [self.searchDisplayController.searchBar becomeFirstResponder];
             searchDisplayController.searchBar.text = historyArray[indexPath.row];
             [self.searchBar setSearchResultsButtonSelected:NO];
