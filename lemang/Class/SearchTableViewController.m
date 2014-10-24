@@ -221,11 +221,33 @@
             // specified component tag here
             for (int i = 8091; i < 8095; i++)
             {
-                UIView* item = [cell viewWithTag:8088];
+                UIView* item = [cell viewWithTag:i];
                 if ([item isKindOfClass:[UIButton class]])
                 {
                     UIButton* button = (UIButton*)item;
                     [tagButtons addObject:button];
+                }
+            }
+            
+            NSArray* tagArray = [UserManager GetTags];
+            int tagIndex = indexPath.row * 4;
+            for (int i = 0; i < tagButtons.count; i++)
+            {
+                UIButton* button = tagButtons[i];
+                
+                if (tagIndex >= tagArray.count)
+                {
+                    [button setEnabled:false];
+                }
+                else
+                {
+                    TagItem* tagItem = tagArray[tagIndex];
+                    [button setEnabled:true];
+                    [button setTitle:tagItem.name forState:UIControlStateNormal];
+                    //button.titleLabel.text = tagItem.name;
+                    tagIndex++;
+                    
+                    [button addTarget:self action:@selector(tagItemClick:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }
         }
@@ -274,6 +296,8 @@
     
     if (tagStr.length == 0)
         return;
+    
+    NSLog(@"%@", tagStr);
 }
 
 
