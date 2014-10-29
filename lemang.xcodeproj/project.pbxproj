@@ -25,6 +25,7 @@
 		253B26E519D349FE00027C74 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B26E219D349FE00027C74 /* FPTouchView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		253B26E819D355F600027C74 /* SelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253B26E719D355F600027C74 /* SelectTableViewController.m */; };
 		2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */; };
+		25465BBA19FF978F007CE99C /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25465BB919FF978F007CE99C /* HomeTableViewController.m */; };
 		256E04291987A106009845A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E04281987A106009845A5 /* Foundation.framework */; };
 		256E042B1987A106009845A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042A1987A106009845A5 /* CoreGraphics.framework */; };
 		256E042D1987A106009845A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E042C1987A106009845A5 /* UIKit.framework */; };
@@ -201,6 +202,8 @@
 		253B26E719D355F600027C74 /* SelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectTableViewController.m; path = Class/SelectTableViewController.m; sourceTree = "<group>"; };
 		2545E01F199CC45000F99CC7 /* ActivityCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityCommentTableViewController.h; path = Class/ActivityCommentTableViewController.h; sourceTree = "<group>"; };
 		2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommentTableViewController.m; path = Class/ActivityCommentTableViewController.m; sourceTree = "<group>"; };
+		25465BB819FF978F007CE99C /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeTableViewController.h; path = Class/HomeTableViewController.h; sourceTree = "<group>"; };
+		25465BB919FF978F007CE99C /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeTableViewController.m; path = Class/HomeTableViewController.m; sourceTree = "<group>"; };
 		256E04251987A106009845A5 /* 乐芒.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "乐芒.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		256E04281987A106009845A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		256E042A1987A106009845A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -675,6 +678,8 @@
 			children = (
 				256E04631987AA6B009845A5 /* HomeViewController.h */,
 				256E04641987AA6B009845A5 /* HomeViewController.m */,
+				25465BB819FF978F007CE99C /* HomeTableViewController.h */,
+				25465BB919FF978F007CE99C /* HomeTableViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1240,6 +1245,7 @@
 				253B26E419D349FE00027C74 /* FPPopoverView.m in Sources */,
 				28DC154219C5C98E00DE97F0 /* ActivityCommentCell.m in Sources */,
 				28DC152B19BD5E8000DE97F0 /* ASICloudFilesContainer.m in Sources */,
+				25465BBA19FF978F007CE99C /* HomeTableViewController.m in Sources */,
 				256E04791987B2BA009845A5 /* ActivityDetailViewController.m in Sources */,
 				EE9BCB3E19AB45E700710F90 /* ActivityViewCell.m in Sources */,
 				EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */,

@@ -197,7 +197,7 @@
         imgUrlString = tempstr;
     }
     NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
-    [titleImgView LoadFromUrl:imgUrl :[UIImage imageNamed:@"default_Icon"]];
+    [titleImgView LoadFromUrl:imgUrl :[UIImage imageNamed:@"icon_org"]];
     
     NSDictionary* board = activityData[@"board"];
     NSNumber* favNum = [NSNumber numberWithInt:0];

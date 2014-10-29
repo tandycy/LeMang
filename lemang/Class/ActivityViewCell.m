@@ -78,7 +78,7 @@
         imgUrlString = tempstr;
     }
     NSURL* imgUrl = [NSURL URLWithString:imgUrlString];
-    [_actIcon LoadFromUrl:imgUrl :[UIImage imageNamed:@"default_Icon"]];
+    [_actIcon LoadFromUrl:imgUrl :[UIImage imageNamed:@"icon_org"]];
     
     
     NSString* group = localData[@"activityGroup"];
@@ -122,7 +122,7 @@
 
     _actTypeIcon.image = _act.icon;
     
-    [_actIcon LoadFromUrl:_act.imgUrlStr :[UIImage imageNamed:@"default_Icon"]];
+    [_actIcon LoadFromUrl:_act.imgUrlStr :[UIImage imageNamed:@"icon_org"]];
     
     [self UpdateBoard:_act.memberUpper];
     [self UpdateTags];
