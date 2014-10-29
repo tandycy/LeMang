@@ -273,7 +273,6 @@
     }
     else if (section == 1)
     {
-        // TODO: admin list
         UILabel *noAdmin = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 88)];
         noAdmin.font = [UIFont fontWithName:defaultBoldFont size:13];
         noAdmin.textColor = defaultTitleGray96;
@@ -290,7 +289,41 @@
             
             for (int i = 0; i < iconNumber; i++)
             {
-                //
+                int memberIndex = i;
+                NSDictionary* member = adminList[memberIndex];
+                
+                IconImageButtonLoader *button = [IconImageButtonLoader buttonWithType:UIButtonTypeCustom];
+                
+                UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, 50, 20)];
+                name.text = member[@"name"];
+                name.font = [UIFont fontWithName:defaultFont size:11];
+                name.textAlignment = UITextAlignmentCenter;
+                name.textColor = defaultMainColor;
+                
+                
+                NSDictionary* profileData = member[@"profile"];
+                [button setBackgroundImage:self.image forState:UIControlStateNormal];
+                if ([profileData isKindOfClass:[NSDictionary class]])
+                {
+                    NSString* iconStr = [profileData valueForKey:@"iconUrl"];
+                    iconStr = [NSString stringWithFormat:@"http://e.taoware.com:8080/quickstart/resources%@", iconStr];
+                    NSURL* creatorIconUrl = [NSURL URLWithString:iconStr];
+                    [button LoadFromUrl:creatorIconUrl :self.image];
+                }
+                
+                button.bounds = CGRectMake(0, 0, kImageWidth, kImageHeight);
+                if (i==0) {
+                    button.center = CGPointMake((1 + i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
+                }
+                else button.center = CGPointMake((1 + 2*i) * 15 + kImageWidth *(0.5 + i) , 10 + kImageHeight * 0.5);
+                [button SetLocation:section : 0: i];
+                //button.column = i;
+                [button setValue:[NSNumber numberWithInt:i] forKey:@"column"];
+                [button addTarget:self action:@selector(imageItemClick:) forControlEvents:UIControlEventTouchUpInside];
+                //[button setBackgroundImage:self.image forState:UIControlStateNormal];
+                [button addSubview:name];
+                [cell addSubview:button];
+                //[array addObject:button];
             }
         }
         else
