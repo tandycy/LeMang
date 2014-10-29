@@ -470,6 +470,11 @@
     if (section == 1)
     {
         // admin
+        int offset = [button Index];
+        
+        NSDictionary* data = adminList[offset];
+        
+        [memberInfoTVC SetMemberId:data[@"id"]];
     }
     else if (section == 2)
     {
