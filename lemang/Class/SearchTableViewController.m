@@ -11,11 +11,17 @@
 #import "ActivityDetailViewController.h"
 #import "OrganizationDetailTableViewController.h"
 #import "Constants.h"
+#import "MJRefresh.h"
 
 @interface SearchTableViewController ()
 {
     NSMutableArray *historyArray;
     NSMutableArray *resultArray;
+    
+    NSString* searchStr;
+    int currentPage;
+    int nextPage;
+    int pageSize;
 }
 
 @end
@@ -36,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupRefresh];
     [UserManager RefreshTagData];
     [self initView];
     [self initSearchResult];
@@ -44,6 +51,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    currentPage = nextPage = 0;
     
     if (keyword != Nil && keyword.length > 0)
     {
@@ -151,6 +160,39 @@
 
 }
 
+- (void)setupRefresh
+{
+    // 上拉加载更多(进入刷新状态就会调用self的footerRereshing)
+    [self.tableView addFooterWithTarget:self action:@selector(footerRereshing)];
+    
+    // 设置文字(也可以不设置,默认的文字在MJRefreshConst中修改)
+    
+    self.tableView.footerPullToRefreshText = @"上拉可以加载更多数据";
+    self.tableView.footerReleaseToRefreshText = @"松开马上加载更多数据";
+    self.tableView.footerRefreshingText = @"数据加载中...";
+}
+
+- (void)footerRereshing
+{
+    if (currentPage >= nextPage)
+    {
+        [self.tableView footerEndRefreshing];
+        return;
+    }
+    
+    // 1.添加数据
+    [self AppendResultData];
+    
+    // 2.2秒后刷新表格UI
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        [self.tableView reloadData];
+        
+        // (最好在刷新表格后调用)调用endRefreshing可以结束刷新状态
+        [self.tableView footerEndRefreshing];
+    });
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -165,7 +207,12 @@
     NSInteger rows = 0;
     if (isShowResult){
         if (section == 0)
+        {
             rows = [resultArray count];
+            
+            if (rows == 0)
+                rows = 1;
+        }
     }
     else
     {
@@ -206,11 +253,20 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         
-        SearchResultItem *item = nil;
-        item = [resultArray objectAtIndex:indexPath.row];
-        
         UILabel* title = [cell viewWithTag:8088];
-        title.text = item.title;
+        
+        if (resultArray.count > 0)
+        {
+            SearchResultItem *item = nil;
+            item = [resultArray objectAtIndex:indexPath.row];
+        
+            title.text = item.title;
+        }
+        else
+        {
+            title.text = @"无搜索结果";
+        }
+        
         return cell;
     }
     else
@@ -339,7 +395,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (isShowResult)
+    if (isShowResult && resultArray.count > 0)
     {
         SearchResultItem* item = [resultArray objectAtIndex:indexPath.row];
         
@@ -470,22 +526,38 @@
     [self searchKeyWord:key :sortType];
 }
 
--(void)searchKeyWord:(NSString*)keyword :(enum SORT_TYPE_ENUM)sortType
+-(void)searchKeyWord:(NSString*)key :(enum SORT_TYPE_ENUM)sortType
 {
+    keyword = key;
+    
     NSString* urlString = @"http://e.taoware.com:8080/quickstart/api/v1/";
     
-    if (searchType == Result_Organization)
+    if (searchType == Result_Organization || searchType == Result_Organization_Tag)
     {
         urlString = [urlString stringByAppendingString:@"association/"];
-        urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_name="];
+        
+        if (searchType == Result_Organization)
+            urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_name="];
     }
-    else if (searchType == Result_Activity)
+    else if (searchType == Result_Activity || searchType == Result_Activity_Tag)
     {
         urlString = [urlString stringByAppendingString:@"activity/"];
-        urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_title="];
+        
+        if (searchType == Result_Activity)
+            urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_title="];
     }
     
-    urlString = [urlString stringByAppendingFormat:@"%@&search_LIKE_description=%@&search_LIKE_university.name=%@",keyword,keyword,keyword];
+    if (searchType == Result_Activity_Tag || searchType == Result_Organization_Tag)
+    {
+        urlString = [urlString stringByAppendingFormat:@"q?search_LIKE_tags=%@",key];
+    }
+    else
+    {
+        urlString = [urlString stringByAppendingFormat:@"%@&search_LIKE_tags=%@",key,key];
+        urlString = [urlString stringByAppendingFormat:@"&search_LIKE_description=%@&search_LIKE_university.name=%@",key,key];
+        urlString = [urlString stringByAppendingFormat:@"&search_LIKE_area.name=%@&search_LIKE_department.name=%@",key,key];
+    }
+    
     if (sortType == SORT_AUTO)
     {
         urlString = [urlString stringByAppendingString:@"&sortType=auto"];
@@ -499,7 +571,29 @@
         urlString = [urlString stringByAppendingString:@"&sortType=joinCount"];
     }
     
-    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    searchStr = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    currentPage = 0;
+    nextPage = 1;
+    pageSize = 10;
+    
+    [resultArray removeAllObjects];
+    
+    [self AppendResultData];
+}
+
+- (void) AppendResultData
+{
+    if (currentPage >= nextPage)
+    {
+        NSLog(@"activity at final page: %d, refresh cancel", currentPage);
+        return;
+    }
+    NSLog(@"append activity data for page: %d", nextPage);
+    
+    NSString* urlString = searchStr;
+    
+    urlString = [urlString stringByAppendingFormat:@"?page=%d&page.size=%d",currentPage, pageSize];
     
     NSURL* URL = [NSURL URLWithString:urlString];
     
@@ -510,10 +604,20 @@
     
     NSError *error = [request error];
     int returnCode = [request responseStatusCode];
+    NSLog(@"%d",returnCode);
+    
     if (!error) {
-        NSArray* resultData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        NSDictionary* returnData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+        NSArray* resultData = returnData[@"content"];
         
-        [resultArray removeAllObjects];
+        NSNumber* totalPage = returnData[@"totalPages"];
+        long maxPage = totalPage.longValue;
+        
+        currentPage = nextPage;
+        if (currentPage >= maxPage)
+            nextPage = maxPage;
+        else
+            nextPage = currentPage+1;
         
         for (int i = 0; i < resultData.count; i++)
         {
@@ -534,8 +638,8 @@
         [self DoRefreshDisplay:true];
         //[self.searchBar resignFirstResponder];
     }
-}
 
+}
 /*
 -(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
 {
