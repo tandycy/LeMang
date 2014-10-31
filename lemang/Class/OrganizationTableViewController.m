@@ -260,10 +260,10 @@
 {
     //the controller we want to present as a popover
     SelectTableViewController *controller = [[SelectTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    controller.title = @"请选择您需要筛选的关键字";
-    [controller SetAsOrganization];
-    
     FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
+
+    controller.title = @"请选择您需要筛选的关键字";
+    [controller SetAsOrganization:self :popover];
     
     //popover.arrowDirection = FPPopoverArrowDirectionAny;
     popover.tint = FPPopoverYellowTinit;

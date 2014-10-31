@@ -44,26 +44,36 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    if (keyword != Nil && keyword.length > 0)
+    {
+        searchBar.text = keyword;
+        [self searchKeyWord:keyword];
+    }
 }
 
 -(void)SetSearchActivity
 {
     searchType = Result_Activity;
+    keyword = @"";
 }
 
 -(void)SetSearchOrganization
 {
     searchType = Result_Organization;
+    keyword = @"";
 }
 
 -(void)SetSearchActivityTag:(NSString *)tagstr
 {
-    searchType = Result_Activity;
+    searchType = Result_Activity_Tag;
+    keyword = tagstr;
 }
 
 -(void)SetSearchOrganizationTag:(NSString *)tagstr
 {
-    searchType = Result_Organization;
+    searchType = Result_Organization_Tag;
+    keyword = tagstr;
 }
 
 -(void)initView
@@ -298,9 +308,27 @@
         return;
     
     self.searchBar.text = tagStr;
+    
+    [self SetTypeTag];
+    
     [self DoSearch];
 }
 
+- (void) SetTypeNromal
+{
+    if (searchType == Result_Organization_Tag)
+        searchType = Result_Organization;
+    else if (searchType == Result_Activity_Tag)
+        searchType = Result_Activity;
+}
+
+- (void) SetTypeTag
+{
+    if (searchType == Result_Organization)
+        searchType = Result_Organization_Tag;
+    else if (searchType == Result_Activity)
+        searchType = Result_Activity_Tag;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -415,24 +443,23 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
 {
+    [self searchKeyWord:_searchBar.text];
+}
+
+-(void)searchKeyWord:(NSString*)key
+{
     bool isExist = false;
     for(NSString* item in historyArray)
     {
-        if ([item isEqualToString:_searchBar.text])
+        if ([item isEqualToString:key])
         {
             isExist = true;
             break;
         }
     }
     if (!isExist)
-        [self AddHistoryData:_searchBar.text];
-    NSLog(@"%@", _searchBar.text);
+        [self AddHistoryData:key];
     
-    [self searchKeyWord:_searchBar.text];
-}
-
--(void)searchKeyWord:(NSString*)keyword
-{
     enum SORT_TYPE_ENUM sortType = SORT_AUTO;
     
     if(self.searchBar.selectedScopeButtonIndex == 0)
@@ -440,7 +467,7 @@
     else if(self.searchBar.selectedScopeButtonIndex == 1)
         sortType = SORT_JOINCOUNT;
     
-    [self searchKeyWord:keyword :sortType];
+    [self searchKeyWord:key :sortType];
 }
 
 -(void)searchKeyWord:(NSString*)keyword :(enum SORT_TYPE_ENUM)sortType

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UserManager.h"
 #import "SchoolManager.h"
+#import "FPPopoverController.h"
 
 @interface SelectTableViewController : UITableViewController
 {
@@ -17,9 +18,11 @@
     NSMutableArray* bookmarkArray;
     
     bool isactivity;
+    UIViewController* owner;
+    FPPopoverController* popoverControl;
 }
 
--(void)SetAsActivity;
--(void)SetAsOrganization;
+-(void)SetAsActivity:(UIViewController*)_owner :(FPPopoverController*)popover;
+-(void)SetAsOrganization:(UIViewController*)_owner :(FPPopoverController*)popover;
 
 @end

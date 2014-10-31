@@ -14,6 +14,8 @@ enum SearchResultType
     Result_Organization,
     Result_Activity,
     Result_User,
+    Result_Organization_Tag,
+    Result_Activity_Tag,
 };
 
 @interface SearchResultItem : NSObject

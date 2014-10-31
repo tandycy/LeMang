@@ -140,9 +140,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
-    
+   
+    SearchTableViewController *searchView = [owner.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
+
     NSString* tagName = @"";
     
     if (indexPath.section == 0)
@@ -157,17 +157,23 @@
     else
         [searchView SetSearchOrganizationTag:tagName];
     
-    [self.navigationController pushViewController:searchView animated:YES];
+    if (popoverControl)
+        [popoverControl dismissPopoverAnimated:false];
+    [owner.navigationController pushViewController:searchView animated:YES];
 }
 
--(void)SetAsActivity
+-(void)SetAsActivity:(UIViewController*)_owner :(FPPopoverController*)popover
 {
     isactivity = true;
+    owner = _owner;
+    popoverControl = popover;
 }
 
--(void)SetAsOrganization
+-(void)SetAsOrganization:(UIViewController*)_owner :(FPPopoverController*)popover
 {
     isactivity = false;
+    owner = _owner;
+    popoverControl = popover;
 }
 
 /*
