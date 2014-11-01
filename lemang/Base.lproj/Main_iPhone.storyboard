@@ -22,7 +22,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3cy-eH-XTj">
-                                            <rect key="frame" x="8" y="7" width="60" height="60"/>
+                                            <rect key="frame" x="8" y="7" width="67" height="60"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复旦大学百年校庆" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jLh-63-ohb">
@@ -60,6 +60,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2PG-cB-QuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-482" y="-2824"/>
+        </scene>
+        <!--Home Detail View Controller-->
+        <scene sceneID="VvV-Ad-8ZI">
+            <objects>
+                <viewController storyboardIdentifier="HomeDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gAl-SN-Z6e" customClass="HomeDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="89Q-2U-e3M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="44F-sD-EUI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Tg-CH-DTR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-44" y="-2820"/>
         </scene>
         <!--Navigation Controller - 资讯-->
         <scene sceneID="jCC-8U-tdK">
