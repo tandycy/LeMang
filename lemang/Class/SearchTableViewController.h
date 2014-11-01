@@ -25,6 +25,7 @@
     enum SearchResultType searchType;
     
     bool isShowResult;
+    NSString* keyword;
 }
 
 @property (nonatomic, retain) IBOutlet UISearchDisplayController *searchDisplayController;
