@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeDetailViewController : UIViewController
+@property (strong, nonatomic) UIScrollView *DetailSroll;
 
 @end
