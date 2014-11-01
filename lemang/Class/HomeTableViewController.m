@@ -8,6 +8,7 @@
 
 #import "HomeTableViewController.h"
 #import "Constants.h"
+#import "HomeDetailViewController.h"
 
 @interface HomeTableViewController ()
 
@@ -75,6 +76,12 @@
     return 75;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HomeDetailViewController *HDVC = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeDetailViewController"];
+    [self.navigationController pushViewController:HDVC animated:YES];
+    
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
