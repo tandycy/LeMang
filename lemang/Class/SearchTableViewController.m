@@ -625,12 +625,18 @@
             SearchResultItem* resultItem = [[SearchResultItem alloc]init];
             
             resultItem.itemType = searchType;
+            
+            if (resultItem.itemType == Result_Activity_Tag)
+                resultItem.itemType = Result_Activity;
+            else if (resultItem.itemType == Result_Organization_Tag)
+                resultItem.itemType = Result_Organization;
+            
             resultItem.itemId = item[@"id"];
             resultItem.localData = item;
             
-            if (searchType == Result_Activity)
+            if (resultItem.itemType == Result_Activity)
                 resultItem.title = item[@"title"];
-            else if (searchType == Result_Organization)
+            else if (resultItem.itemType == Result_Organization)
                 resultItem.title = item[@"name"];
             
             [resultArray addObject:resultItem];
