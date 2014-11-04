@@ -48,6 +48,10 @@
 {
     [self.okButton addTarget:self action:@selector(okClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.cancelButton addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *vButtonBack = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 140, 140)];
+    vButtonBack.image = [UIImage imageNamed:@"user_icon_de"];
+    [self.userVerifyPhoto addSubview:vButtonBack];
 }
 
 - (void) DelayCheck

@@ -34,6 +34,7 @@
     
     AddFriendViewController *addVC = [owner.storyboard instantiateViewControllerWithIdentifier:@"AddFriendViewController"];
     [addVC SetData:localData];
+    [addVC setTitle:@"添加好友"];
     [owner.navigationController pushViewController:addVC animated:YES];
 }
 

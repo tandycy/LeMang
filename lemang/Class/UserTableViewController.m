@@ -61,6 +61,7 @@
 -(IBAction)msgBtnClick:(id)sender
 {
     MyMessageTableViewController *MyMsgTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyMessageTableViewController"];
+    [MyMsgTVC setTitle:@"我的消息"];
     [self.navigationController pushViewController:MyMsgTVC animated:YES];
 }
 

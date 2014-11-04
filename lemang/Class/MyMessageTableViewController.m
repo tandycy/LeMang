@@ -38,6 +38,17 @@
     [self RefreshMessageList];
     [self RefreshActivityEnrollmentList];
     [self RefreshOrgEnrollmentList];
+    
+    [self setTableFooterView:self.tableView];
+}
+
+- (void)setTableFooterView:(UITableView *)tb {
+    if (!tb) {
+        return;
+    }
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [tb setTableFooterView:view];
 }
 
 - (void) RefreshMessageList
@@ -157,7 +168,6 @@
     if (cell==nil) {
         cell =  [[MyMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"msgCell"];
     }
-    
     NSDictionary* messageData = messageList[indexPath.row];
     
     [cell SetMessageData:messageData owner:self];
@@ -222,6 +232,20 @@
 {
     [self.tabBarController.tabBar setHidden:YES];
     [self initNavBar];
+    
+    if (messageList.count==0) {
+        UIView *bLank = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [bLank setBackgroundColor:[UIColor whiteColor]];
+        [self.tableView addSubview:bLank];
+        [self.tableView setUserInteractionEnabled:NO];
+        
+        UILabel *noMsg = [[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width/4, self.view.frame.size.height/3, self.view.frame.size.width/2, 15)];
+        noMsg.text = @"暂无消息";
+        noMsg.font = [UIFont fontWithName:defaultBoldFont size:15];
+        noMsg.textColor = defaultTitleGray96;
+        [noMsg setTextAlignment:NSTextAlignmentCenter];
+        [bLank addSubview:noMsg];
+    }
 }
 /*
 // Override to support conditional editing of the table view.

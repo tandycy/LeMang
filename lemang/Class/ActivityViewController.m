@@ -292,6 +292,17 @@ NSString *navTitle;
     [self.activityList addSubview:pageControl];
     
     [UserManager RefreshGroupData];
+    [self setTableFooterView:activityList];
+}
+
+- (void)setTableFooterView:(UITableView *)tb {
+    if (!tb) {
+        return;
+    }
+    
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [tb setTableFooterView:view];
 }
 
 -(void)viewDidAppear:(BOOL)animated

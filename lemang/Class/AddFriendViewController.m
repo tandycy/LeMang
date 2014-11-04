@@ -46,6 +46,7 @@
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]init];
     rightButton.title = @"发送邀请";
+    rightButton.tintColor = defaultMainColor;
     self.navigationItem.rightBarButtonItem = rightButton;
     rightButton.target = self;
     rightButton.action = @selector(OnSendRequest:);
