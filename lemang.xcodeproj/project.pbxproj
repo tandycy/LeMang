@@ -139,6 +139,7 @@
 		28DC154619D35ADE00DE97F0 /* MyActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC154519D35ADE00DE97F0 /* MyActivityCell.m */; };
 		EE18D80519CEC3AF00B1DCA2 /* MyMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */; };
 		EE28E93E19C152D000E0E8A6 /* profile.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE28E93D19C152D000E0E8A6 /* profile.plist */; };
+		EE345BBA1A0F6E02008016DE /* HomeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE345BB91A0F6E02008016DE /* HomeViewCell.m */; };
 		EE44A53919AF1D1B004B0E5B /* IconImageViewLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */; };
 		EE54DB1919B563EF0000845F /* UserManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1819B563EF0000845F /* UserManager.mm */; };
 		EE54DB1C19B56A270000845F /* StringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EE54DB1B19B56A270000845F /* StringEncoder.m */; };
@@ -410,6 +411,8 @@
 		EE18D80319CEC3AF00B1DCA2 /* MyMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMessageCell.h; path = Class/MyMessageCell.h; sourceTree = "<group>"; };
 		EE18D80419CEC3AF00B1DCA2 /* MyMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMessageCell.m; path = Class/MyMessageCell.m; sourceTree = "<group>"; };
 		EE28E93D19C152D000E0E8A6 /* profile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = profile.plist; path = lemang/Class/profile.plist; sourceTree = "<group>"; };
+		EE345BB81A0F6E02008016DE /* HomeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewCell.h; path = Class/HomeViewCell.h; sourceTree = "<group>"; };
+		EE345BB91A0F6E02008016DE /* HomeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewCell.m; path = Class/HomeViewCell.m; sourceTree = "<group>"; };
 		EE44A53719AF1D1B004B0E5B /* IconImageViewLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconImageViewLoader.h; path = Class/IconImageViewLoader.h; sourceTree = "<group>"; };
 		EE44A53819AF1D1B004B0E5B /* IconImageViewLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconImageViewLoader.m; path = Class/IconImageViewLoader.m; sourceTree = "<group>"; };
 		EE54DB1719B563EF0000845F /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserManager.h; path = Class/UserManager.h; sourceTree = "<group>"; };
@@ -685,6 +688,8 @@
 				25465BB919FF978F007CE99C /* HomeTableViewController.m */,
 				25E97ACF1A049823006512AA /* HomeDetailViewController.h */,
 				25E97AD01A049823006512AA /* HomeDetailViewController.m */,
+				EE345BB81A0F6E02008016DE /* HomeViewCell.h */,
+				EE345BB91A0F6E02008016DE /* HomeViewCell.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1084,7 +1089,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1198,6 +1203,7 @@
 				28DC152D19BD5E8100DE97F0 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				258087AA19A71C4C005E308D /* UserInfoTableViewController.m in Sources */,
 				28DC153119BD5E8100DE97F0 /* ASIS3Bucket.m in Sources */,
+				EE345BBA1A0F6E02008016DE /* HomeViewCell.m in Sources */,
 				28DC153419BD5E8100DE97F0 /* ASIS3ObjectRequest.m in Sources */,
 				28DC153019BD5E8100DE97F0 /* ASICloudFilesRequest.m in Sources */,
 				25D3F0B819C95C2D00E6C29F /* EditUserInfoViewController.m in Sources */,
@@ -1509,7 +1515,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

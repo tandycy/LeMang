@@ -204,7 +204,7 @@
     // Configure the cell...s
     if (cell == nil)
     {
-        cell = [_localTabelView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell = [[OrganizationViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     NSDictionary* orgData = organizationArray[indexPath.row];

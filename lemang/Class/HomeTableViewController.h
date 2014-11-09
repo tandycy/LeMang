@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface HomeTableViewController : UITableViewController
+{
+    NSMutableArray* newsDataArray;
+}
 
 @end
