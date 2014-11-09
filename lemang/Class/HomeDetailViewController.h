@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeDetailViewController : UIViewController
+{
+    NSDictionary* localData;
+}
 @property (strong, nonatomic) UIScrollView *DetailSroll;
+
+- (void)SetNewsData:(NSDictionary*)data;
 
 @end

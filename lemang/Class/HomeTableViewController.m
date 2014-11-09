@@ -203,6 +203,7 @@
     HomeDetailViewController *HDVC = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeDetailViewController"];
     [self.navigationController pushViewController:HDVC animated:YES];
     
+    [HDVC SetNewsData:newsDataArray[indexPath.row]];
 }
 /*
 // Override to support conditional editing of the table view.
