@@ -78,6 +78,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HomeDetailViewController *HDVC = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeDetailViewController"];
     [self.navigationController pushViewController:HDVC animated:YES];
     

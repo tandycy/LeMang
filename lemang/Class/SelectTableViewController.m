@@ -35,7 +35,7 @@
     [SchoolManager InitSchoolList];
     [self RefreshTags];
     
-    titleArray = [[NSMutableArray alloc] initWithObjects:@"热门标签", @"学校", @"收藏的活动", nil];
+    titleArray = [[NSMutableArray alloc] initWithObjects:@"热门标签", @"学校", nil];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -107,7 +107,8 @@
         tagName = bookmarkArray[indexPath.row];
     
     cell.textLabel.text = tagName;
-    cell.textLabel.font = [UIFont fontWithName:defaultFont size:18];
+    cell.textLabel.font = [UIFont fontWithName:defaultFont size:13];
+    cell.textLabel.textColor = defaultTitleGray96;
     
     return cell;
 }

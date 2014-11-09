@@ -41,6 +41,16 @@
     
     [self dataInit];
     [self.tableView reloadData];
+    [self setTableFooterView:self.tableView];
+}
+
+- (void)setTableFooterView:(UITableView *)tb {
+    if (!tb) {
+        return;
+    }
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [tb setTableFooterView:view];
 }
 
 - (void)didReceiveMemoryWarning

@@ -50,6 +50,16 @@
     rightButton.action = @selector(ToAddFriendPage:);
     
     [self RefreshData];
+    [self setTableFooterView:self.tableView];
+}
+
+- (void)setTableFooterView:(UITableView *)tb {
+    if (!tb) {
+        return;
+    }
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [tb setTableFooterView:view];
 }
 
 -(IBAction)ToAddFriendPage:(id)sender

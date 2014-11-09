@@ -9,6 +9,7 @@
 #import "SearchUserTabelViewController.h"
 #import "MemberInfoTableViewController.h"
 #import "AddFriendCell.h"
+#import "Constants.h"
 #import "Friend.h"
 
 @interface SearchUserTabelViewController ()
@@ -46,6 +47,16 @@
     
     _searchBar.delegate = self;
     resultArray = [[NSMutableArray alloc]init];
+    [self setTableFooterView:self.tableView];
+}
+
+- (void)setTableFooterView:(UITableView *)tb {
+    if (!tb) {
+        return;
+    }
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [tb setTableFooterView:view];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -210,5 +221,41 @@
 }
 
  */
+
+-(void)initNavBar
+{
+    [self setBackButton];
+    [self changeToWhite];
+}
+
+-(void)setBackButton
+{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"top_back"] style:UIBarButtonItemStylePlain target:self action:@selector(navBackClick:)];
+    [backButton setTintColor:defaultMainColor];
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+
+-(IBAction)navBackClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(void)changeToWhite
+{
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     defaultMainColor, UITextAttributeTextColor,
+                                                                     [UIFont fontWithName:defaultBoldFont size:20.0], UITextAttributeFont,
+                                                                     nil]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self initNavBar];
+    [self.tabBarController.tabBar setHidden:YES];
+    
+}
 
 @end

@@ -44,6 +44,16 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self RefreshOrganizationList];
+    [self setTableFooterView:self.tableView];
+}
+
+- (void)setTableFooterView:(UITableView *)tb {
+    if (!tb) {
+        return;
+    }
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [tb setTableFooterView:view];
 }
 
 - (void)ClearDataArray
@@ -138,14 +148,28 @@
     // Return the number of rows in the section.
     
     if (section == 0)
-        return orgAdminList.count;
+    {
+        if (orgAdminList.count==0) {
+            return 1;
+        }
+        else return orgAdminList.count;
+    }
     
     if (section == 1)
-        return orgJoinList.count;
+    {
+        if (orgJoinList.count==0) {
+            return 1;
+        }
+        else return orgJoinList.count;
+    }
     
     if (section == 2)
-        return orgBookmarkList.count;
-    
+    {
+        if (orgBookmarkList.count==0) {
+            return 1;
+        }
+        else return orgBookmarkList.count;
+    }
     return 0;
 }
 
@@ -162,20 +186,55 @@
     int section = indexPath.section;
     NSDictionary* actData = nil;
     
+    UILabel *textLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+
+    textLable.textColor = defaultDarkGray137;
+    textLable.font = [UIFont fontWithName:defaultBoldFont size:13];
+    textLable.backgroundColor = [UIColor whiteColor];
+    textLable.textAlignment = NSTextAlignmentCenter;
+    textLable.userInteractionEnabled = NO;
+    
     if (section == 0)
     {
-        actData = orgAdminList[indexPath.row];
-        [cell SetAdmin];
+        if(orgAdminList.count==0)
+        {
+            [cell setUserInteractionEnabled:NO];
+            textLable.text = @"暂无管理的社群";
+            [cell addSubview:textLable];
+        }
+        else
+        {
+            actData = orgAdminList[indexPath.row];
+            [cell SetAdmin];
+        }
     }
     else if (section == 1)
     {
-        actData = orgJoinList[indexPath.row];
-        [cell SetJoin];
+        if(orgJoinList.count==0)
+        {
+            [cell setUserInteractionEnabled:NO];
+            textLable.text = @"暂无参加的社群";
+            [cell addSubview:textLable];
+        }
+        else
+        {
+            actData = orgJoinList[indexPath.row];
+            [cell SetJoin];
+        }
     }
     else if (section == 2)
     {
-        actData = orgBookmarkList[indexPath.row];
-        [cell SetBookmark];
+        if(orgBookmarkList.count==0)
+        {
+            [cell setUserInteractionEnabled:NO];
+            textLable.text = @"暂无收藏的社群";
+            [cell addSubview:textLable];
+        }
+        else
+        {
+            actData = orgBookmarkList[indexPath.row];
+            [cell SetBookmark];
+        }
     }
     
     [cell SetData:actData :self];
@@ -200,15 +259,25 @@
     
     if (indexPath.section == 0)
     {
-        actData = orgAdminList[indexPath.row];
+        if (orgAdminList.count==0) {
+            return;
+        }
+        else actData = orgAdminList[indexPath.row];
     }
     else if (indexPath.section == 1)
     {
-        actData = orgJoinList[indexPath.row];
+        if (orgJoinList.count==0) {
+            return;
+        }
+        else actData = orgJoinList[indexPath.row];
+        
     }
     else if (indexPath.section == 2)
     {
-        actData = orgBookmarkList[indexPath.row];
+        if (orgBookmarkList.count==0) {
+            return;
+        }
+        else actData = orgBookmarkList[indexPath.row];
     }
     
     [viewController SetOrgnizationData:actData];    

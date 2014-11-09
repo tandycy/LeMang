@@ -50,6 +50,16 @@
     [UserManager Instance].loginDelegate = self;
     [[UserManager Instance] LogInCheck];
     [SchoolManager InitSchoolList] ;
+    [self setTableFooterView:self.tableView];
+}
+
+- (void)setTableFooterView:(UITableView *)tb {
+    if (!tb) {
+        return;
+    }
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [tb setTableFooterView:view];
 }
 
 - (void)didReceiveMemoryWarning

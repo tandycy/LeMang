@@ -41,6 +41,16 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self RefreshActivityList];
+    [self setTableFooterView:self.tableView];
+}
+
+- (void)setTableFooterView:(UITableView *)tb {
+    if (!tb) {
+        return;
+    }
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [tb setTableFooterView:view];
 }
 
 - (void)ClearDataArray
@@ -135,11 +145,32 @@
 {
     // Return the number of rows in the section.
     if (section == 0)
-        return adminActivity.count;
+    {
+        if(adminActivity.count==0)
+        {
+            return 1;
+        }
+        else
+            return adminActivity.count;
+    }
     if (section == 1)
-        return joinedActivity.count;
+    {
+        if(joinedActivity.count==0)
+        {
+            return 1;
+        }
+        else
+            return joinedActivity.count;
+    }
     if (section == 2)
-        return bookmarkActivity.count;
+    {
+        if(bookmarkActivity.count==0)
+        {
+            return 1;
+        }
+        else
+            return bookmarkActivity.count;
+    }
     return 1;
 }
 
@@ -156,18 +187,52 @@
     int section = indexPath.section;
     NSDictionary* actData = nil;
     
+    UILabel *textLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+    
+    textLable.textColor = defaultDarkGray137;
+    textLable.font = [UIFont fontWithName:defaultBoldFont size:13];
+    textLable.backgroundColor = [UIColor whiteColor];
+    textLable.textAlignment = NSTextAlignmentCenter;
+    textLable.userInteractionEnabled = NO;
+    
     if (section == 0)
     {
-        actData = adminActivity[indexPath.row];
-        [cell SetAdmin];
+        if(adminActivity.count==0)
+        {
+            [cell setUserInteractionEnabled:NO];
+            textLable.text = @"暂无管理的活动";
+            [cell addSubview:textLable];
+        }
+        else
+        {
+            actData = adminActivity[indexPath.row];
+            [cell SetAdmin];
+        }
     }
     else if (section == 1)
     {
-        actData = joinedActivity[indexPath.row];
-        [cell SetJoin];
+        if(joinedActivity.count==0)
+        {
+            [cell setUserInteractionEnabled:NO];
+            textLable.text = @"暂无参加的活动";
+            [cell addSubview:textLable];
+        }
+        else
+        {
+            actData = joinedActivity[indexPath.row];
+            [cell SetJoin];
+        }
     }
     else if (section == 2)
     {
+        if(bookmarkActivity.count==0)
+        {
+            [cell setUserInteractionEnabled:NO];
+            textLable.text = @"暂无收藏的活动";
+            [cell addSubview:textLable];
+        }
+        else
+        {
         actData = bookmarkActivity[indexPath.row];
         
         NSNumber* aid = actData[@"id"];
@@ -200,6 +265,7 @@
             [cell SetBookmarkJoined];
         else
             [cell SetBookmark];
+        }
     }
     
     [cell SetData:actData :self];

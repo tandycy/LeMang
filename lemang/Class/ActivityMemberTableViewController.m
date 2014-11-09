@@ -258,7 +258,7 @@
         creatorColleage.text = creatorDepartData[@"name"];
         
         creatorName.font = [UIFont fontWithName:defaultBoldFont size:13];
-        creatorName.textColor = defaultMainColor;
+        creatorName.textColor = defaultMainColor;   
         creatorSchool.font = [UIFont fontWithName:defaultBoldFont size:13];
         creatorSchool.textColor = defaultTitleGray96;
         creatorColleage.font = [UIFont fontWithName:defaultBoldFont size:13];
