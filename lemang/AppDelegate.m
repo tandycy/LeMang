@@ -21,7 +21,7 @@
     //NSLog(@"123");
     
     [UMSocialData setAppKey:@"5422c5acfd98c5ccad0135fc"];
-    [UMSocialWechatHandler setWXAppId:@"wxd930ea5d5a258f4f" appSecret:@"db426a9829e4b49a0dcac7b4162da6b6" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wx120f693b4d93b256" appSecret:@"64e16cb63f9156f618331c129614f460" url:@"http://www.umeng.com/social"];
 
     return YES;
 }

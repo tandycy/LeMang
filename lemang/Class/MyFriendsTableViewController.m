@@ -44,7 +44,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]init];
-    rightButton.title = @"添加好友";
+    rightButton.image = [UIImage imageNamed:@"add"];
+    [rightButton setTintColor:defaultMainColor];
     self.navigationItem.rightBarButtonItem = rightButton;
     rightButton.target = self;
     rightButton.action = @selector(ToAddFriendPage:);
