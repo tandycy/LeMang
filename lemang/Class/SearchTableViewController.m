@@ -48,7 +48,7 @@
     [self initSearchResult];
     // Uncomment the following lineto preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller
 
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
@@ -543,6 +543,7 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
 {
     [self searchKeyWord:_searchBar.text];
+    [_searchBar resignFirstResponder];
 }
 
 -(void)searchKeyWord:(NSString*)key
@@ -713,6 +714,13 @@
     [self DoSearch];
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if([searchText isEqual:@""])
+    {
+        [self DoRefreshDisplay:false];
+    }
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

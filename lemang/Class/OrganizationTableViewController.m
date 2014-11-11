@@ -56,6 +56,7 @@
 -(IBAction)searchClick:(id)sender
 {
     SearchTableViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchTableViewController"];
+    [searchView setTitle:@"找社群"];
     [searchView SetSearchOrganization];
     [self.navigationController pushViewController:searchView animated:YES];
 }
