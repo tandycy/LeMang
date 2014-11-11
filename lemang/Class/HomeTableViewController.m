@@ -203,6 +203,9 @@
     HomeDetailViewController *HDVC = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeDetailViewController"];
     [self.navigationController pushViewController:HDVC animated:YES];
     
+    //[HDVC setTitle:newsDataArray[indexPath.row][@"title"]];
+    [HDVC setTitle:@"资讯详情"];
+    
     [HDVC SetNewsData:newsDataArray[indexPath.row]];
 }
 /*

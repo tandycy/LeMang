@@ -359,6 +359,7 @@
     }
     
     CreateOrganizationTableViewController *createOrgVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateOrganizationTableViewController"];
+    [createOrgVC setTitle:@"创建社群"];
     [createOrgVC SetOwner:self];
     [self.navigationController pushViewController:createOrgVC animated:YES];
 }

@@ -123,6 +123,8 @@
     newsDetail.font = [UIFont fontWithName:defaultBoldFont size:11];
     newsDetail.textColor = defaultDarkGray137;
     //调整行间距
+    contentStr = [contentStr stringByReplacingOccurrencesOfString:@"<br/>" withString:@"\n"];
+    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:contentStr];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:5];
