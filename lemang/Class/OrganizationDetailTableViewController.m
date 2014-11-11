@@ -511,7 +511,6 @@ typedef enum {
     return cell;
 }
 
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     UIImageView *bgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"org_actlist_title_back.png"]];
@@ -530,7 +529,6 @@ typedef enum {
     return 30;
 }
 
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
@@ -538,7 +536,6 @@ typedef enum {
     
     [viewController SetData:activityArray[indexPath.row]];
     //viewController.activity = activityArray[indexPath.row];
-    
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

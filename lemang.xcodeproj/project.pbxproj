@@ -105,6 +105,10 @@
 		25D3F0B819C95C2D00E6C29F /* EditUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D3F0B719C95C2D00E6C29F /* EditUserInfoViewController.m */; };
 		25E0A1D619CCAF3100B32E2A /* CreateActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E0A1D519CCAF3100B32E2A /* CreateActivityTableViewController.m */; };
 		25E2AC6619D8391C005074F0 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E2AC6519D8391C005074F0 /* SearchTableViewController.m */; };
+		25E305851A126A9900AD9FA2 /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E305841A126A9900AD9FA2 /* InitViewController.m */; };
+		25E3058E1A1287A900AD9FA2 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E3058D1A1287A900AD9FA2 /* QuestionViewController.m */; };
+		25E305911A128A1200AD9FA2 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E305901A128A1200AD9FA2 /* FeedBackViewController.m */; };
+		25E305941A128E4000AD9FA2 /* ChangePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E305931A128E4000AD9FA2 /* ChangePassViewController.m */; };
 		25E97AD11A049823006512AA /* HomeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E97AD01A049823006512AA /* HomeDetailViewController.m */; };
 		28DC14D619BD596E00DE97F0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC14D519BD596E00DE97F0 /* CFNetwork.framework */; };
 		28DC14D819BD598600DE97F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC14D719BD598600DE97F0 /* SystemConfiguration.framework */; };
@@ -344,6 +348,14 @@
 		25E0A1D519CCAF3100B32E2A /* CreateActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateActivityTableViewController.m; path = Class/CreateActivityTableViewController.m; sourceTree = "<group>"; };
 		25E2AC6419D8391C005074F0 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchTableViewController.h; path = Class/SearchTableViewController.h; sourceTree = "<group>"; };
 		25E2AC6519D8391C005074F0 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchTableViewController.m; path = Class/SearchTableViewController.m; sourceTree = "<group>"; };
+		25E305831A126A9900AD9FA2 /* InitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InitViewController.h; path = Class/InitViewController.h; sourceTree = "<group>"; };
+		25E305841A126A9900AD9FA2 /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitViewController.m; path = Class/InitViewController.m; sourceTree = "<group>"; };
+		25E3058C1A1287A900AD9FA2 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionViewController.h; path = Class/QuestionViewController.h; sourceTree = "<group>"; };
+		25E3058D1A1287A900AD9FA2 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionViewController.m; path = Class/QuestionViewController.m; sourceTree = "<group>"; };
+		25E3058F1A128A1200AD9FA2 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedBackViewController.h; path = Class/FeedBackViewController.h; sourceTree = "<group>"; };
+		25E305901A128A1200AD9FA2 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedBackViewController.m; path = Class/FeedBackViewController.m; sourceTree = "<group>"; };
+		25E305921A128E4000AD9FA2 /* ChangePassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangePassViewController.h; path = Class/ChangePassViewController.h; sourceTree = "<group>"; };
+		25E305931A128E4000AD9FA2 /* ChangePassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChangePassViewController.m; path = Class/ChangePassViewController.m; sourceTree = "<group>"; };
 		25E97ACF1A049823006512AA /* HomeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDetailViewController.h; path = Class/HomeDetailViewController.h; sourceTree = "<group>"; };
 		25E97AD01A049823006512AA /* HomeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDetailViewController.m; path = Class/HomeDetailViewController.m; sourceTree = "<group>"; };
 		28DC14D519BD596E00DE97F0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -1019,6 +1031,14 @@
 				25E2AC6519D8391C005074F0 /* SearchTableViewController.m */,
 				EE715CE719D8FF7E00061B1F /* SearchResultItem.h */,
 				EE715CE819D8FF7E00061B1F /* SearchResultItem.m */,
+				25E305831A126A9900AD9FA2 /* InitViewController.h */,
+				25E305841A126A9900AD9FA2 /* InitViewController.m */,
+				25E3058C1A1287A900AD9FA2 /* QuestionViewController.h */,
+				25E3058D1A1287A900AD9FA2 /* QuestionViewController.m */,
+				25E3058F1A128A1200AD9FA2 /* FeedBackViewController.h */,
+				25E305901A128A1200AD9FA2 /* FeedBackViewController.m */,
+				25E305921A128E4000AD9FA2 /* ChangePassViewController.h */,
+				25E305931A128E4000AD9FA2 /* ChangePassViewController.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -1089,7 +1109,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1173,6 +1193,7 @@
 				25C3A0FC19ADC4EC00BB48B3 /* UIScrollView+Extension.m in Sources */,
 				25E0A1D619CCAF3100B32E2A /* CreateActivityTableViewController.m in Sources */,
 				28DC152319BD5E8000DE97F0 /* ASIDataDecompressor.m in Sources */,
+				25E3058E1A1287A900AD9FA2 /* QuestionViewController.m in Sources */,
 				EE77B02A19D26D330018EAF7 /* IconImageViewLoaderWithButton.m in Sources */,
 				2545E021199CC45000F99CC7 /* ActivityCommentTableViewController.m in Sources */,
 				258087BE19A71D7C005E308D /* UserLoginViewController.m in Sources */,
@@ -1231,6 +1252,7 @@
 				258087B719A71D0E005E308D /* MyFriendsTableViewController.m in Sources */,
 				28DC152F19BD5E8100DE97F0 /* ASICloudFilesObjectRequest.m in Sources */,
 				28DC153219BD5E8100DE97F0 /* ASIS3BucketObject.m in Sources */,
+				25E305851A126A9900AD9FA2 /* InitViewController.m in Sources */,
 				25C3A0FD19ADC4EC00BB48B3 /* UIScrollView+MJRefresh.m in Sources */,
 				28DC152219BD5E8000DE97F0 /* ASIDataCompressor.m in Sources */,
 				25337BDE19D6E21E00542C84 /* EditOrganizationTableViewController.m in Sources */,
@@ -1256,7 +1278,9 @@
 				259F017E19D3FF8D0073492F /* InviteMyFriendsTableViewController.m in Sources */,
 				25C8830819C1909700F727AF /* EditActivityDetailTableViewController.m in Sources */,
 				28DC152519BD5E8000DE97F0 /* ASIFormDataRequest.m in Sources */,
+				25E305911A128A1200AD9FA2 /* FeedBackViewController.m in Sources */,
 				251CEBBE19A33D5B00C80BAF /* OrganizationDetailTableViewController.m in Sources */,
+				25E305941A128E4000AD9FA2 /* ChangePassViewController.m in Sources */,
 				253B26E419D349FE00027C74 /* FPPopoverView.m in Sources */,
 				28DC154219C5C98E00DE97F0 /* ActivityCommentCell.m in Sources */,
 				28DC152B19BD5E8000DE97F0 /* ASICloudFilesContainer.m in Sources */,
@@ -1515,7 +1539,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

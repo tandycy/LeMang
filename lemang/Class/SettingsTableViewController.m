@@ -8,6 +8,7 @@
 
 #import "SettingsTableViewController.h"
 #import "Constants.h"
+#import "QuestionViewController.h"
 
 @interface SettingsTableViewController ()
 

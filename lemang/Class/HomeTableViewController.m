@@ -12,6 +12,7 @@
 #import "FPPopoverController.h"
 #import "MJRefresh.h"
 #import "HomeViewCell.h"
+#import "InitViewController.h"
 
 @interface HomeTableViewController ()
 
@@ -23,6 +24,9 @@
     int nextPage;
     int pageSize;
     int maxPage;
+    
+    BOOL firstOpen;
+    UIScrollView *scrollView;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -30,6 +34,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        firstOpen = true;
+
     }
     return self;
 }
@@ -37,6 +43,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+ //   if (firstOpen) {
+
+  //      firstOpen = false;
+  //  }
+ //   else [scrollView removeFromSuperview];
+    InitViewController *firstView = [[InitViewController alloc]init];
+    
+    [self presentModalViewController:firstView animated:NO];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

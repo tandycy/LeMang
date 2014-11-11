@@ -367,6 +367,7 @@ NSString *navTitle;
     
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
+    [scrollView setBackgroundColor:[UIColor clearColor]];
     [scrollView setContentSize:CGSizeMake(320*pagesCount, 380)];
     scrollView.pagingEnabled=YES;
     scrollView.bounces=NO;
@@ -374,8 +375,8 @@ NSString *navTitle;
     scrollView.showsHorizontalScrollIndicator=NO;
     [scrollView setContentSize:CGSizeMake(320*pagesCount, 128)];
     
-    //activity scroll view
     
+    //activity scroll view
     /*
     NSMutableArray *imageArray = [[NSMutableArray alloc]init];
     for(int i=0;i<pagesCount;i++)

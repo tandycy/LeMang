@@ -75,7 +75,7 @@
     verifyText = verifyCode;
     
     //init right barbutton item
-    UIBarButtonItem *finish = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(finishBond:)];
+    UIBarButtonItem *finish = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"yes"] style:UIBarButtonItemStylePlain target:self action:@selector(finishBond:)];
     [finish setTintColor:defaultMainColor];
     self.navigationItem.rightBarButtonItem = finish;
     
