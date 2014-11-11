@@ -322,7 +322,7 @@ typedef enum {
             iconUrl = tempstr;
         }
         
-        [_organizationIcon LoadFromUrl:[NSURL URLWithString:iconUrl] :[UIImage imageNamed:@"default_Icon"] :@selector(SetOrgnizationIcon:) :self];
+        [_organizationIcon LoadFromUrl:[NSURL URLWithString:iconUrl] :[UIImage imageNamed:@"icon_org"] :@selector(SetOrgnizationIcon:) :self];
     }
     
     //   - id - contact - department - peopleLimit - tags - description - iconUrl - address - regionLimit - otherLimit - users - linkUrl - name - area - shortName - createdBy - createdDate - university

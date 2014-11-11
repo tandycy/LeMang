@@ -50,7 +50,7 @@
     NSDateFormatter* formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate* tempdate = [formatter dateFromString:input];
-    [formatter setDateFormat:@"yyyy年mm月dd日 hh:mm"];
+    [formatter setDateFormat:@"yyyy年MM月dd日 hh:mm"];
     result = [formatter stringFromDate:tempdate];
     
     return result;

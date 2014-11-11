@@ -115,7 +115,7 @@
         urlStr = tempstr;
     }
     
-    [_organizationIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UIImage imageNamed:@"default_Icon.png"]];
+    [_organizationIcon LoadFromUrl:[NSURL URLWithString:urlStr]:[UIImage imageNamed:@"icon_org"]];
     
     [self UpdateTags];
 }
