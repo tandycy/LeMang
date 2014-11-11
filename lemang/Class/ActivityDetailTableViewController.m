@@ -290,7 +290,7 @@
     NSArray* members = [NSJSONSerialization JSONObjectWithData:[memberRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
     
     if (![members isKindOfClass:[NSArray class]])
-        members = [NSArray alloc];
+        members = [[NSArray alloc]init];
     
     NSMutableArray* filteredMembers = [[NSMutableArray alloc]init];
     

@@ -17,12 +17,6 @@
 //    IBOutlet ActivityTableViewController *ActivityList;
    // NSMutableData *receivedData;
    // NSArray* activityData;
-
-    int currentPage;
-    int nextPage;
-    int pageSize;
-    int maxPage;
-    
     UIImage* bussinessIcon;
     UIImage* schoolIcon;
     UIImage* groupIcon;

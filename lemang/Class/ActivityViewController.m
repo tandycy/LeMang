@@ -14,6 +14,7 @@
 #import "SelectTableViewController.h"
 #import "SearchTableViewController.h"
 #import "Constants.h"
+#import "IconImageButtonLoader.h"
 
 #define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
 
@@ -31,6 +32,14 @@ typedef enum {
 {
     UIView *loadingView;
     bool initUpdate;
+    
+    int currentPage;
+    int nextPage;
+    int pageSize;
+    int maxPage;
+    
+    NSMutableArray* topAds;
+    NSMutableArray* topAdItems;
 }
 
 @end
@@ -66,6 +75,8 @@ NSString *navTitle;
         activityArray = [[NSMutableArray alloc]init];
     [activityArray removeAllObjects];
     [self appendActivityData];
+    
+    [self refreshTopAds];
 }
 
 - (void) appendActivityData
@@ -206,6 +217,100 @@ NSString *navTitle;
     }
 }
 
+-(void) refreshTopAds
+{
+    if (topAds)
+        [topAds removeAllObjects];
+    else
+        topAds = [[NSMutableArray alloc]init];
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/activity/q?sortType=topOrder";
+    
+    NSURL *URL = [NSURL URLWithString:URLString];
+    ASIHTTPRequest *URLRequest = [ASIHTTPRequest requestWithURL:URL];
+    [URLRequest setUsername:@"admin"];
+    [URLRequest setPassword:@"admin"];
+    
+    [URLRequest startSynchronous];
+    
+    NSError *error = [URLRequest error];
+    
+    if (!error)
+    {
+        NSDictionary* returnData = [NSJSONSerialization JSONObjectWithData:[URLRequest responseData] options:NSJSONReadingAllowFragments error:nil];
+        
+        NSArray* itemArray = returnData[@"content"];
+        
+        int maxItems = itemArray.count;
+        if (maxItems > 8)
+            maxItems = 8;
+        
+        for (int i = 0; i < maxItems; i++)
+        {
+            NSDictionary* item = itemArray[i];
+            [topAds addObject:item];
+        }
+        
+        pageControl.numberOfPages = maxItems;
+        [pageControl setFrame:CGRectMake(-140+maxItems*6, 100, 320, 30)];
+        [pageControl setBounds:CGRectMake(0,0,16*(maxItems-1)+16,16)];
+        [scrollView setContentSize:CGSizeMake(320*maxItems, 128)];
+        
+        for (IconImageButtonLoader* button in topAdItems)
+        {
+            [button removeFromSuperview];
+        }
+        [topAdItems removeAllObjects];
+        
+        for (int i = 0; i < maxItems; i++)
+        {
+            IconImageButtonLoader* button = [[IconImageButtonLoader alloc]initWithFrame:CGRectMake(320*i, 0, 320, 128)];
+            [button addTarget:self action:@selector(OnScrollItemClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            NSDictionary* item = topAdItems[i];
+            
+            NSString* iconStr = [UserManager filtStr:item[@"iconUrl"] :@""];
+            
+            if (iconStr.length > 0)
+            {
+                NSString* ext = [iconStr pathExtension];
+                NSString* extCut = [iconStr substringToIndex:(iconStr.length - ext.length - 1)];
+                iconStr = [extCut stringByAppendingFormat:@"_large.%@",ext];
+                
+                NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources";
+                tempstr = [tempstr stringByAppendingString:iconStr];
+                
+                NSURL* iconUrl = [NSURL URLWithString:tempstr];
+                [button LoadFromUrl:iconUrl :[UserManager DefaultIcon]];
+            }
+            else
+            {
+                UIImage* temp = [UIImage imageNamed:@"11.jpg"];
+                
+                if (temp == nil)
+                    temp = [UserManager DefaultIcon];
+                
+                [button setBackgroundImage:temp forState:UIControlStateNormal];
+            }
+            
+            [scrollView addSubview:button];
+            [topAdItems addObject:button];
+        }
+    }
+}
+
+-(IBAction)OnScrollItemClick:(id)sender
+{
+    NSDictionary* item = topAds[pageControl.currentPage];
+    
+    ActivityDetailViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailViewController"];
+    viewController.navigationItem.title = @"活动详细页面";
+    
+    [viewController SetData:item];
+    [viewController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 -(void)showLoadingCircle
 {
     CGRect loadingFrame = CGRectMake(0, 128, activityList.frame.size.width, activityList.frame.size.height-128);
@@ -258,7 +363,7 @@ NSString *navTitle;
     
     // [self refreshActivityData];
     
-    int pagesCount = 8;
+    int pagesCount = 0;
     
     self.filteredActivityArray = [NSMutableArray arrayWithCapacity:[activityArray count]];
     [activityList reloadData];
@@ -270,6 +375,8 @@ NSString *navTitle;
     [scrollView setContentSize:CGSizeMake(320*pagesCount, 128)];
     
     //activity scroll view
+    
+    /*
     NSMutableArray *imageArray = [[NSMutableArray alloc]init];
     for(int i=0;i<pagesCount;i++)
     {
@@ -278,6 +385,7 @@ NSString *navTitle;
         [imageArray addObject:imageview];
         [scrollView addSubview:imageArray[i]];
     }
+     */
     
     
     

@@ -327,9 +327,7 @@
         actData = bookmarkActivity[indexPath.row];
     }
     
-    [viewController SetData:actData];
-    //viewController.activity = activityArray[indexPath.row];
-    
+    [viewController SetData:actData];    
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
