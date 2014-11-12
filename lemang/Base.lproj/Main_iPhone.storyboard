@@ -2478,7 +2478,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pag-Dd-hvd" customClass="IconImageButtonLoader">
                                             <rect key="frame" x="8" y="8" width="49" height="49"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="user_icon_de">
+                                            <state key="normal" backgroundImage="user_icon_de">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
