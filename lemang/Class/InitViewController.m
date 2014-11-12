@@ -49,9 +49,10 @@
     UIImageView *imageview1=[[UIImageView alloc]initWithFrame:CGRectMake(320, 0, 320, self.view.frame.size.height)];
     UIImageView *imageview2=[[UIImageView alloc]initWithFrame:CGRectMake(640, 0, 320, self.view.frame.size.height)];
     UIImageView *imageview3=[[UIImageView alloc]initWithFrame:CGRectMake(960, 0, 320, self.view.frame.size.height)];
-    
+    float buttonPosY;
     NSLog(@"%f",self.view.frame.size.height);
     if (self.view.frame.size.height == 480.0f) {
+        buttonPosY = 250;
         [imageview0 setImage:[UIImage imageNamed:@"guide1_ip4"]];
         [imageview1 setImage:[UIImage imageNamed:@"guide2_ip4"]];
         [imageview2 setImage:[UIImage imageNamed:@"guide3_ip4"]];
@@ -62,6 +63,7 @@
         [imageview1 setImage:[UIImage imageNamed:@"guide2"]];
         [imageview2 setImage:[UIImage imageNamed:@"guide3"]];
         [imageview3 setImage:[UIImage imageNamed:@"guide0"]];
+        buttonPosY = 280;
     }
     
     [scrollView addSubview:imageview0];
@@ -69,7 +71,7 @@
     [scrollView addSubview:imageview2];
     [scrollView addSubview:imageview3];
     
-    UIButton *jumpButton = [[UIButton alloc]initWithFrame:CGRectMake(1062, 250, 116, 40)];
+    UIButton *jumpButton = [[UIButton alloc]initWithFrame:CGRectMake(1062, buttonPosY, 116, 40)];
     NSLog(@"%f",self.view.frame.size.height*2/3);
     [jumpButton setImage:[UIImage imageNamed:@"start"] forState:UIControlStateNormal];
     //[jumpButton setTitle:@"立刻体验" forState:UIControlStateNormal];

@@ -80,17 +80,15 @@
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
     
-    UIBarButtonItem *okButton = [[UIBarButtonItem alloc]init];
-    okButton.title = @"提交";
+    UIBarButtonItem *okButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"yes"] style:UIBarButtonItemStylePlain target:self action:@selector(commitOk:)];
+    [okButton setTintColor:defaultMainColor];
     self.navigationItem.rightBarButtonItem = okButton;
-    okButton.target = self;
-    okButton.action = @selector(commitOk:);
 
 }
 
 - (void)DoAlert : (NSString*)caption: (NSString*)content
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:nil cancelButtonTitle:@"好" otherButtonTitles: nil];
     [alertView show];
 }
 

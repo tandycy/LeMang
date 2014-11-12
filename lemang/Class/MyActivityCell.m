@@ -10,6 +10,7 @@
 #import "EditActivityTableViewController.h"
 #import "MyAcitivityTableViewController.h"
 #import "InviteMyFriendsTableViewController.h"
+#import "Constants.h"
 
 
 @implementation MyActivityCell
@@ -69,6 +70,7 @@
     [_buttonInvite setHidden:FALSE];
     
     _buttonInvite.titleLabel.text = @"邀请";
+    _buttonInvite.titleLabel.textColor = defaultMainColor;
     
     caninvite = true;
     canjoin = false;
@@ -92,6 +94,7 @@
     canjoin = true;
     
     _buttonInvite.titleLabel.text = @"参加";
+    _buttonInvite.titleLabel.textColor = defaultMainColor;
 }
 
 - (void)SetBookmarkJoined
@@ -103,6 +106,7 @@
     canjoin = false;
     
     _buttonInvite.titleLabel.text = @"已参加";
+    _buttonInvite.titleLabel.textColor = defaultMainColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
