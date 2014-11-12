@@ -46,6 +46,13 @@
     [finish setTintColor:defaultMainColor];
     self.navigationItem.rightBarButtonItem = finish;
     
+    [self.view addSubview:_oldPass];
+    [self.view addSubview:_replacePass];
+    [self.view addSubview:_replacePassAgain];
+    
+    [self.view addSubview:_title1];
+    [self.view addSubview:_title2];
+    [self.view addSubview:_title3];
 }
 
 - (void)DoAlert :(NSString*)caption
@@ -61,6 +68,7 @@
 
 -(IBAction)finishEdit:(id)sender
 {
+    
     if (_oldPass.text.length == 0)
     {
         [self DoAlert:@"旧密码不能为空"];
@@ -76,7 +84,7 @@
         [self DoAlert:@"新密码长度不能小于6位"];
         return;
     }
-    if (_oldPass.text != [UserManager UserPW])
+    if (![_oldPass.text isEqualToString:[UserManager UserPW]])
     {
         [self DoAlert:@"旧密码不正确"];
         return;
@@ -85,6 +93,44 @@
     {
         [self DoAlert:@"两次密码不一致"];
         return;
+    }
+     
+    
+    NSString* newPass = @"111111";//_replacePass.text;
+    
+    NSString* userUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+    userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", [[UserManager Instance]GetLocalUserId]];
+    ASIHTTPRequest *updateRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:userUrlStr]];
+    
+    NSString* postStr = @"{\"plainPassword\":";
+    postStr = [postStr stringByAppendingFormat:@"\"%@\"}", newPass];
+    
+    [updateRequest addRequestHeader:@"Content-Type" value:@"application/json;charset=UTF-8"];
+    [updateRequest appendPostData:[postStr dataUsingEncoding:NSUTF8StringEncoding]];
+    [updateRequest setRequestMethod:@"PUT"];
+    
+    [updateRequest startSynchronous];
+    
+    NSError *error = [updateRequest error];
+    
+    if (!error)
+    {
+        int returnCode = [updateRequest responseStatusCode];
+        
+        if (returnCode == 200)
+        {
+            [self DoAlert:@"修改密码完成"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            NSString* content = [NSString stringWithFormat:@"服务器内部错误:%d",returnCode];
+            [self DoAlert:@"操作失败" :content];
+        }
+    }
+    else
+    {
+        [self DoAlert:@"操作失败" :@"网络连接错误"];
     }
 }
 

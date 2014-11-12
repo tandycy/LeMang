@@ -12,9 +12,11 @@
 {
 }
 
-@property (strong,nonatomic) UITextView *editText;
 @property (strong, nonatomic) IBOutlet UITextField *oldPass;
 @property (strong, nonatomic) IBOutlet UITextField *replacePass;
 @property (strong, nonatomic) IBOutlet UITextField *replacePassAgain;
+@property (strong, nonatomic) IBOutlet UILabel *title1;
+@property (strong, nonatomic) IBOutlet UILabel *title2;
+@property (strong, nonatomic) IBOutlet UILabel *title3;
 
 @end
