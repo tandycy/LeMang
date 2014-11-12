@@ -550,7 +550,7 @@
     [activityData setValue:memberUp forKey:@"peopleLimit"];
 }
 
-- (void)DoAlert : (NSString*)caption: (NSString*)content
+- (void)DoAlert :(NSString*)caption :(NSString*)content
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alertView show];

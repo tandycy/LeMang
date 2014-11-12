@@ -8,8 +8,11 @@
 
 #import "ChangePassViewController.h"
 #import "Constants.h"
+#import "UserManager.h"
 
 @interface ChangePassViewController ()
+{
+}
 
 @end
 
@@ -37,28 +40,52 @@
     self.view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    // init edit text view
-    UILabel *editTitle = [[UILabel alloc]initWithFrame:CGRectMake(20, 80, 320, 15)];
-    editTitle.text = @"请输入旧密码...";
-    editTitle.font = [UIFont fontWithName:defaultBoldFont size:15];
-    [self.view addSubview:editTitle];
-    
-    self.editText = [[UITextView alloc]initWithFrame:CGRectMake(20, 120, 280, 100)];
-    self.editText.backgroundColor = defaultLightGray243;
-    self.editText.font = [UIFont fontWithName:defaultFont size:15];
-    [self.view addSubview:self.editText];
     
     //init right barbutton item
     UIBarButtonItem *finish = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"yes"] style:UIBarButtonItemStylePlain target:self action:@selector(finishEdit:)];
     [finish setTintColor:defaultMainColor];
     self.navigationItem.rightBarButtonItem = finish;
     
-    [self.editText setText:defaultV];
+}
+
+- (void)DoAlert :(NSString*)caption
+{
+    [self DoAlert:caption :@""];
+}
+
+- (void)DoAlert :(NSString*)caption :(NSString*)content
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alertView show];
 }
 
 -(IBAction)finishEdit:(id)sender
 {
-    
+    if (_oldPass.text.length == 0)
+    {
+        [self DoAlert:@"旧密码不能为空"];
+        return;
+    }
+    if (_replacePass.text.length == 0)
+    {
+        [self DoAlert:@"新密码不能为空"];
+        return;
+    }
+    if (_replacePass.text.length < 6)
+    {
+        [self DoAlert:@"新密码长度不能小于6位"];
+        return;
+    }
+    if (_oldPass.text != [UserManager UserPW])
+    {
+        [self DoAlert:@"旧密码不正确"];
+        return;
+    }
+    if(![_replacePass.text isEqualToString:_replacePassAgain.text])
+    {
+        [self DoAlert:@"两次密码不一致"];
+        return;
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -10,9 +10,11 @@
 
 @interface ChangePassViewController : UIViewController
 {
-    NSString* defaultV;
 }
 
 @property (strong,nonatomic) UITextView *editText;
+@property (strong, nonatomic) IBOutlet UITextField *oldPass;
+@property (strong, nonatomic) IBOutlet UITextField *replacePass;
+@property (strong, nonatomic) IBOutlet UITextField *replacePassAgain;
 
 @end
