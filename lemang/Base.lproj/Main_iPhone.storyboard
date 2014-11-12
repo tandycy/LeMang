@@ -1392,6 +1392,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                     <navigationItem key="navigationItem" title="用户中心" id="LTi-N9-Ols"/>
                     <connections>
                         <outlet property="accCell" destination="Ueq-B5-4Oq" id="Jgv-18-6mL"/>
+                        <outlet property="buttonSetting" destination="xt2-7q-tvo" id="lIc-x2-C3D"/>
                         <outlet property="loginButton" destination="xF8-bd-YwS" id="HWF-cx-sZF"/>
                         <outlet property="messageButton" destination="WlI-73-K2v" id="Twl-Ph-UYi"/>
                         <outlet property="mobilePhoneButton" destination="Pcs-Wz-Y6v" id="Cjx-0B-22t"/>

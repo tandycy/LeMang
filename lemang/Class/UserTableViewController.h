@@ -39,6 +39,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *messageButton;
 @property (strong, nonatomic) IBOutlet UIImageView *userGenderIcon;
 
+@property (strong, nonatomic) IBOutlet UIButton *buttonSetting;
 - (void) refreshUserData;
 
 @end

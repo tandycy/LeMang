@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface FeedBackViewController : UIViewController
 {

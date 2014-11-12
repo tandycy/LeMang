@@ -122,6 +122,9 @@
         [self.myActCell setUserInteractionEnabled:true];
         [self.myFriendsCell setUserInteractionEnabled:true];
         [self.myOrgCell setUserInteractionEnabled:true];
+        
+        [self.messageButton setUserInteractionEnabled:true];
+        [self.buttonSetting setUserInteractionEnabled:true];
     }
     else{
         [self.userSchoolText setHidden:true];
@@ -135,6 +138,9 @@
         [self.myActCell setUserInteractionEnabled:false];
         [self.myFriendsCell setUserInteractionEnabled:false];
         [self.myOrgCell setUserInteractionEnabled:false];
+        
+        [self.messageButton setUserInteractionEnabled:false];
+        [self.buttonSetting setUserInteractionEnabled:false];
     }
 }
 
