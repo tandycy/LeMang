@@ -98,7 +98,7 @@
     NSString* newPass = _replacePass.text;
     
     NSString* userUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", [[UserManager Instance]GetLocalUserId]];
+    userUrlStr = [userUrlStr stringByAppendingFormat:@"%@/basic", [[UserManager Instance]GetLocalUserId]];
     ASIHTTPRequest *updateRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:userUrlStr]];
     
     NSString* postStr = @"{\"plainPassword\":";
