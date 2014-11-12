@@ -171,6 +171,32 @@
         _userGender.text = @"仅好友可见";
     }
 
+    [self CheckAdminButton];
+}
+
+- (void) CheckAdminButton
+{
+    bool isHide = true;
+    
+    if (fromActId || fromOrgId)
+    {
+        if (actOrgOwner.longValue == [[UserManager Instance]GetLocalUserId].longValue)
+            isHide = false;
+    }
+    
+    if (!isHide)
+    {
+        [_setAdmin setEnabled:true];
+        
+        if (isAdmin)
+            _setAdmin.titleLabel.text = @"取消管理员";
+        else
+            _setAdmin.titleLabel.text = @"设为管理员";
+    }
+    else
+    {
+        [_setAdmin setEnabled:false];
+    }
 }
 
 -(void)initNavBar
@@ -209,6 +235,29 @@
     [self.tabBarController.tabBar setHidden:YES];
     [self initNavBar];
 }
+
+-(void)SetFromActivity:(NSNumber *)actId
+{
+    fromActId = actId;
+}
+
+-(void)SetFromGroup:(NSNumber *)gId
+{
+    fromOrgId = gId;
+}
+
+- (void)SetRefreshOwner:(id)target :(SEL)selecter
+{
+    owner = target;
+    ownerRefresh = selecter;
+}
+
+- (IBAction)OnSetAdmin:(id)sender
+{
+    //
+    [owner performSelector:ownerRefresh];
+}
+
 /*
 #pragma mark - Table view data source
 

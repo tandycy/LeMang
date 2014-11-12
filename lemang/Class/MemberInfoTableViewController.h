@@ -14,6 +14,15 @@
 @interface MemberInfoTableViewController : UITableViewController
 {
     NSNumber* memberId;
+    
+    NSNumber* fromActId;
+    NSNumber* fromOrgId;
+    NSNumber* actOrgOwner;
+    
+    BOOL isAdmin;
+
+    id owner;
+    SEL ownerRefresh;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *departName;
@@ -30,6 +39,12 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *setAdmin;
 
-- (void) SetMemberId:(NSNumber*)userId;
+- (void) SetMemberId :(NSNumber*)userId;
+- (void) SetFromActivity :(NSNumber*)actId :(NSNumber*)owner :(BOOL)isAdmin;
+- (void) SetFromGroup:(NSNumber*)gId :(NSNumber*)owner :(BOOL)isAdmin;
+
+- (void) SetRefreshOwner :(id)target :(SEL)selecter;
+
+- (IBAction)OnSetAdmin:(id)sender;
 
 @end

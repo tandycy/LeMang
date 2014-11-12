@@ -51,6 +51,19 @@
     NSLog(@"%f",self.tableView.frame.size.width);
 }
 
+- (void) FullRefresh
+{
+    if (!localData)
+        return;
+    
+    if (isActivity)
+        [self RefreshActivity];
+    else
+        [self RefreshOrganization];
+    
+    [self.tableView reloadData];
+}
+
 - (void) SetActivity:(NSDictionary *)actData
 {
     isActivity = true;
@@ -60,12 +73,22 @@
     guestList = [[NSMutableArray alloc]init];
     
     localData = actData;
+    
+    [self RefreshActivity];
+}
+
+- (void) RefreshActivity
+{
     NSNumber* actId = localData[@"id"];
     
     NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
     memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", actId];
     ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
     [memberRequest startSynchronous];
+    
+    [adminList removeAllObjects];
+    [memberList removeAllObjects];
+    [guestList removeAllObjects];
     
     NSError* error = [memberRequest error];
     
@@ -123,12 +146,22 @@
     guestList = [[NSMutableArray alloc]init];
     
     localData = orgData;
+    
+    [self RefreshOrganization];
+}
+
+- (void) RefreshOrganization
+{
     NSNumber* actId = localData[@"id"];
     
     NSString* memberUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/association/";
     memberUrlStr = [memberUrlStr stringByAppendingFormat:@"%@/user", actId];
     ASIHTTPRequest* memberRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:memberUrlStr]];
     [memberRequest startSynchronous];
+    
+    [adminList removeAllObjects];
+    [memberList removeAllObjects];
+    [guestList removeAllObjects];
     
     NSError* error = [memberRequest error];
     
@@ -467,6 +500,9 @@
     
     int section = [button Sector];
     
+    NSDictionary* creator = localData[@"createdBy"];
+    NSNumber* creatorId = creator[@"id"];
+    
     if (section == 1)
     {
         // admin
@@ -475,6 +511,8 @@
         NSDictionary* data = adminList[offset];
         
         [memberInfoTVC SetMemberId:data[@"id"]];
+        [memberInfoTVC SetFromActivity:localData[@"id"] :creatorId :true];
+        [memberInfoTVC SetRefreshOwner:self :@selector(FullRefresh)];
     }
     else if (section == 2)
     {
@@ -486,7 +524,9 @@
         
         NSDictionary* data = memberList[offset];
         
-        [memberInfoTVC SetMemberId:data[@"id"]];
+        [memberInfoTVC SetMemberId:data[@"id"]];        
+        [memberInfoTVC SetFromActivity:localData[@"id"] :creatorId :true];
+        [memberInfoTVC SetRefreshOwner:self :@selector(FullRefresh)];
     }
     
     [self.navigationController pushViewController:memberInfoTVC animated:YES];
