@@ -94,9 +94,8 @@
         [self DoAlert:@"两次密码不一致"];
         return;
     }
-     
     
-    NSString* newPass = @"111111";//_replacePass.text;
+    NSString* newPass = _replacePass.text;
     
     NSString* userUrlStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
     userUrlStr = [userUrlStr stringByAppendingFormat:@"%@", [[UserManager Instance]GetLocalUserId]];
