@@ -10,6 +10,7 @@
 #import "MyOrganizationTableViewController.h"
 #import "EditOrganizationTableViewController.h"
 #import "InviteMyFriendsTableViewController.h"
+#import "Constants.h"
 
 @implementation MyOrgCell
 
@@ -77,6 +78,7 @@
     [_buttonInvite setHidden:FALSE];
     
     _buttonInvite.titleLabel.text = @"邀请";
+    _buttonInvite.titleLabel.textColor = defaultMainColor;
     
     caninvite = true;
     canjoin = false;
@@ -100,6 +102,7 @@
     canjoin = true;
     
     _buttonInvite.titleLabel.text = @"参加";
+    _buttonInvite.titleLabel.textColor = defaultMainColor;
 }
 
 - (void) JoinCheck
@@ -121,6 +124,7 @@
         canjoin = true;
         [_buttonInvite setHidden:false];
         _buttonInvite.titleLabel.text = @"参加";
+        _buttonInvite.titleLabel.textColor = defaultMainColor;
     }
 }
 
