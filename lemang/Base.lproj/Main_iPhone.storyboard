@@ -1400,7 +1400,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="myOrgCell" destination="sr7-ka-JCV" id="6eG-lw-c5W"/>
                         <outlet property="rankButton" destination="B5G-9k-25Z" id="bnF-5a-QMQ"/>
                         <outlet property="userDescText" destination="kA7-cz-xFT" id="LO7-US-5Y1"/>
-                        <outlet property="userGenderIcon" destination="hNT-Na-OHu" id="SBL-nl-zjw"/>
+                        <outlet property="userGenderIcon" destination="hNT-Na-OHu" id="7ae-X3-lff"/>
                         <outlet property="userIconImageLoader" destination="782-Gp-x3p" id="Tb9-zL-zy3"/>
                         <outlet property="userNameText" destination="jFB-qr-ahq" id="mp9-ik-2Xg"/>
                         <outlet property="userSchoolText" destination="jbn-IB-xj9" id="mNH-OT-9F7"/>

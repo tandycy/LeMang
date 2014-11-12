@@ -226,11 +226,16 @@
             [_userGenderIcon setHidden:false];
             [_userGenderIcon setImage:[UIImage imageNamed:@"gender_feale"]];
         }
+        else
+        {
+            [_userGenderIcon setHidden:true];
+            [_userGenderIcon setImage:nil];
+        }
         
     }
     else
     {
-        
+        [_userGenderIcon setHidden:true];
     }
 }
 
