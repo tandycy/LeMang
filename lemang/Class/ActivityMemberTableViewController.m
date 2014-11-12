@@ -525,7 +525,7 @@
         NSDictionary* data = memberList[offset];
         
         [memberInfoTVC SetMemberId:data[@"id"]];        
-        [memberInfoTVC SetFromActivity:localData[@"id"] :creatorId :true];
+        [memberInfoTVC SetFromActivity:localData[@"id"] :creatorId :false];
         [memberInfoTVC SetRefreshOwner:self :@selector(FullRefresh)];
     }
     

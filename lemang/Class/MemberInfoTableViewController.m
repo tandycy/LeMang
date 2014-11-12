@@ -189,9 +189,9 @@
         [_setAdmin setEnabled:true];
         
         if (isAdmin)
-            _setAdmin.titleLabel.text = @"取消管理员";
+            [_setAdmin setTitle:@"取消管理员" forState:UIControlStateNormal];
         else
-            _setAdmin.titleLabel.text = @"设为管理员";
+            [_setAdmin setTitle:@"设为管理员" forState:UIControlStateNormal];
     }
     else
     {
@@ -236,16 +236,22 @@
     [self initNavBar];
 }
 
--(void)SetFromActivity:(NSNumber *)actId
+-(void)SetFromActivity:(NSNumber *)actId :(NSNumber*)_owner :(BOOL)_isAdmin
 {
     fromActId = actId;
     fromOrgId = nil;
+    
+    actOrgOwner = _owner;
+    isAdmin = _isAdmin;
 }
 
--(void)SetFromGroup:(NSNumber *)gId
+-(void)SetFromGroup:(NSNumber *)gId :(NSNumber*)_owner :(BOOL)_isAdmin
 {
     fromOrgId = gId;
     fromActId = nil;
+    
+    actOrgOwner = _owner;
+    isAdmin = _isAdmin;
 }
 
 - (void)SetRefreshOwner:(id)target :(SEL)selecter
@@ -288,7 +294,7 @@
         
         if (returnCode == 200)
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"邀请成功" message:@"成功修改管理员状态" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"设置成功" message:@"成功修改管理员状态" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [alertView show];
             [owner performSelector:ownerRefresh];            
             [self.navigationController popViewControllerAnimated:true];
