@@ -145,7 +145,7 @@ static SchoolManager* managerInstance;
 
 - (void)requestFinished:(ASIHTTPRequest*)request
 {
-    NSString* resp = [request responseString];
+    //NSString* resp = [request responseString];
     receivedData = [request responseData];
     
     schoolList = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:nil];

@@ -120,7 +120,7 @@
     
     if (!error)
     {
-        NSString* fileName = [NSString stringWithFormat:@"authenticate_%d", uid];
+        NSString* fileName = [NSString stringWithFormat:@"authenticate_%@", uid];
         NSString* fileFullName = [fileName stringByAppendingString:@".jpg"];
         NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
         //获取完整路径
@@ -130,7 +130,7 @@
         [self saveImage:photoImg WithName:@"authenticate_img.jpg"];
         
         NSString* firstPathStr = @"http://e.taoware.com:8080/quickstart/api/v1/images/authenticate/";
-        firstPathStr = [firstPathStr stringByAppendingFormat:@"%d?imageName=%@.jpg", uid, fileName];
+        firstPathStr = [firstPathStr stringByAppendingFormat:@"%@?imageName=%@.jpg", uid, fileName];
         
         NSURL* URL = [NSURL URLWithString:firstPathStr];
         ASIHTTPRequest *putRequest = [ASIHTTPRequest requestWithURL:URL];

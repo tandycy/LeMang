@@ -35,10 +35,10 @@
     localButton = cornerButton;
 }
 
-- (void) SetButtonSelector:(SEL)sel target:(id)target
+- (void) SetButtonSelector:(SEL)sel target:(id)_target
 {
     onButtonPress = sel;
-    selTarget = target;
+    selTarget = _target;
 }
 
 - (void) SetButtonImage:(UIImage *)img

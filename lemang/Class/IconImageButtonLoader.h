@@ -37,5 +37,5 @@
 - (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg : (NSMutableDictionary*)outputBuffer;
 - (void)LoadFromUrl : (NSURL*)URL : (UIImage*)defaultImg : (SEL)afterLoad : (id)_target;
 
-- (void)SetLocation: (int)_sector: (int)_row: (int)_index;
+- (void)SetLocation :(int)_sector :(int)_row :(int)_index;
 @end

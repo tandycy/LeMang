@@ -719,22 +719,21 @@
     [uploadRequest startSynchronous];
     
     error = [uploadRequest error];
-    int aaa = [uploadRequest responseStatusCode];
-    NSString* bbb = [uploadRequest responseString];
+    int returnCode = [uploadRequest responseStatusCode];
     
     if (error)
     {
         // TODO
         NSLog(@"upload user icon fail: %d", error.code);
     }
-    if (aaa == 200)
+    if (returnCode == 200)
     {
         // TODO: success
     }
     else
     {
         // TODO
-        NSLog(@"upload user icon return: %d", aaa);
+        NSLog(@"upload user icon return: %d", returnCode);
     }
 
 }

@@ -286,7 +286,7 @@
 }
 
 
-- (void)DoAlert : (NSString*)caption: (NSString*)content
+- (void)DoAlert :(NSString*)caption :(NSString*)content
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:caption message:content delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
     [alertView show];

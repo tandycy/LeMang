@@ -93,6 +93,7 @@
     
     [_creatorIcon LoadFromUrl:[NSURL URLWithString:iconStr] :[UserManager DefaultIcon] :imgBuffer];
     
+    // owner check
     if (creatorId.longValue == activityCreator.longValue)
     {
         isEnableRemove = true;

@@ -14,7 +14,7 @@
 @interface SchoolManager : NSObject
 {
     NSArray* schoolList;
-    NSMutableData* receivedData;
+    NSData* receivedData;
     bool isInited;
     
     NSMutableDictionary* schoolDic;

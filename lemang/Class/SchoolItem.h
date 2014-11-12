@@ -23,6 +23,6 @@
 - (NSNumber*)GetId;
 - (NSNumber*)GetAreaId:(NSString*)areaName;
 - (NSNumber*)GetDepartId:(NSString*)departName;
-- (void) InitSchool:(NSString*)name:(NSNumber*)schoolId;
+- (void) InitSchool: (NSString*) name :(NSNumber*) schoolId;
 
 @end
