@@ -239,11 +239,13 @@
 -(void)SetFromActivity:(NSNumber *)actId
 {
     fromActId = actId;
+    fromOrgId = nil;
 }
 
 -(void)SetFromGroup:(NSNumber *)gId
 {
     fromOrgId = gId;
+    fromActId = nil;
 }
 
 - (void)SetRefreshOwner:(id)target :(SEL)selecter
@@ -254,8 +256,56 @@
 
 - (IBAction)OnSetAdmin:(id)sender
 {
-    //
-    [owner performSelector:ownerRefresh];
+    NSString* setStr = @"http://e.taoware.com:8080/quickstart/api/v1/";
+    if (fromActId)
+        setStr = [setStr stringByAppendingFormat:@"activity/%@/",fromActId];
+    else
+        setStr = [setStr stringByAppendingFormat:@"association/%@/",fromOrgId];
+    
+    if (isAdmin)
+    {
+        // remove admin
+        setStr = [setStr stringByAppendingFormat:@"removeadmin/%@", memberId];
+    }
+    else
+    {
+        // set admin
+        setStr = [setStr stringByAppendingFormat:@"addadmin/%@", memberId];
+    }
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:setStr]];
+    [request setUsername:[UserManager UserName]];
+    [request setPassword:[UserManager UserPW]];
+    [request setRequestMethod:@"PUT"];
+    
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    
+    if (!error)
+    {
+        int returnCode = [request responseStatusCode];
+        
+        if (returnCode == 200)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"邀请成功" message:@"成功修改管理员状态" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+            [owner performSelector:ownerRefresh];            
+            [self.navigationController popViewControllerAnimated:true];
+        }
+        else
+        {
+            NSString* errormessage = [NSString stringWithFormat:@"服务器内部错误: %d",returnCode];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"操作失败" message:errormessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"操作失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
+    
 }
 
 /*
