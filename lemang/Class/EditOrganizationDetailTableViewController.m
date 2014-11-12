@@ -534,7 +534,7 @@
     NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     //获取完整路径
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:@"iconImageBig.jpg"];
+    NSString *iconPath = [documentsDirectory stringByAppendingPathComponent:fileFullName];
     
     
     //[ASIHTTPRequest clearSession];
