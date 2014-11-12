@@ -189,9 +189,9 @@
         [_setAdmin setEnabled:true];
         
         if (isAdmin)
-            _setAdmin.titleLabel.text = @"取消管理员";
+            [_setAdmin setTitle:@"取消管理员" forState:UIControlStateNormal];
         else
-            _setAdmin.titleLabel.text = @"设为管理员";
+            [_setAdmin setTitle:@"设为管理员" forState:UIControlStateNormal];
     }
     else
     {
@@ -236,14 +236,22 @@
     [self initNavBar];
 }
 
--(void)SetFromActivity:(NSNumber *)actId
+-(void)SetFromActivity:(NSNumber *)actId :(NSNumber*)_owner :(BOOL)_isAdmin
 {
     fromActId = actId;
+    fromOrgId = nil;
+    
+    actOrgOwner = _owner;
+    isAdmin = _isAdmin;
 }
 
--(void)SetFromGroup:(NSNumber *)gId
+-(void)SetFromGroup:(NSNumber *)gId :(NSNumber*)_owner :(BOOL)_isAdmin
 {
     fromOrgId = gId;
+    fromActId = nil;
+    
+    actOrgOwner = _owner;
+    isAdmin = _isAdmin;
 }
 
 - (void)SetRefreshOwner:(id)target :(SEL)selecter
@@ -254,8 +262,56 @@
 
 - (IBAction)OnSetAdmin:(id)sender
 {
-    //
-    [owner performSelector:ownerRefresh];
+    NSString* setStr = @"http://e.taoware.com:8080/quickstart/api/v1/";
+    if (fromActId)
+        setStr = [setStr stringByAppendingFormat:@"activity/%@/",fromActId];
+    else
+        setStr = [setStr stringByAppendingFormat:@"association/%@/",fromOrgId];
+    
+    if (isAdmin)
+    {
+        // remove admin
+        setStr = [setStr stringByAppendingFormat:@"removeadmin/%@", memberId];
+    }
+    else
+    {
+        // set admin
+        setStr = [setStr stringByAppendingFormat:@"addadmin/%@", memberId];
+    }
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:setStr]];
+    [request setUsername:[UserManager UserName]];
+    [request setPassword:[UserManager UserPW]];
+    [request setRequestMethod:@"PUT"];
+    
+    [request startSynchronous];
+    
+    NSError* error = [request error];
+    
+    if (!error)
+    {
+        int returnCode = [request responseStatusCode];
+        
+        if (returnCode == 200)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"设置成功" message:@"成功修改管理员状态" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+            [owner performSelector:ownerRefresh];            
+            [self.navigationController popViewControllerAnimated:true];
+        }
+        else
+        {
+            NSString* errormessage = [NSString stringWithFormat:@"服务器内部错误: %d",returnCode];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"操作失败" message:errormessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"操作失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
+    
 }
 
 /*

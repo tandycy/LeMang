@@ -524,9 +524,12 @@
         
         NSDictionary* data = memberList[offset];
         
-        [memberInfoTVC SetMemberId:data[@"id"]];        
-        [memberInfoTVC SetFromActivity:localData[@"id"] :creatorId :true];
-        [memberInfoTVC SetRefreshOwner:self :@selector(FullRefresh)];
+        if (adminList.count < 4)
+        {
+            [memberInfoTVC SetMemberId:data[@"id"]];
+            [memberInfoTVC SetFromActivity:localData[@"id"] :creatorId :false];
+            [memberInfoTVC SetRefreshOwner:self :@selector(FullRefresh)];
+        }
     }
     
     [self.navigationController pushViewController:memberInfoTVC animated:YES];
