@@ -52,16 +52,16 @@
     
     NSLog(@"%f",self.view.frame.size.height);
     if (self.view.frame.size.height == 480.0f) {
-        [imageview0 setImage:[UIImage imageNamed:@"guide0_ip4"]];
-        [imageview1 setImage:[UIImage imageNamed:@"guide1_ip4"]];
-        [imageview2 setImage:[UIImage imageNamed:@"guide2_ip4"]];
-        [imageview3 setImage:[UIImage imageNamed:@"guide3_ip4"]];
+        [imageview0 setImage:[UIImage imageNamed:@"guide1_ip4"]];
+        [imageview1 setImage:[UIImage imageNamed:@"guide2_ip4"]];
+        [imageview2 setImage:[UIImage imageNamed:@"guide3_ip4"]];
+        [imageview3 setImage:[UIImage imageNamed:@"guide0_ip4"]];
     }
     else{
-        [imageview0 setImage:[UIImage imageNamed:@"guide0"]];
-        [imageview1 setImage:[UIImage imageNamed:@"guide1"]];
-        [imageview2 setImage:[UIImage imageNamed:@"guide2"]];
-        [imageview3 setImage:[UIImage imageNamed:@"guide3"]];
+        [imageview0 setImage:[UIImage imageNamed:@"guide1"]];
+        [imageview1 setImage:[UIImage imageNamed:@"guide2"]];
+        [imageview2 setImage:[UIImage imageNamed:@"guide3"]];
+        [imageview3 setImage:[UIImage imageNamed:@"guide0"]];
     }
     
     [scrollView addSubview:imageview0];
@@ -69,18 +69,19 @@
     [scrollView addSubview:imageview2];
     [scrollView addSubview:imageview3];
     
-    UIButton *jumpButton = [[UIButton alloc]initWithFrame:CGRectMake(1090, self.view.frame.size.height*2/3, 60, 25)];
+    UIButton *jumpButton = [[UIButton alloc]initWithFrame:CGRectMake(1062, 250, 116, 40)];
     NSLog(@"%f",self.view.frame.size.height*2/3);
-    [jumpButton setTitle:@"立刻体验" forState:UIControlStateNormal];
-    [jumpButton.titleLabel setFont:[UIFont fontWithName:defaultFont size:11]];
-    [jumpButton setTitleColor:defaultMainColor forState:UIControlStateNormal];
+    [jumpButton setImage:[UIImage imageNamed:@"start"] forState:UIControlStateNormal];
+    //[jumpButton setTitle:@"立刻体验" forState:UIControlStateNormal];
+    //[jumpButton.titleLabel setFont:[UIFont fontWithName:defaultFont size:11]];
+    //[jumpButton setTitleColor:defaultMainColor forState:UIControlStateNormal];
     [jumpButton addTarget:self action:@selector(jumpToMain:) forControlEvents:UIControlEventTouchUpInside];
      
-    UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 60, 25)];
-    img.image = [UIImage imageNamed:@"tags_4"];
+   // UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 116, 40)];
+   // img.image = [UIImage imageNamed:@"start"];
     //[img setTintColor:[UIColor whiteColor]];
     //jumpButton.titleLabel.text = @"立刻体验";
-    [jumpButton addSubview:img];
+    //[jumpButton addSubview:img];
     [scrollView addSubview:jumpButton];
     
     [self.view addSubview:scrollView];

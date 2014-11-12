@@ -133,8 +133,14 @@
     newsDetail.attributedText = attributedString;
     [sv addSubview:newsDetail];
     [newsDetail sizeToFit];
+    
+    
+    NSString *regExStr = @"\n";
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regExStr options:NSRegularExpressionCaseInsensitive error:&error];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:contentStr options:0 range:NSMakeRange(0, [contentStr length])];
 
-    CGSize newSize = CGSizeMake(self.view.frame.size.width,labelSize.height+(labelSize.height/11*5)+detailLabelPos+80);
+    CGSize newSize = CGSizeMake(self.view.frame.size.width,labelSize.height+(labelSize.height/11*5)+detailLabelPos+numberOfMatches*5+90);
     [sv setContentSize:newSize];
     
     [self.view addSubview: sv];

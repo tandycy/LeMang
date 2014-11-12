@@ -90,6 +90,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"yes"] style:UIBarButtonItemStylePlain target:self action:@selector(DoCommitCreate:)];
+    [doneButton setTintColor:defaultMainColor];
     self.navigationItem.rightBarButtonItem = doneButton;
 
 }
@@ -761,6 +762,7 @@
 { //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder
     NSTimeInterval animationDuration = 0.30f;
     CGRect frame = self.view.frame;
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     frame.origin.y -= 216;
     frame.size.height +=10;
     [UIView beginAnimations:@"ResizeView" context:nil];
