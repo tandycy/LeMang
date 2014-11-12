@@ -3588,6 +3588,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="schoolName" destination="NDA-FW-gNc" id="uPJ-z7-RjR"/>
                         <outlet property="schoolNumber" destination="OTf-pz-ojF" id="pSt-Ft-kPS"/>
                         <outlet property="setAdmin" destination="lti-r8-qSJ" id="12b-d1-0WI"/>
+                        <outlet property="userGender" destination="Nfo-Cq-A6c" id="c7t-wg-eD3"/>
                         <outlet property="userIcon" destination="o7g-QX-5Hc" id="P1u-Xi-CHP"/>
                         <outlet property="userName" destination="St4-Sd-yfb" id="YUE-3T-URh"/>
                         <outlet property="userNickName" destination="kq5-ga-WEe" id="bcM-B0-Xu4"/>

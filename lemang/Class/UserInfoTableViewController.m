@@ -130,6 +130,8 @@
         {
             _gender.text = @"女";
         }
+        else
+            _gender.text = @"未认证用户";
     }
     
     NSDictionary* contactData = userData[@"contacts"];
@@ -151,6 +153,7 @@
     _phoneNumber.text = @"";
     _qqNumber.text = @"";
     _wechatId.text = @"";
+    _gender.text = @"";
     
     _userIcon.image = [UIImage imageNamed:@"user_icon_de.png"];
 }
