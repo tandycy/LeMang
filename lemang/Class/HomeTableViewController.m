@@ -132,8 +132,8 @@
     }
     NSLog(@"append news data for page: %d", nextPage);
     
-    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/system/news";///q?page=";
-    //URLString = [URLString stringByAppendingFormat:@"%d&page.size=%d&sortType=auto", nextPage, pageSize];
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/system/news?page=";
+    URLString = [URLString stringByAppendingFormat:@"%d&page.size=%d&sortType=auto", nextPage, pageSize];
     NSURL *URL = [NSURL URLWithString:URLString];
     
     ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
