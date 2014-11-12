@@ -14,6 +14,7 @@
 @interface MemberInfoTableViewController : UITableViewController
 {
     NSNumber* memberId;
+    NSDictionary* localData;
     
     NSNumber* fromActId;
     NSNumber* fromOrgId;

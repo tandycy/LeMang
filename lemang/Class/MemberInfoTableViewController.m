@@ -8,12 +8,16 @@
 
 #import "MemberInfoTableViewController.h"
 #import "Constants.h"
+#import "AddFriendViewController.h"
 
 @interface MemberInfoTableViewController ()
 
 @end
 
 @implementation MemberInfoTableViewController
+{
+    UIBarButtonItem *addFriend;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,8 +32,7 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem *addFriend = [[UIBarButtonItem alloc]init];
-    addFriend.title = @"添加好友";
+    addFriend = [[UIBarButtonItem alloc]initWithTitle:@"添加好友" style:UIBarButtonItemStylePlain target:self action:@selector(OnClickAddFriend:)];
     [self.navigationItem setRightBarButtonItem:addFriend animated:YES];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -40,6 +43,14 @@
     
     [self ClearDisplay];
     [self RefreshDisplay];
+}
+
+- (IBAction)OnClickAddFriend:(id)sender
+{
+    AddFriendViewController *addVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddFriendViewController"];
+    [addVC SetData:localData];
+    [addVC setTitle:@"添加好友"];
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,41 +102,55 @@
     }
     
     int rcode = [request responseStatusCode];
-    NSDictionary* userData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+    localData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
     
     // Friend check
     bool isfriend = false;
-    NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
-    friendStr = [friendStr stringByAppendingFormat:@"%@/friend/q", [[UserManager Instance]GetLocalUserId]];
     
-    ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
-    [friendRequest startSynchronous];
-    
-    error = [friendRequest error];
-    if (!error)
+    if (memberId.longValue == [[UserManager Instance]GetLocalUserId].longValue)
     {
-        NSArray* respData = [NSJSONSerialization JSONObjectWithData:[friendRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
+        isfriend = true;
+        [addFriend setEnabled: false];
+    }
+    else
+    {
+        NSString* friendStr = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
+        friendStr = [friendStr stringByAppendingFormat:@"%@/friend/q", [[UserManager Instance]GetLocalUserId]];
         
-        for (int i = 0; i < respData.count; i++)
+        ASIHTTPRequest* friendRequest = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:friendStr]];
+        [friendRequest startSynchronous];
+        
+        error = [friendRequest error];
+        if (!error)
         {
-            NSDictionary* item = respData[i];
-            Friend* fitem = [[Friend alloc]init];
-            [fitem SetData:item];
+            NSArray* respData = [NSJSONSerialization JSONObjectWithData:[friendRequest responseData] options:NSJSONReadingAllowFragments error:nil][@"content"];
             
-            if ([fitem userId].longValue == memberId.longValue)
+            for (int i = 0; i < respData.count; i++)
             {
-                isfriend = true;
-                break;
+                NSDictionary* item = respData[i];
+                Friend* fitem = [[Friend alloc]init];
+                [fitem SetData:item];
+                
+                if ([fitem userId].longValue == memberId.longValue)
+                {
+                    isfriend = true;
+                    break;
+                }
             }
         }
+        
+        if (isfriend)
+            [addFriend setEnabled:false];
+        else
+            [addFriend setEnabled:true];
     }
     
     _userName.text = @"未认证用户";
-    _schoolName.text = [UserManager filtStr:userData[@"university"][@"name"]];
-    _departName.text =[UserManager filtStr:userData[@"department"][@"name"]];
+    _schoolName.text = [UserManager filtStr:localData[@"university"][@"name"]];
+    _departName.text =[UserManager filtStr:localData[@"department"][@"name"]];
     _userGender.text = @"未认证用户";
     
-    NSDictionary* profileData = userData[@"profile"];
+    NSDictionary* profileData = localData[@"profile"];
     
     if ([profileData isKindOfClass:[NSDictionary class]])
     {
@@ -150,7 +175,7 @@
         }
     }
     
-    NSDictionary* contactData = userData[@"contacts"];
+    NSDictionary* contactData = localData[@"contacts"];
     
     if ([contactData isKindOfClass:[NSDictionary class]])
     {
@@ -167,7 +192,7 @@
         _qqNumber.text = @"仅好友可见";
         _wechatId.text = @"仅好友可见";
         _schoolNumber.text = @"仅好友可见";
-        _userName.text = userData[@"name"];
+        _userName.text = localData[@"name"];
         _userGender.text = @"仅好友可见";
     }
 
@@ -186,7 +211,6 @@
     
     if (!isHide)
     {
-        [_setAdmin setEnabled:true];
         [_setAdmin setHidden:false];
         
         if (isAdmin)
@@ -196,7 +220,6 @@
     }
     else
     {
-        [_setAdmin setEnabled:false];
         [_setAdmin setHidden:true];
     }
 }

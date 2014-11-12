@@ -33,8 +33,6 @@
     [super viewDidLoad];
     titleArray = [[NSMutableArray alloc] initWithObjects:@"管理的活动", @"参加的活动", @"收藏的活动", nil];
     
-    [self ClearDataArray];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -62,6 +60,8 @@
 
 - (void)RefreshActivityList
 {
+    [self ClearDataArray];
+    
     NSNumber* uid = [[UserManager Instance]GetLocalUserId];
     
     NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/user/";
@@ -124,7 +124,6 @@
             [bookmarkActivity addObject:item];
         }
     }
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -338,27 +337,68 @@
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if (indexPath.section == 0 && adminActivity.count > 0)
+    {
+        NSDictionary* item = adminActivity[indexPath.row];
+        NSDictionary* creator = item[@"createdBy"];
+        NSNumber* id = creator[@"id"];
+        
+        if (id.longValue == [[UserManager Instance]GetLocalUserId].longValue)
+            return YES;
+    }
+    
+    return NO;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    if (indexPath.section == 0 && adminActivity.count > 0 && editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSDictionary* item = adminActivity[indexPath.row];
+        NSNumber* actId = item[@"id"];
+        NSString* setStr = @"http://e.taoware.com:8080/quickstart/api/v1/activity/";
+        setStr = [setStr stringByAppendingFormat:@"%@/by/%@",actId, [[UserManager Instance]GetLocalUserId]];
+        
+        ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:setStr]];
+        [request setUsername:[UserManager UserName]];
+        [request setPassword:[UserManager UserPW]];
+        [request setRequestMethod:@"DELETE"];
+        
+        [request startSynchronous];
+        
+        NSError* error = [request error];
+        
+        if (!error)
+        {
+            int returnCode = [request responseStatusCode];
+            
+            if (returnCode == 200)
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除成功" message:@"成功删除活动" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                [alertView show];
+                
+                [adminActivity removeObject:item];
+                [self.tableView reloadData];
+            }
+            else
+            {
+                NSString* errormessage = [NSString stringWithFormat:@"服务器内部错误: %d",returnCode];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除失败" message:errormessage delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                [alertView show];
+            }
+        }
+        else
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除失败" message:@"网络连接错误" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+    }
 }
-*/
 
 /*
 // Override to support rearranging the table view.
