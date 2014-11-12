@@ -236,6 +236,17 @@
     MemberInfoTableViewController *memberInfoTVC = [VC.storyboard instantiateViewControllerWithIdentifier:@"MemberInfoTableViewController"];
     NSDictionary* creator = localData[@"createdBy"];
     [memberInfoTVC SetMemberId:creator[@"id"]];
+    
+    NSString* name = creator[@"name"];
+    NSDictionary* profileData = creator[@"profile"];
+    if ([profileData isKindOfClass:[NSDictionary class]])
+    {
+        NSString* nick = [UserManager filtStr:profileData[@"nickName"]:@""];
+        if (nick.length > 0)
+            name = nick;
+    }
+    memberInfoTVC.navigationItem.title = [NSString stringWithFormat:@"%@的账户",name];
+    
     [VC.navigationController pushViewController:memberInfoTVC animated:YES];
 }
 
