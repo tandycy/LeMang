@@ -44,6 +44,8 @@
 {
     [super viewDidLoad];
     
+    [[UserManager Instance] LogInCheck];
+    
  //   if (firstOpen) {
 
   //      firstOpen = false;
