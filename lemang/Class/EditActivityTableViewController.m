@@ -431,8 +431,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)initNavBar
+{
+    [self setBackButton];
+    [self changeToWhite];
+}
+
+-(void)setBackButton
+{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"top_back"] style:UIBarButtonItemStylePlain target:self action:@selector(navBackClick:)];
+    [backButton setTintColor:defaultMainColor];
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+
+-(IBAction)navBackClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(void)changeToWhite
+{
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     defaultMainColor, UITextAttributeTextColor,
+                                                                     [UIFont fontWithName:defaultBoldFont size:20.0], UITextAttributeFont,
+                                                                     nil]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.tabBarController.tabBar setUserInteractionEnabled:NO];
+    [self.tabBarController.tabBar setHidden:YES];
+    [self initNavBar];
     [SchoolManager InitSchoolList];
 }
 
@@ -475,6 +508,8 @@
     [self dismissModalViewControllerAnimated:YES];
 
 }
+
+
 
 /*
 #pragma mark - Table view data source

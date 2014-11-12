@@ -187,6 +187,7 @@
     if (!isHide)
     {
         [_setAdmin setEnabled:true];
+        [_setAdmin setHidden:false];
         
         if (isAdmin)
             [_setAdmin setTitle:@"取消管理员" forState:UIControlStateNormal];
@@ -196,6 +197,7 @@
     else
     {
         [_setAdmin setEnabled:false];
+        [_setAdmin setHidden:true];
     }
 }
 

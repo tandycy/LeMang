@@ -55,10 +55,11 @@
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
     UIBarButtonItem *ttt = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"top_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(ToFirstPage:)];
-    
+    [ttt setTintColor:defaultMainColor];
     self.navigationItem.leftBarButtonItem = ttt;
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(DoCommitEdit:)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"yes"] style:UIBarButtonItemStylePlain target:self action:@selector(DoCommitEdit:)];
+    [doneButton setTintColor:defaultMainColor];
     self.navigationItem.rightBarButtonItem = doneButton;
     
     [self RecoverDataContent];
