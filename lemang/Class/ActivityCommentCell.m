@@ -93,15 +93,15 @@
     
     [_creatorIcon LoadFromUrl:[NSURL URLWithString:iconStr] :[UserManager DefaultIcon] :imgBuffer];
     
-    // owner check
-    if (creatorId.longValue == activityCreator.longValue)
-    {
-        isEnableRemove = true;
-    }
-    else if ([UserManager IsInitSuccess])
+    if ([UserManager IsInitSuccess])
     {
         NSNumber* uid = [[UserManager Instance] GetLocalUserId];
-        if (uid.longValue == creatorId.longValue)
+        
+        if (uid.longValue == creatorId.longValue) // comment owner
+        {
+            isEnableRemove = true;
+        }
+        else if (uid.longValue == activityCreator.longValue) // activity owner
         {
             isEnableRemove = true;
         }
