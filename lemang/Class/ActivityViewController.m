@@ -267,7 +267,7 @@ NSString *navTitle;
             IconImageButtonLoader* button = [[IconImageButtonLoader alloc]initWithFrame:CGRectMake(320*i, 0, 320, 128)];
             [button addTarget:self action:@selector(OnScrollItemClick:) forControlEvents:UIControlEventTouchUpInside];
             
-            NSDictionary* item = topAdItems[i];
+            NSDictionary* item = topAds[i];
             
             NSString* iconStr = [UserManager filtStr:item[@"iconUrl"] :@""];
             
@@ -275,8 +275,9 @@ NSString *navTitle;
             {
                 NSString* ext = [iconStr pathExtension];
                 NSString* extCut = [iconStr substringToIndex:(iconStr.length - ext.length - 1)];
-                iconStr = [extCut stringByAppendingFormat:@"_large.%@",ext];
+                //iconStr = [extCut stringByAppendingFormat:@"_large.%@",ext];
                 
+                iconStr = [extCut stringByAppendingFormat:@"_large.%@",@"jpg"];
                 NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources";
                 tempstr = [tempstr stringByAppendingString:iconStr];
                 

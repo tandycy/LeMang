@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8YX-ce-x5E">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Home Table View Controller - 资讯-->
@@ -2735,8 +2735,33 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="32" id="oJK-sj-bHE">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="32" id="it6-9A-zYu">
                                         <rect key="frame" x="0.0" y="167" width="320" height="32"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="it6-9A-zYu" id="u5b-id-SKU">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="报名时间：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tkb-aa-atH">
+                                                    <rect key="frame" x="12" y="5" width="86" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Medium" family="Heiti SC" pointSize="13"/>
+                                                    <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QfT-Al-Abj">
+                                                    <rect key="frame" x="75" y="5" width="220" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                                    <color key="textColor" white="0.55000000000000004" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="32" id="oJK-sj-bHE">
+                                        <rect key="frame" x="0.0" y="199" width="320" height="32"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oJK-sj-bHE" id="TAk-mX-SW6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
@@ -2761,7 +2786,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="32" id="2xj-sf-moE">
-                                        <rect key="frame" x="0.0" y="199" width="320" height="32"/>
+                                        <rect key="frame" x="0.0" y="231" width="320" height="32"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2xj-sf-moE" id="EAk-kV-Z65">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
@@ -2786,7 +2811,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="87" id="xuZ-R9-cD4">
-                                        <rect key="frame" x="0.0" y="231" width="320" height="87"/>
+                                        <rect key="frame" x="0.0" y="263" width="320" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xuZ-R9-cD4" id="0GL-5R-8ul">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
@@ -2823,7 +2848,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <tableViewSection id="SXL-rc-wNf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="6oZ-Za-wuH">
-                                        <rect key="frame" x="0.0" y="338" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="370" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6oZ-Za-wuH" id="gpK-ax-WIL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -2876,7 +2901,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                             <tableViewSection id="gd4-g0-izR">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="2eT-GQ-KVn">
-                                        <rect key="frame" x="0.0" y="428" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="460" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2eT-GQ-KVn" id="SGw-aS-q43">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -2956,6 +2981,7 @@ COaPkOS+m+mHkeiejeacjeWKoQ
                         <outlet property="commentContent" destination="kI3-pe-KAP" id="Wjz-19-UPt"/>
                         <outlet property="commentTittle" destination="whR-ey-FJx" id="nUW-9b-ltz"/>
                         <outlet property="detailContent" destination="FdD-38-ujJ" id="s7o-qE-1Xz"/>
+                        <outlet property="enrollTime" destination="QfT-Al-Abj" id="L2j-fb-hoI"/>
                         <outlet property="hot" destination="SCu-dV-4gg" id="SQR-Yk-1AY"/>
                         <outlet property="joinState" destination="kou-a7-wNk" id="EEO-rF-YrZ"/>
                         <outlet property="memberIcon1" destination="r7p-dQ-lUB" id="Lq8-AG-gMf"/>
