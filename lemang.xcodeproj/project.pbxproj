@@ -1102,7 +1102,7 @@
 				ORGANIZATIONNAME = gxcm;
 				TargetAttributes = {
 					256E04241987A106009845A5 = {
-						DevelopmentTeam = EPLVH89QP6;
+						DevelopmentTeam = 43BJBF7JDD;
 					};
 					256E044B1987A106009845A5 = {
 						TestTargetID = 256E04241987A106009845A5;
