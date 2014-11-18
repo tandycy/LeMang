@@ -210,7 +210,7 @@
 		2545E020199CC45000F99CC7 /* ActivityCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityCommentTableViewController.m; path = Class/ActivityCommentTableViewController.m; sourceTree = "<group>"; };
 		25465BB819FF978F007CE99C /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeTableViewController.h; path = Class/HomeTableViewController.h; sourceTree = "<group>"; };
 		25465BB919FF978F007CE99C /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeTableViewController.m; path = Class/HomeTableViewController.m; sourceTree = "<group>"; };
-		256E04251987A106009845A5 /* 乐芒.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "乐芒.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		256E04251987A106009845A5 /* lemang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lemang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		256E04281987A106009845A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		256E042A1987A106009845A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		256E042C1987A106009845A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -522,7 +522,7 @@
 		256E04261987A106009845A5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				256E04251987A106009845A5 /* 乐芒.app */,
+				256E04251987A106009845A5 /* lemang.app */,
 				256E044C1987A106009845A5 /* lemangTests.xctest */,
 			);
 			name = Products;
@@ -1071,7 +1071,7 @@
 			);
 			name = lemang;
 			productName = lemang;
-			productReference = 256E04251987A106009845A5 /* 乐芒.app */;
+			productReference = 256E04251987A106009845A5 /* lemang.app */;
 			productType = "com.apple.product-type.application";
 		};
 		256E044B1987A106009845A5 /* lemangTests */ = {
@@ -1109,7 +1109,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */;
+			buildConfigurationList = 256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMon" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1448,7 +1448,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lemang/lemang-Prefix.pch";
 				INFOPLIST_FILE = "lemang/lemang-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_4.1",
@@ -1456,7 +1456,7 @@
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
-				PRODUCT_NAME = "乐芒";
+				PRODUCT_NAME = lemang;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1481,7 +1481,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "lemang/lemang-Prefix.pch";
 				INFOPLIST_FILE = "lemang/lemang-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_4.1",
@@ -1489,7 +1489,7 @@
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/lemang/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
-				PRODUCT_NAME = "乐芒";
+				PRODUCT_NAME = lemang;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1539,7 +1539,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		256E04201987A106009845A5 /* Build configuration list for PBXProject "lemang" */ = {
+		256E04201987A106009845A5 /* Build configuration list for PBXProject "LeMon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				256E045B1987A107009845A5 /* Debug */,

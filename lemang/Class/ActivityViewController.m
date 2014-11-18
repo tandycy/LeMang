@@ -248,13 +248,15 @@ NSString *navTitle;
         for (int i = 0; i < maxItems; i++)
         {
             NSDictionary* item = itemArray[i];
-            [topAds addObject:item];
+            NSString* iconStr = [UserManager filtStr:item[@"iconUrl"] :@""];
+            
+            if (iconStr.length > 0)
+            {
+                [topAds addObject:item];
+            }
         }
         
-        pageControl.numberOfPages = maxItems;
-        [pageControl setFrame:CGRectMake(-140+maxItems*6, 100, 320, 30)];
-        [pageControl setBounds:CGRectMake(0,0,16*(maxItems-1)+16,16)];
-        [scrollView setContentSize:CGSizeMake(320*maxItems, 128)];
+        topAdItems = [[NSMutableArray alloc]init];
         
         for (IconImageButtonLoader* button in topAdItems)
         {
@@ -262,41 +264,35 @@ NSString *navTitle;
         }
         [topAdItems removeAllObjects];
         
-        for (int i = 0; i < maxItems; i++)
+        int pages = topAds.count;
+        
+        for (int i = 0; i < topAds.count; i++)
         {
             IconImageButtonLoader* button = [[IconImageButtonLoader alloc]initWithFrame:CGRectMake(320*i, 0, 320, 128)];
             [button addTarget:self action:@selector(OnScrollItemClick:) forControlEvents:UIControlEventTouchUpInside];
             
             NSDictionary* item = topAds[i];
-            
+ 
             NSString* iconStr = [UserManager filtStr:item[@"iconUrl"] :@""];
             
-            if (iconStr.length > 0)
-            {
-                NSString* ext = [iconStr pathExtension];
-                NSString* extCut = [iconStr substringToIndex:(iconStr.length - ext.length - 1)];
-                //iconStr = [extCut stringByAppendingFormat:@"_large.%@",ext];
+            NSString* ext = [iconStr pathExtension];
+            NSString* extCut = [iconStr substringToIndex:(iconStr.length - ext.length - 1)];
+            //iconStr = [extCut stringByAppendingFormat:@"_large.%@",ext];
                 
-                iconStr = [extCut stringByAppendingFormat:@"_large.%@",@"jpg"];
-                NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources";
-                tempstr = [tempstr stringByAppendingString:iconStr];
+            iconStr = [extCut stringByAppendingFormat:@"_large.%@",@"jpg"];
+            NSString* tempstr = @"http://e.taoware.com:8080/quickstart/resources";
+            tempstr = [tempstr stringByAppendingString:iconStr];
                 
-                NSURL* iconUrl = [NSURL URLWithString:tempstr];
-                [button LoadFromUrl:iconUrl :[UserManager DefaultIcon]];
-            }
-            else
-            {
-                UIImage* temp = [UIImage imageNamed:@"11.jpg"];
+            NSURL* iconUrl = [NSURL URLWithString:tempstr];
+            [button LoadFromUrl:iconUrl :[UserManager DefaultIcon]];
                 
-                if (temp == nil)
-                    temp = [UserManager DefaultIcon];
-                
-                [button setBackgroundImage:temp forState:UIControlStateNormal];
-            }
-            
             [scrollView addSubview:button];
             [topAdItems addObject:button];
         }
+        pageControl.numberOfPages = pages;
+        [pageControl setFrame:CGRectMake(-140+pages*6, 100, 320, 30)];
+        [pageControl setBounds:CGRectMake(0,0,16*(pages-1)+16,16)];
+        [scrollView setContentSize:CGSizeMake(320*pages, 128)];
     }
 }
 
