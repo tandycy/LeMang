@@ -13,6 +13,7 @@
 #import "MJRefresh.h"
 #import "HomeViewCell.h"
 #import "InitViewController.h"
+#import "UserManager.h"
 
 @interface HomeTableViewController ()
 
@@ -24,6 +25,7 @@
     int nextPage;
     int pageSize;
     int maxPage;
+    int uniID;
     
     BOOL firstOpen;
     UIScrollView *scrollView;
@@ -54,6 +56,7 @@
     InitViewController *firstView = [[InitViewController alloc]init];
     
     [self presentModalViewController:firstView animated:NO];
+    [self initSortButton];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -62,6 +65,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self InitFooterHeader];
     [self RefreshNewList];
+}
+
+-(void)initSortButton
+{
+    UIBarButtonItem *sortButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"arrow_w"] style:UIBarButtonItemStylePlain target:self action:@selector(sortButtonClicked:)];
+    self.navigationItem.rightBarButtonItem = sortButton;
 }
 
 - (void)headerRereshing
@@ -123,6 +132,72 @@
     [newsDataArray removeAllObjects];
     
     [self AppendNewsData];
+}
+
+-(IBAction)sortButtonClicked:(id)sender
+{
+    newsDataArray = [[NSMutableArray alloc]init];
+    currentPage = 0;
+    [self AppendUserNewsData];
+}
+
+-(void)AppendUserNewsData
+{
+    if (currentPage == nextPage)
+    {
+        NSLog(@"news at final page: %d, refresh cancel", currentPage);
+        return;
+    }
+    
+    
+    if([UserManager IsInitSuccess])
+    {
+        NSDictionary *userData = [UserManager LocalUserData];
+        NSString *uniString =  [UserManager filtStr:userData[@"university"][@"id"]];
+        uniID = [uniString intValue];
+       // NSLog(@"%@",uniID);
+    }
+    
+    NSLog(@"append news data for page: %d", nextPage);
+    
+    NSString* URLString = @"http://e.taoware.com:8080/quickstart/api/v1/system/news?search_EQ_university.id=";
+    URLString = [URLString stringByAppendingFormat:@"%d&page=%d&page.size=%d&sortType=auto", uniID, nextPage, pageSize];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:URL];
+    [request setUsername:@"admin"];
+    [request setPassword:@"admin"];
+    
+    [request startSynchronous];
+    
+    NSError *error = [request error];
+    int returnCode = [request responseStatusCode];
+    
+    if (!error)
+    {
+        NSDictionary* returnData = [NSJSONSerialization JSONObjectWithData:[request responseData] options:NSJSONReadingAllowFragments error:nil];
+        NSArray* orgArray = returnData[@"content"];
+        
+        NSNumber* totalPage = returnData[@"totalPages"];
+        maxPage = totalPage.integerValue;
+        
+        currentPage = nextPage;
+        if (currentPage == maxPage)
+            nextPage = maxPage;
+        else
+            nextPage = currentPage+1;
+        
+        for (NSDictionary* item in orgArray)
+        {
+            [newsDataArray addObject:item];
+        }
+        
+        [self.tableView reloadData];
+    }
+    else
+    {
+        //
+    }
 }
 
 - (void)AppendNewsData
