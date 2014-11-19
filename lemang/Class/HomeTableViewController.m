@@ -27,8 +27,11 @@
     int maxPage;
     int uniID;
     
+    BOOL userSort;
+    
     BOOL firstOpen;
     UIScrollView *scrollView;
+    UIBarButtonItem *sortButton;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -69,8 +72,10 @@
 
 -(void)initSortButton
 {
-    UIBarButtonItem *sortButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"arrow_w"] style:UIBarButtonItemStylePlain target:self action:@selector(sortButtonClicked:)];
+    sortButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"arrow_w1"] style:UIBarButtonItemStylePlain target:self action:@selector(sortButtonClicked:)];
     self.navigationItem.rightBarButtonItem = sortButton;
+    
+    [sortButton setTintColor:[UIColor whiteColor]];
 }
 
 - (void)headerRereshing
@@ -109,7 +114,10 @@
 - (void)footerRereshing
 {
     // 1.添加数据
-    [self AppendNewsData];
+    if (userSort) {
+        [self AppendUserNewsData];
+    }
+    else [self AppendNewsData];
     
     // 2.2秒后刷新表格UI
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -131,14 +139,31 @@
         newsDataArray = [[NSMutableArray alloc]init];
     [newsDataArray removeAllObjects];
     
-    [self AppendNewsData];
+    if (userSort) {
+        [self AppendUserNewsData];
+    }
+    else
+    {
+        [self AppendNewsData];
+    }
 }
 
 -(IBAction)sortButtonClicked:(id)sender
 {
-    newsDataArray = [[NSMutableArray alloc]init];
     currentPage = 0;
-    [self AppendUserNewsData];
+    nextPage = 1;
+    newsDataArray = [[NSMutableArray alloc]init];
+    if (userSort) {
+        sortButton.image = [UIImage imageNamed:@"arrow_w1"];
+        [self AppendNewsData];
+        userSort = 0;
+    }
+    else
+    {
+        sortButton.image = [UIImage imageNamed:@"arrow_w2"];
+        userSort = 1;
+        [self AppendUserNewsData];
+    }
 }
 
 -(void)AppendUserNewsData
